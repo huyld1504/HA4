@@ -1,0 +1,122 @@
+/* Member Badges */
+.member-badges {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid #e2e8f0;
+}
+
+.badges-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.badges-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.badge-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem 1rem;
+  background: linear-gradient(135deg, rgba(var(--badge-color-rgb, 102, 126, 234), 0.1) 0%, rgba(var(--badge-color-rgb, 102, 126, 234), 0.05) 100%);
+  border-left: 4px solid var(--badge-color, #667eea);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.badge-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.badge-item:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.badge-item:hover::before {
+  left: 100%;
+}
+
+.badge-icon {
+  font-size: 1.5rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.badge-name {
+  flex: 1;
+  font-weight: 600;
+  color: #2d3748;
+  font-size: 0.95rem;
+}
+
+/* Badge Colors */
+.badge-item[style*="--badge-color: #4CAF50"] {
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(76, 175, 80, 0.05) 100%);
+}
+
+.badge-item[style*="--badge-color: #FFD700"] {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.08) 100%);
+}
+
+.badge-item[style*="--badge-color: #9C27B0"] {
+  background: linear-gradient(135deg, rgba(156, 39, 176, 0.1) 0%, rgba(156, 39, 176, 0.05) 100%);
+}
+
+/* Animation */
+@keyframes badgeGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px var(--badge-color);
+  }
+
+  50% {
+    box-shadow: 0 0 20px var(--badge-color), 0 0 30px var(--badge-color);
+  }
+}
+
+.badge-item:hover {
+  animation: badgeGlow 2s ease-in-out infinite;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .badge-item {
+    padding: 0.7rem 0.8rem;
+  }
+
+  .badge-icon {
+    font-size: 1.3rem;
+    width: 28px;
+    height: 28px;
+  }
+
+  .badge-name {
+    font-size: 0.9rem;
+  }
+}

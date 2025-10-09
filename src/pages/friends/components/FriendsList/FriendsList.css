@@ -1,0 +1,51 @@
+/* Friends List */
+.friends-list {
+  margin-top: 2rem;
+}
+
+.friends-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Empty State */
+.friends-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.empty-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 0.5rem;
+}
+
+.empty-text {
+  font-size: 1rem;
+  color: #718096;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .friends-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .friends-grid {
+    grid-template-columns: 1fr;
+  }
+}

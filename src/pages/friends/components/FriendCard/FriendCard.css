@@ -1,0 +1,79 @@
+/* Friend Card */
+.friend-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.friend-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+}
+
+.friend-card-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.friend-avatar-wrapper {
+  position: relative;
+}
+
+.online-badge {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.75rem;
+}
+
+.friend-card-body {
+  text-align: center;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.friend-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 0.3rem;
+}
+
+.friend-username {
+  font-size: 0.9rem;
+  color: #718096;
+  margin: 0 0 0.5rem;
+}
+
+.mutual-friends {
+  font-size: 0.85rem;
+  color: #a0aec0;
+  margin: 0;
+}
+
+.friend-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.friend-card-actions button {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .friend-card {
+    padding: 1rem;
+  }
+}

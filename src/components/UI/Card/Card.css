@@ -1,0 +1,45 @@
+.card {
+  background: white;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+/* Variants */
+.card-default {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.card-outlined {
+  border: 1px solid #E0E0E0;
+}
+
+.card-elevated {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Padding */
+.card-padding-none {
+  padding: 0;
+}
+
+.card-padding-small {
+  padding: 1rem;
+}
+
+.card-padding-medium {
+  padding: 1.5rem;
+}
+
+.card-padding-large {
+  padding: 2rem;
+}
+
+/* States */
+.card-hoverable:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+
+.card-clickable {
+  cursor: pointer;
+}

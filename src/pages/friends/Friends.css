@@ -1,0 +1,49 @@
+/* Friends Page */
+.friends-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+  padding: 2rem 0;
+}
+
+.friends-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.friends-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.friends-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 0.5rem;
+}
+
+.friends-subtitle {
+  font-size: 1.1rem;
+  color: #718096;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .friends-page {
+    padding: 1rem 0;
+  }
+
+  .friends-container {
+    padding: 0 0.5rem;
+  }
+
+  .friends-title {
+    font-size: 2rem;
+  }
+
+  .friends-subtitle {
+    font-size: 1rem;
+  }
+}
