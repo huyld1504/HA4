@@ -1,0 +1,6 @@
+export { default as Home } from './Home'
+export { default as Events } from './Events'
+export { default as News } from './News'
+export { default as EventDetail } from './EventDetail'
+export { default as NewsDetail } from './NewsDetail'
+export { default as EventRegistration } from './EventRegistration'
