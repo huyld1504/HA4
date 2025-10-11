@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 
 import AppLayout from '../components/layouts/AppLayout'
 import MainLayout from '../components/layouts/MainLayout'
-import { Home, Events, News, EventDetail, NewsDetail, EventRegistration } from '../pages'
+import { Home, Events, News, EventDetail, NewsDetail, EventRegistration, VanHoaLichSu, PhanTichGocNhin, Forum } from '../pages'
 
 const router = createBrowserRouter([
   {
@@ -22,6 +22,18 @@ const router = createBrowserRouter([
           {
             path: 'events/:eventId',
             element: <EventDetail />,
+          },
+          {
+            path: 'vanhoalichsu',
+            element: <VanHoaLichSu />,
+          },
+          {
+            path: 'phantichgocnhin',
+            element: <PhanTichGocNhin />,
+          },
+          {
+            path: 'forum',
+            element: <Forum />,
           },
           {
             path: 'register/:eventId',
