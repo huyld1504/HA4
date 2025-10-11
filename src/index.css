@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+/* Custom CSS Variables for Brand Colors */
+:root {
+  --brand-brown-50: #fef8f3;
+  --brand-brown-100: #f6eadf;
+  --brand-brown-200: #e8d3c0;
+  --brand-brown-300: #d4b39a;
+  --brand-brown-400: #b8906f;
+  --brand-brown-600: #7a5a42;
+  --brand-brown-900: #3b2412;
+  --brand-brown-950: #2e1e10;
+}
+
+/* Custom Utility Classes */
+.brand-brown-50 {
+  color: var(--brand-brown-50);
+}
+
+.brand-brown-100 {
+  color: var(--brand-brown-100);
+}
+
+.brand-brown-200 {
+  color: var(--brand-brown-200);
+}
+
+.brand-brown-300 {
+  color: var(--brand-brown-300);
+}
+
+.brand-brown-400 {
+  color: var(--brand-brown-400);
+}
+
+.brand-brown-600 {
+  color: var(--brand-brown-600);
+}
+
+.brand-brown-900 {
+  color: var(--brand-brown-900);
+}
+
+.brand-brown-950 {
+  color: var(--brand-brown-950);
+}
+
+.bg-brand-brown-50 {
+  background-color: var(--brand-brown-50);
+}
+
+.bg-brand-brown-100 {
+  background-color: var(--brand-brown-100);
+}
+
+.bg-brand-brown-200 {
+  background-color: var(--brand-brown-200);
+}
+
+.bg-brand-brown-300 {
+  background-color: var(--brand-brown-300);
+}
+
+.bg-brand-brown-400 {
+  background-color: var(--brand-brown-400);
+}
+
+.bg-brand-brown-600 {
+  background-color: var(--brand-brown-600);
+}
+
+.bg-brand-brown-900 {
+  background-color: var(--brand-brown-900);
+}
+
+.bg-brand-brown-950 {
+  background-color: var(--brand-brown-950);
+}
+
+.border-brand-brown-200 {
+  border-color: var(--brand-brown-200);
+}
+
+.border-brand-brown-300 {
+  border-color: var(--brand-brown-300);
+}
+
+.border-brand-brown-400 {
+  border-color: var(--brand-brown-400);
+}
+
+.text-brand-brown-400 {
+  color: var(--brand-brown-400);
+}
+
+.text-brand-brown-500 {
+  color: #947054;
+}
+
+.text-brand-brown-600 {
+  color: var(--brand-brown-600);
+}
+
+.text-brand-brown-900 {
+  color: var(--brand-brown-900);
+}
+
+/* Prose Styling */
+.prose-brand {
+  color: var(--brand-brown-900);
+}
+
+.prose-brand h1,
+.prose-brand h2,
+.prose-brand h3,
+.prose-brand h4,
+.prose-brand h5,
+.prose-brand h6 {
+  color: var(--brand-brown-900);
+  font-family: serif;
+}
+
+.prose-brand a {
+  color: var(--brand-brown-600);
+  text-decoration: underline;
+}
+
+.prose-brand a:hover {
+  color: var(--brand-brown-400);
+}
+
+.prose-brand strong {
+  color: var(--brand-brown-900);
+  font-weight: 600;
+}
+
+.prose-brand blockquote {
+  border-left-color: var(--brand-brown-300);
+  color: var(--brand-brown-600);
+}
