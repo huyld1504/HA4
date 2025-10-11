@@ -1,0 +1,219 @@
+/* Liked Content */
+.liked-content {
+  padding: 1rem 0;
+}
+
+.liked-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.liked-header h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0;
+}
+
+.liked-count {
+  font-size: 0.9rem;
+  color: #a0aec0;
+  background: #f7fafc;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.liked-posts {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.liked-post-item {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.liked-post-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #667eea;
+}
+
+.liked-post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.liked-post-author {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.liked-author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.liked-author-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.liked-author-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0;
+}
+
+.liked-author-username {
+  font-size: 0.85rem;
+  color: #a0aec0;
+}
+
+.liked-timestamp {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #a0aec0;
+}
+
+.liked-icon {
+  font-size: 1.2rem;
+  animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  10%,
+  30% {
+    transform: scale(1.1);
+  }
+
+  20%,
+  40% {
+    transform: scale(0.9);
+  }
+}
+
+.liked-post-content {
+  padding: 1rem 1.5rem;
+}
+
+.liked-post-content p {
+  margin: 0 0 1rem;
+  color: #2d3748;
+  line-height: 1.6;
+}
+
+.liked-post-image {
+  margin-top: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.liked-post-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.liked-post-stats {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0.8rem 1.5rem;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.liked-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: #718096;
+}
+
+.stat-icon {
+  font-size: 1rem;
+}
+
+.liked-post-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.liked-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #4a5568;
+  transition: all 0.2s ease;
+}
+
+.liked-action-btn:hover {
+  background: #f7fafc;
+  color: #667eea;
+}
+
+.liked-action-btn.liked {
+  color: #e53e3e;
+}
+
+.liked-action-btn.liked:hover {
+  background: rgba(229, 62, 62, 0.1);
+}
+
+.liked-action-btn span {
+  font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+  .liked-post-header,
+  .liked-post-content,
+  .liked-post-stats {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .liked-action-btn {
+    font-size: 0.85rem;
+    padding: 0.6rem;
+  }
+
+  .liked-header h3 {
+    font-size: 1.1rem;
+  }
+}

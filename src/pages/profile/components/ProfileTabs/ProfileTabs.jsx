@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Card } from '../../../../components/UI';
+import PostsContent from './PostsContent';
+import MediaContent from './MediaContent';
+import LikedContent from './LikedContent';
 import './ProfileTabs.css';
 
 const ProfileTabs = () => {
@@ -47,24 +50,5 @@ const ProfileTabs = () => {
     </div>
   );
 };
-
-// Temporary content components
-const PostsContent = () => (
-  <div className="content-placeholder">
-    <p>📝 Danh sách bài viết sẽ hiển thị tại đây</p>
-  </div>
-);
-
-const MediaContent = () => (
-  <div className="content-placeholder">
-    <p>📷 Thư viện ảnh & video sẽ hiển thị tại đây</p>
-  </div>
-);
-
-const LikedContent = () => (
-  <div className="content-placeholder">
-    <p>❤️ Các bài viết đã thích sẽ hiển thị tại đây</p>
-  </div>
-);
 
 export default ProfileTabs;

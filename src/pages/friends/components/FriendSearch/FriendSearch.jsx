@@ -9,7 +9,7 @@ const FriendSearch = ({ searchQuery, onSearchChange }) => {
         <SearchInput
           placeholder="Tìm kiếm bạn bè..."
           value={searchQuery}
-          onChange={(e) => onSearchChange(e.target.value)}
+          onChange={onSearchChange}
         />
 
         <div className="search-filters">
