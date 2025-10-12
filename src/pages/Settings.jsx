@@ -1,9 +1,23 @@
 import React, { useState } from 'react'
 import SectionHeading from '../components/common/SectionHeading'
-import { settingsTabs, defaultFormData, notificationSettings, privacySettings, privacyOptions } from '../data/settingsData'
+import ToggleSwitch from '../components/common/ToggleSwitch'
+import {
+  settingsTabs,
+  defaultFormData,
+  accountSecuritySettings,
+  notificationSettings,
+  appearanceSettings,
+  privacySettings,
+  privacyOptions,
+  fontSizeOptions,
+  themeOptions,
+  languageOptions,
+  timezoneOptions,
+  dateFormatOptions
+} from '../data/settingsData'
 
 const Settings = () => {
-  const [activeTab, setActiveTab] = useState('profile')
+  const [activeTab, setActiveTab] = useState('account')
   const [formData, setFormData] = useState(defaultFormData)
 
   const handleInputChange = (e) => {
@@ -56,69 +70,6 @@ const Settings = () => {
           <div className="lg:col-span-3">
             <div className="rounded-2xl bg-white p-8 shadow-lg">
               <form onSubmit={handleSubmit}>
-                {/* Profile Settings */}
-                {activeTab === 'profile' && (
-                  <div className="space-y-6">
-                    <h2 className="text-2xl font-serif font-semibold text-brand-brown-900">
-                      Thông tin cá nhân
-                    </h2>
-
-                    <div className="grid gap-6 md:grid-cols-2">
-                      <div>
-                        <label className="block text-sm font-medium text-brand-brown-700 mb-2">
-                          Họ và tên
-                        </label>
-                        <input
-                          type="text"
-                          name="fullName"
-                          value={formData.fullName}
-                          onChange={handleInputChange}
-                          className="w-full rounded-lg border border-brand-brown-200 px-4 py-3 focus:border-brand-brown-600 focus:outline-none focus:ring-2 focus:ring-brand-brown-600/20"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-brand-brown-700 mb-2">
-                          Email
-                        </label>
-                        <input
-                          type="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          className="w-full rounded-lg border border-brand-brown-200 px-4 py-3 focus:border-brand-brown-600 focus:outline-none focus:ring-2 focus:ring-brand-brown-600/20"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-brand-brown-700 mb-2">
-                          Số điện thoại
-                        </label>
-                        <input
-                          type="tel"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleInputChange}
-                          className="w-full rounded-lg border border-brand-brown-200 px-4 py-3 focus:border-brand-brown-600 focus:outline-none focus:ring-2 focus:ring-brand-brown-600/20"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-brand-brown-700 mb-2">
-                        Giới thiệu bản thân
-                      </label>
-                      <textarea
-                        name="bio"
-                        value={formData.bio}
-                        onChange={handleInputChange}
-                        rows={4}
-                        className="w-full rounded-lg border border-brand-brown-200 px-4 py-3 focus:border-brand-brown-600 focus:outline-none focus:ring-2 focus:ring-brand-brown-600/20"
-                      />
-                    </div>
-                  </div>
-                )}
-
                 {/* Account & Security Settings */}
                 {activeTab === 'account' && (
                   <div className="space-y-6">
@@ -175,6 +126,30 @@ const Settings = () => {
                         </p>
                       </div>
                     </div>
+
+                    {/* Security Options */}
+                    <div className="mt-8">
+                      <h3 className="text-lg font-semibold text-brand-brown-900 mb-4">
+                        Tùy chọn bảo mật
+                      </h3>
+                      <div className="space-y-4">
+                        {accountSecuritySettings.map((setting, index) => (
+                          <div
+                            key={setting.id}
+                            className={`${index < accountSecuritySettings.length - 1 ? 'border-b border-brand-brown-100' : ''}`}
+                          >
+                            <ToggleSwitch
+                              id={setting.id}
+                              name={setting.id}
+                              checked={formData[setting.id]}
+                              onChange={handleInputChange}
+                              label={setting.title}
+                              description={setting.description}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 )}
 
@@ -189,24 +164,90 @@ const Settings = () => {
                       {notificationSettings.map((setting, index) => (
                         <div
                           key={setting.id}
-                          className={`flex items-center justify-between py-3 ${index < notificationSettings.length - 1 ? 'border-b border-brand-brown-100' : ''}`}
+                          className={`${index < notificationSettings.length - 1 ? 'border-b border-brand-brown-100' : ''}`}
                         >
-                          <div>
-                            <h3 className="font-medium text-brand-brown-900">{setting.title}</h3>
-                            <p className="text-sm text-brand-brown-600">{setting.description}</p>
-                          </div>
-                          <label className="relative inline-flex items-center cursor-pointer">
-                            <input
-                              type="checkbox"
-                              name={setting.id}
-                              checked={formData[setting.id]}
-                              onChange={handleInputChange}
-                              className="sr-only peer"
-                            />
-                            <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-brand-brown-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-brown-600"></div>
-                          </label>
+                          <ToggleSwitch
+                            id={setting.id}
+                            name={setting.id}
+                            checked={formData[setting.id]}
+                            onChange={handleInputChange}
+                            label={setting.title}
+                            description={setting.description}
+                          />
                         </div>
                       ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Appearance Settings */}
+                {activeTab === 'appearance' && (
+                  <div className="space-y-6">
+                    <h2 className="text-2xl font-serif font-semibold text-brand-brown-900">
+                      Giao diện
+                    </h2>
+
+                    {/* Appearance Toggles */}
+                    <div className="space-y-4">
+                      {appearanceSettings.map((setting, index) => (
+                        <div
+                          key={setting.id}
+                          className={`${index < appearanceSettings.length - 1 ? 'border-b border-brand-brown-100' : ''}`}
+                        >
+                          <ToggleSwitch
+                            id={setting.id}
+                            name={setting.id}
+                            checked={formData[setting.id]}
+                            onChange={handleInputChange}
+                            label={setting.title}
+                            description={setting.description}
+                          />
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Font Size */}
+                    <div className="mt-6">
+                      <label className="block text-sm font-medium text-brand-brown-700 mb-2">
+                        Kích thước chữ
+                      </label>
+                      <select
+                        name="fontSize"
+                        value={formData.fontSize}
+                        onChange={handleInputChange}
+                        className="w-full rounded-lg border border-brand-brown-200 px-4 py-3 focus:border-brand-brown-600 focus:outline-none focus:ring-2 focus:ring-brand-brown-600/20"
+                      >
+                        {fontSizeOptions.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* Theme */}
+                    <div>
+                      <label className="block text-sm font-medium text-brand-brown-700 mb-2">
+                        Chủ đề màu sắc
+                      </label>
+                      <select
+                        name="theme"
+                        value={formData.theme}
+                        onChange={handleInputChange}
+                        className="w-full rounded-lg border border-brand-brown-200 px-4 py-3 focus:border-brand-brown-600 focus:outline-none focus:ring-2 focus:ring-brand-brown-600/20"
+                      >
+                        {themeOptions.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div className="rounded-lg bg-[#f6eadf] p-4 mt-6">
+                      <p className="text-sm text-brand-brown-700">
+                        <strong>💡 Mẹo:</strong> Thay đổi giao diện để có trải nghiệm phù hợp với sở thích của bạn.
+                      </p>
                     </div>
                   </div>
                 )}
@@ -240,24 +281,99 @@ const Settings = () => {
                       {privacySettings.map((setting, index) => (
                         <div
                           key={setting.id}
-                          className={`flex items-center justify-between py-3 ${index < privacySettings.length - 1 ? 'border-b border-brand-brown-100' : ''}`}
+                          className={`${index < privacySettings.length - 1 ? 'border-b border-brand-brown-100' : ''}`}
                         >
-                          <div>
-                            <h3 className="font-medium text-brand-brown-900">{setting.title}</h3>
-                            <p className="text-sm text-brand-brown-600">{setting.description}</p>
-                          </div>
-                          <label className="relative inline-flex items-center cursor-pointer">
-                            <input
-                              type="checkbox"
-                              name={setting.id}
-                              checked={formData[setting.id]}
-                              onChange={handleInputChange}
-                              className="sr-only peer"
-                            />
-                            <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-brand-brown-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-brown-600"></div>
-                          </label>
+                          <ToggleSwitch
+                            id={setting.id}
+                            name={setting.id}
+                            checked={formData[setting.id]}
+                            onChange={handleInputChange}
+                            label={setting.title}
+                            description={setting.description}
+                          />
                         </div>
                       ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Language & Region Settings */}
+                {activeTab === 'language' && (
+                  <div className="space-y-6">
+                    <h2 className="text-2xl font-serif font-semibold text-brand-brown-900">
+                      Ngôn ngữ & Khu vực
+                    </h2>
+
+                    {/* Language */}
+                    <div>
+                      <label className="block text-sm font-medium text-brand-brown-700 mb-2">
+                        Ngôn ngữ hiển thị
+                      </label>
+                      <select
+                        name="language"
+                        value={formData.language}
+                        onChange={handleInputChange}
+                        className="w-full rounded-lg border border-brand-brown-200 px-4 py-3 focus:border-brand-brown-600 focus:outline-none focus:ring-2 focus:ring-brand-brown-600/20"
+                      >
+                        {languageOptions.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                      <p className="mt-2 text-sm text-brand-brown-600">
+                        Chọn ngôn ngữ hiển thị trên toàn bộ website
+                      </p>
+                    </div>
+
+                    {/* Timezone */}
+                    <div>
+                      <label className="block text-sm font-medium text-brand-brown-700 mb-2">
+                        Múi giờ
+                      </label>
+                      <select
+                        name="timezone"
+                        value={formData.timezone}
+                        onChange={handleInputChange}
+                        className="w-full rounded-lg border border-brand-brown-200 px-4 py-3 focus:border-brand-brown-600 focus:outline-none focus:ring-2 focus:ring-brand-brown-600/20"
+                      >
+                        {timezoneOptions.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                      <p className="mt-2 text-sm text-brand-brown-600">
+                        Hiển thị thời gian sự kiện theo múi giờ của bạn
+                      </p>
+                    </div>
+
+                    {/* Date Format */}
+                    <div>
+                      <label className="block text-sm font-medium text-brand-brown-700 mb-2">
+                        Định dạng ngày tháng
+                      </label>
+                      <select
+                        name="dateFormat"
+                        value={formData.dateFormat}
+                        onChange={handleInputChange}
+                        className="w-full rounded-lg border border-brand-brown-200 px-4 py-3 focus:border-brand-brown-600 focus:outline-none focus:ring-2 focus:ring-brand-brown-600/20"
+                      >
+                        {dateFormatOptions.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                      <p className="mt-2 text-sm text-brand-brown-600">
+                        Cách hiển thị ngày tháng trên toàn bộ website
+                      </p>
+                    </div>
+
+                    <div className="rounded-lg bg-[#f6eadf] p-4 mt-6">
+                      <p className="text-sm text-brand-brown-700">
+                        <strong>🌍 Lưu ý:</strong> Thay đổi này sẽ được áp dụng ngay lập tức sau khi lưu.
+                      </p>
                     </div>
                   </div>
                 )}
