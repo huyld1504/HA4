@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
-import nhangoImg from '../assets/nhango.jpg'
-import nhathoImg from '../assets/nhatho.png'
-import nhathoDucbaImg from '../assets/nhathoducba.jpg'
-import nhathoDucbaAiImg from '../assets/nhathoducbaai.png'
-import hueImg from '../assets/hue.jpg'
-import diadaoImg from '../assets/diadao.png'
+import nhangoImg from '../../assets/nhango.jpg'
+import nhathoImg from '../../assets/nhatho.png'
+import nhathoDucbaImg from '../../assets/nhathoducba.jpg'
+import nhathoDucbaAiImg from '../../assets/nhathoducbaai.png'
+import hueImg from '../../assets/hue.jpg'
+import diadaoImg from '../../assets/diadao.png'
 
 const dynastyData = {
 ngo: {

@@ -7,10 +7,10 @@ import ExpertCarousel from '../../components/common/ExpertCarousel'
 import ExpertVideoModal from '../../components/common/ExpertVideoModal'
 
 // Import images from assets
-import aiHeritageImg from '../assets/nhathoducbaai.png'
-import genZImg from '../assets/hue.jpg'
-import vrMuseumImg from '../assets/nhathoducba.jpg'
-import globalImg from '../assets/diadao.png'
+import aiHeritageImg from '../../assets/nhathoducbaai.png'
+import genZImg from '../../assets/hue.jpg'
+import vrMuseumImg from '../../assets/nhathoducba.jpg'
+import globalImg from '../../assets/diadao.png'
 
 // Mock data cho các bài phân tích
 const analysisData = [

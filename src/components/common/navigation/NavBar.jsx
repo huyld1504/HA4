@@ -4,7 +4,7 @@ import logo from '../../../assets/logo.png'
 
 const NavBar = () => {
   const [openSubmenu, setOpenSubmenu] = useState(null)
-  const [isAuthenticated, setIsAuthenticated] = useState(false) // TODO: Kết nối với auth context/state
+  const [isAuthenticated, setIsAuthenticated] = useState(true) // TODO: Kết nối với auth context/state
   const timeoutRef = useRef(null)
 
   // Cleanup timeout khi component unmount
@@ -62,7 +62,12 @@ const NavBar = () => {
 
   const handleMenuEnter = useCallback((index) => {
     clearExistingTimeout()
-    if (menuItems[index].submenu) {
+    // if (menuItems[index].submenu) {
+    //   setOpenSubmenu(index)
+    // }
+
+    // Cho phép mở submenu cho cả menu items và user menu (index === menuItems.length)
+    if ((menuItems[index] && menuItems[index].submenu) || index === menuItems.length) {
       setOpenSubmenu(index)
     }
   }, [menuItems, clearExistingTimeout])
@@ -291,17 +296,17 @@ const NavBar = () => {
                     <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#ffd54f] to-[#ffb84d] flex items-center justify-center text-[#3b2412] font-bold text-sm">
                       U
                     </div>
-                    <span>Tài khoản</span>
-                    <svg 
-                      className={`w-4 h-4 transition-transform duration-300 ease-out ${
-                        openSubmenu === menuItems.length ? 'rotate-180' : ''
-                      }`} 
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-                    </svg>
+                    {/* <span>Tài khoản</span> */}
+                      {/* <svg 
+                        className={`w-4 h-4 transition-transform duration-300 ease-out ${
+                          openSubmenu === menuItems.length ? 'rotate-180' : ''
+                        }`} 
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                      </svg> */}
                   </button>
                   
                   {/* User Dropdown Menu */}
