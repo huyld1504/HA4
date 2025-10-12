@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 
 import AppLayout from '../components/layouts/AppLayout'
 import MainLayout from '../components/layouts/MainLayout'
-import { Home, Events, News, EventDetail, NewsDetail, EventRegistration, VanHoaLichSu, PhanTichGocNhin, Forum } from '../pages'
+import { Home, Events, News, EventDetail, NewsDetail, EventRegistration, VanHoaLichSu, PhanTichGocNhin, Forum, Settings, Guides, Contact } from '../pages'
 
 const router = createBrowserRouter([
   {
@@ -46,6 +46,18 @@ const router = createBrowserRouter([
           {
             path: 'news/:newsId',
             element: <NewsDetail />,
+          },
+          {
+            path: 'settings',
+            element: <Settings />,
+          },
+          {
+            path: 'guides',
+            element: <Guides />,
+          },
+          {
+            path: 'contact',
+            element: <Contact />,
           },
         ],
       },
