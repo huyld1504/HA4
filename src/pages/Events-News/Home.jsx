@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import EventCard from '../components/cards/EventCard'
-import NewsCard from '../components/cards/NewsCard'
-import HeroCarousel from '../components/home/HeroCarousel'
-import SpeakerCarousel from '../components/home/SpeakerCarousel'
-import { events, news, speakers } from '../data/mockData'
+import EventCard from '../../components/cards/EventCard'
+import NewsCard from '../../components/cards/NewsCard'
+import HeroCarousel from '../../components/home/HeroCarousel'
+import SpeakerCarousel from '../../components/home/SpeakerCarousel'
+import { events, news, speakers } from '../../data/mockData'
 
 const Home = () => {
   const featuredEvents = events.slice(0, 3)

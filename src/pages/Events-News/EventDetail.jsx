@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
-import { getEventById } from '../data/mockData'
+import { getEventById } from '../../data/mockData'
 
 const EventDetail = () => {
 const { eventId } = useParams()

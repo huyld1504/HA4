@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import PostCard from '../components/forum/PostCard'
-import CreatePostModal from '../components/forum/CreatePostModal'
-import EditPostModal from '../components/forum/EditPostModal'
-import UserProfileModal from '../components/forum/UserProfileModal'
-import PostDetailModal from '../components/forum/PostDetailModal'
+import PostCard from '../../components/forum/PostCard'
+import CreatePostModal from '../../components/forum/CreatePostModal'
+import EditPostModal from '../../components/forum/EditPostModal'
+import UserProfileModal from '../../components/forum/UserProfileModal'
+import PostDetailModal from '../../components/forum/PostDetailModal'
 
 // Mock data
 const initialPosts = [

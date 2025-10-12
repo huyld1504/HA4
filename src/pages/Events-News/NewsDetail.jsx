@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
-import { getNewsById } from '../data/mockData'
+import { getNewsById } from '../../data/mockData'
 
 const NewsDetail = () => {
 const { newsId } = useParams()

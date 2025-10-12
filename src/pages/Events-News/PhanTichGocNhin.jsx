@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import TabFilter from '../components/common/TabFilter'
-import AnalysisCard from '../components/common/AnalysisCard'
-import AnalysisModal from '../components/common/AnalysisModal'
-import QuoteSection from '../components/common/QuoteSection'
-import ExpertCarousel from '../components/common/ExpertCarousel'
-import ExpertVideoModal from '../components/common/ExpertVideoModal'
+import TabFilter from '../../components/common/TabFilter'
+import AnalysisCard from '../../components/common/AnalysisCard'
+import AnalysisModal from '../../components/common/AnalysisModal'
+import QuoteSection from '../../components/common/QuoteSection'
+import ExpertCarousel from '../../components/common/ExpertCarousel'
+import ExpertVideoModal from '../../components/common/ExpertVideoModal'
 
 // Import images from assets
 import aiHeritageImg from '../assets/nhathoducbaai.png'

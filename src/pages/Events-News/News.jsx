@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
-import NewsCard from '../components/cards/NewsCard'
-import HeroCarousel from '../components/home/HeroCarousel'
-import { news } from '../data/mockData'
+import NewsCard from '../../components/cards/NewsCard'
+import HeroCarousel from '../../components/home/HeroCarousel'
+import { news } from '../../data/mockData'
 
 const News = () => {
 const [query, setQuery] = useState('')
