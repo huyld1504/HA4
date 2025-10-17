@@ -1,8 +1,26 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter } from 'react-router-dom';
 
-import AppLayout from '../components/layouts/AppLayout'
-import MainLayout from '../components/layouts/MainLayout'
-import { Home, Events, News, EventDetail, NewsDetail, EventRegistration, VanHoaLichSu, PhanTichGocNhin, Forum } from '../pages'
+import AppLayout from '../components/layouts/AppLayout';
+import MainLayout from '../components/layouts/MainLayout';
+import {
+  Home,
+  Events,
+  News,
+  EventDetail,
+  NewsDetail,
+  EventRegistration,
+  VanHoaLichSu,
+  PhanTichGocNhin,
+  Forum,
+  GiaoDuc,
+  BaiGiangMinhHoa,
+  TaiLieuBaiGiang,
+  BaiGiangDetail,
+  TaiLieuDetail,
+  BaiHocMinhHoaDetail,
+  VirtualChronicle
+} from '../pages';
+import SurveyPage from '../pages/SurveyPage';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +42,18 @@ const router = createBrowserRouter([
             element: <EventDetail />,
           },
           {
+            path: 'events/:eventId/register',
+            element: <EventRegistration />,
+          },
+          {
+            path: 'news',
+            element: <News />,
+          },
+          {
+            path: 'news/:newsId',
+            element: <NewsDetail />,
+          },
+          {
             path: 'vanhoalichsu',
             element: <VanHoaLichSu />,
           },
@@ -36,16 +66,36 @@ const router = createBrowserRouter([
             element: <Forum />,
           },
           {
-            path: 'register/:eventId',
-            element: <EventRegistration />,
+            path: 'giaoduc',
+            element: <GiaoDuc />,
           },
           {
-            path: 'news',
-            element: <News />,
+            path: 'bai-giang-minh-hoa',
+            element: <BaiGiangMinhHoa />,
           },
           {
-            path: 'news/:newsId',
-            element: <NewsDetail />,
+            path: 'tai-lieu-bai-giang',
+            element: <TaiLieuBaiGiang />,
+          },
+          {
+            path: 'bai-giang/:id',
+            element: <BaiGiangDetail />,
+          },
+          {
+            path: 'tai-lieu/:id',
+            element: <TaiLieuDetail />,
+          },
+          {
+            path: 'bai-hoc-minh-hoa/:id',
+            element: <BaiHocMinhHoaDetail />,
+          },
+          {
+            path: 'virtual-chronicle',
+            element: <VirtualChronicle />,
+          },
+          {
+            path: 'survey/:courseId',
+            element: <SurveyPage />,
           },
         ],
       },
@@ -60,6 +110,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-])
+]);
 
-export default router
+export default router;

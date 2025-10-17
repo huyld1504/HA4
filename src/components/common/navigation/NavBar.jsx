@@ -1,20 +1,20 @@
-import React, { useState, useRef, useCallback, useMemo, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import logo from '../../../assets/logo.png'
+import React, { useState, useRef, useCallback, useMemo, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import logo from '../../../assets/logo.png';
 
 const NavBar = () => {
-  const [openSubmenu, setOpenSubmenu] = useState(null)
-  const [isAuthenticated, setIsAuthenticated] = useState(false) // TODO: Kết nối với auth context/state
-  const timeoutRef = useRef(null)
+  const [openSubmenu, setOpenSubmenu] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // TODO: Kết nối với auth context/state
+  const timeoutRef = useRef(null);
 
   // Cleanup timeout khi component unmount
   useEffect(() => {
     return () => {
       if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current)
+        clearTimeout(timeoutRef.current);
       }
-    }
-  }, [])
+    };
+  }, []);
 
   const menuItems = useMemo(() => [
     { label: 'Trang chủ', link: '/' },
@@ -39,8 +39,9 @@ const NavBar = () => {
     {
       label: 'Giáo dục',
       submenu: [
-        { label: 'Tài liệu & Bài giảng', link: '/tailieubaigiang' },
-        { label: 'Bài học minh họa', link: '/baihocminhoa' }
+        { label: 'Khám phá AI & Di sản', link: '/giaoduc' },
+        { label: 'Tài liệu & Bài giảng', link: '/tai-lieu-bai-giang' },
+        { label: 'Bài học minh họa', link: '/bai-giang-minh-hoa' }
       ]
     },
     {
@@ -51,53 +52,53 @@ const NavBar = () => {
         { label: 'Thành viên VIP', link: '/shop-vip' }
       ]
     }
-  ], [])
+  ], []);
 
   const clearExistingTimeout = useCallback(() => {
     if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current)
-      timeoutRef.current = null
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
     }
-  }, [])
+  }, []);
 
   const handleMenuEnter = useCallback((index) => {
-    clearExistingTimeout()
+    clearExistingTimeout();
     if (menuItems[index].submenu) {
-      setOpenSubmenu(index)
+      setOpenSubmenu(index);
     }
-  }, [menuItems, clearExistingTimeout])
+  }, [menuItems, clearExistingTimeout]);
 
   const handleMenuLeave = useCallback(() => {
-    clearExistingTimeout()
+    clearExistingTimeout();
     timeoutRef.current = setTimeout(() => {
-      setOpenSubmenu(null)
-    }, 350)
-  }, [clearExistingTimeout])
+      setOpenSubmenu(null);
+    }, 350);
+  }, [clearExistingTimeout]);
 
   const handleSubmenuEnter = useCallback(() => {
-    clearExistingTimeout()
-  }, [clearExistingTimeout])
+    clearExistingTimeout();
+  }, [clearExistingTimeout]);
 
   const handleSubmenuLeave = useCallback(() => {
-    clearExistingTimeout()
+    clearExistingTimeout();
     timeoutRef.current = setTimeout(() => {
-      setOpenSubmenu(null)
-    }, 250)
-  }, [clearExistingTimeout])
+      setOpenSubmenu(null);
+    }, 250);
+  }, [clearExistingTimeout]);
 
   return (
     <header className="sticky top-0 z-50 bg-gradient-to-r from-[#3b2412] via-[#42281a] to-[#4a2d18] shadow-xl backdrop-blur-md border-b border-[#5a3822]/30">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo Section */}
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="flex-shrink-0 group transition-transform duration-300 ease-out hover:scale-105"
             aria-label="Trang chủ"
           >
-            <img 
-              src={logo} 
-              alt="MT4 Logo" 
+            <img
+              src={logo}
+              alt="MT4 Logo"
               className="h-11 w-auto drop-shadow-[0_2px_8px_rgba(255,213,79,0.3)] group-hover:drop-shadow-[0_4px_12px_rgba(255,213,79,0.5)] transition-all duration-300"
             />
           </Link>
@@ -115,14 +116,14 @@ const NavBar = () => {
                   {item.submenu ? (
                     <div className="relative">
                       {/* Dropdown Button */}
-                      <button 
+                      <button
                         type="button"
                         className={`
                           group flex items-center gap-2 
                           px-4 py-2 rounded-lg font-semibold text-[0.938rem]
                           transition-all duration-200 ease-out
-                          ${openSubmenu === index 
-                            ? 'bg-[#4a2d18] text-[#ffd54f] shadow-inner' 
+                          ${openSubmenu === index
+                            ? 'bg-[#4a2d18] text-[#ffd54f] shadow-inner'
                             : 'text-[#fff1c7] hover:text-[#ffd54f] hover:bg-[#4a2d18]/50'
                           }
                         `}
@@ -130,10 +131,9 @@ const NavBar = () => {
                         aria-haspopup="true"
                       >
                         <span>{item.label}</span>
-                        <svg 
-                          className={`w-4 h-4 transition-transform duration-300 ease-out ${
-                            openSubmenu === index ? 'rotate-180' : ''
-                          }`} 
+                        <svg
+                          className={`w-4 h-4 transition-transform duration-300 ease-out ${openSubmenu === index ? 'rotate-180' : ''
+                            }`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -141,14 +141,14 @@ const NavBar = () => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
                         </svg>
                       </button>
-                      
+
                       {/* Dropdown Menu */}
                       <div
                         className={`
                           absolute top-full left-0 mt-2 min-w-[240px]
                           transition-all duration-200 ease-out origin-top
-                          ${openSubmenu === index 
-                            ? 'opacity-100 visible scale-100 translate-y-0' 
+                          ${openSubmenu === index
+                            ? 'opacity-100 visible scale-100 translate-y-0'
                             : 'opacity-0 invisible scale-95 -translate-y-2 pointer-events-none'
                           }
                         `}
@@ -171,21 +171,21 @@ const NavBar = () => {
                                 >
                                   {/* Left accent bar */}
                                   <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-0 bg-gradient-to-b from-[#ffd54f] to-[#ffb84d] rounded-r-full transition-all duration-300 group-hover/item:h-[65%]" />
-                                  
+
                                   {/* Arrow icon */}
-                                  <svg 
-                                    className="w-4 h-4 flex-shrink-0 opacity-0 -translate-x-2 transition-all duration-300 group-hover/item:opacity-70 group-hover/item:translate-x-0" 
+                                  <svg
+                                    className="w-4 h-4 flex-shrink-0 opacity-0 -translate-x-2 transition-all duration-300 group-hover/item:opacity-70 group-hover/item:translate-x-0"
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
                                   >
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                   </svg>
-                                  
+
                                   <span className="relative z-10 transition-transform duration-200 group-hover/item:translate-x-0.5">
                                     {subItem.label}
                                   </span>
-                                  
+
                                   {/* Shine effect */}
                                   <span className="absolute inset-0 bg-gradient-to-r from-transparent via-[#ffd54f]/5 to-transparent translate-x-[-100%] group-hover/item:translate-x-[100%] transition-transform duration-700" />
                                 </Link>
@@ -206,7 +206,7 @@ const NavBar = () => {
                       "
                     >
                       <span className="relative z-10">{item.label}</span>
-                      
+
                       {/* Bottom accent line */}
                       <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 h-0.5 w-0 bg-gradient-to-r from-transparent via-[#ffd54f] to-transparent rounded-full transition-all duration-300 group-hover/link:w-3/4" />
                     </Link>
@@ -228,8 +228,8 @@ const NavBar = () => {
                         hover:bg-[#ffd54f]/10
                       "
                     >
-                      <svg 
-                        className="w-4 h-4 mr-2 transition-transform duration-200 group-hover/signup:scale-110" 
+                      <svg
+                        className="w-4 h-4 mr-2 transition-transform duration-200 group-hover/signup:scale-110"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -239,7 +239,7 @@ const NavBar = () => {
                       <span className="relative z-10">Đăng ký</span>
                     </Link>
                   </li>
-                  
+
                   <li>
                     <Link
                       to="/dangnhap"
@@ -253,8 +253,8 @@ const NavBar = () => {
                         hover:scale-105
                       "
                     >
-                      <svg 
-                        className="w-4 h-4 mr-2 transition-transform duration-200 group-hover/login:translate-x-0.5" 
+                      <svg
+                        className="w-4 h-4 mr-2 transition-transform duration-200 group-hover/login:translate-x-0.5"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -269,19 +269,19 @@ const NavBar = () => {
 
               {/* User Menu - Hiển thị khi đã đăng nhập */}
               {isAuthenticated && (
-                <li 
+                <li
                   className="ml-2 pl-2 border-l border-[#5a3822]/50 relative"
                   onMouseEnter={() => handleMenuEnter(menuItems.length)}
                   onMouseLeave={handleMenuLeave}
                 >
-                  <button 
+                  <button
                     type="button"
                     className={`
                       group flex items-center gap-2 
                       px-4 py-2 rounded-lg font-semibold text-[0.938rem]
                       transition-all duration-200 ease-out
                       ${openSubmenu === menuItems.length
-                        ? 'bg-[#4a2d18] text-[#ffd54f] shadow-inner' 
+                        ? 'bg-[#4a2d18] text-[#ffd54f] shadow-inner'
                         : 'text-[#fff1c7] hover:text-[#ffd54f] hover:bg-[#4a2d18]/50'
                       }
                     `}
@@ -292,10 +292,9 @@ const NavBar = () => {
                       U
                     </div>
                     <span>Tài khoản</span>
-                    <svg 
-                      className={`w-4 h-4 transition-transform duration-300 ease-out ${
-                        openSubmenu === menuItems.length ? 'rotate-180' : ''
-                      }`} 
+                    <svg
+                      className={`w-4 h-4 transition-transform duration-300 ease-out ${openSubmenu === menuItems.length ? 'rotate-180' : ''
+                        }`}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -303,14 +302,14 @@ const NavBar = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
                     </svg>
                   </button>
-                  
+
                   {/* User Dropdown Menu */}
                   <div
                     className={`
                       absolute top-full right-0 mt-2 min-w-[240px]
                       transition-all duration-200 ease-out origin-top-right
                       ${openSubmenu === menuItems.length
-                        ? 'opacity-100 visible scale-100 translate-y-0' 
+                        ? 'opacity-100 visible scale-100 translate-y-0'
                         : 'opacity-0 invisible scale-95 -translate-y-2 pointer-events-none'
                       }
                     `}
@@ -338,27 +337,27 @@ const NavBar = () => {
                               "
                             >
                               <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-0 bg-gradient-to-b from-[#ffd54f] to-[#ffb84d] rounded-r-full transition-all duration-300 group-hover/item:h-[65%]" />
-                              
-                              <svg 
-                                className="w-5 h-5 flex-shrink-0 transition-all duration-300 group-hover/item:scale-110" 
+
+                              <svg
+                                className="w-5 h-5 flex-shrink-0 transition-all duration-300 group-hover/item:scale-110"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
                               >
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
                               </svg>
-                              
+
                               <span className="relative z-10 transition-transform duration-200 group-hover/item:translate-x-0.5">
                                 {item.label}
                               </span>
-                              
+
                               <span className="absolute inset-0 bg-gradient-to-r from-transparent via-[#ffd54f]/5 to-transparent translate-x-[-100%] group-hover/item:translate-x-[100%] transition-transform duration-700" />
                             </Link>
                           </li>
                         ))}
-                        
+
                         <li className="my-1 mx-2 border-t border-[#4a2d18]/50"></li>
-                        
+
                         <li>
                           <button
                             type="button"
@@ -371,15 +370,15 @@ const NavBar = () => {
                               relative overflow-hidden text-left
                             "
                           >
-                            <svg 
-                              className="w-5 h-5 flex-shrink-0 transition-all duration-300 group-hover/item:scale-110" 
+                            <svg
+                              className="w-5 h-5 flex-shrink-0 transition-all duration-300 group-hover/item:scale-110"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
                             >
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                             </svg>
-                            
+
                             <span className="relative z-10 transition-transform duration-200 group-hover/item:translate-x-0.5">
                               Đăng xuất
                             </span>
@@ -394,7 +393,7 @@ const NavBar = () => {
           </nav>
 
           {/* Mobile Menu Button (placeholder) */}
-          <button 
+          <button
             type="button"
             className="md:hidden p-2 rounded-lg text-[#fff1c7] hover:text-[#ffd54f] hover:bg-[#4a2d18]/50 transition-colors duration-200"
             aria-label="Menu"
@@ -406,7 +405,7 @@ const NavBar = () => {
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;
