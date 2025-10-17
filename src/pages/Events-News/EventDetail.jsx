@@ -1,24 +1,30 @@
 import { Link, useParams } from 'react-router-dom'
+import { useState } from 'react'
 import { getEventById } from '../../data/mockData'
 
 const EventDetail = () => {
 const { eventId } = useParams()
 const event = getEventById(eventId)
+const [openFaqIndex, setOpenFaqIndex] = useState(null)
+
+const toggleFaq = (index) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index)
+}
 
 if (!event) {
 return (
-    <div className="mx-auto max-w-6xl space-y-12 px-4 py-12 md:px-6">
-    <div className="rounded-[40px] bg-[#f6eadf] p-10 text-center shadow-[0_32px_60px_rgba(83,48,33,0.12)] sm:p-12">
-        <p className="text-sm font-semibold uppercase tracking-[0.35em] text-brand-brown-400">Lỗi 404</p>
-        <h1 className="mt-4 text-3xl font-serif font-semibold text-brand-brown-900 sm:text-4xl">
+    <div className="min-h-screen bg-[#f6eadf] flex items-center justify-center p-4">
+    <div className="max-w-md text-center bg-white rounded-2xl shadow-lg p-8">
+        <p className="text-sm font-semibold uppercase tracking-wider text-gray-500">Lỗi 404</p>
+        <h1 className="mt-4 text-3xl font-bold text-gray-900">
         Không tìm thấy sự kiện
         </h1>
-        <p className="mt-4 text-sm text-brand-brown-600 sm:text-base">
+        <p className="mt-4 text-gray-600">
         Sự kiện bạn tìm kiếm không tồn tại hoặc đã bị xóa khỏi hệ thống.
         </p>
         <Link
         to="/events"
-        className="mt-8 inline-block rounded-full bg-gradient-to-br from-[#3b2412] to-[#2e1e10] px-8 py-3 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(83,48,33,0.3)] transition hover:scale-105 hover:shadow-[0_18px_40px_rgba(83,48,33,0.4)]"
+        className="mt-8 inline-block rounded-full bg-blue-600 px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-blue-700"
         >
         Trở về danh sách sự kiện
         </Link>
@@ -28,303 +34,270 @@ return (
 }
 
 return (
-<div className="min-h-screen bg-gradient-to-b from-[#fef8f3] to-[#f6eadf]">
-    <div className="mx-auto max-w-6xl px-4 py-12 md:px-6">
-    {/* Hero Banner */}
-    <div className="overflow-hidden rounded-[32px] shadow-[0_20px_50px_rgba(59,36,18,0.08)]">
-    <div className="relative h-[500px] overflow-hidden">
-        <img src={event.imageUrl} alt={event.title} className="h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/20" />
-        
-        {/* Badge */}
-        <div className="absolute left-8 top-8 sm:left-12 sm:top-12">
-        <div className="inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 backdrop-blur-md">
-            <span className="text-2xl">🎨</span>
-            <span className="text-xs font-bold uppercase tracking-wider text-white">Sự kiện đặc biệt</span>
-        </div>
-        </div>
-
-        {/* Content */}
-        <div className="absolute bottom-0 left-0 right-0 p-8 text-white sm:p-12">
-        <h1 className="mb-4 text-4xl font-serif font-bold leading-tight sm:text-5xl lg:text-6xl">
-            {event.title}
-        </h1>
-        <p className="mb-6 max-w-2xl text-lg opacity-95">{event.description}</p>
-        
-        <div className="flex flex-wrap items-center gap-6 text-sm font-medium">
-            <div className="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-sm">
-            <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
-            </svg>
-            <span>📅 {event.date}</span>
-            </div>
-            <div className="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-sm">
-            <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
-            </svg>
-            <span>⏰ {event.time}</span>
-            </div>
-            <div className="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-sm">
-            <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" />
-            </svg>
-            <span>📍 {event.location}</span>
-            </div>
-        </div>
-        </div>
-    </div>
-
-    {/* Content Sections */}
-    <div className="mt-8 space-y-6">
-        {/* Giới thiệu nhanh */}
-        <div className="overflow-hidden rounded-[24px] bg-white shadow-lg">
-        <div className="border-b-2 border-gray-100 bg-gradient-to-r from-amber-50 to-orange-50 p-6">
-            <h3 className="flex items-center gap-3 text-2xl font-bold text-gray-900">
-            <span className="text-3xl">💡</span> Giới thiệu nhanh
-            </h3>
-        </div>
-        <div className="p-6">
-            <p className="text-base leading-relaxed text-gray-700">{event.shortIntro || 'Sự kiện này giới thiệu những hoạt động chính liên quan đến di sản, nghệ thuật và nghiên cứu văn hóa. Tham gia để khám phá, học hỏi và kết nối với các chuyên gia trong lĩnh vực.'}</p>
-        </div>
-        </div>
-
-        {/* Chủ đề */}
-        <div className="overflow-hidden rounded-[24px] bg-white shadow-lg">
-        <div className="border-b-2 border-gray-100 bg-gradient-to-r from-amber-50 to-orange-50 p-6">
-            <h3 className="flex items-center gap-3 text-2xl font-bold text-gray-900">
-            <span className="text-3xl">🎯</span> Chủ đề sự kiện
-            </h3>
-        </div>
-        <div className="p-6">
-            <div className="rounded-xl bg-gray-50 p-5 border-l-4 border-amber-400">
-            <p className="text-base leading-relaxed text-gray-700">{event.theme || '"Ký ức địa danh" — chủ đề khuyến khích tác phẩm gắn kết ký ức cá nhân với di tích, văn hóa và câu chuyện địa phương.'}</p>
-            </div>
-        </div>
-        </div>
-
-        {/* Timeline */}
-        <div className="overflow-hidden rounded-[24px] bg-white shadow-lg">
-        <div className="border-b-2 border-gray-100 bg-gradient-to-r from-amber-50 to-orange-50 p-6">
-            <h3 className="flex items-center gap-3 text-2xl font-bold text-gray-900">
-            <span className="text-3xl">📅</span> Timeline chính
-            </h3>
-        </div>
-        <div className="p-6">
-            <div className="space-y-3">
-            {event.timeline && event.timeline.length > 0 ? (
-                event.timeline.map((item, index) => (
-                <div key={index} className="flex items-start gap-4 rounded-xl bg-gray-50 p-4 border-l-4 border-amber-400">
-                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-amber-100 text-lg font-bold text-amber-700">
-                    {index + 1}
-                    </div>
-                    <div className="flex-1">
-                    <p className="font-bold text-gray-900">{item.time}</p>
-                    <p className="mt-1 text-sm text-gray-600">{item.label}</p>
-                    </div>
-                </div>
-                ))
-            ) : (
-                <>
-                <div className="flex items-start gap-4 rounded-xl bg-gray-50 p-4 border-l-4 border-amber-400">
-                    <span className="text-xl">1️⃣</span>
-                    <div><strong className="text-gray-900">01/10/2025</strong> — Mở đăng ký & nhận tác phẩm</div>
-                </div>
-                <div className="flex items-start gap-4 rounded-xl bg-gray-50 p-4 border-l-4 border-amber-400">
-                    <span className="text-xl">2️⃣</span>
-                    <div><strong className="text-gray-900">12/12/2025</strong> — Hạn chót nộp tác phẩm</div>
-                </div>
-                <div className="flex items-start gap-4 rounded-xl bg-gray-50 p-4 border-l-4 border-amber-400">
-                    <span className="text-xl">3️⃣</span>
-                    <div><strong className="text-gray-900">20/12/2025</strong> — Chấm giải & công bố</div>
-                </div>
-                <div className="flex items-start gap-4 rounded-xl bg-gray-50 p-4 border-l-4 border-amber-400">
-                    <span className="text-xl">4️⃣</span>
-                    <div><strong className="text-gray-900">01/01/2026</strong> — Triển lãm online</div>
-                </div>
-                </>
-            )}
-            </div>
-        </div>
-        </div>
-
-        {/* Thể lệ & yêu cầu */}
-        <div className="overflow-hidden rounded-[24px] bg-white shadow-lg">
-        <div className="border-b-2 border-gray-100 bg-gradient-to-r from-amber-50 to-orange-50 p-6">
-            <h3 className="flex items-center gap-3 text-2xl font-bold text-gray-900">
-            <span className="text-3xl">📋</span> Thể lệ & yêu cầu
-            </h3>
-        </div>
-        <div className="p-6">
-            <div className="space-y-3">
-            <div className="flex items-start gap-3 rounded-xl bg-gray-50 p-4">
-                <span className="text-xl">✅</span>
-                <p className="text-sm text-gray-700">Tác phẩm: tranh (PNG/JPEG), video/animation hoặc mô tả dự án trải nghiệm (PDF + ảnh minh họa).</p>
-            </div>
-            <div className="flex items-start gap-3 rounded-xl bg-gray-50 p-4">
-                <span className="text-xl">✅</span>
-                <p className="text-sm text-gray-700">Kích thước tối đa ảnh: 10 MB; video: 100 MB; PDF: 10 MB.</p>
-            </div>
-            <div className="flex items-start gap-3 rounded-xl bg-gray-50 p-4">
-                <span className="text-xl">✅</span>
-                <p className="text-sm text-gray-700">Ghi rõ: tên tác phẩm, tác giả, năm, mô tả ngắn (≤200 từ), công cụ/AI sử dụng.</p>
-            </div>
-            <div className="flex items-start gap-3 rounded-xl bg-gray-50 p-4">
-                <span className="text-xl">✅</span>
-                <p className="text-sm text-gray-700">Không vi phạm bản quyền; nếu sử dụng nội dung bên thứ ba, cần có giấy phép/ghi nguồn.</p>
-            </div>
-            <div className="flex items-start gap-3 rounded-xl bg-gray-50 p-4">
-                <span className="text-xl">✅</span>
-                <p className="text-sm text-gray-700">Mỗi người được gửi tối đa 3 tác phẩm.</p>
-            </div>
-            </div>
-        </div>
-        </div>
-
-        {/* Tiêu chí chấm */}
-        <div className="overflow-hidden rounded-[24px] bg-white shadow-lg">
-        <div className="border-b-2 border-gray-100 bg-gradient-to-r from-amber-50 to-orange-50 p-6">
-            <h3 className="flex items-center gap-3 text-2xl font-bold text-gray-900">
-            <span className="text-3xl">⭐</span> Tiêu chí chấm
-            </h3>
-        </div>
-        <div className="p-6">
-            <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl bg-gray-50 p-5 border-l-4 border-amber-400">
-                <div className="mb-2 flex items-center justify-between">
-                <span className="font-bold text-gray-900">Sáng tạo & ý tưởng</span>
-                <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-700">40%</span>
-                </div>
-                <p className="text-sm text-gray-600">Độc đáo, truyền tải ký ức/di sản</p>
-            </div>
-            <div className="rounded-xl bg-gray-50 p-5 border-l-4 border-amber-400">
-                <div className="mb-2 flex items-center justify-between">
-                <span className="font-bold text-gray-900">Chất lượng nghệ thuật</span>
-                <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-700">30%</span>
-                </div>
-                <p className="text-sm text-gray-600">Bố cục, màu sắc, kỹ thuật</p>
-            </div>
-            <div className="rounded-xl bg-gray-50 p-5 border-l-4 border-amber-400">
-                <div className="mb-2 flex items-center justify-between">
-                <span className="font-bold text-gray-900">Tương tác công nghệ</span>
-                <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-700">20%</span>
-                </div>
-                <p className="text-sm text-gray-600">Sử dụng AI/AR/VR/âm thanh sáng tạo</p>
-            </div>
-            <div className="rounded-xl bg-gray-50 p-5 border-l-4 border-amber-400">
-                <div className="mb-2 flex items-center justify-between">
-                <span className="font-bold text-gray-900">Tác động văn hóa</span>
-                <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-700">10%</span>
-                </div>
-                <p className="text-sm text-gray-600">Truyền cảm hứng & giáo dục cộng đồng</p>
-            </div>
-            </div>
-        </div>
-        </div>
-
-        {/* Gợi ý */}
-        <div className="overflow-hidden rounded-[24px] bg-white shadow-lg">
-        <div className="border-b-2 border-gray-100 bg-gradient-to-r from-amber-50 to-orange-50 p-6">
-            <h3 className="flex items-center gap-3 text-2xl font-bold text-gray-900">
-            <span className="text-3xl">💭</span> Gợi ý
-            </h3>
-        </div>
-        <div className="p-6">
-            <div className="rounded-xl bg-gray-50 p-5 border-l-4 border-amber-400">
-            <p className="text-base leading-relaxed text-gray-700">Kết hợp tư liệu lịch sử, lời kể dân gian, hoặc ký ức cá nhân để tăng chiều sâu chủ đề. Viết một đoạn ngắn giải thích nguồn cảm hứng và cách bạn dùng công nghệ.</p>
-            </div>
-        </div>
-        </div>
-
-        {/* Ban Giám Khảo & Giải thưởng */}
-        <div className="overflow-hidden rounded-[24px] bg-white shadow-lg">
-        <div className="border-b-2 border-gray-100 bg-gradient-to-r from-amber-50 to-orange-50 p-6">
-            <h3 className="flex items-center gap-3 text-2xl font-bold text-gray-900">
-            <span className="text-3xl">🏆</span> Ban Giám Khảo & Cơ cấu giải
-            </h3>
-        </div>
-        <div className="p-6 space-y-4">
-            <div className="rounded-xl bg-gray-50 p-5 border-l-4 border-amber-400">
-            <p className="text-base leading-relaxed text-gray-700">Ban giám khảo gồm chuyên gia nghệ thuật, nhà sử học, và chuyên gia công nghệ AI. Cơ cấu giải thưởng gồm Giải Nhất, Giải Nhì, Giải Khuyến khích và Giải Khán giả bình chọn.</p>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-3">
-            <div className="rounded-xl bg-gradient-to-br from-yellow-400 to-amber-500 p-6 text-center text-white shadow-lg">
-                <div className="mb-2 text-4xl">🥇</div>
-                <p className="mb-1 text-sm font-bold uppercase tracking-wider">Giải Nhất</p>
-                <p className="text-2xl font-bold">10.000.000₫</p>
-            </div>
-            <div className="rounded-xl bg-gradient-to-br from-gray-400 to-gray-500 p-6 text-center text-white shadow-lg">
-                <div className="mb-2 text-4xl">🥈</div>
-                <p className="mb-1 text-sm font-bold uppercase tracking-wider">Giải Nhì</p>
-                <p className="text-2xl font-bold">5.000.000₫</p>
-            </div>
-            <div className="rounded-xl bg-gradient-to-br from-orange-400 to-orange-500 p-6 text-center text-white shadow-lg">
-                <div className="mb-2 text-4xl">🥉</div>
-                <p className="mb-1 text-sm font-bold uppercase tracking-wider">Khuyến khích</p>
-                <p className="text-sm font-bold">Quà tặng & Chứng nhận</p>
-            </div>
-            </div>
-        </div>
-        </div>
-
-        {/* FAQ */}
-        <div className="overflow-hidden rounded-[24px] bg-white shadow-lg">
-        <div className="border-b-2 border-gray-100 bg-gradient-to-r from-amber-50 to-orange-50 p-6">
-            <h3 className="flex items-center gap-3 text-2xl font-bold text-gray-900">
-            <span className="text-3xl">❓</span> Câu hỏi thường gặp
-            </h3>
-        </div>
-        <div className="p-6 space-y-3">
-            <div className="rounded-xl bg-gray-50 p-5 border-l-4 border-amber-400">
-            <p className="mb-2 font-bold text-gray-900">Đăng ký có mất phí không?</p>
-            <p className="text-sm text-gray-700">Hoàn toàn miễn phí.</p>
-            </div>
-            <div className="rounded-xl bg-gray-50 p-5 border-l-4 border-amber-400">
-            <p className="mb-2 font-bold text-gray-900">Bản quyền tác phẩm thuộc về ai?</p>
-            <p className="text-sm text-gray-700">Tác giả giữ bản quyền; ban tổ chức xin quyền sử dụng cho mục triển lãm/truyền thông có ghi nguồn.</p>
-            </div>
-            <div className="rounded-xl bg-gray-50 p-5 border-l-4 border-amber-400">
-            <p className="mb-2 font-bold text-gray-900">Có thể gửi nhiều tác phẩm không?</p>
-            <p className="text-sm text-gray-700">Có, tối đa 3 tác phẩm mỗi tác giả.</p>
-            </div>
-        </div>
-        </div>
-    </div>
-
-    {/* Tags */}
-    {event.tags && event.tags.length > 0 && (
-        <div className="mt-8 flex flex-wrap gap-3">
-        {event.tags.map((tag, index) => (
-            <span
-            key={index}
-            className="rounded-full bg-white px-5 py-2 text-sm font-semibold text-gray-700 shadow-sm transition hover:shadow-md"
-            >
-            #{tag}
-            </span>
-        ))}
-        </div>
-    )}
-
-    {/* CTA Buttons */}
-    <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-        <Link
-        to={`/register/${event.id}`}
-        className="group relative overflow-hidden rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 px-8 py-4 text-center text-base font-bold text-white shadow-lg shadow-amber-500/30 transition hover:shadow-xl hover:shadow-amber-500/40"
-        >
-        <span className="relative z-10 flex items-center justify-center gap-2">
-            ✨ Đăng ký tham gia ngay
-            <svg className="h-5 w-5 transition group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-        </span>
-        <div className="absolute inset-0 bg-gradient-to-r from-amber-600 to-amber-700 opacity-0 transition group-hover:opacity-100"></div>
-        </Link>
+<div className="min-h-screen bg-[#f6eadf]">
+    <div className="mx-auto max-w-4xl px-4 py-6 sm:py-10">
+    {/* Breadcrumb */}
+    <div className="mb-6">
         <Link
         to="/events"
-        className="rounded-xl border-2 border-gray-300 bg-white px-8 py-4 text-center text-base font-bold text-gray-700 transition hover:border-gray-400 hover:bg-gray-50"
+        className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors"
         >
-        Xem sự kiện khác
+            <span className="text-gray-500">Trang chủ</span>
+            <span className="text-gray-400">/</span>
+            <span className="text-blue-600">Sự kiện</span>
         </Link>
     </div>
+
+    {/* Single Event Card */}
+    <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+        {/* Header Image */}
+        {event.imageUrl && (
+        <div className="relative h-64 sm:h-80 overflow-hidden">
+            <img 
+            src={event.imageUrl} 
+            alt={event.title} 
+            className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        </div>
+        )}
+
+        {/* Content */}
+        <div className="p-6 sm:p-10">
+        {/* Title */}
+        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight mb-4">
+            {event.title}
+        </h1>
+
+        {/* Meta Info */}
+        <div className="flex flex-wrap items-center gap-3 text-sm pb-6 mb-6 border-b border-gray-200">
+            <span className="inline-flex items-center gap-1.5 text-blue-600 font-semibold">
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
+                </svg>
+                {event.date}
+            </span>
+            <span className="text-gray-300">•</span>
+            <span className="inline-flex items-center gap-1.5 text-gray-600">
+            <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" />
+            </svg>
+            {event.location}
+            </span>
+            {event.time && (
+            <>
+                <span className="text-gray-300">•</span>
+                <span className="inline-flex items-center gap-1.5 text-gray-600">
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                </svg>
+                {event.time}
+                </span>
+            </>
+            )}
+        </div>
+
+        {/* Introduction */}
+        {event.shortIntro && (
+            <div className="mb-8">
+            <p className="text-lg text-gray-600 leading-relaxed italic font-medium">{event.shortIntro}</p>
+            </div>
+        )}
+
+        {/* Main Description */}
+        <div className="mb-10">
+            <p className="text-base text-gray-800 leading-relaxed">
+            {event.description}
+            </p>
+        </div>
+
+        {/* Theme Section */}
+        {event.theme && (
+            <div className="mb-10">
+            <h3 className="text-lg font-bold text-blue-700 mb-3 uppercase tracking-wide">Chủ đề sự kiện</h3>
+            <p className="text-base text-gray-800 leading-relaxed">{event.theme}</p>
+            </div>
+        )}
+
+        {/* Timeline Section */}
+        {event.timeline && event.timeline.length > 0 && (
+            <div className="mb-10">
+            <h2 className="text-lg font-bold text-blue-700 mb-4 uppercase tracking-wide">Lịch trình sự kiện</h2>
+            <div className="space-y-2.5">
+                {event.timeline.map((item, index) => (
+                <div key={index} className="flex gap-4">
+                    <span className="text-blue-600 font-bold min-w-[70px] text-sm">{item.time}</span>
+                    <span className="text-gray-800 text-base">{item.label}</span>
+                </div>
+                ))}
+            </div>
+            </div>
+        )}
+
+        {/* Rules Section */}
+        {event.rules && event.rules.length > 0 && (
+            <div className="mb-10">
+            <h2 className="text-lg font-bold text-blue-700 mb-4 uppercase tracking-wide">Quy định & Điều kiện tham gia</h2>
+            <div className="space-y-4">
+                {event.rules.map((rule, index) => (
+                <div key={index}>
+                    <p className="text-base text-gray-900 font-bold mb-2">
+                    {index + 1}. {rule.title}
+                    </p>
+                    <p className="text-base text-gray-700 leading-relaxed ml-6">{rule.content}</p>
+                </div>
+                ))}
+            </div>
+            </div>
+        )}
+
+        {/* Requirements Section */}
+        {event.requirements && event.requirements.length > 0 && (
+            <div className="mb-10">
+            <h2 className="text-lg font-bold text-blue-700 mb-4 uppercase tracking-wide">Thể lệ & Yêu cầu</h2>
+            <div className="space-y-4">
+                {event.requirements.map((req, index) => (
+                <div key={index}>
+                    <p className="text-base text-gray-900 font-bold mb-2">
+                    {index + 1}. {req.title}
+                    </p>
+                    <p className="text-base text-gray-700 leading-relaxed ml-6">{req.content}</p>
+                </div>
+                ))}
+            </div>
+            </div>
+        )}
+
+        {/* Criteria Section */}
+        {event.criteria && event.criteria.length > 0 && (
+            <div className="mb-10">
+            <h2 className="text-lg font-bold text-blue-700 mb-4 uppercase tracking-wide">Tiêu chí chấm điểm</h2>
+            <div className="space-y-4">
+                {event.criteria.map((criterion, index) => (
+                <div key={index} className="flex gap-4">
+                    <span className="text-blue-600 font-bold min-w-[60px] text-base">{criterion.percent}</span>
+                    <div className="flex-1">
+                    <p className="text-base text-gray-900 font-bold mb-1">{criterion.title}</p>
+                    <p className="text-base text-gray-700 leading-relaxed">{criterion.description}</p>
+                    </div>
+                </div>
+                ))}
+            </div>
+            </div>
+        )}
+
+        {/* Judges & Prizes Section */}
+        {(event.judges || (event.prizes && event.prizes.length > 0)) && (
+            <div className="mb-10">
+            <h2 className="text-lg font-bold text-blue-700 mb-4 uppercase tracking-wide">Ban Giám Khảo & Cơ cấu giải thưởng</h2>
+            
+            {event.judges && (
+                <p className="text-base text-gray-800 leading-relaxed mb-6">{event.judges}</p>
+            )}
+            
+            {event.prizes && event.prizes.length > 0 && (
+                <div className="space-y-3">
+                <p className="text-base text-gray-900 font-bold mb-3">Cơ cấu giải thưởng:</p>
+                {event.prizes.map((prize, index) => (
+                    <div key={index} className="flex gap-4 items-start ml-6">
+                    <span className="text-blue-600 font-bold text-base">•</span>
+                    <div className="flex-1">
+                        <p className="text-base text-gray-900 font-bold">
+                        {prize.name}: <span className="text-blue-600">{prize.value}</span> + <span className="text-base text-gray-700">{prize.bonus}</span>
+                        </p>
+                    </div>
+                    </div>
+                ))}
+                </div>
+            )}
+            </div>
+        )}
+
+        {/* FAQ Section */}
+        {event.faq && event.faq.length > 0 && (
+            <div className="mb-10">
+            <h2 className="text-lg font-bold text-purple-700 mb-4 uppercase tracking-wide">Câu hỏi thường gặp (FAQ)</h2>
+            <div className="space-y-3">
+                {event.faq.map((item, index) => (
+                <div key={index} className="border border-gray-200 rounded-lg overflow-hidden">
+                    <button
+                    onClick={() => toggleFaq(index)}
+                    className="w-full flex items-center justify-between gap-4 p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors"
+                    >
+                    <p className="text-base text-gray-900 font-bold flex-1">
+                        Q{index + 1}: {item.question}
+                    </p>
+                    <svg
+                        className={`h-5 w-5 text-purple-600 transition-transform duration-200 flex-shrink-0 ${
+                        openFaqIndex === index ? 'rotate-180' : ''
+                        }`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                    </button>
+                    <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                        openFaqIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                    >
+                    <div className="p-4 bg-white border-t border-gray-200">
+                        <p className="text-base text-gray-700 leading-relaxed">
+                        <span className="font-semibold text-purple-600">Trả lời:</span> {item.answer}
+                        </p>
+                    </div>
+                    </div>
+                </div>
+                ))}
+            </div>
+            </div>
+        )}
+
+        {/* Tags */}
+        {event.tags && event.tags.length > 0 && (
+            <div className="mb-8 pt-6 border-t border-gray-200">
+            <div className="flex flex-wrap gap-2">
+                {event.tags.map((tag, index) => (
+                <span
+                    key={index}
+                    className="inline-flex items-center gap-1 px-3 py-1.5 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold"
+                >
+                    <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z" />
+                    </svg>
+                    {tag}
+                </span>
+                ))}
+            </div>
+            </div>
+        )}
+
+        {/* CTA Section */}
+        <div className="pt-8 border-t-2 border-gray-200">
+            <div className="flex flex-col sm:flex-row gap-4">
+            <Link
+                to={`/register/${event.id}`}
+                className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-xl text-base font-bold text-white transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+            >
+                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                </svg>
+                <span>Đăng ký tham gia ngay</span>
+            </Link>
+            <Link
+                to="/events"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-gray-50 border-2 border-gray-300 hover:border-blue-500 rounded-xl text-base font-semibold text-gray-700 hover:text-blue-600 transition-all"
+            >
+                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>Xem sự kiện khác</span>
+            </Link>
+            </div>
+        </div>
+        </div>
     </div>
     </div>
 </div>

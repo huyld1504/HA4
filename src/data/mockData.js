@@ -21,9 +21,33 @@ export const events = [
         { title: 'Thời gian nộp', content: 'Từ ngày 15/12/2024 đến hết 15/01/2025' },
         { title: 'Công bố kết quả', content: 'Dự kiến ngày 01/02/2025 trên website và email' }
     ],
+    requirements: [
+        { title: 'Tác phẩm', content: 'Tranh (PNG/JPEG), video/animation hoặc mô tả dự án trải nghiệm (PDF + ảnh minh họa).' },
+        { title: 'Kích thước', content: 'Tối đa ảnh: 10 MB; video: 100 MB; PDF: 10 MB.' },
+        { title: 'Thông tin bắt buộc', content: 'Ghi rõ: tên tác phẩm, tác giả, năm, mô tả ngắn (≤200 từ), công cụ/AI sử dụng.' },
+        { title: 'Bản quyền', content: 'Không vi phạm bản quyền; nếu sử dụng nội dung bên thứ ba, cần có giấy phép/ghi nguồn.' },
+        { title: 'Số lượng', content: 'Mỗi người được gửi tối đa 3 tác phẩm.' }
+    ],
+    criteria: [
+        { title: 'Sáng tạo & ý tưởng', percent: '40%', description: 'Độc đáo, truyền tải ký ức/di sản.' },
+        { title: 'Chất lượng nghệ thuật', percent: '30%', description: 'Bố cục, màu sắc, kỹ thuật.' },
+        { title: 'Tương tác công nghệ', percent: '20%', description: 'Sử dụng AI/AR/VR/âm thanh sáng tạo.' },
+        { title: 'Tác động văn hóa', percent: '10%', description: 'Khả năng truyền cảm hứng & giáo dục cộng đồng.' }
+    ],
+    judges: 'Ban giám khảo gồm chuyên gia nghệ thuật, nhà sử học, và chuyên gia công nghệ AI.',
+    prizes: [
+        { name: 'Giải Nhất', value: '10.000.000₫', bonus: 'Triển lãm & ấn phẩm' },
+        { name: 'Giải Nhì', value: '5.000.000₫', bonus: 'Triển lãm' },
+        { name: 'Giải Khuyến khích & Khán giả bình chọn', value: 'Quà tặng', bonus: 'Giấy chứng nhận' }
+    ],
+    faq: [
+        { question: 'Đăng ký có mất phí không?', answer: 'Miễn phí hoàn toàn.' },
+        { question: 'Bản quyền tác phẩm thuộc về ai?', answer: 'Tác giả giữ bản quyền; MT4 xin quyền sử dụng cho mục đích triển lãm/truyền thông có ghi nguồn.' },
+        { question: 'Có thể gửi nhiều tác phẩm không?', answer: 'Có, tối đa 3 tác phẩm mỗi tác giả.' }
+    ],
     content: 'Sự kiện này sẽ đưa bạn đến với những di tích lịch sử quan trọng nhất của cố đô Huế, bao gồm Đại Nội, các lăng tẩm của các vị vua triều Nguyễn, và các đền chùa cổ kính. Chuyên gia sẽ hướng dẫn và giải thích về kiến trúc, lịch sử và ý nghĩa văn hóa của từng công trình.',
     date: '15/12/2024',
-    time: '08:00 - 17:00',
+    time: '7 ngày',
     location: 'Huế, Thừa Thiên Huế',
     imageUrl: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=800&h=600&fit=crop',
     isFeatured: true,
@@ -43,9 +67,33 @@ export const events = [
         { title: 'Thời gian nộp', content: 'Đến hết 20/12/2024' },
         { title: 'Công bố kết quả', content: 'Ngày 25/12/2024' }
     ],
+    requirements: [
+        { title: 'Tác phẩm', content: 'Tranh (PNG/JPEG), video/animation hoặc mô tả dự án trải nghiệm (PDF + ảnh minh họa).' },
+        { title: 'Kích thước', content: 'Tối đa ảnh: 10 MB; video: 100 MB; PDF: 10 MB.' },
+        { title: 'Thông tin bắt buộc', content: 'Ghi rõ: tên tác phẩm, tác giả, năm, mô tả ngắn (≤200 từ), công cụ/AI sử dụng.' },
+        { title: 'Bản quyền', content: 'Không vi phạm bản quyền; nếu sử dụng nội dung bên thứ ba, cần có giấy phép/ghi nguồn.' },
+        { title: 'Số lượng', content: 'Mỗi người được gửi tối đa 3 tác phẩm.' }
+    ],
+    criteria: [
+        { title: 'Sáng tạo & ý tưởng', percent: '40%', description: 'Độc đáo, truyền tải ký ức/di sản.' },
+        { title: 'Chất lượng nghệ thuật', percent: '30%', description: 'Bố cục, màu sắc, kỹ thuật.' },
+        { title: 'Tương tác công nghệ', percent: '20%', description: 'Sử dụng AI/AR/VR/âm thanh sáng tạo.' },
+        { title: 'Tác động văn hóa', percent: '10%', description: 'Khả năng truyền cảm hứng & giáo dục cộng đồng.' }
+    ],
+    judges: 'Ban giám khảo gồm chuyên gia nghệ thuật, nhà sử học, và chuyên gia công nghệ AI.',
+    prizes: [
+        { name: 'Giải Nhất', value: '10.000.000₫', bonus: 'Triển lãm & ấn phẩm' },
+        { name: 'Giải Nhì', value: '5.000.000₫', bonus: 'Triển lãm' },
+        { name: 'Giải Khuyến khích & Khán giả bình chọn', value: 'Quà tặng', bonus: 'Giấy chứng nhận' }
+    ],
+    faq: [
+        { question: 'Đăng ký có mất phí không?', answer: 'Miễn phí hoàn toàn.' },
+        { question: 'Bản quyền tác phẩm thuộc về ai?', answer: 'Tác giả giữ bản quyền; MT4 xin quyền sử dụng cho mục đích triển lãm/truyền thông có ghi nguồn.' },
+        { question: 'Có thể gửi nhiều tác phẩm không?', answer: 'Có, tối đa 3 tác phẩm mỗi tác giả.' }
+    ],
     content: 'Hội thảo sẽ giới thiệu về lịch sử phát triển nghệ thuật điêu khắc Chăm, các đặc điểm độc đáo trong phong cách nghệ thuật, và ảnh hưởng của văn hóa Chăm đến nghệ thuật Việt Nam. Các chuyên gia hàng đầu sẽ trình bày và thảo luận về các phát hiện mới trong nghiên cứu văn hóa Chăm.',
     date: '20/12/2024',
-    time: '09:00 - 16:00',
+    time: '7 ngày',
     location: 'Đà Nẵng, Việt Nam',
     imageUrl: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=800&h=600&fit=crop',
     isFeatured: true,
@@ -65,9 +113,33 @@ export const events = [
         { title: 'Thời gian nộp', content: 'Từ 01/12/2024 đến 20/12/2024' },
         { title: 'Công bố kết quả', content: 'Ngày 28/12/2024 tại triển lãm' }
     ],
+    requirements: [
+        { title: 'Tác phẩm', content: 'Tranh (PNG/JPEG), video/animation hoặc mô tả dự án trải nghiệm (PDF + ảnh minh họa).' },
+        { title: 'Kích thước', content: 'Tối đa ảnh: 10 MB; video: 100 MB; PDF: 10 MB.' },
+        { title: 'Thông tin bắt buộc', content: 'Ghi rõ: tên tác phẩm, tác giả, năm, mô tả ngắn (≤200 từ), công cụ/AI sử dụng.' },
+        { title: 'Bản quyền', content: 'Không vi phạm bản quyền; nếu sử dụng nội dung bên thứ ba, cần có giấy phép/ghi nguồn.' },
+        { title: 'Số lượng', content: 'Mỗi người được gửi tối đa 3 tác phẩm.' }
+    ],
+    criteria: [
+        { title: 'Sáng tạo & ý tưởng', percent: '40%', description: 'Độc đáo, truyền tải ký ức/di sản.' },
+        { title: 'Chất lượng nghệ thuật', percent: '30%', description: 'Bố cục, màu sắc, kỹ thuật.' },
+        { title: 'Tương tác công nghệ', percent: '20%', description: 'Sử dụng AI/AR/VR/âm thanh sáng tạo.' },
+        { title: 'Tác động văn hóa', percent: '10%', description: 'Khả năng truyền cảm hứng & giáo dục cộng đồng.' }
+    ],
+    judges: 'Ban giám khảo gồm chuyên gia nghệ thuật, nhà sử học, và chuyên gia công nghệ AI.',
+    prizes: [
+        { name: 'Giải Nhất', value: '10.000.000₫', bonus: 'Triển lãm & ấn phẩm' },
+        { name: 'Giải Nhì', value: '5.000.000₫', bonus: 'Triển lãm' },
+        { name: 'Giải Khuyến khích & Khán giả bình chọn', value: 'Quà tặng', bonus: 'Giấy chứng nhận' }
+    ],
+    faq: [
+        { question: 'Đăng ký có mất phí không?', answer: 'Miễn phí hoàn toàn.' },
+        { question: 'Bản quyền tác phẩm thuộc về ai?', answer: 'Tác giả giữ bản quyền; MT4 xin quyền sử dụng cho mục đích triển lãm/truyền thông có ghi nguồn.' },
+        { question: 'Có thể gửi nhiều tác phẩm không?', answer: 'Có, tối đa 3 tác phẩm mỗi tác giả.' }
+    ],
     content: 'Triển lãm trưng bày hơn 100 tác phẩm tranh Đông Hồ từ các thời kỳ khác nhau, cùng với workshop thực hành in tranh truyền thống. Các nghệ nhân sẽ trực tiếp hướng dẫn và chia sẻ về quy trình tạo ra những bức tranh dân gian độc đáo này.',
     date: '25/12/2024',
-    time: '10:00 - 18:00',
+    time: '7 ngày',
     location: 'Hà Nội, Việt Nam',
     imageUrl: 'https://images.unsplash.com/photo-1577083165633-14ebcdb0f658?w=800&h=600&fit=crop',
     isFeatured: true,
@@ -87,9 +159,33 @@ export const events = [
         { title: 'Thời gian nộp', content: 'Đến hết 25/12/2024' },
         { title: 'Công bố kết quả', content: 'Ngày 05/01/2025' }
     ],
+    requirements: [
+        { title: 'Tác phẩm', content: 'Tranh (PNG/JPEG), video/animation hoặc mô tả dự án trải nghiệm (PDF + ảnh minh họa).' },
+        { title: 'Kích thước', content: 'Tối đa ảnh: 10 MB; video: 100 MB; PDF: 10 MB.' },
+        { title: 'Thông tin bắt buộc', content: 'Ghi rõ: tên tác phẩm, tác giả, năm, mô tả ngắn (≤200 từ), công cụ/AI sử dụng.' },
+        { title: 'Bản quyền', content: 'Không vi phạm bản quyền; nếu sử dụng nội dung bên thứ ba, cần có giấy phép/ghi nguồn.' },
+        { title: 'Số lượng', content: 'Mỗi người được gửi tối đa 3 tác phẩm.' }
+    ],
+    criteria: [
+        { title: 'Sáng tạo & ý tưởng', percent: '40%', description: 'Độc đáo, truyền tải ký ức/di sản.' },
+        { title: 'Chất lượng nghệ thuật', percent: '30%', description: 'Bố cục, màu sắc, kỹ thuật.' },
+        { title: 'Tương tác công nghệ', percent: '20%', description: 'Sử dụng AI/AR/VR/âm thanh sáng tạo.' },
+        { title: 'Tác động văn hóa', percent: '10%', description: 'Khả năng truyền cảm hứng & giáo dục cộng đồng.' }
+    ],
+    judges: 'Ban giám khảo gồm chuyên gia nghệ thuật, nhà sử học, và chuyên gia công nghệ AI.',
+    prizes: [
+        { name: 'Giải Nhất', value: '10.000.000₫', bonus: 'Triển lãm & ấn phẩm' },
+        { name: 'Giải Nhì', value: '5.000.000₫', bonus: 'Triển lãm' },
+        { name: 'Giải Khuyến khích & Khán giả bình chọn', value: 'Quà tặng', bonus: 'Giấy chứng nhận' }
+    ],
+    faq: [
+        { question: 'Đăng ký có mất phí không?', answer: 'Miễn phí hoàn toàn.' },
+        { question: 'Bản quyền tác phẩm thuộc về ai?', answer: 'Tác giả giữ bản quyền; MT4 xin quyền sử dụng cho mục đích triển lãm/truyền thông có ghi nguồn.' },
+        { question: 'Có thể gửi nhiều tác phẩm không?', answer: 'Có, tối đa 3 tác phẩm mỗi tác giả.' }
+    ],
     content: 'Lễ hội quy tụ đại diện từ hơn 20 dân tộc thiểu số, mang đến những màn trình diễn nghệ thuật truyền thống, gian hàng thủ công mỹ nghệ, và ẩm thực đặc sắc. Đây là cơ hội tuyệt vời để tìm hiểu về sự đa dạng văn hóa của Việt Nam.',
     date: '30/12/2024',
-    time: '08:00 - 20:00',
+    time: '7 ngày',
     location: 'Sapa, Lào Cai',
     imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop',
     isFeatured: false,
@@ -109,9 +205,33 @@ export const events = [
         { title: 'Thời gian nộp', content: 'Đến hết 01/01/2025' },
         { title: 'Công bố kết quả', content: 'Ngày 10/01/2025' }
     ],
+    requirements: [
+        { title: 'Tác phẩm', content: 'Tranh (PNG/JPEG), video/animation hoặc mô tả dự án trải nghiệm (PDF + ảnh minh họa).' },
+        { title: 'Kích thước', content: 'Tối đa ảnh: 10 MB; video: 100 MB; PDF: 10 MB.' },
+        { title: 'Thông tin bắt buộc', content: 'Ghi rõ: tên tác phẩm, tác giả, năm, mô tả ngắn (≤200 từ), công cụ/AI sử dụng.' },
+        { title: 'Bản quyền', content: 'Không vi phạm bản quyền; nếu sử dụng nội dung bên thứ ba, cần có giấy phép/ghi nguồn.' },
+        { title: 'Số lượng', content: 'Mỗi người được gửi tối đa 3 tác phẩm.' }
+    ],
+    criteria: [
+        { title: 'Sáng tạo & ý tưởng', percent: '40%', description: 'Độc đáo, truyền tải ký ức/di sản.' },
+        { title: 'Chất lượng nghệ thuật', percent: '30%', description: 'Bố cục, màu sắc, kỹ thuật.' },
+        { title: 'Tương tác công nghệ', percent: '20%', description: 'Sử dụng AI/AR/VR/âm thanh sáng tạo.' },
+        { title: 'Tác động văn hóa', percent: '10%', description: 'Khả năng truyền cảm hứng & giáo dục cộng đồng.' }
+    ],
+    judges: 'Ban giám khảo gồm chuyên gia nghệ thuật, nhà sử học, và chuyên gia công nghệ AI.',
+    prizes: [
+        { name: 'Giải Nhất', value: '10.000.000₫', bonus: 'Triển lãm & ấn phẩm' },
+        { name: 'Giải Nhì', value: '5.000.000₫', bonus: 'Triển lãm' },
+        { name: 'Giải Khuyến khích & Khán giả bình chọn', value: 'Quà tặng', bonus: 'Giấy chứng nhận' }
+    ],
+    faq: [
+        { question: 'Đăng ký có mất phí không?', answer: 'Miễn phí hoàn toàn.' },
+        { question: 'Bản quyền tác phẩm thuộc về ai?', answer: 'Tác giả giữ bản quyền; MT4 xin quyền sử dụng cho mục đích triển lãm/truyền thông có ghi nguồn.' },
+        { question: 'Có thể gửi nhiều tác phẩm không?', answer: 'Có, tối đa 3 tác phẩm mỗi tác giả.' }
+    ],
     content: 'Tọa đàm tập trung vào các thách thức và giải pháp trong công tác bảo tồn di sản văn hóa vật thể và phi vật thể. Các chuyên gia trong nước và quốc tế sẽ chia sẻ kinh nghiệm và công nghệ mới nhất trong lĩnh vực bảo tồn di sản.',
     date: '05/01/2025',
-    time: '14:00 - 17:00',
+    time: '7 ngày',
     location: 'TP. Hồ Chí Minh',
     imageUrl: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&h=600&fit=crop',
     isFeatured: false,
@@ -131,13 +251,175 @@ export const events = [
         { title: 'Thời gian nộp', content: 'Đến hết 05/01/2025' },
         { title: 'Công bố kết quả', content: 'Ngày 15/01/2025' }
     ],
+    requirements: [
+        { title: 'Tác phẩm', content: 'Tranh (PNG/JPEG), video/animation hoặc mô tả dự án trải nghiệm (PDF + ảnh minh họa).' },
+        { title: 'Kích thước', content: 'Tối đa ảnh: 10 MB; video: 100 MB; PDF: 10 MB.' },
+        { title: 'Thông tin bắt buộc', content: 'Ghi rõ: tên tác phẩm, tác giả, năm, mô tả ngắn (≤200 từ), công cụ/AI sử dụng.' },
+        { title: 'Bản quyền', content: 'Không vi phạm bản quyền; nếu sử dụng nội dung bên thứ ba, cần có giấy phép/ghi nguồn.' },
+        { title: 'Số lượng', content: 'Mỗi người được gửi tối đa 3 tác phẩm.' }
+    ],
+    criteria: [
+        { title: 'Sáng tạo & ý tưởng', percent: '40%', description: 'Độc đáo, truyền tải ký ức/di sản.' },
+        { title: 'Chất lượng nghệ thuật', percent: '30%', description: 'Bố cục, màu sắc, kỹ thuật.' },
+        { title: 'Tương tác công nghệ', percent: '20%', description: 'Sử dụng AI/AR/VR/âm thanh sáng tạo.' },
+        { title: 'Tác động văn hóa', percent: '10%', description: 'Khả năng truyền cảm hứng & giáo dục cộng đồng.' }
+    ],
+    judges: 'Ban giám khảo gồm chuyên gia nghệ thuật, nhà sử học, và chuyên gia công nghệ AI.',
+    prizes: [
+        { name: 'Giải Nhất', value: '10.000.000₫', bonus: 'Triển lãm & ấn phẩm' },
+        { name: 'Giải Nhì', value: '5.000.000₫', bonus: 'Triển lãm' },
+        { name: 'Giải Khuyến khích & Khán giả bình chọn', value: 'Quà tặng', bonus: 'Giấy chứng nhận' }
+    ],
+    faq: [
+        { question: 'Đăng ký có mất phí không?', answer: 'Miễn phí hoàn toàn.' },
+        { question: 'Bản quyền tác phẩm thuộc về ai?', answer: 'Tác giả giữ bản quyền; MT4 xin quyền sử dụng cho mục đích triển lãm/truyền thông có ghi nguồn.' },
+        { question: 'Có thể gửi nhiều tác phẩm không?', answer: 'Có, tối đa 3 tác phẩm mỗi tác giả.' }
+    ],
     content: 'Workshop 2 ngày với các nghệ nhân hàng đầu của làng gốm Bát Tràng. Người tham gia sẽ được học từ khâu nhào nặn, tạo hình, trang trí đến nung gốm. Mỗi người sẽ được mang về sản phẩm gốm do chính mình làm ra.',
     date: '10/01/2025',
-    time: '09:00 - 17:00',
+    time: '7 ngày',
     location: 'Bát Tràng, Hà Nội',
     imageUrl: 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=800&h=600&fit=crop',
     isFeatured: false,
     tags: ['workshop', 'gốm sứ', 'bát tràng']
+},
+{
+    id: '7',
+    title: 'Khóa học thư pháp chữ Nôm',
+    description: 'Học viên sẽ được tìm hiểu và thực hành nghệ thuật viết chữ Nôm cổ truyền với các thầy giáo có kinh nghiệm.',
+    shortIntro: 'Khóa học 4 tuần giới thiệu lịch sử chữ Nôm và kỹ thuật thư pháp truyền thống.',
+    theme: 'Bảo tồn văn tự cổ — thư pháp Nôm',
+    rules: [
+        { title: 'Đối tượng', content: 'Người yêu thích thư pháp, văn hóa chữ Nôm, từ 18 tuổi trở lên' },
+        { title: 'Số lượng tác phẩm', content: 'Mỗi học viên hoàn thành 5 bài thư pháp trong khóa học' },
+        { title: 'Định dạng file', content: 'PNG, JPEG (ảnh tác phẩm). Dung lượng ≤50MB' },
+        { title: 'Bản quyền', content: 'Tác phẩm thuộc về học viên' },
+        { title: 'Thời gian nộp', content: 'Đến hết 10/01/2025' },
+        { title: 'Công bố kết quả', content: 'Ngày 20/01/2025' }
+    ],
+    requirements: [
+        { title: 'Tác phẩm', content: 'Tranh (PNG/JPEG), video/animation hoặc mô tả dự án trải nghiệm (PDF + ảnh minh họa).' },
+        { title: 'Kích thước', content: 'Tối đa ảnh: 10 MB; video: 100 MB; PDF: 10 MB.' },
+        { title: 'Thông tin bắt buộc', content: 'Ghi rõ: tên tác phẩm, tác giả, năm, mô tả ngắn (≤200 từ), công cụ/AI sử dụng.' },
+        { title: 'Bản quyền', content: 'Không vi phạm bản quyền; nếu sử dụng nội dung bên thứ ba, cần có giấy phép/ghi nguồn.' },
+        { title: 'Số lượng', content: 'Mỗi người được gửi tối đa 3 tác phẩm.' }
+    ],
+    criteria: [
+        { title: 'Sáng tạo & ý tưởng', percent: '40%', description: 'Độc đáo, truyền tải ký ức/di sản.' },
+        { title: 'Chất lượng nghệ thuật', percent: '30%', description: 'Bố cục, màu sắc, kỹ thuật.' },
+        { title: 'Tương tác công nghệ', percent: '20%', description: 'Sử dụng AI/AR/VR/âm thanh sáng tạo.' },
+        { title: 'Tác động văn hóa', percent: '10%', description: 'Khả năng truyền cảm hứng & giáo dục cộng đồng.' }
+    ],
+    judges: 'Ban giám khảo gồm chuyên gia nghệ thuật, nhà sử học, và chuyên gia công nghệ AI.',
+    prizes: [
+        { name: 'Giải Nhất', value: '10.000.000₫', bonus: 'Triển lãm & ấn phẩm' },
+        { name: 'Giải Nhì', value: '5.000.000₫', bonus: 'Triển lãm' },
+        { name: 'Giải Khuyến khích & Khán giả bình chọn', value: 'Quà tặng', bonus: 'Giấy chứng nhận' }
+    ],
+    faq: [
+        { question: 'Đăng ký có mất phí không?', answer: 'Miễn phí hoàn toàn.' },
+        { question: 'Bản quyền tác phẩm thuộc về ai?', answer: 'Tác giả giữ bản quyền; MT4 xin quyền sử dụng cho mục đích triển lãm/truyền thông có ghi nguồn.' },
+        { question: 'Có thể gửi nhiều tác phẩm không?', answer: 'Có, tối đa 3 tác phẩm mỗi tác giả.' }
+    ],
+    content: 'Khóa học thư pháp chữ Nôm kéo dài 4 tuần, với 2 buổi học mỗi tuần. Học viên sẽ được học về lịch sử chữ Nôm, các nét cơ bản và cách viết các bài thơ Nôm nổi tiếng. Cuối khóa, mỗi học viên sẽ có một tác phẩm hoàn chỉnh để triển lãm.',
+    date: '15/01/2025',
+    time: '7 ngày',
+    location: 'Văn Miếu - Quốc Tử Giám, Hà Nội',
+    imageUrl: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=600&fit=crop',
+    isFeatured: false,
+    tags: ['thư pháp', 'chữ nôm', 'văn hóa']
+},
+{
+    id: '8',
+    title: 'Festival âm nhạc cổ truyền Việt Nam',
+    description: 'Liên hoan âm nhạc cổ truyền quy tụ các nghệ sĩ nổi tiếng biểu diễn ca trù, chèo, tuồng và nhã nhạc cung đình.',
+    shortIntro: 'Festival 3 ngày với hơn 30 tiết mục âm nhạc cổ truyền từ 3 miền đất nước.',
+    theme: 'Hòa quyện di sản âm nhạc — từ truyền thống đến hiện đại',
+    rules: [
+        { title: 'Đối tượng', content: 'Nghệ sĩ, nhóm nhạc cổ truyền, người yêu âm nhạc dân tộc' },
+        { title: 'Số lượng tác phẩm', content: 'Mỗi nghệ sĩ/nhóm biểu diễn 1-2 tiết mục' },
+        { title: 'Định dạng file', content: 'MP3, MP4 (video biểu diễn). Dung lượng ≤200MB' },
+        { title: 'Bản quyền', content: 'Tôn trọng bản quyền tác phẩm âm nhạc truyền thống' },
+        { title: 'Thời gian nộp', content: 'Đến hết 15/01/2025' },
+        { title: 'Công bố kết quả', content: 'Ngày 25/01/2025' }
+    ],
+    requirements: [
+        { title: 'Tác phẩm', content: 'Tranh (PNG/JPEG), video/animation hoặc mô tả dự án trải nghiệm (PDF + ảnh minh họa).' },
+        { title: 'Kích thước', content: 'Tối đa ảnh: 10 MB; video: 100 MB; PDF: 10 MB.' },
+        { title: 'Thông tin bắt buộc', content: 'Ghi rõ: tên tác phẩm, tác giả, năm, mô tả ngắn (≤200 từ), công cụ/AI sử dụng.' },
+        { title: 'Bản quyền', content: 'Không vi phạm bản quyền; nếu sử dụng nội dung bên thứ ba, cần có giấy phép/ghi nguồn.' },
+        { title: 'Số lượng', content: 'Mỗi người được gửi tối đa 3 tác phẩm.' }
+    ],
+    criteria: [
+        { title: 'Sáng tạo & ý tưởng', percent: '40%', description: 'Độc đáo, truyền tải ký ức/di sản.' },
+        { title: 'Chất lượng nghệ thuật', percent: '30%', description: 'Bố cục, màu sắc, kỹ thuật.' },
+        { title: 'Tương tác công nghệ', percent: '20%', description: 'Sử dụng AI/AR/VR/âm thanh sáng tạo.' },
+        { title: 'Tác động văn hóa', percent: '10%', description: 'Khả năng truyền cảm hứng & giáo dục cộng đồng.' }
+    ],
+    judges: 'Ban giám khảo gồm chuyên gia nghệ thuật, nhà sử học, và chuyên gia công nghệ AI.',
+    prizes: [
+        { name: 'Giải Nhất', value: '10.000.000₫', bonus: 'Triển lãm & ấn phẩm' },
+        { name: 'Giải Nhì', value: '5.000.000₫', bonus: 'Triển lãm' },
+        { name: 'Giải Khuyến khích & Khán giả bình chọn', value: 'Quà tặng', bonus: 'Giấy chứng nhận' }
+    ],
+    faq: [
+        { question: 'Đăng ký có mất phí không?', answer: 'Miễn phí hoàn toàn.' },
+        { question: 'Bản quyền tác phẩm thuộc về ai?', answer: 'Tác giả giữ bản quyền; MT4 xin quyền sử dụng cho mục đích triển lãm/truyền thông có ghi nguồn.' },
+        { question: 'Có thể gửi nhiều tác phẩm không?', answer: 'Có, tối đa 3 tác phẩm mỗi tác giả.' }
+    ],
+    content: 'Festival âm nhạc cổ truyền là sự kiện văn hóa lớn nhất năm, quy tụ các nghệ sĩ ưu tú từ cả nước. Chương trình gồm các màn trình diễn ca trù, hát chèo, hát tuồng, nhã nhạc cung đình Huế, và nhiều loại hình âm nhạc dân gian khác. Đây là cơ hội để công chúng được thưởng thức nghệ thuật âm nhạc truyền thống đích thực.',
+    date: '20/01/2025',
+    time: '7 ngày',
+    location: 'Nhà hát Lớn Hà Nội',
+    imageUrl: 'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&h=600&fit=crop',
+    isFeatured: true,
+    tags: ['âm nhạc', 'festival', 'ca trù']
+},
+{
+    id: '9',
+    title: 'Hội chợ sách cổ và tư liệu lịch sử',
+    description: 'Hội chợ trưng bày và giao lưu sách cổ, tư liệu lịch sử quý hiếm về Việt Nam từ các nhà sưu tầm.',
+    shortIntro: 'Hội chợ 2 ngày với hàng ngàn đầu sách cổ, tư liệu và bản đồ lịch sử.',
+    theme: 'Lưu giữ ký ức — sách cổ & tư liệu quý',
+    rules: [
+        { title: 'Đối tượng', content: 'Nhà sưu tầm, nhà nghiên cứu, sinh viên và người yêu sách cổ' },
+        { title: 'Số lượng tác phẩm', content: 'Không giới hạn số lượng sách/tư liệu trưng bày' },
+        { title: 'Định dạng file', content: 'PDF (catalog sách). Dung lượng ≤100MB' },
+        { title: 'Bản quyền', content: 'Đảm bảo nguồn gốc hợp pháp của sách và tư liệu' },
+        { title: 'Thời gian nộp', content: 'Đến hết 20/01/2025' },
+        { title: 'Công bố kết quả', content: 'Ngày 30/01/2025' }
+    ],
+    requirements: [
+        { title: 'Tác phẩm', content: 'Tranh (PNG/JPEG), video/animation hoặc mô tả dự án trải nghiệm (PDF + ảnh minh họa).' },
+        { title: 'Kích thước', content: 'Tối đa ảnh: 10 MB; video: 100 MB; PDF: 10 MB.' },
+        { title: 'Thông tin bắt buộc', content: 'Ghi rõ: tên tác phẩm, tác giả, năm, mô tả ngắn (≤200 từ), công cụ/AI sử dụng.' },
+        { title: 'Bản quyền', content: 'Không vi phạm bản quyền; nếu sử dụng nội dung bên thứ ba, cần có giấy phép/ghi nguồn.' },
+        { title: 'Số lượng', content: 'Mỗi người được gửi tối đa 3 tác phẩm.' }
+    ],
+    criteria: [
+        { title: 'Sáng tạo & ý tưởng', percent: '40%', description: 'Độc đáo, truyền tải ký ức/di sản.' },
+        { title: 'Chất lượng nghệ thuật', percent: '30%', description: 'Bố cục, màu sắc, kỹ thuật.' },
+        { title: 'Tương tác công nghệ', percent: '20%', description: 'Sử dụng AI/AR/VR/âm thanh sáng tạo.' },
+        { title: 'Tác động văn hóa', percent: '10%', description: 'Khả năng truyền cảm hứng & giáo dục cộng đồng.' }
+    ],
+    judges: 'Ban giám khảo gồm chuyên gia nghệ thuật, nhà sử học, và chuyên gia công nghệ AI.',
+    prizes: [
+        { name: 'Giải Nhất', value: '10.000.000₫', bonus: 'Triển lãm & ấn phẩm' },
+        { name: 'Giải Nhì', value: '5.000.000₫', bonus: 'Triển lãm' },
+        { name: 'Giải Khuyến khích & Khán giả bình chọn', value: 'Quà tặng', bonus: 'Giấy chứng nhận' }
+    ],
+    faq: [
+        { question: 'Đăng ký có mất phí không?', answer: 'Miễn phí hoàn toàn.' },
+        { question: 'Bản quyền tác phẩm thuộc về ai?', answer: 'Tác giả giữ bản quyền; MT4 xin quyền sử dụng cho mục đích triển lãm/truyền thông có ghi nguồn.' },
+        { question: 'Có thể gửi nhiều tác phẩm không?', answer: 'Có, tối đa 3 tác phẩm mỗi tác giả.' }
+    ],
+    content: 'Hội chợ sách cổ và tư liệu lịch sử là điểm hẹn của các nhà sưu tầm và người yêu sách cổ. Tại đây trưng bày hàng ngàn đầu sách cổ, tài liệu lịch sử, bản đồ cổ về Việt Nam từ thế kỷ 18 đến nay. Các chuyên gia sẽ tư vấn về giá trị và cách bảo quản sách cổ. Đây cũng là cơ hội để giao lưu, mua bán và trao đổi sách giữa các nhà sưu tầm.',
+    date: '25/01/2025',
+    time: '7 ngày',
+    location: 'Trung tâm Triển lãm Giảng Võ, Hà Nội',
+    imageUrl: 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=800&h=600&fit=crop',
+    isFeatured: false,
+    tags: ['sách cổ', 'hội chợ', 'lịch sử']
 }
 ]
 
@@ -202,6 +484,36 @@ export const news = [
     author: 'Vũ Thị F',
     category: 'Lễ hội',
     imageUrl: 'https://images.unsplash.com/photo-1528127269322-539801943592?w=800&h=600&fit=crop'
+},
+{
+    id: '7',
+    title: 'Chùa Một Cột được tu bổ và tôn tạo',
+    description: 'Công trình tu bổ chùa Một Cột vừa hoàn thành, giữ nguyên được kiến trúc độc đáo từ thế kỷ 11.',
+    content: 'Sau 6 tháng thi công, công trình tu bổ chùa Một Cột đã hoàn thành với sự tham gia của các chuyên gia kiến trúc và nghệ nhân hàng đầu. Công trình giữ nguyên được nét kiến trúc độc đáo, tinh xảo của ngôi chùa được xây dựng từ thời Lý Thánh Tông. Chùa Một Cột được UNESCO công nhận là di tích kiến trúc có giá trị đặc biệt.',
+    date: '05/11/2024',
+    author: 'Đỗ Minh Tuấn',
+    category: 'Kiến trúc',
+    imageUrl: 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=800&h=600&fit=crop'
+},
+{
+    id: '8',
+    title: 'Làng nghề truyền thống được đầu tư phát triển du lịch',
+    description: 'Nhiều làng nghề truyền thống đang chuyển mình thành điểm đến du lịch hấp dẫn cho du khách trong và ngoài nước.',
+    content: 'Các làng nghề như làng gốm Bát Tràng, làng lụa Vạn Phúc, làng tranh Đông Hồ đang được đầu tư phát triển hạ tầng và dịch vụ du lịch. Du khách không chỉ được chiêm ngưỡng sản phẩm thủ công mà còn được trải nghiệm làm nghề cùng nghệ nhân. Mô hình này vừa bảo tồn nghề truyền thống vừa tạo thu nhập cho người dân địa phương.',
+    date: '02/11/2024',
+    author: 'Bùi Thu Hương',
+    category: 'Du lịch văn hóa',
+    imageUrl: 'https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&h=600&fit=crop'
+},
+{
+    id: '9',
+    title: 'Bảo tàng Hồ Chí Minh kỷ niệm 50 năm thành lập',
+    description: 'Bảo tàng Hồ Chí Minh tổ chức chuỗi sự kiện kỷ niệm 50 năm thành lập với nhiều hoạt động ý nghĩa.',
+    content: 'Nhân dịp kỷ niệm 50 năm thành lập, Bảo tàng Hồ Chí Minh tổ chức triển lãm đặc biệt với hơn 1000 hiện vật quý hiếm về cuộc đời và sự nghiệp của Chủ tịch Hồ Chí Minh. Bên cạnh đó, nhiều hoạt động như tọa đàm, chiếu phim tài liệu, và các chương trình giáo dục cho học sinh được tổ chức xuyên suốt tháng 11.',
+    date: '30/10/2024',
+    author: 'Ngô Thanh Long',
+    category: 'Bảo tàng',
+    imageUrl: 'https://images.unsplash.com/photo-1566127444979-b3d2b654e3b7?w=800&h=600&fit=crop'
 }
 ]
 
