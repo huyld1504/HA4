@@ -20,7 +20,7 @@ const analysisData = [
         title: 'AI tái hiện di sản',
         icon: 'fa-robot',
         description: 'Trí tuệ nhân tạo mở ra hướng đi mới.',
-        tooltip: 'Bảo tồn di sản bằng AI',
+        tooltip: 'Bảo tồn',
         image: aiHeritageImg,
         fullContent: 'Công nghệ AI đang thay đổi cách chúng ta bảo tồn và tái hiện di sản văn hóa. Với khả năng phân tích, phục hồi và tái tạo hình ảnh, AI giúp các di sản bị hư hại có thể được khôi phục lại vẻ đẹp ban đầu.',
         link: 'https://www.bbc.com/news/technology-66713465',
@@ -32,7 +32,7 @@ const analysisData = [
         title: 'Gen Z & lịch sử',
         icon: 'fa-users',
         description: 'Tiếp cận lịch sử qua nền tảng số.',
-        tooltip: 'Gen Z khám phá lịch sử qua số hóa',
+        tooltip: 'Khám phá',
         image: genZImg,
         fullContent: 'Thế hệ Gen Z đang tiếp cận lịch sử theo cách hoàn toàn mới thông qua các nền tảng số, mạng xã hội và công nghệ tương tác. Họ không chỉ học mà còn tham gia tái tạo và chia sẻ tri thức lịch sử.',
         link: 'https://www.theguardian.com/world/2023/jun/25/gen-z-history',
@@ -44,7 +44,7 @@ const analysisData = [
         title: 'Bảo tàng số & VR',
         icon: 'fa-vr-cardboard',
         description: 'Kết hợp văn hóa và công nghệ.',
-        tooltip: 'Trải nghiệm bảo tàng số VR',
+        tooltip: 'Trải nghiệm',
         image: vrMuseumImg,
         fullContent: 'Công nghệ thực tế ảo (VR) đang mang lại trải nghiệm bảo tàng hoàn toàn mới, cho phép người dùng khám phá các hiện vật cổ trong không gian số một cách sống động và tương tác.'
     },
@@ -54,11 +54,47 @@ const analysisData = [
         title: 'Lan tỏa di sản',
         icon: 'fa-globe',
         description: 'Di sản Việt Nam vươn tầm thế giới.',
-        tooltip: 'Lan tỏa di sản toàn cầu',
+        tooltip: 'Lan tỏa',
         image: globalImg,
         fullContent: 'Số hóa di sản không chỉ bảo tồn mà còn nâng cao tính phổ quát, giúp di sản Việt Nam vươn tầm thế giới và được nhiều người biết đến hơn.',
         link: 'https://www.unesco.org/en/articles/digital-heritage',
         linkText: 'UNESCO'
+    },
+    {
+        id: 'modal5',
+        category: 'Lịch sử',
+        title: 'Dấu ấn triều Nguyễn',
+        icon: 'fa-landmark',
+        description: 'Khám phá di sản kiến trúc cuối cùng.',
+        tooltip: 'Di sản',
+        image: genZImg,
+        fullContent: 'Triều Nguyễn (1802-1945) để lại một di sản kiến trúc độc đáo với Kinh thành Huế, các lăng tẩm hoàng gia và hệ thống đền đài. Những công trình này không chỉ phản ánh tài năng nghệ thuật mà còn thể hiện triết lý sống hài hòa với thiên nhiên của người Việt. Ngày nay, công nghệ số hóa đang giúp bảo tồn và tái hiện những giá trị lịch sử quý báu này.',
+        link: 'https://whc.unesco.org/en/list/678',
+        linkText: 'UNESCO World Heritage'
+    },
+    {
+        id: 'modal6',
+        category: 'Đời sống',
+        title: 'Lễ hội truyền thống',
+        icon: 'fa-calendar-days',
+        description: 'Nét đẹp văn hóa trong cuộc sống.',
+        tooltip: 'Dân gian & Đương đại',
+        image: vrMuseumImg,
+        fullContent: 'Lễ hội truyền thống Việt Nam như Tết Nguyên Đán, Tết Trung Thu, lễ hội Đền Hùng không chỉ là dịp vui chơi mà còn là cầu nối giữa quá khứ và hiện tại. Trong thời đại hiện đại, các lễ hội này vẫn giữ được giá trị văn hóa đặc sắc, đồng thời kết hợp với công nghệ để thu hút thế hệ trẻ tham gia và gìn giữ truyền thống.',
+        link: 'https://vietnamtourism.gov.vn',
+        linkText: 'Vietnam Tourism'
+    },
+    {
+        id: 'modal7',
+        category: 'Văn hóa',
+        title: 'Nghệ thuật dân gian',
+        icon: 'fa-masks-theater',
+        description: 'Từ tranh dân gian đến sân khấu.',
+        tooltip: 'Bảo tồn',
+        image: aiHeritageImg,
+        fullContent: 'Nghệ thuật dân gian Việt Nam bao gồm tranh Đông Hồ, ca trù, tuồng, chèo... là kho tàng văn hóa vô giá. Những nghệ thuật này phản ánh tâm hồn, tư tưởng và đời sống của người Việt qua các thời kỳ. Hiện nay, nhiều dự án số hóa đang được triển khai để lưu giữ, nghiên cứu và quảng bá các loại hình nghệ thuật này đến với công chúng rộng rãi hơn.',
+        link: 'https://ich.unesco.org/en/state/viet-nam-VN',
+        linkText: 'UNESCO ICH'
     }
 ]
 
@@ -127,7 +163,7 @@ const filteredData = activeTab === 'Tất cả'
 ? analysisData 
 : analysisData.filter(item => item.category === activeTab)
 
-const tabs = ['Tất cả', 'Công nghệ', 'Di sản', 'Xã hội']
+const tabs = ['Tất cả', 'Công nghệ', 'Di sản', 'Xã hội', 'Lịch sử', 'Đời sống', 'Văn hóa']
 
 return (
     <div className="min-h-screen bg-[#f6eadf] text-gray-800 relative overflow-x-hidden">
@@ -225,7 +261,7 @@ return (
             <div className="relative flex justify-center">
                 <span className="bg-[#f6eadf] px-6 py-2 rounded-full border-2 border-amber-300 text-amber-700 font-semibold flex items-center gap-2 shadow-lg">
                 <i className="fa-solid fa-star animate-spin" style={{ animationDuration: '3s' }} />
-                Diễn giả đồng hành
+                Phỏng vấn Diễn giả
                 <i className="fa-solid fa-star animate-spin" style={{ animationDuration: '3s' }} />
                 </span>
             </div>
