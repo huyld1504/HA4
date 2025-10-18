@@ -1,20 +1,16 @@
 // Mock data for Settings page
 
 export const settingsTabs = [
-  { id: 'account', label: 'Tài khoản & Bảo mật', icon: '�' },
-  { id: 'notifications', label: 'Thông báo', icon: '�' },
+  { id: 'notifications', label: 'Thông báo', icon: '🔔' },
   { id: 'appearance', label: 'Giao diện', icon: '🎨' },
   { id: 'privacy', label: 'Quyền riêng tư', icon: '🛡️' },
-  { id: 'language', label: 'Ngôn ngữ & Khu vực', icon: '🌐' },
+  { id: 'data', label: 'Dữ liệu & Bộ nhớ', icon: '💾' },
+  { id: 'accessibility', label: 'Trợ năng', icon: '♿' },
+  { id: 'integrations', label: 'Tích hợp', icon: '🔗' },
+  { id: 'support', label: 'Hỗ trợ', icon: '❓' },
 ]
 
 export const defaultFormData = {
-  // Account Settings
-  currentPassword: '',
-  newPassword: '',
-  confirmPassword: '',
-  twoFactorAuth: false,
-  loginAlerts: true,
 
   // Notification Settings
   emailNotifications: true,
@@ -41,8 +37,26 @@ export const defaultFormData = {
 
   // Language Settings
   language: 'vi',
-  timezone: 'Asia/Ho_Chi_Minh',
-  dateFormat: 'DD/MM/YYYY',
+
+  // Data & Storage Settings
+  clearCache: false,
+  clearHistory: false,
+  autoDownload: true,
+  offlineMode: false,
+
+  // Accessibility Settings
+  highContrast: false,
+  largeButtons: false,
+  screenReader: false,
+  reduceMotion: false,
+  keyboardNavigation: true,
+
+  // Integration Settings
+  connectFacebook: false,
+  connectGoogle: false,
+  connectTwitter: false,
+  syncCalendar: false,
+  connectZalo: false,
 }
 
 export const privacyOptions = [
@@ -163,15 +177,110 @@ export const languageOptions = [
   { value: 'ja', label: '日本語' },
 ]
 
-export const timezoneOptions = [
-  { value: 'Asia/Ho_Chi_Minh', label: '(GMT+7) Hà Nội, Bangkok' },
-  { value: 'Asia/Tokyo', label: '(GMT+9) Tokyo' },
-  { value: 'Europe/London', label: '(GMT+0) London' },
-  { value: 'America/New_York', label: '(GMT-5) New York' },
+export const dataStorageSettings = [
+  {
+    id: 'clearCache',
+    title: 'Xóa bộ nhớ cache',
+    description: 'Xóa dữ liệu tạm để tăng tốc độ tải trang',
+    isAction: true,
+  },
+  {
+    id: 'clearHistory',
+    title: 'Xóa lịch sử duyệt web',
+    description: 'Xóa toàn bộ lịch sử truy cập',
+    isAction: true,
+  },
+  {
+    id: 'autoDownload',
+    title: 'Tự động tải xuống',
+    description: 'Tự động tải tài liệu và hình ảnh',
+  },
+  {
+    id: 'offlineMode',
+    title: 'Chế độ ngoại tuyến',
+    description: 'Lưu nội dung để xem khi không có mạng',
+  },
 ]
 
-export const dateFormatOptions = [
-  { value: 'DD/MM/YYYY', label: 'DD/MM/YYYY' },
-  { value: 'MM/DD/YYYY', label: 'MM/DD/YYYY' },
-  { value: 'YYYY-MM-DD', label: 'YYYY-MM-DD' },
+export const accessibilitySettings = [
+  {
+    id: 'highContrast',
+    title: 'Tăng độ tương phản',
+    description: 'Tăng độ tương phản để dễ đọc hơn',
+  },
+  {
+    id: 'largeButtons',
+    title: 'Nút bấm lớn',
+    description: 'Tăng kích thước nút để dễ nhấn hơn',
+  },
+  {
+    id: 'screenReader',
+    title: 'Hỗ trợ đọc màn hình',
+    description: 'Tối ưu cho phần mềm đọc màn hình',
+  },
+  {
+    id: 'reduceMotion',
+    title: 'Giảm chuyển động',
+    description: 'Giảm hiệu ứng chuyển động cho người nhạy cảm',
+  },
+  {
+    id: 'keyboardNavigation',
+    title: 'Điều hướng bằng bàn phím',
+    description: 'Cho phép điều hướng toàn bộ bằng bàn phím',
+  },
+]
+
+export const integrationSettings = [
+  {
+    id: 'connectFacebook',
+    title: 'Kết nối Facebook',
+    description: 'Chia sẻ nội dung lên Facebook',
+  },
+  {
+    id: 'connectGoogle',
+    title: 'Kết nối Google',
+    description: 'Đồng bộ với Google Calendar',
+  },
+  {
+    id: 'connectTwitter',
+    title: 'Kết nối Twitter',
+    description: 'Chia sẻ tin tức lên Twitter',
+  },
+  {
+    id: 'syncCalendar',
+    title: 'Đồng bộ lịch',
+    description: 'Tự động thêm sự kiện vào lịch của bạn',
+  },
+  {
+    id: 'connectZalo',
+    title: 'Kết nối Zalo',
+    description: 'Nhận thông báo qua Zalo',
+  },
+]
+
+export const supportResources = [
+  {
+    title: 'Trung tâm trợ giúp',
+    description: 'Tìm câu trả lời cho các câu hỏi thường gặp',
+    icon: '📚',
+    link: '/guides',
+  },
+  {
+    title: 'Báo cáo lỗi',
+    description: 'Gửi báo cáo về lỗi kỹ thuật',
+    icon: '🐛',
+    link: '/contact',
+  },
+  {
+    title: 'Gửi phản hồi',
+    description: 'Chia sẻ ý kiến để cải thiện dịch vụ',
+    icon: '💬',
+    link: '/contact',
+  },
+  {
+    title: 'Liên hệ hỗ trợ',
+    description: 'Liên hệ đội ngũ hỗ trợ khách hàng',
+    icon: '📧',
+    link: '/contact',
+  },
 ]

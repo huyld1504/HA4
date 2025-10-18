@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import SectionHeading from '../components/common/SectionHeading'
-import ToggleSwitch from '../components/common/ToggleSwitch'
+import SectionHeading from '../../components/common/SectionHeading'
+import ToggleSwitch from '../../components/common/ToggleSwitch'
 import {
   settingsTabs,
   defaultFormData,
@@ -16,7 +16,7 @@ import {
   accessibilitySettings,
   integrationSettings,
   supportResources
-} from '../data/settingsData'
+} from '../../data/settingsData'
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState('notifications')

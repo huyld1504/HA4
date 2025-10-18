@@ -1,4 +1,5 @@
 // Mock data for Contact page
+import { FaFacebook, FaTwitter, FaYoutube, FaInstagramSquare, FaLinkedin } from "react-icons/fa";
 
 export const contactInfo = [
   {
@@ -55,11 +56,11 @@ export const faqItems = [
 ]
 
 export const socialLinks = [
-  { icon: '👍', name: 'Facebook', link: '#', color: 'from-blue-500 to-blue-600' },
-  { icon: '📷', name: 'Instagram', link: '#', color: 'from-pink-500 to-purple-600' },
-  { icon: '🐦', name: 'Twitter', link: '#', color: 'from-sky-400 to-blue-500' },
-  { icon: '📺', name: 'YouTube', link: '#', color: 'from-red-500 to-red-600' },
-  { icon: '💼', name: 'LinkedIn', link: '#', color: 'from-blue-600 to-blue-700' },
+  { icon: FaFacebook, name: 'Facebook', link: '#', color: 'from-blue-500 to-blue-600' },
+  { icon: FaInstagramSquare, name: 'Instagram', link: '#', color: 'from-pink-500 to-purple-600' },
+  { icon: FaTwitter, name: 'Twitter', link: '#', color: 'from-sky-400 to-blue-500' },
+  { icon: FaYoutube, name: 'YouTube', link: '#', color: 'from-red-500 to-red-600' },
+  { icon: FaLinkedin, name: 'LinkedIn', link: '#', color: 'from-blue-600 to-blue-700' },
 ]
 
 export const workingHours = [

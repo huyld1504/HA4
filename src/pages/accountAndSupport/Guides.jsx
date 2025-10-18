@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import SectionHeading from '../components/common/SectionHeading'
-import { guideCategories, guidesList } from '../data/guidesData'
+import SectionHeading from '../../components/common/SectionHeading'
+import { guideCategories, guidesList } from '../../data/guidesData'
 
 const Guides = () => {
   const [activeCategory, setActiveCategory] = useState('all')
