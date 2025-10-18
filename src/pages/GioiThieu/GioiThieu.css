@@ -1,0 +1,1439 @@
+/* ===== VARIABLES ===== */
+:root {
+  --primary-gold: #ffd166;
+  --primary-orange: #ff8c42;
+  --primary-red: #f44f2a;
+  --dark-bg: #0d0602;
+  --dark-surface: rgba(32, 21, 14, 0.9);
+  --text-light: #fef3d8;
+  --text-muted: rgba(254, 243, 216, 0.68);
+  --border-subtle: rgba(255, 209, 102, 0.12);
+  --transition: 0.3s ease;
+  --max-width: 1200px;
+}
+
+/* ===== GENERAL STYLES ===== */
+.gioithieu-page {
+  min-height: 100vh;
+  background: 
+    linear-gradient(180deg, 
+      rgba(20, 13, 8, 1) 0%,
+      rgba(18, 12, 10, 0.98) 15%,
+      rgba(16, 11, 12, 0.96) 30%,
+      rgba(18, 13, 14, 0.95) 50%,
+      rgba(16, 11, 10, 0.96) 70%,
+      rgba(18, 12, 8, 0.98) 85%,
+      rgba(20, 13, 8, 1) 100%
+    );
+  color: var(--text-light);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Animated background overlay */
+.gioithieu-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 10%, rgba(255, 193, 102, 0.08) 0%, transparent 25%),
+    radial-gradient(circle at 80% 30%, rgba(255, 140, 66, 0.06) 0%, transparent 25%),
+    radial-gradient(circle at 40% 60%, rgba(244, 79, 42, 0.05) 0%, transparent 25%),
+    radial-gradient(circle at 70% 80%, rgba(255, 193, 102, 0.07) 0%, transparent 25%),
+    radial-gradient(circle at 10% 90%, rgba(255, 140, 66, 0.06) 0%, transparent 25%);
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 0;
+  animation: backgroundShift 30s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+  0%, 100% { 
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  25% { 
+    transform: translate(2%, -2%) scale(1.02);
+    opacity: 0.7;
+  }
+  50% { 
+    transform: translate(-2%, 2%) scale(1.01);
+    opacity: 0.65;
+  }
+  75% { 
+    transform: translate(2%, 2%) scale(1.02);
+    opacity: 0.7;
+  }
+}
+
+/* Noise texture overlay */
+.gioithieu-page::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 193, 102, 0.02) 2px,
+      rgba(255, 193, 102, 0.02) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 140, 66, 0.02) 2px,
+      rgba(255, 140, 66, 0.02) 4px
+    );
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.gioithieu-page .gioithieu-main {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Ambient glow effect */
+.gioithieu-page .gioithieu-main::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255, 193, 102, 0.15), transparent 70%);
+  filter: blur(100px);
+  animation: ambientGlow1 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.gioithieu-page .gioithieu-main::after {
+  content: '';
+  position: absolute;
+  bottom: 30%;
+  right: 10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 140, 66, 0.12), transparent 70%);
+  filter: blur(120px);
+  animation: ambientGlow2 25s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes ambientGlow1 {
+  0%, 100% { 
+    transform: translate(0, 0) scale(1);
+    opacity: 0.5;
+  }
+  33% { 
+    transform: translate(30px, -40px) scale(1.1);
+    opacity: 0.7;
+  }
+  66% { 
+    transform: translate(-40px, 30px) scale(0.9);
+    opacity: 0.6;
+  }
+}
+
+@keyframes ambientGlow2 {
+  0%, 100% { 
+    transform: translate(0, 0) scale(1);
+    opacity: 0.5;
+  }
+  40% { 
+    transform: translate(-30px, 40px) scale(1.15);
+    opacity: 0.65;
+  }
+  80% { 
+    transform: translate(40px, -30px) scale(0.95);
+    opacity: 0.55;
+  }
+}
+
+/* Smooth transitions between sections */
+.gioithieu-page .gioithieu-main > * {
+  will-change: transform, opacity;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== HERO SECTION ===== */
+.gioithieu-page .gioithieu-hero {
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: 
+    radial-gradient(ellipse at 30% 20%, rgba(255, 193, 102, 0.15) 0%, transparent 45%),
+    radial-gradient(ellipse at 70% 80%, rgba(255, 140, 66, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(244, 79, 42, 0.06) 0%, transparent 60%);
+  padding: 6rem 2rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.gioithieu-page .gioithieu-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(rgba(255, 209, 102, 0.1) 1.5px, transparent 1.5px);
+  background-size: 50px 50px;
+  opacity: 0.35;
+  animation: float 20s ease-in-out infinite;
+}
+
+.gioithieu-page .gioithieu-hero::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -15%;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(255, 193, 102, 0.08) 0%, rgba(255, 140, 66, 0.05) 40%, transparent 70%);
+  border-radius: 50%;
+  animation: pulse 10s ease-in-out infinite;
+  filter: blur(60px);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    transform: scale(1) rotate(0deg); 
+    opacity: 0.4; 
+  }
+  50% { 
+    transform: scale(1.15) rotate(10deg); 
+    opacity: 0.6; 
+  }
+}
+
+.gioithieu-page .gioithieu-hero__content {
+  max-width: 900px;
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gioithieu-page .gt-hero-badge {
+  display: inline-block;
+  padding: 0.6rem 1.8rem;
+  background: linear-gradient(135deg, rgba(255, 193, 102, 0.2), rgba(255, 140, 66, 0.15));
+  border: 1.5px solid rgba(255, 193, 102, 0.4);
+  border-radius: 50px;
+  color: var(--primary-gold);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 15px rgba(255, 193, 102, 0.2);
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 4px 15px rgba(255, 193, 102, 0.2); }
+  50% { box-shadow: 0 4px 25px rgba(255, 193, 102, 0.4); }
+}
+
+.gioithieu-page .gioithieu-hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  margin-bottom: 2rem;
+  line-height: 1.15;
+  background: linear-gradient(135deg, #ffd166 0%, #ff8c42 50%, #f44f2a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 80px rgba(255, 193, 102, 0.3);
+  letter-spacing: -0.5px;
+}
+
+.gioithieu-page .gt-hero-description {
+  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+  color: rgba(254, 243, 216, 0.85);
+  margin-bottom: 3rem;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.8;
+  font-weight: 400;
+}
+
+.gioithieu-page .gioithieu-hero__actions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.gioithieu-page .gt-hero-action {
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+  font-size: 1.05rem;
+  letter-spacing: 0.3px;
+  position: relative;
+  overflow: hidden;
+}
+
+.gioithieu-page .gt-hero-action::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.gioithieu-page .gt-hero-action:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.gioithieu-page .gt-hero-action span {
+  position: relative;
+  z-index: 1;
+}
+
+.gioithieu-page .gt-hero-action--primary {
+  background: linear-gradient(135deg, #ffd166 0%, #ff8c42 100%);
+  color: #0d0602;
+  box-shadow: 0 10px 35px rgba(255, 193, 102, 0.35);
+  border: none;
+}
+
+.gioithieu-page .gt-hero-action--primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 50px rgba(255, 193, 102, 0.5);
+}
+
+.gioithieu-page .gt-hero-action--ghost {
+  background: rgba(255, 193, 102, 0.05);
+  color: var(--text-light);
+  border: 2px solid var(--primary-gold);
+  backdrop-filter: blur(5px);
+}
+
+.gioithieu-page .gt-hero-action--ghost:hover {
+  background: rgba(255, 193, 102, 0.15);
+  border-color: #ff8c42;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(255, 140, 66, 0.3);
+}
+
+/* ===== STATISTICS SECTION ===== */
+.gioithieu-page .gioithieu-stats-section {
+  background: 
+    linear-gradient(180deg, 
+      rgba(255, 193, 102, 0.06) 0%,
+      rgba(255, 140, 66, 0.08) 50%,
+      rgba(244, 79, 42, 0.06) 100%
+    ),
+    radial-gradient(ellipse at 20% 30%, rgba(255, 193, 102, 0.1), transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(255, 140, 66, 0.08), transparent 50%);
+  padding: 6rem 2rem;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 209, 102, 0.15);
+  border-bottom: 1px solid rgba(255, 209, 102, 0.15);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 193, 102, 0.1),
+    inset 0 -1px 0 rgba(255, 193, 102, 0.1);
+}
+
+.gioithieu-page .gioithieu-stats-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(rgba(255, 209, 102, 0.06) 1.5px, transparent 1.5px);
+  background-size: 45px 45px;
+  opacity: 0.4;
+  animation: float 25s linear infinite;
+}
+
+.gioithieu-page .gt-stats-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.gioithieu-page .gt-stats-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.gioithieu-page .gt-stats-header h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  
+  background: linear-gradient(135deg, #fef3d8 0%, #ffd166 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.gioithieu-page .gt-stats-header p {
+  font-size: 1.2rem;
+  color: rgba(254, 243, 216, 0.75);
+  font-weight: 400;
+}
+
+.gioithieu-page .gioithieu-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+  position: relative;
+}
+
+.gioithieu-page .gt-stats-card {
+  background: linear-gradient(135deg, rgba(32, 21, 14, 0.9), rgba(40, 25, 16, 0.85));
+  backdrop-filter: blur(15px);
+  border: 1.5px solid rgba(255, 209, 102, 0.15);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.gioithieu-page .gt-stats-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ffd166, #ff8c42);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.gioithieu-page .gt-stats-card:hover::before {
+  transform: scaleX(1);
+}
+
+.gioithieu-page .gt-stats-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(255, 193, 102, 0.4);
+  box-shadow: 0 15px 40px rgba(255, 193, 102, 0.25), 0 5px 15px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, rgba(32, 21, 14, 0.95), rgba(40, 25, 16, 0.9));
+}
+
+.gioithieu-page .gt-stats-card strong {
+  display: block;
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffd166, #ff8c42);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.75rem;
+  line-height: 1;
+}
+
+.gioithieu-page .gt-stats-card span {
+  color: rgba(254, 243, 216, 0.75);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* ===== SECTIONS ===== */
+.gioithieu-page .gioithieu-section {
+  padding: 8rem 2rem;
+  margin: 0 auto;
+  position: relative;
+  opacity: 0;
+  animation: sectionFadeIn 1s ease-out forwards;
+}
+
+@keyframes sectionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger animation cho mỗi section */
+.gioithieu-page .gt-overview {
+  animation-delay: 0.2s;
+  background: 
+    radial-gradient(ellipse at 15% 20%, rgba(255, 193, 102, 0.04), transparent 60%),
+    radial-gradient(ellipse at 85% 80%, rgba(255, 140, 66, 0.03), transparent 60%);
+}
+
+.gioithieu-page .gt-mission {
+  animation-delay: 0.3s;
+  background: 
+    radial-gradient(ellipse at 85% 30%, rgba(255, 140, 66, 0.05), transparent 60%),
+    radial-gradient(ellipse at 15% 70%, rgba(244, 79, 42, 0.04), transparent 60%),
+    linear-gradient(180deg, transparent 0%, rgba(255, 193, 102, 0.02) 50%, transparent 100%);
+}
+
+.gioithieu-page .gt-vision {
+  animation-delay: 0.4s;
+  background: 
+    radial-gradient(ellipse at 20% 30%, rgba(255, 193, 102, 0.05), transparent 60%),
+    radial-gradient(ellipse at 80% 70%, rgba(255, 140, 66, 0.04), transparent 60%),
+    linear-gradient(180deg, rgba(244, 79, 42, 0.02) 0%, transparent 50%, rgba(255, 193, 102, 0.02) 100%);
+}
+
+.gioithieu-page .gioithieu-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 120px;
+  background: linear-gradient(to bottom, 
+    transparent 0%, 
+    rgba(255, 193, 102, 0.3) 20%,
+    rgba(255, 193, 102, 0.5) 40%, 
+    rgba(255, 140, 66, 0.5) 60%,
+    rgba(255, 140, 66, 0.3) 80%, 
+    transparent 100%
+  );
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: lineGrow 1.5s ease-out 0.5s forwards;
+  box-shadow: 0 0 15px rgba(255, 193, 102, 0.3);
+}
+
+@keyframes lineGrow {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: 120px;
+    opacity: 1;
+  }
+}
+
+/* Decorative elements */
+.gioithieu-page .gioithieu-section::after {
+  content: '';
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #ffd166, #ff8c42);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 20px rgba(255, 193, 102, 0.6);
+  opacity: 0;
+  animation: dotAppear 0.5s ease-out 1.5s forwards;
+}
+
+@keyframes dotAppear {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+.gioithieu-page .gt-section-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.gioithieu-page .gt-section-heading {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 5rem;
+  opacity: 0;
+  animation: headingSlideUp 0.8s ease-out 0.3s forwards;
+}
+
+@keyframes headingSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gioithieu-page .gt-section-eyebrow {
+  display: inline-block;
+  padding: 0.6rem 1.8rem;
+  background: linear-gradient(135deg, rgba(255, 193, 102, 0.18), rgba(255, 140, 66, 0.12));
+  border: 1.5px solid rgba(255, 193, 102, 0.35);
+  border-radius: 50px;
+  color: var(--primary-gold);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  box-shadow: 0 4px 20px rgba(255, 193, 102, 0.15);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.gioithieu-page .gt-section-eyebrow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s, height 0.5s;
+}
+
+.gioithieu-page .gt-section-eyebrow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(255, 193, 102, 0.25);
+}
+
+.gioithieu-page .gt-section-eyebrow:hover::before {
+  width: 200px;
+  height: 200px;
+}
+
+.gioithieu-page .gt-section-heading h2 {
+  font-size: clamp(2.5rem, 5vw, 3.8rem);
+  font-weight: 800;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #fef3d8 0%, #ffd166 50%, #ff8c42 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.15;
+  letter-spacing: -0.8px;
+  position: relative;
+}
+
+.gioithieu-page .gt-section-heading h2::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #ffd166, #ff8c42, transparent);
+  border-radius: 2px;
+}
+
+.gioithieu-page .gt-section-intro {
+  font-size: 1.25rem;
+  color: rgba(254, 243, 216, 0.85);
+  line-height: 2;
+  font-weight: 400;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+/* ===== OVERVIEW SECTION ===== */
+.gioithieu-page .gt-overview-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  opacity: 0;
+  animation: contentFadeIn 1s ease-out 0.6s forwards;
+}
+
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gioithieu-page .gt-overview-main {
+  margin-bottom: 4rem;
+  padding: 3rem;
+  background: linear-gradient(135deg, rgba(32, 21, 14, 0.5), rgba(40, 25, 16, 0.45));
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 209, 102, 0.15);
+  border-radius: 30px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 193, 102, 0.1),
+    0 0 0 1px rgba(255, 193, 102, 0.05);
+}
+
+.gioithieu-page .gt-overview-main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at top right, rgba(255, 193, 102, 0.1), transparent 60%),
+    radial-gradient(circle at bottom left, rgba(255, 140, 66, 0.06), transparent 60%);
+  pointer-events: none;
+}
+
+.gioithieu-page .gt-overview-lead {
+  font-size: 1.45rem;
+  color: var(--text-light);
+  margin-bottom: 2rem;
+  line-height: 1.9;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+.gioithieu-page .gt-overview-main p {
+  font-size: 1.15rem;
+  color: rgba(254, 243, 216, 0.8);
+  margin-bottom: 1.5rem;
+  line-height: 2;
+  position: relative;
+  z-index: 1;
+}
+
+.gioithieu-page .gt-overview-main p:last-child {
+  margin-bottom: 0;
+}
+
+.gioithieu-page .gt-overview-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+.gioithieu-page .gt-feature-item {
+  background: linear-gradient(135deg, rgba(32, 21, 14, 0.6), rgba(40, 25, 16, 0.55));
+  backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255, 209, 102, 0.12);
+  border-radius: 24px;
+  padding: 2.5rem;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: featureSlideIn 0.8s ease-out forwards;
+}
+
+.gioithieu-page .gt-feature-item:nth-child(1) {
+  animation-delay: 0.8s;
+}
+
+.gioithieu-page .gt-feature-item:nth-child(2) {
+  animation-delay: 1s;
+}
+
+.gioithieu-page .gt-feature-item:nth-child(3) {
+  animation-delay: 1.2s;
+}
+
+@keyframes featureSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gioithieu-page .gt-feature-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255, 193, 102, 0.1), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.gioithieu-page .gt-feature-item:hover::before {
+  opacity: 1;
+}
+
+.gioithieu-page .gt-feature-item:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(255, 193, 102, 0.3);
+  background: linear-gradient(135deg, rgba(32, 21, 14, 0.75), rgba(40, 25, 16, 0.7));
+  box-shadow: 0 20px 50px rgba(255, 193, 102, 0.2);
+}
+
+.gioithieu-page .gt-feature-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  display: block;
+  filter: drop-shadow(0 4px 15px rgba(255, 193, 102, 0.3));
+  transition: transform 0.4s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.gioithieu-page .gt-feature-item:hover .gt-feature-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.gioithieu-page .gt-feature-item h3 {
+  font-size: 1.6rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+}
+
+.gioithieu-page .gt-feature-item p {
+  color: rgba(254, 243, 216, 0.75);
+  line-height: 1.8;
+  font-size: 1.05rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== MISSION SECTION ===== */
+.gioithieu-page .gt-mission-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2.5rem;
+  margin-top: 3rem;
+  opacity: 0;
+  animation: gridFadeIn 1s ease-out 0.6s forwards;
+}
+
+@keyframes gridFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gioithieu-page .gt-mission-card {
+  background: linear-gradient(135deg, rgba(32, 21, 14, 0.7), rgba(40, 25, 16, 0.65));
+  backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255, 209, 102, 0.12);
+  border-radius: 24px;
+  padding: 2.5rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.gioithieu-page .gt-mission-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 0;
+  background: linear-gradient(to bottom, #ffd166, #ff8c42, #f44f2a);
+  transition: height 0.4s ease;
+  border-radius: 24px 0 0 24px;
+}
+
+.gioithieu-page .gt-mission-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(255, 193, 102, 0.08), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.gioithieu-page .gt-mission-card:hover::before {
+  height: 100%;
+}
+
+.gioithieu-page .gt-mission-card:hover::after {
+  opacity: 1;
+}
+
+.gioithieu-page .gt-mission-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(255, 193, 102, 0.3);
+  background: linear-gradient(135deg, rgba(32, 21, 14, 0.85), rgba(40, 25, 16, 0.8));
+  box-shadow: 0 20px 50px rgba(255, 193, 102, 0.2), 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.gioithieu-page .gt-mission-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.gioithieu-page .gt-mission-icon {
+  font-size: 3.5rem;
+  filter: drop-shadow(0 4px 15px rgba(255, 193, 102, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.gioithieu-page .gt-mission-card:hover .gt-mission-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.gioithieu-page .gt-mission-number {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, rgba(255, 193, 102, 0.4), rgba(255, 140, 66, 0.3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gioithieu-page .gt-mission-title {
+  font-size: 1.5rem;
+  color: var(--text-light);
+  margin-bottom: 1.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+  position: relative;
+  z-index: 1;
+}
+
+.gioithieu-page .gt-mission-description {
+  color: rgba(254, 243, 216, 0.75);
+  line-height: 1.8;
+  font-size: 1.05rem;
+  position: relative;
+  z-index: 1;
+}
+
+.gioithieu-page .gt-mission-summary {
+  margin-top: 4rem;
+}
+
+.gioithieu-page .gt-summary-box {
+  background: linear-gradient(135deg, rgba(255, 193, 102, 0.1), rgba(255, 140, 66, 0.1));
+  border: 2px solid rgba(255, 193, 102, 0.3);
+  border-radius: 20px;
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.gioithieu-page .gt-summary-box h3 {
+  font-size: 1.75rem;
+  color: var(--primary-gold);
+  margin-bottom: 1rem;
+}
+
+.gioithieu-page .gt-summary-box p {
+  font-size: 1.15rem;
+  color: var(--text-light);
+  line-height: 1.8;
+}
+
+/* ===== VISION SECTION ===== */
+.gioithieu-page .gt-vision-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  opacity: 0;
+  animation: contentFadeIn 1s ease-out 0.6s forwards;
+}
+
+.gioithieu-page .gt-vision-main {
+  margin-bottom: 4rem;
+  padding: 3rem;
+  background: linear-gradient(135deg, rgba(32, 21, 14, 0.5), rgba(40, 25, 16, 0.45));
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 209, 102, 0.15);
+  border-radius: 30px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 193, 102, 0.1),
+    0 0 0 1px rgba(255, 193, 102, 0.05);
+}
+
+.gioithieu-page .gt-vision-main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at top left, rgba(255, 140, 66, 0.1), transparent 60%),
+    radial-gradient(circle at bottom right, rgba(244, 79, 42, 0.06), transparent 60%);
+  pointer-events: none;
+}
+
+.gioithieu-page .gt-vision-lead {
+  font-size: 1.45rem;
+  color: var(--text-light);
+  margin-bottom: 2rem;
+  line-height: 1.9;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+.gioithieu-page .gt-vision-main p {
+  font-size: 1.15rem;
+  color: rgba(254, 243, 216, 0.8);
+  line-height: 2;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 1.5rem;
+}
+
+.gioithieu-page .gt-vision-main p:last-child {
+  margin-bottom: 0;
+}
+
+.gioithieu-page .gt-vision-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  margin: 4rem 0;
+}
+
+.gioithieu-page .gt-vision-card {
+  background: linear-gradient(135deg, rgba(32, 21, 14, 0.7), rgba(40, 25, 16, 0.65));
+  backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255, 209, 102, 0.12);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: visionCardSlideIn 0.8s ease-out forwards;
+}
+
+.gioithieu-page .gt-vision-card:nth-child(1) {
+  animation-delay: 0.8s;
+}
+
+.gioithieu-page .gt-vision-card:nth-child(2) {
+  animation-delay: 1s;
+}
+
+.gioithieu-page .gt-vision-card:nth-child(3) {
+  animation-delay: 1.2s;
+}
+
+.gioithieu-page .gt-vision-card:nth-child(4) {
+  animation-delay: 1.4s;
+}
+
+@keyframes visionCardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.gioithieu-page .gt-vision-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ffd166, #ff8c42, #f44f2a);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.gioithieu-page .gt-vision-card:hover::before {
+  transform: scaleX(1);
+}
+
+.gioithieu-page .gt-vision-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255, 193, 102, 0.1), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.gioithieu-page .gt-vision-card:hover::after {
+  opacity: 1;
+}
+
+.gioithieu-page .gt-vision-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  border-color: rgba(255, 193, 102, 0.35);
+  background: linear-gradient(135deg, rgba(32, 21, 14, 0.85), rgba(40, 25, 16, 0.8));
+  box-shadow: 0 20px 50px rgba(255, 193, 102, 0.25), 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.gioithieu-page .gt-vision-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 4px 20px rgba(255, 193, 102, 0.4));
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.gioithieu-page .gt-vision-card:hover .gt-vision-icon {
+  transform: scale(1.15) rotate(-5deg);
+}
+
+.gioithieu-page .gt-vision-card h3 {
+  font-size: 1.4rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+}
+
+.gioithieu-page .gt-vision-card p {
+  color: rgba(254, 243, 216, 0.75);
+  line-height: 1.7;
+  font-size: 1.05rem;
+  position: relative;
+  z-index: 1;
+}
+
+.gioithieu-page .gt-vision-quote {
+  margin: 4rem auto;
+  max-width: 800px;
+  text-align: center;
+}
+
+.gioithieu-page .gt-vision-quote blockquote {
+  background: rgba(32, 21, 14, 0.6);
+  border-left: 4px solid var(--primary-gold);
+  border-radius: 15px;
+  padding: 2.5rem;
+  font-style: italic;
+}
+
+.gioithieu-page .gt-vision-quote blockquote p {
+  font-size: 1.35rem;
+  color: var(--text-light);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.gioithieu-page .gt-vision-quote cite {
+  display: block;
+  font-size: 1rem;
+  color: var(--primary-gold);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.gioithieu-page .gt-vision-impact {
+  margin-top: 4rem;
+}
+
+.gioithieu-page .gt-vision-impact h3 {
+  font-size: 2rem;
+  color: var(--text-light);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.gioithieu-page .gt-impact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.gioithieu-page .gt-impact-item {
+  background: rgba(32, 21, 14, 0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: 15px;
+  padding: 2rem;
+  transition: all var(--transition);
+}
+
+.gioithieu-page .gt-impact-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary-orange);
+}
+
+.gioithieu-page .gt-impact-item strong {
+  display: block;
+  font-size: 1.25rem;
+  color: var(--primary-gold);
+  margin-bottom: 0.75rem;
+}
+
+.gioithieu-page .gt-impact-item p {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ===== CTA SECTION ===== */
+.gioithieu-page .gioithieu-cta {
+  background: 
+    linear-gradient(180deg, 
+      rgba(255, 193, 102, 0.08) 0%,
+      rgba(255, 140, 66, 0.12) 30%,
+      rgba(244, 79, 42, 0.1) 60%,
+      rgba(255, 140, 66, 0.12) 80%,
+      rgba(255, 193, 102, 0.08) 100%
+    ),
+    radial-gradient(ellipse at 30% 50%, rgba(255, 193, 102, 0.12), transparent 50%),
+    radial-gradient(ellipse at 70% 50%, rgba(255, 140, 66, 0.1), transparent 50%);
+  border-top: 1px solid rgba(255, 209, 102, 0.2);
+  border-bottom: 1px solid rgba(255, 209, 102, 0.2);
+  padding: 6rem 2rem;
+  margin: 5rem 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 193, 102, 0.15),
+    inset 0 -1px 0 rgba(255, 193, 102, 0.15),
+    0 10px 40px rgba(255, 193, 102, 0.05),
+    0 -10px 40px rgba(255, 193, 102, 0.05);
+}
+
+.gioithieu-page .gioithieu-cta::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(circle, rgba(255, 193, 102, 0.06) 1.5px, transparent 1.5px);
+  background-size: 45px 45px;
+  animation: float 30s linear infinite;
+  opacity: 0.6;
+}
+
+.gioithieu-page .gt-cta-content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.gioithieu-page .gt-cta-content h2 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  background: linear-gradient(135deg, #fef3d8, #ffd166);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.gioithieu-page .gt-cta-content p {
+  font-size: 1.3rem;
+  color: rgba(254, 243, 216, 0.85);
+  margin-bottom: 3rem;
+  line-height: 1.9;
+  font-weight: 400;
+}
+
+.gioithieu-page .gt-cta-actions {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.gioithieu-page .gt-cta-button {
+  padding: 1.2rem 3rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.5px;
+}
+
+.gioithieu-page .gt-cta-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.gioithieu-page .gt-cta-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.gioithieu-page .gt-cta-button span {
+  position: relative;
+  z-index: 1;
+}
+
+.gioithieu-page .gt-cta-button--primary {
+  background: linear-gradient(135deg, #ffd166, #ff8c42);
+  color: #0d0602;
+  box-shadow: 0 15px 40px rgba(255, 193, 102, 0.35);
+}
+
+.gioithieu-page .gt-cta-button--primary:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 20px 60px rgba(255, 193, 102, 0.5);
+}
+
+.gioithieu-page .gt-cta-button--secondary {
+  background: rgba(255, 193, 102, 0.08);
+  color: var(--text-light);
+  border: 2px solid var(--primary-gold);
+  backdrop-filter: blur(5px);
+}
+
+.gioithieu-page .gt-cta-button--secondary:hover {
+  background: rgba(255, 193, 102, 0.2);
+  border-color: #ff8c42;
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 15px 40px rgba(255, 140, 66, 0.3);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .gioithieu-page .gioithieu-hero {
+    min-height: 70vh;
+    padding: 4rem 1.5rem 3rem;
+  }
+
+  .gioithieu-page .gioithieu-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .gioithieu-page .gioithieu-stats-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .gioithieu-page .gioithieu-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .gioithieu-page .gt-stats-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .gioithieu-page .gt-stats-card strong {
+    font-size: 2.5rem;
+  }
+
+  .gioithieu-page .gt-section-heading {
+    margin-bottom: 3rem;
+  }
+
+  .gioithieu-page .gt-section-heading h2 {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+  }
+
+  .gioithieu-page .gt-overview-main,
+  .gioithieu-page .gt-vision-main {
+    padding: 2rem;
+  }
+
+  .gioithieu-page .gt-mission-grid,
+  .gioithieu-page .gt-vision-highlights-grid,
+  .gioithieu-page .gt-impact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gioithieu-page .gt-overview-features {
+    grid-template-columns: 1fr;
+  }
+
+  .gioithieu-page .gt-cta-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .gioithieu-page .gt-hero-action,
+  .gioithieu-page .gt-cta-button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .gioithieu-page .gioithieu-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .gioithieu-page .gt-stats-card strong {
+    font-size: 2rem;
+  }
+}
