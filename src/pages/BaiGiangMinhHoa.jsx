@@ -16,7 +16,7 @@ function BaiGiangMinhHoa() {
 
   const sidebarItems = [
     { id: 'all', label: 'Tất cả nội dung', count: '245', filter: 'all' },
-    // { id: 'free', label: 'Miễn phí', count: '45', filter: 'Miễn phí' },
+    { id: 'free', label: 'Miễn phí', count: '45', filter: 'Miễn phí' },
     { id: 'ai', label: 'AI cơ bản', count: '67', filter: 'AI' },
     { id: 'vr', label: 'VR Tours', count: '23', filter: 'VR' },
     { id: 'culture', label: 'Văn hóa số', count: '89', filter: 'Chuyên đề' },
@@ -34,7 +34,7 @@ function BaiGiangMinhHoa() {
       id: 1,
       title: 'Hệ thống AI với tiếng Việt - Nghệ thuật dân gian',
       description: 'Tìm hiểu về ứng dụng AI trong việc phân tích và tái tạo nghệ thuật dân gian Việt Nam qua các thuật toán machine learning hiện đại.',
-      type: 'Làm quen công nghệ AI',
+      type: 'Miễn phí',
       difficulty: 'Cơ bản',
       duration: '45 phút',
       shortCode: 'AI',
@@ -644,7 +644,7 @@ function BaiGiangMinhHoa() {
               </div>
               <button
                 onClick={handleClose}
-                className="text-white hover:bg-white hover:bg-opacity-20 rounded-full p-2 transition-colors"
+                className="text-white hover:bg-white hover:bg-opacity-20 rounded-full p-2"
               >
                 <span className="text-xl">×</span>
               </button>
@@ -658,7 +658,7 @@ function BaiGiangMinhHoa() {
               </div>
               <div className="h-2 bg-white bg-opacity-30 rounded-full">
                 <div
-                  className="h-2 bg-white rounded-full transition-all duration-300"
+                  className="h-2 bg-white rounded-full"
                   style={{ width: `${progress}%` }}
                 />
               </div>
@@ -678,7 +678,7 @@ function BaiGiangMinhHoa() {
                   <button
                     key={index}
                     onClick={() => handleAnswer(option.value)}
-                    className="w-full p-4 text-left border-2 border-gray-200 rounded-xl hover:border-purple-300 hover:bg-purple-50 transition-all group"
+                    className="w-full p-4 text-left border-2 border-gray-200 rounded-xl hover:border-purple-300 hover:bg-purple-50 group"
                   >
                     <div className="flex items-center space-x-3">
                       <span className="text-2xl">{option.icon}</span>
@@ -701,7 +701,7 @@ function BaiGiangMinhHoa() {
                     <button
                       key={i + 1}
                       onClick={() => handleAnswer(i + 1)}
-                      className={`flex-1 py-3 px-2 rounded-xl border-2 font-semibold transition-all ${i + 1 <= 2 ? 'border-red-200 hover:border-red-400 hover:bg-red-50 hover:text-red-700' :
+                      className={`flex-1 py-3 px-2 rounded-xl border-2 font-semibold ${i + 1 <= 2 ? 'border-red-200 hover:border-red-400 hover:bg-red-50 hover:text-red-700' :
                         i + 1 === 3 ? 'border-yellow-200 hover:border-yellow-400 hover:bg-yellow-50 hover:text-yellow-700' :
                           'border-green-200 hover:border-green-400 hover:bg-green-50 hover:text-green-700'
                         }`}
@@ -719,7 +719,7 @@ function BaiGiangMinhHoa() {
                 {currentQuestion.options.map((option, index) => (
                   <label
                     key={index}
-                    className="flex items-center space-x-3 p-4 border-2 border-gray-200 rounded-xl hover:border-purple-300 hover:bg-purple-50 cursor-pointer transition-all group"
+                    className="flex items-center space-x-3 p-4 border-2 border-gray-200 rounded-xl hover:border-purple-300 hover:bg-purple-50 cursor-pointer group"
                   >
                     <input
                       type="checkbox"
@@ -735,7 +735,7 @@ function BaiGiangMinhHoa() {
                 ))}
                 <button
                   onClick={() => handleAnswer('multiple_selections')}
-                  className="w-full mt-4 py-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-xl font-semibold hover:from-purple-600 hover:to-purple-700 transition-all"
+                  className="w-full mt-4 py-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-xl font-semibold hover:from-purple-600 hover:to-purple-700"
                 >
                   Tiếp tục
                 </button>
@@ -748,7 +748,7 @@ function BaiGiangMinhHoa() {
             <button
               onClick={() => surveyStep > 0 && setSurveyStep(surveyStep - 1)}
               disabled={surveyStep === 0}
-              className="px-4 py-2 text-gray-600 hover:text-gray-800 disabled:text-gray-400 font-medium transition-colors"
+              className="px-4 py-2 text-gray-600 hover:text-gray-800 disabled:text-gray-400 font-medium"
             >
               ← Trước
             </button>
@@ -759,7 +759,7 @@ function BaiGiangMinhHoa() {
 
             <button
               onClick={() => handleAnswer('skip')}
-              className="px-4 py-2 text-purple-600 hover:text-purple-800 font-medium transition-colors"
+              className="px-4 py-2 text-purple-600 hover:text-purple-800 font-medium"
             >
               Bỏ qua →
             </button>
@@ -1017,7 +1017,7 @@ function BaiGiangMinhHoa() {
                       </div>
                       <div className="h-2 bg-stone-200 rounded-full relative">
                         <div
-                          className={`h-2 rounded-full transition-all ${lesson.progress >= 80 ? 'bg-gradient-to-r from-green-400 to-green-600' :
+                          className={`h-2 rounded-full ${lesson.progress >= 80 ? 'bg-gradient-to-r from-green-400 to-green-600' :
                             lesson.progress >= 50 ? 'bg-gradient-to-r from-blue-400 to-blue-600' :
                               'bg-gradient-to-r from-orange-400 to-orange-600'
                             }`}
@@ -1086,7 +1086,7 @@ function BaiGiangMinhHoa() {
                               e.stopPropagation();
                               handlePhasesSurvey(lesson.id, 'trigger', lessonSurvey.nextSurveyType);
                             }}
-                            className={`w-full py-2 px-3 text-white rounded-lg text-xs font-medium transition-all animate-pulse ${lessonSurvey.nextSurveyType === 'pre' ? 'bg-gradient-to-r from-purple-500 to-purple-600' :
+                            className={`w-full py-2 px-3 text-white rounded-lg text-xs font-medium ${lessonSurvey.nextSurveyType === 'pre' ? 'bg-gradient-to-r from-purple-500 to-purple-600' :
                               lessonSurvey.nextSurveyType === 'mid' ? 'bg-gradient-to-r from-orange-500 to-orange-600' :
                                 'bg-gradient-to-r from-blue-500 to-blue-600'
                               }`}
@@ -1104,7 +1104,7 @@ function BaiGiangMinhHoa() {
                               e.stopPropagation();
                               handlePhasesSurvey(lesson.id, 'view-profile', 'all');
                             }}
-                            className="flex-1 py-1 px-2 bg-indigo-100 text-indigo-700 rounded text-xs hover:bg-indigo-200 transition-colors"
+                            className="flex-1 py-1 px-2 bg-indigo-100 text-indigo-700 rounded text-xs hover:bg-indigo-200"
                           >
                             👤 Profile
                           </button>
@@ -1113,7 +1113,7 @@ function BaiGiangMinhHoa() {
                               e.stopPropagation();
                               handlePhasesSurvey(lesson.id, 'view-method', 'current');
                             }}
-                            className="flex-1 py-1 px-2 bg-purple-100 text-purple-700 rounded text-xs hover:bg-purple-200 transition-colors"
+                            className="flex-1 py-1 px-2 bg-purple-100 text-purple-700 rounded text-xs hover:bg-purple-200"
                           >
                             🎯 Method
                           </button>
@@ -1122,7 +1122,7 @@ function BaiGiangMinhHoa() {
                               e.stopPropagation();
                               handlePhasesSurvey(lesson.id, 'view-analytics', 'data');
                             }}
-                            className="flex-1 py-1 px-2 bg-green-100 text-green-700 rounded text-xs hover:bg-green-200 transition-colors"
+                            className="flex-1 py-1 px-2 bg-green-100 text-green-700 rounded text-xs hover:bg-green-200"
                           >
                             📈 Data
                           </button>
@@ -1137,7 +1137,7 @@ function BaiGiangMinhHoa() {
                         {lesson.isCompleted ? 'Hoàn thành' : lesson.progress > 0 ? 'Đang học' : 'Chưa bắt đầu'}
                       </span>
                       <button
-                        className="text-orange-500 hover:text-orange-600 transition-colors"
+                        className="text-orange-500 hover:text-orange-600"
                         onClick={() => setCompletedLessons(prev => {
                           const newSet = new Set(prev);
                           if (newSet.has(lesson.id)) {
@@ -1148,7 +1148,7 @@ function BaiGiangMinhHoa() {
                           return newSet;
                         })}
                       >
-                        <svg className={`w-4 h-4 transition-colors ${completedLessons.has(lesson.id) ? 'text-red-500' : 'text-gray-400'}`} fill="currentColor" viewBox="0 0 24 24">
+                        <svg className={`w-4 h-4 ${completedLessons.has(lesson.id) ? 'text-red-500' : 'text-gray-400'}`} fill="currentColor" viewBox="0 0 24 24">
                           <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                         </svg>
                       </button>
@@ -1158,7 +1158,7 @@ function BaiGiangMinhHoa() {
                         e.stopPropagation();
                         navigate(`/bai-hoc-minh-hoa/${lesson.id}`);
                       }}
-                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${lesson.isCompleted
+                      className={`px-4 py-2 rounded-lg text-sm font-medium ${lesson.isCompleted
                         ? 'bg-green-500 hover:bg-green-600 text-white'
                         : lesson.progress > 0
                           ? 'bg-blue-500 hover:bg-blue-600 text-white'
