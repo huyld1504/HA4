@@ -3,8 +3,6 @@ import { createBrowserRouter } from 'react-router-dom';
 import AppLayout from '../components/layouts/AppLayout';
 import MainLayout from '../components/layouts/MainLayout';
 import {
-  Home,
-  Events,
   News,
   EventDetail,
   NewsDetail,
@@ -21,7 +19,8 @@ import {
   VirtualChronicle
 } from '../pages';
 import SurveyPage from '../pages/SurveyPage';
-
+import TrangChu from '../pages/Home/Home.jsx'
+import GioiThieu from '../pages/GioiThieu/GioiThieu.jsx'
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -31,11 +30,11 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <Home />,
+            element: <TrangChu />,
           },
           {
-            path: 'events',
-            element: <Events />,
+            path: 'gioithieu',
+            element: <GioiThieu />,
           },
           {
             path: 'events/:eventId',
