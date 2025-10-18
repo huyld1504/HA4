@@ -46,9 +46,11 @@ const TaiLieuBaiGiang = () => {
 
   const handleDocumentClick = (doc) => {
     if (doc.type === 'Bài giảng') {
-      navigate(`/tai-lieu-bai-giang/bai-giang/${doc.id}`);
+      // route defined in routes/index.jsx -> 'bai-giang/:id'
+      navigate(`/bai-giang/${doc.id}`);
     } else {
-      navigate(`/tai-lieu-bai-giang/tai-lieu/${doc.id}`);
+      // route defined in routes/index.jsx -> 'tai-lieu/:id'
+      navigate(`/tai-lieu/${doc.id}`);
     }
   };
 
@@ -76,8 +78,8 @@ const TaiLieuBaiGiang = () => {
                         setCurrentPage(1);
                       }}
                       className={`w-full text-left rounded-lg px-4 py-3 text-sm transition-all ${selectedCategory === category.id
-                          ? 'bg-amber-500 text-white shadow-md'
-                          : 'text-stone-700 hover:bg-amber-50 hover:text-amber-700'
+                        ? 'bg-amber-500 text-white shadow-md'
+                        : 'text-stone-700 hover:bg-amber-50 hover:text-amber-700'
                         }`}
                     >
                       <div className="flex items-center space-x-3">
@@ -99,8 +101,8 @@ const TaiLieuBaiGiang = () => {
                       setCurrentPage(1);
                     }}
                     className={`w-full text-left rounded-lg px-4 py-3 text-sm transition-all ${selectedPeriod === 'all'
-                        ? 'bg-amber-500 text-white shadow-md'
-                        : 'text-stone-700 hover:bg-amber-50 hover:text-amber-700'
+                      ? 'bg-amber-500 text-white shadow-md'
+                      : 'text-stone-700 hover:bg-amber-50 hover:text-amber-700'
                       }`}
                   >
                     <div className="flex items-center space-x-3">
@@ -116,8 +118,8 @@ const TaiLieuBaiGiang = () => {
                         setCurrentPage(1);
                       }}
                       className={`w-full text-left rounded-lg px-4 py-3 text-sm transition-all ${selectedPeriod === period.name
-                          ? 'bg-amber-500 text-white shadow-md'
-                          : 'text-stone-700 hover:bg-amber-50 hover:text-amber-700'
+                        ? 'bg-amber-500 text-white shadow-md'
+                        : 'text-stone-700 hover:bg-amber-50 hover:text-amber-700'
                         }`}
                     >
                       <div className="flex items-center justify-between">
@@ -383,7 +385,12 @@ const TaiLieuBaiGiang = () => {
                                       <button
                                         onClick={(e) => {
                                           e.stopPropagation();
-                                          // Handle view action
+                                          // Navigate to the appropriate detail page
+                                          if (doc.type === 'Bài giảng') {
+                                            navigate(`/bai-giang/${doc.id}`);
+                                          } else {
+                                            navigate(`/tai-lieu/${doc.id}`);
+                                          }
                                         }}
                                         className="flex-1 rounded-lg bg-blue-500 px-3 py-2 text-xs font-medium text-white hover:bg-blue-600 transition-colors"
                                       >
@@ -505,8 +512,8 @@ const TaiLieuBaiGiang = () => {
                       key={i + 1}
                       onClick={() => setCurrentPage(i + 1)}
                       className={`rounded-lg px-3 py-2 text-sm font-medium ${currentPage === i + 1
-                          ? 'bg-amber-500 text-white'
-                          : 'border border-stone-300 bg-white text-stone-700 hover:bg-stone-50'
+                        ? 'bg-amber-500 text-white'
+                        : 'border border-stone-300 bg-white text-stone-700 hover:bg-stone-50'
                         }`}
                     >
                       {i + 1}

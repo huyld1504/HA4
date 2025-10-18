@@ -160,8 +160,8 @@ const TaiLieuDetail = () => {
                         key={index}
                         onClick={() => setCurrentPage(item.page)}
                         className={`w-full text-left rounded-lg px-3 py-2 text-sm transition-all ${currentPage >= item.page && (index === tableOfContents.length - 1 || currentPage < tableOfContents[index + 1]?.page)
-                            ? 'bg-amber-100 text-amber-800 font-medium'
-                            : 'text-stone-600 hover:bg-amber-50 hover:text-amber-700'
+                          ? 'bg-amber-100 text-amber-800 font-medium'
+                          : 'text-stone-600 hover:bg-amber-50 hover:text-amber-700'
                           } ${item.level === 2 ? 'ml-4' : ''}`}
                       >
                         <div className="flex justify-between items-center">
@@ -183,8 +183,8 @@ const TaiLieuDetail = () => {
                 <button
                   onClick={() => setShowNotes(!showNotes)}
                   className={`w-full flex items-center justify-center space-x-2 rounded-full border-2 px-6 py-3 font-semibold transition-all hover:scale-105 ${showNotes
-                      ? 'border-amber-500 bg-amber-500 text-white'
-                      : 'border-amber-500 bg-white text-amber-600 hover:bg-amber-50'
+                    ? 'border-amber-500 bg-amber-500 text-white'
+                    : 'border-amber-500 bg-white text-amber-600 hover:bg-amber-50'
                     }`}
                 >
                   <span>📝</span>
@@ -471,7 +471,7 @@ const TaiLieuDetail = () => {
                   {relatedDocuments.map((related) => (
                     <div
                       key={related.id}
-                      onClick={() => navigate(`/tai-lieu-bai-giang/tai-lieu/${related.id}`)}
+                      onClick={() => navigate(`/tai-lieu/${related.id}`)}
                       className="group cursor-pointer rounded-xl border border-stone-200 p-4 transition-all hover:border-amber-300 hover:bg-amber-50"
                     >
                       <div className="flex space-x-3">

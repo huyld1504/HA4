@@ -59,8 +59,8 @@ const BaiGiangDetail = () => {
       <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-red-50 flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-2xl font-serif font-bold text-amber-900 mb-4">Không tìm thấy bài giảng</h2>
-          <Link to="/tai-lieu-bai-giang" className="text-amber-600 hover:text-amber-800">
-            ← Quay lại trang tài liệu
+          <Link to="/bai-giang-minh-hoa" className="text-amber-600 hover:text-amber-800">
+            ← Quay lại danh sách bài giảng
           </Link>
         </div>
       </div>
@@ -180,8 +180,8 @@ const BaiGiangDetail = () => {
                 <button
                   onClick={() => setShowNotes(!showNotes)}
                   className={`flex items-center space-x-2 rounded-full border-2 px-6 py-3 font-semibold transition-all hover:scale-105 ${showNotes
-                      ? 'border-amber-500 bg-amber-500 text-white'
-                      : 'border-amber-500 bg-white text-amber-600 hover:bg-amber-50'
+                    ? 'border-amber-500 bg-amber-500 text-white'
+                    : 'border-amber-500 bg-white text-amber-600 hover:bg-amber-50'
                     }`}
                 >
                   <span>📝</span>
@@ -190,8 +190,8 @@ const BaiGiangDetail = () => {
                 <button
                   onClick={() => setShowTranscript(!showTranscript)}
                   className={`flex items-center space-x-2 rounded-full border-2 px-6 py-3 font-semibold transition-all hover:scale-105 ${showTranscript
-                      ? 'border-blue-500 bg-blue-500 text-white'
-                      : 'border-blue-500 bg-white text-blue-600 hover:bg-blue-50'
+                    ? 'border-blue-500 bg-blue-500 text-white'
+                    : 'border-blue-500 bg-white text-blue-600 hover:bg-blue-50'
                     }`}
                 >
                   <span>📄</span>
@@ -324,7 +324,7 @@ const BaiGiangDetail = () => {
                 {relatedLectures.map((related) => (
                   <div
                     key={related.id}
-                    onClick={() => navigate(`/tai-lieu-bai-giang/bai-giang/${related.id}`)}
+                    onClick={() => navigate(`/bai-giang/${related.id}`)}
                     className="group cursor-pointer rounded-xl border border-stone-200 p-4 transition-all hover:border-amber-300 hover:bg-amber-50"
                   >
                     <div className="flex space-x-3">

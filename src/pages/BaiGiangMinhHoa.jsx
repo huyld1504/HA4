@@ -16,7 +16,7 @@ function BaiGiangMinhHoa() {
 
   const sidebarItems = [
     { id: 'all', label: 'Tất cả nội dung', count: '245', filter: 'all' },
-    { id: 'free', label: 'Miễn phí', count: '45', filter: 'Miễn phí' },
+    // { id: 'free', label: 'Miễn phí', count: '45', filter: 'Miễn phí' },
     { id: 'ai', label: 'AI cơ bản', count: '67', filter: 'AI' },
     { id: 'vr', label: 'VR Tours', count: '23', filter: 'VR' },
     { id: 'culture', label: 'Văn hóa số', count: '89', filter: 'Chuyên đề' },
@@ -34,7 +34,7 @@ function BaiGiangMinhHoa() {
       id: 1,
       title: 'Hệ thống AI với tiếng Việt - Nghệ thuật dân gian',
       description: 'Tìm hiểu về ứng dụng AI trong việc phân tích và tái tạo nghệ thuật dân gian Việt Nam qua các thuật toán machine learning hiện đại.',
-      type: 'Miễn phí',
+      type: 'Làm quen công nghệ AI',
       difficulty: 'Cơ bản',
       duration: '45 phút',
       shortCode: 'AI',
