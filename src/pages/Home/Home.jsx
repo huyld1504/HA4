@@ -4,7 +4,7 @@ import './Home.css';
 
 import logoImg from '../../assets/logo.png';
 import bannerImg from '../../assets/banner.png';
-import heroVideo from '../../assets/20251017_1209_video.mp4';
+import heroVideo from '../../assets/hero_video.mp4';
 import nhaThoImg from '../../assets/nhatho.png';
 import baoTangImg from '../../assets/baotang.png';
 import diaDaoImg from '../../assets/diadao.png';
@@ -337,9 +337,14 @@ const Home = () => {
           <p className="subheading" style={{ color: '#ebd390' }}>
             Nối kết quá khứ &amp; tương lai
           </p>
-          <Link className="btn" to="/about" style={{ backgroundColor: '#524602' }}>
-            Giới thiệu
-          </Link>
+          <div className="cta-buttons">
+            <Link className="btn-pill btn-gold" to="/gioithieu">
+              Giới thiệu
+            </Link>
+            <Link className="btn-pill btn-gold" to="/gioithieu#lien-he">
+              Liên hệ hợp tác
+            </Link>
+          </div>
         </div>
       </main>
 

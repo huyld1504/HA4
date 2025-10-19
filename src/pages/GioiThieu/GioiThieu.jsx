@@ -281,7 +281,7 @@ const GioiThieu = () => {
         </section>
 
         {/* Call to Action */}
-        <section className="gioithieu-cta">
+  <section className="gioithieu-cta" id="lien-he">
           <div className="gt-cta-content">
             <h2>Cùng chúng tôi bảo vệ di sản</h2>
             <p>
