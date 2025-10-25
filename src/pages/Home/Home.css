@@ -10,9 +10,11 @@
 
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--bg-dark);
   color: var(--text-light);
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 /* header styles moved to Header.css */
@@ -48,13 +50,20 @@ body {
 }
 
 .content h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  font-size: clamp(2.8rem, 6vw, 4.2rem);
+  margin-bottom: 1.5rem;
+  font-weight: 800;
+  line-height: 1.15;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  letter-spacing: 0.02em;
 }
 
 .subheading {
-  font-size: 1.25rem;
-  margin-bottom: 1.5rem;
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  margin-bottom: 2rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.03em;
 }
 
 /* Old generic button (kept for compatibility but not used in hero) */
@@ -75,19 +84,20 @@ body {
 /* New pill-style gold buttons for hero */
 .cta-buttons {
   display: flex;
-  gap: 14px;
+  gap: 18px;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .btn-pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 22px;
+  padding: 16px 32px;
   border-radius: 999px;
   font-weight: 700;
+  font-size: 1.05rem;
   letter-spacing: 0.02em;
   text-decoration: none;
   transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
@@ -158,11 +168,11 @@ body {
   gap: 10px;
   text-transform: uppercase;
   letter-spacing: 0.35em;
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   font-weight: 800;
   color: #ffe38a;
-  margin-bottom: 22px;
-  padding: 10px 26px;
+  margin-bottom: 24px;
+  padding: 12px 28px;
   background: linear-gradient(180deg, rgba(255, 215, 0, 0.18), rgba(255, 215, 0, 0.08));
   border-radius: 999px;
   border: 1.5px solid rgba(255, 215, 0, 0.45);
@@ -173,10 +183,10 @@ body {
 }
 
 .services-title {
-  font-size: clamp(2.4rem, 5.4vw, 3.8rem);
+  font-size: clamp(2.6rem, 5.4vw, 4rem);
   font-weight: 900;
   letter-spacing: 0.01em;
-  margin: 0 0 26px;
+  margin: 0 0 28px;
   line-height: 1.15;
   background: linear-gradient(180deg, #ffe38a 0%, #ffc860 60%, #ffb347 100%);
   -webkit-background-clip: text;
@@ -189,11 +199,11 @@ body {
 
 .services-subtitle {
   display: inline-block;
-  font-size: clamp(1rem, 2vw, 1.1rem);
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
   line-height: 1.85;
   color: rgba(255, 243, 216, 0.95);
   margin: 0 auto;
-  padding: 14px 22px;
+  padding: 16px 26px;
   border-radius: 16px;
   background: linear-gradient(
       180deg,
@@ -322,18 +332,19 @@ body {
 }
 
 .service-title {
-  font-size: clamp(1.6rem, 3vw, 2rem);
+  font-size: clamp(1.75rem, 3vw, 2.2rem);
   font-weight: 700;
   color: #ffe38a;
   margin: 0;
   letter-spacing: 0.03em;
-  min-height: 2.5rem;
+  min-height: 2.8rem;
   display: flex;
   align-items: center;
+  line-height: 1.3;
 }
 
 .service-description {
-  font-size: 1rem;
+  font-size: 1.05rem;
   line-height: 1.75;
   color: rgba(255, 241, 199, 0.85);
   margin: 0;
@@ -357,8 +368,8 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 0.95rem;
-  line-height: 1.4;
+  font-size: 1rem;
+  line-height: 1.5;
   color: rgba(255, 241, 199, 0.92);
   padding-left: 2px;
 }
@@ -366,10 +377,10 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   flex-shrink: 0;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: #16a34a; /* green check color */
   background: rgba(34,197,94,0.12);
@@ -392,11 +403,11 @@ body {
   justify-content: center;
   gap: 10px;
   margin-top: auto;
-  padding: 14px 28px;
+  padding: 16px 30px;
   background: linear-gradient(135deg, #ffd86d, #ffb347);
   color: #201307;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   border-radius: 50px;
   text-decoration: none;
   border: none;
@@ -471,17 +482,17 @@ body {
 
 @media (max-width: 540px) {
   .services-tag {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     padding: 8px 18px;
   }
 
   .services-title {
-    font-size: clamp(1.8rem, 5vw, 2.2rem);
-    margin-bottom: 16px;
+    font-size: clamp(2rem, 5vw, 2.4rem);
+    margin-bottom: 18px;
   }
 
   .services-subtitle {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 
   .service-card {
@@ -495,16 +506,17 @@ body {
   }
 
   .service-title {
-    font-size: clamp(1.4rem, 4vw, 1.7rem);
+    font-size: clamp(1.5rem, 4vw, 1.8rem);
   }
 
   .service-description {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 
   .service-btn {
     width: 100%;
-    padding: 12px 24px;
+    padding: 14px 24px;
+    font-size: 1rem;
   }
 }
 
@@ -545,19 +557,22 @@ body {
 .featured-eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.35em;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 600;
   color: rgba(255, 236, 179, 0.8);
 }
 
 .featured-title {
-  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-size: clamp(2.6rem, 5vw, 4rem);
   letter-spacing: 0.12em;
   margin: 0;
+  font-weight: 900;
   text-transform: uppercase;
+  line-height: 1.2;
 }
 
 .featured-summary {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   line-height: 1.8;
   color: rgba(255, 241, 199, 0.98);
 }
@@ -677,7 +692,7 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: rgba(255, 241, 199, 0.7);
 }
 
@@ -685,6 +700,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.25em;
   font-weight: 600;
+  font-size: 0.95rem;
 }
 
 .hero-progress {
@@ -692,18 +708,21 @@ body {
   gap: 4px;
   align-items: center;
   font-variant-numeric: tabular-nums;
+  font-size: 0.95rem;
 }
 
 .hero-title {
   margin: 0;
-  font-size: clamp(1.9rem, 4vw, 2.4rem);
+  font-size: clamp(2rem, 4vw, 2.6rem);
   letter-spacing: 0.08em;
   color: #ffe38a;
+  font-weight: 800;
+  line-height: 1.25;
 }
 
 .hero-description {
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   line-height: 1.85;
   color: rgba(255, 241, 199, 0.85);
 }
@@ -724,9 +743,10 @@ body {
   background: transparent;
   color: rgba(255, 241, 199, 0.85);
   border: 1px solid rgba(255, 215, 0, 0.35);
-  padding: 10px 18px;
+  padding: 12px 20px;
   border-radius: 999px;
   font-weight: 600;
+  font-size: 1rem;
   letter-spacing: 0.05em;
   cursor: pointer;
   transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
@@ -743,9 +763,10 @@ body {
   background: linear-gradient(140deg, #ffd86d, #ffb347);
   color: #201307;
   border: none;
-  padding: 12px 20px;
+  padding: 14px 24px;
   border-radius: 999px;
   font-weight: 700;
+  font-size: 1.05rem;
   cursor: pointer;
   box-shadow: 0 12px 24px rgba(255, 179, 71, 0.22);
   transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
@@ -832,22 +853,25 @@ body {
 }
 
 .thumb-index {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   letter-spacing: 0.25em;
   color: rgba(255, 236, 179, 0.6);
   text-transform: uppercase;
+  font-weight: 600;
 }
 
 .thumb-content h4 {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   color: #ffe38a;
   letter-spacing: 0.08em;
+  font-weight: 700;
+  line-height: 1.3;
 }
 
 .thumb-content p {
   margin: 0;
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   line-height: 1.6;
   color: rgba(255, 241, 199, 0.7);
 }
@@ -996,28 +1020,28 @@ body {
   display: inline-block;
   text-transform: uppercase;
   letter-spacing: 0.35em;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-weight: 700;
   color: rgba(255, 215, 0, 0.85);
-  margin-bottom: 16px;
-  padding: 8px 20px;
+  margin-bottom: 18px;
+  padding: 10px 22px;
   background: rgba(255, 215, 0, 0.1);
   border-radius: 20px;
   border: 1px solid rgba(255, 215, 0, 0.3);
 }
 
 .section-title {
-  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-size: clamp(2.4rem, 5vw, 3.5rem);
   font-weight: 800;
   color: #ffe38a;
   letter-spacing: 0.02em;
-  margin: 0 0 20px;
-  line-height: 1.2;
+  margin: 0 0 22px;
+  line-height: 1.25;
   text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .section-subtitle {
-  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
   line-height: 1.8;
   color: rgba(255, 241, 199, 0.85);
   margin: 0;
@@ -1103,22 +1127,22 @@ body {
 
 .highlight-number {
   flex-shrink: 0;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #ffd86d, #ffb347);
   color: #201307;
   font-weight: 800;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(255, 179, 71, 0.3);
 }
 
 .highlight-card p {
   margin: 0;
-  font-size: 1rem;
+  font-size: 1.05rem;
   line-height: 1.7;
   color: rgba(255, 241, 199, 0.88);
   flex: 1;
@@ -1131,10 +1155,10 @@ body {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  padding: 16px 32px;
+  padding: 18px 36px;
   border-radius: 50px;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.1rem;
   letter-spacing: 0.04em;
   text-decoration: none;
   border: none;
@@ -1212,10 +1236,11 @@ body {
 }
 
 .form-title {
-  margin: 0 0 24px;
-  font-size: 1.5rem;
+  margin: 0 0 26px;
+  font-size: 1.65rem;
   color: #ffe38a;
   font-weight: 700;
+  line-height: 1.3;
 }
 
 .collab-form.enhanced {
@@ -1233,17 +1258,18 @@ body {
 .collab-form input[type='email'] {
   flex: 1 1 260px;
   min-width: 0;
-  padding: 16px 20px;
+  padding: 18px 22px;
   border-radius: 50px;
   border: 2px solid rgba(255, 215, 0, 0.3);
   background: rgba(12, 7, 4, 0.7);
   color: #fff1c7;
-  font-size: 1rem;
+  font-size: 1.05rem;
   transition: all 0.3s ease;
 }
 
 .collab-form input[type='email']::placeholder {
   color: rgba(255, 241, 199, 0.5);
+  font-size: 1rem;
 }
 
 .collab-form input[type='email']:focus {
@@ -1347,12 +1373,12 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 18px;
+  padding: 12px 20px;
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 215, 0, 0.3);
   border-radius: 20px;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: #ffe38a;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
@@ -1443,17 +1469,17 @@ body {
   }
 
   .section-tag {
-    font-size: 0.7rem;
-    padding: 6px 16px;
+    font-size: 0.75rem;
+    padding: 8px 18px;
   }
 
   .section-title {
-    font-size: clamp(1.6rem, 5vw, 2rem);
-    margin-bottom: 16px;
+    font-size: clamp(1.8rem, 5vw, 2.2rem);
+    margin-bottom: 18px;
   }
 
   .section-subtitle {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 
   .collab-text-block {
@@ -1466,6 +1492,10 @@ body {
     gap: 12px;
   }
 
+  .highlight-card p {
+    font-size: 1rem;
+  }
+
   .collab-form-row {
     flex-direction: column;
     gap: 10px;
@@ -1473,12 +1503,15 @@ body {
 
   .collab-form input[type='email'] {
     flex: 1 1 100%;
-    padding: 14px 18px;
+    padding: 16px 20px;
+    font-size: 1rem;
   }
 
   .btn-collab {
     width: 100%;
     justify-content: center;
+    padding: 16px 28px;
+    font-size: 1rem;
   }
 
   .media-overlay {
@@ -1487,11 +1520,11 @@ body {
   }
 
   .overlay-tag {
-    padding: 8px 14px;
-    font-size: 0.75rem;
+    padding: 10px 16px;
+    font-size: 0.85rem;
   }
 
   .form-title {
-    font-size: 1.3rem;
+    font-size: 1.45rem;
   }
 }
