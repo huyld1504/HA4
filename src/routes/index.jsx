@@ -19,8 +19,22 @@ import {
   VirtualChronicle
 } from '../pages';
 import SurveyPage from '../pages/SurveyPage';
-import TrangChu from '../pages/Home/Home.jsx'
-import GioiThieu from '../pages/GioiThieu/GioiThieu.jsx'
+import TrangChu from '../pages/Home/Home.jsx';
+import GioiThieu from '../pages/GioiThieu/GioiThieu.jsx';
+
+// LMS Components
+import TeacherDashboard from '../pages/LMS/Teacher/TeacherDashboard';
+import AssignmentCreator from '../pages/LMS/Teacher/AssignmentCreator';
+import CourseCreator from '../pages/LMS/Teacher/CourseCreator';
+import CourseDetail from '../pages/LMS/Teacher/CourseDetail';
+import LessonCreator from '../pages/LMS/Teacher/LessonCreator';
+import StudentDashboard from '../pages/LMS/Student/StudentDashboard';
+import StudentAssignmentView from '../pages/LMS/Student/StudentAssignmentViewNew';
+import StudentCourseView from '../pages/LMS/Student/StudentCourseView';
+import StudentLessonView from '../pages/LMS/Student/StudentLessonView';
+import StudentAssignmentDetail from '../pages/LMS/Student/StudentAssignmentDetail';
+import TeacherLessonDetail from '../pages/LMS/Teacher/TeacherLessonDetail';
+import TeacherAssignmentDetail from '../pages/LMS/Teacher/TeacherAssignmentDetail';
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -91,6 +105,56 @@ const router = createBrowserRouter([
           {
             path: 'virtual-chronicle',
             element: <VirtualChronicle />,
+          },
+          // LMS Routes - Teacher
+          {
+            path: 'lms/teacher/dashboard',
+            element: <TeacherDashboard />,
+          },
+          {
+            path: 'lms/teacher/assignments/new',
+            element: <AssignmentCreator />,
+          },
+          {
+            path: 'lms/teacher/courses/new',
+            element: <CourseCreator />,
+          },
+          {
+            path: 'lms/teacher/courses/:courseId',
+            element: <CourseDetail />,
+          },
+          {
+            path: 'lms/teacher/courses/:courseId/lessons/new',
+            element: <LessonCreator />,
+          },
+          {
+            path: 'lms/teacher/courses/:courseId/lessons/:lessonId',
+            element: <TeacherLessonDetail />,
+          },
+          {
+            path: 'lms/teacher/assignments/:assignmentId',
+            element: <TeacherAssignmentDetail />,
+          },
+          // LMS Routes - Student
+          {
+            path: 'lms/student/dashboard',
+            element: <StudentDashboard />,
+          },
+          {
+            path: 'lms/student/assignments/:assignmentId/detail',
+            element: <StudentAssignmentDetail />,
+          },
+          {
+            path: 'lms/student/assignments/:assignmentId',
+            element: <StudentAssignmentView />,
+          },
+          {
+            path: 'lms/student/courses/:courseId',
+            element: <StudentCourseView />,
+          },
+          {
+            path: 'lms/student/courses/:courseId/lessons/:lessonId',
+            element: <StudentLessonView />,
           },
           {
             path: 'survey/:courseId',
