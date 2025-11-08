@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Palette, Paintbrush, BookOpen, Check } from 'lucide-react';
 import './Home.css';
 
 import logoImg from '../../assets/logo.png';
 import bannerImg from '../../assets/banner.png';
-import heroVideo from '../../assets/videoindex.mp4';
+import heroVideo from '../../assets/video/video1.mp4';
 import nhaThoImg from '../../assets/nhatho.png';
 import baoTangImg from '../../assets/baotang.png';
 import diaDaoImg from '../../assets/diadao.png';
@@ -365,7 +366,7 @@ const Home = () => {
           <div className="services-grid">
             <article className="service-card experience-card">
               <div className="service-icon-wrapper">
-                <div className="service-icon">🎨</div>
+                <div className="service-icon"><Palette size={40} /></div>
               </div>
               <div className="service-content">
                 <h3 className="service-title">Trải nghiệm</h3>
@@ -375,15 +376,15 @@ const Home = () => {
                 </p>
                 <ul className="service-features">
                   <li>
-                    <span className="feature-icon">✓</span>
+                    <span className="feature-icon"><Check size={20} /></span>
                     <span>Bộ sưu tập tranh AI chất lượng cao</span>
                   </li>
                   <li>
-                    <span className="feature-icon">✓</span>
+                    <span className="feature-icon"><Check size={20} /></span>
                     <span>Trải nghiệm thực tế ảo tương tác</span>
                   </li>
                   <li>
-                    <span className="feature-icon">✓</span>
+                    <span className="feature-icon"><Check size={20} /></span>
                     <span>Thư viện di tích phong phú</span>
                   </li>
                 </ul>
@@ -396,7 +397,7 @@ const Home = () => {
 
             <article className="service-card create-card">
               <div className="service-icon-wrapper">
-                <div className="service-icon">🖌️</div>
+                <div className="service-icon"><Paintbrush size={40} /></div>
               </div>
               <div className="service-content">
                 <h3 className="service-title">Tạo tranh</h3>
@@ -405,15 +406,15 @@ const Home = () => {
                 </p>
                 <ul className="service-features">
                   <li>
-                    <span className="feature-icon">✓</span>
+                    <span className="feature-icon"><Check size={20} /></span>
                     <span>Công cụ AI tạo tranh mạnh mẽ</span>
                   </li>
                   <li>
-                    <span className="feature-icon">✓</span>
+                    <span className="feature-icon"><Check size={20} /></span>
                     <span>Đa dạng phong cách nghệ thuật</span>
                   </li>
                   <li>
-                    <span className="feature-icon">✓</span>
+                    <span className="feature-icon"><Check size={20} /></span>
                     <span>Lưu trữ & chia sẻ tác phẩm</span>
                   </li>
                 </ul>
@@ -426,7 +427,7 @@ const Home = () => {
 
             <article className="service-card education-card">
               <div className="service-icon-wrapper">
-                <div className="service-icon">📚</div>
+                <div className="service-icon"><BookOpen size={40} /></div>
               </div>
               <div className="service-content">
                 <h3 className="service-title" >Giáo dục <br /> & Cộng đồng</h3>
@@ -436,15 +437,15 @@ const Home = () => {
                 </p>
                 <ul className="service-features">
                   <li>
-                    <span className="feature-icon">✓</span>
+                    <span className="feature-icon"><Check size={20} /></span>
                     <span>Tài liệu giáo dục tương tác</span>
                   </li>
                   <li>
-                    <span className="feature-icon">✓</span>
+                    <span className="feature-icon"><Check size={20} /></span>
                     <span>Cộng đồng sáng tạo sôi động</span>
                   </li>
                   <li>
-                    <span className="feature-icon">✓</span>
+                    <span className="feature-icon"><Check size={20} /></span>
                     <span>Cuộc thi & sự kiện định kỳ</span>
                   </li>
                 </ul>

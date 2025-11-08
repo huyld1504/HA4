@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 /* ===== VARIABLES ===== */
 :root {
   --primary-gold: #d4a574;
@@ -19,7 +20,10 @@
   min-height: 100vh;
   background: #f6eadf;
   color: var(--text-dark);
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  /* Use Poppins as primary font for stronger appearance; fallbacks kept */
+  font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  /* Use a slightly heavier base weight so body text doesn't feel too thin */
+  font-weight: 500;
   line-height: 1.6;
   scroll-behavior: smooth;
   overflow-x: hidden;
@@ -725,7 +729,7 @@
 }
 
 .gioithieu-page .gt-overview-lead {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   color: var(--text-dark);
   margin-bottom: 2.5rem;
   line-height: 2;
@@ -735,7 +739,7 @@
 }
 
 .gioithieu-page .gt-overview-main p {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   color: var(--text-muted);
   margin-bottom: 2rem;
   line-height: 2.1;
@@ -813,7 +817,13 @@
 .gioithieu-page .gt-feature-icon {
   font-size: 4rem;
   margin-bottom: 2rem;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(212, 165, 116, 0.15), rgba(193, 125, 77, 0.1));
+  border-radius: 20px;
   filter: drop-shadow(0 4px 15px rgba(212, 165, 116, 0.3));
   transition: transform 0.4s ease;
   position: relative;
@@ -825,7 +835,7 @@
 }
 
 .gioithieu-page .gt-feature-item h3 {
-  font-size: 1.8rem;
+  font-size: 1.9rem;
   color: var(--text-dark);
   margin-bottom: 1.25rem;
   font-weight: 700;
@@ -836,7 +846,7 @@
 .gioithieu-page .gt-feature-item p {
   color: var(--text-muted);
   line-height: 1.9;
-  font-size: 1.2rem;
+  font-size: 1.35rem;
   position: relative;
   z-index: 1;
 }
@@ -920,6 +930,13 @@
 
 .gioithieu-page .gt-mission-icon {
   font-size: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(212, 165, 116, 0.15), rgba(193, 125, 77, 0.1));
+  border-radius: 20px;
   filter: drop-shadow(0 4px 15px rgba(212, 165, 116, 0.3));
   transition: transform 0.3s ease;
 }
@@ -938,7 +955,7 @@
 }
 
 .gioithieu-page .gt-mission-title {
-  font-size: 1.65rem;
+  font-size: 1.75rem;
   color: var(--text-dark);
   margin-bottom: 1.5rem;
   font-weight: 700;
@@ -950,7 +967,7 @@
 .gioithieu-page .gt-mission-description {
   color: var(--text-muted);
   line-height: 1.9;
-  font-size: 1.15rem;
+  font-size: 1.3rem;
   position: relative;
   z-index: 1;
 }
@@ -1124,17 +1141,23 @@
 }
 
 .gioithieu-page .gt-vision-icon {
-  font-size: 4.5rem;
-  display: block;
+  font-size: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(212, 165, 116, 0.15), rgba(193, 125, 77, 0.1));
+  border-radius: 20px;
   margin-bottom: 2rem;
-  filter: drop-shadow(0 4px 20px rgba(212, 165, 116, 0.4));
+  filter: drop-shadow(0 4px 15px rgba(212, 165, 116, 0.3));
   transition: transform 0.3s ease;
   position: relative;
   z-index: 1;
 }
 
 .gioithieu-page .gt-vision-card:hover .gt-vision-icon {
-  transform: scale(1.15) rotate(-5deg);
+  transform: scale(1.1) rotate(5deg);
 }
 
 .gioithieu-page .gt-vision-card h3 {
@@ -1148,8 +1171,8 @@
 
 .gioithieu-page .gt-vision-card p {
   color: var(--text-muted);
-  line-height: 1.9;
-  font-size: 1.15rem;
+  line-height: 1.95;
+  font-size: 1.35rem;
   position: relative;
   z-index: 1;
 }
@@ -1216,7 +1239,7 @@
 
 .gioithieu-page .gt-impact-item strong {
   display: block;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   color: var(--accent-brown);
   margin-bottom: 1rem;
   font-weight: 800;
@@ -1224,8 +1247,8 @@
 
 .gioithieu-page .gt-impact-item p {
   color: var(--text-muted);
-  line-height: 1.8;
-  font-size: 1.1rem;
+  line-height: 1.95;
+  font-size: 1.25rem;
 }
 
 /* ===== CTA SECTION ===== */
