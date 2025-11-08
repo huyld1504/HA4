@@ -5,7 +5,7 @@ import './Home.css';
 
 import logoImg from '../../assets/logo.png';
 import bannerImg from '../../assets/banner.png';
-import heroVideo from '../../assets/hero-video.mp4';
+import heroVideo from '../../assets/20251017_1209_video.mp4';
 import nhaThoImg from '../../assets/nhatho.png';
 import baoTangImg from '../../assets/baotang.png';
 import diaDaoImg from '../../assets/diadao.png';
