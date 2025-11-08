@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { getEventById } from '../data/mockData'
+import { getEventById } from '../../data/mockData'
 
 const EventRegistration = () => {
 const { eventId } = useParams()

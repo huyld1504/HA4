@@ -1,132 +1,145 @@
-export default function PostCard({ post, onLike, onDislike, onEdit, onDelete, onViewProfile, onViewDetail }) {
+export default function PostCard({ post, onEdit, onDelete, onViewProfile, onViewDetail }) {
+  // Dynamic category badge colors
+  const getCategoryStyle = (category) => {
+    const styles = {
+      'Công nghệ': 'bg-blue-600 text-white',
+      'Du lịch': 'bg-green-600 text-white',
+      'Thảo luận': 'bg-purple-600 text-white',
+      'Giáo dục': 'bg-indigo-600 text-white',
+      'Di sản': 'bg-amber-600 text-white',
+      'default': 'bg-red-600 text-white'
+    }
+    return styles[category] || styles.default
+  }
+
   return (
-    <article className="bg-white rounded-2xl shadow-lg border border-amber-200 overflow-hidden hover:shadow-xl transition-all duration-300 group">
-      {/* Header */}
-      <div className="p-6 border-b border-amber-100">
-        <div className="flex items-start justify-between gap-4">
-          {/* Author Info */}
-          <div 
-            className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity"
-            onClick={() => onViewProfile(post.author)}
-          >
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-white font-bold text-lg shadow-lg">
-              {post.author.avatar}
+    <article 
+      className="bg-white rounded-lg shadow-sm border border-gray-200 hover:border-amber-300 hover:shadow-md transition-all duration-300 cursor-pointer group"
+      onClick={() => onViewDetail(post)}
+    >
+      <div className="flex items-start gap-4 p-4">
+        {/* Left: Avatar */}
+        <div 
+          className="flex-shrink-0 cursor-pointer"
+          onClick={(e) => {
+            e.stopPropagation()
+            onViewProfile(post.author)
+          }}
+        >
+          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gray-600 to-gray-800 flex items-center justify-center text-white font-bold text-sm shadow-md hover:scale-110 transition-transform">
+            {post.author.avatar}
+          </div>
+        </div>
+
+        {/* Middle: Content */}
+        <div className="flex-1 min-w-0">
+          {/* Category Badge - Dynamic */}
+          <div className="mb-2">
+            <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase ${getCategoryStyle(post.category)}`}>
+              {post.category}
+            </span>
+          </div>
+
+          {/* Title */}
+          <h2 className="text-base font-semibold text-gray-900 mb-1 group-hover:text-amber-600 transition-colors line-clamp-1">
+            {post.title}
+          </h2>
+
+          {/* Meta Info */}
+          <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
+            <span 
+              className="font-medium hover:text-amber-600 transition-colors cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation()
+                onViewProfile(post.author)
+              }}
+            >
+              {post.author.name}
+            </span>
+            <span>•</span>
+            <span>{post.timestamp}</span>
+          </div>
+
+          {/* Tags */}
+          {post.tags && post.tags.length > 0 && (
+            <div className="flex items-center gap-2 text-xs">
+              <span className="text-gray-400">Tags:</span>
+              <div className="flex flex-wrap gap-1">
+                {post.tags.slice(0, 3).map((tag, index) => (
+                  <span
+                    key={index}
+                    className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded hover:bg-amber-100 hover:text-amber-700 transition-colors"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
-            <div>
-              <h3 className="font-semibold text-gray-800 hover:text-amber-600 transition-colors">
-                {post.author.name}
-              </h3>
-              <p className="text-sm text-gray-500 flex items-center gap-2">
-                <span>{post.author.role}</span>
-                <span>•</span>
-                <span>{post.timestamp}</span>
-              </p>
+          )}
+
+          {/* Images Preview - Show first 2 images */}
+          {post.images && post.images.length > 0 && (
+            <div className="mt-3 flex gap-2">
+              {post.images.slice(0, 2).map((image, index) => (
+                <div key={index} className="relative group">
+                  <img
+                    src={image}
+                    alt={`Post image ${index + 1}`}
+                    className="w-20 h-20 object-cover rounded-lg border border-gray-200 group-hover:border-amber-400 transition-all"
+                  />
+                  {index === 1 && post.images.length > 2 && (
+                    <div className="absolute inset-0 bg-black/60 rounded-lg flex items-center justify-center">
+                      <span className="text-white font-bold text-sm">+{post.images.length - 2}</span>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Right: Stats & Actions */}
+        <div className="flex items-center gap-4 flex-shrink-0">
+          {/* Replies & Views Stats */}
+          <div className="text-center min-w-[80px]">
+            <div className="text-xs text-gray-500 mb-1">
+              Replies:
+            </div>
+            <div className="text-2xl font-bold text-gray-900 mb-2">
+              {post.comments?.length || 0}
+            </div>
+            <div className="text-xs text-gray-500 mb-1">
+              Likes:
+            </div>
+            <div className="text-base font-semibold text-gray-600">
+              {post.likes + post.dislikes || 0}
             </div>
           </div>
 
-          {/* Actions Menu */}
-          <div className="flex gap-2">
+          {/* Action Menu (Hidden, show on hover) */}
+          <div className="opacity-0 group-hover:opacity-100 transition-opacity flex flex-col gap-1 ml-2">
             <button
-              onClick={() => onEdit(post)}
-              className="p-2 text-gray-400 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-all duration-300"
+              onClick={(e) => {
+                e.stopPropagation()
+                onEdit(post)
+              }}
+              className="p-1.5 text-gray-400 hover:text-amber-600 hover:bg-amber-50 rounded transition-all"
               title="Chỉnh sửa"
             >
-              <i className="fa-solid fa-edit" />
+              <i className="fa-solid fa-edit text-xs" />
             </button>
             <button
-              onClick={() => onDelete(post.id)}
-              className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-300"
+              onClick={(e) => {
+                e.stopPropagation()
+                onDelete(post.id)
+              }}
+              className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-all"
               title="Xóa"
             >
-              <i className="fa-solid fa-trash" />
+              <i className="fa-solid fa-trash text-xs" />
             </button>
           </div>
         </div>
-
-        {/* Category Badge */}
-        <div className="mt-3">
-          <span className="inline-flex items-center gap-1 px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-xs font-semibold">
-            <i className="fa-solid fa-tag" />
-            {post.category}
-          </span>
-        </div>
-      </div>
-
-      {/* Content - Clickable to view detail */}
-      <div 
-        className="p-6 cursor-pointer hover:bg-amber-50/30 transition-colors duration-300"
-        onClick={() => onViewDetail(post)}
-      >
-        <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-3 group-hover:text-amber-600 transition-colors">
-          {post.title}
-        </h2>
-        <p className="text-gray-600 leading-relaxed mb-4 line-clamp-3">
-          {post.content}
-        </p>
-
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-2">
-          {post.tags.map((tag, index) => (
-            <span
-              key={index}
-              className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs hover:bg-amber-100 hover:text-amber-700 transition-colors"
-            >
-              #{tag}
-            </span>
-          ))}
-        </div>
-
-        {/* Read more indicator */}
-        <div className="flex items-center gap-2 text-amber-600 font-semibold text-sm mt-3">
-          <span>Xem chi tiết</span>
-          <i className="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform" />
-        </div>
-      </div>
-
-      {/* Footer - Interactions */}
-      <div className="px-6 py-4 bg-gray-50 border-t border-amber-100 flex items-center justify-between gap-4 flex-wrap">
-        {/* Like/Dislike */}
-        <div className="flex items-center gap-4">
-          <button
-            onClick={(e) => {
-              e.stopPropagation()
-              onLike(post.id)
-            }}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border-2 border-gray-200 hover:border-green-500 hover:bg-green-50 text-gray-600 hover:text-green-600 transition-all duration-300 hover:scale-105 group/like"
-          >
-            <i className="fa-solid fa-thumbs-up group-hover/like:animate-bounce" />
-            <span className="font-semibold">{post.likes}</span>
-          </button>
-
-          <button
-            onClick={(e) => {
-              e.stopPropagation()
-              onDislike(post.id)
-            }}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border-2 border-gray-200 hover:border-red-500 hover:bg-red-50 text-gray-600 hover:text-red-600 transition-all duration-300 hover:scale-105 group/dislike"
-          >
-            <i className="fa-solid fa-thumbs-down group-hover/dislike:animate-bounce" />
-            <span className="font-semibold">{post.dislikes}</span>
-          </button>
-        </div>
-
-        {/* Comment Count - Click to view detail */}
-        <button
-          onClick={() => onViewDetail(post)}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border-2 border-gray-200 hover:border-indigo-500 hover:bg-indigo-50 text-gray-600 hover:text-indigo-600 transition-all duration-300 hover:scale-105 group/comment"
-        >
-          <i className="fa-solid fa-comment group-hover/comment:animate-bounce" />
-          <span className="font-semibold">{post.comments.length} Bình luận</span>
-        </button>
-
-        {/* Share */}
-        <button 
-          onClick={(e) => e.stopPropagation()}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border-2 border-gray-200 hover:border-blue-500 hover:bg-blue-50 text-gray-600 hover:text-blue-600 transition-all duration-300 hover:scale-105 group/share"
-        >
-          <i className="fa-solid fa-share group-hover/share:animate-bounce" />
-          <span className="font-semibold">Chia sẻ</span>
-        </button>
       </div>
     </article>
   )
