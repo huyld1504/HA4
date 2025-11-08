@@ -1,12 +1,19 @@
-export { default as Home } from './Home'
-export { default as Events } from './Events'
-export { default as News } from './News'
-export { default as EventDetail } from './EventDetail'
-export { default as NewsDetail } from './NewsDetail'
-export { default as EventRegistration } from './EventRegistration'
-export { default as VanHoaLichSu } from './VanHoaLichSu'
-export { default as PhanTichGocNhin } from './PhanTichGocNhin'
-export { default as Forum } from './Forum'
-export { default as CongNghe } from './CongNghe'
-export { default as TaoTranh } from './TaoTranh'
-export { default as TraiNghiem } from './TraiNghiem'
+export { default as Home } from './Home';
+export { default as Events } from './Events';
+export { default as News } from './News';
+export { default as EventDetail } from './EventDetail';
+export { default as NewsDetail } from './NewsDetail';
+export { default as EventRegistration } from './EventRegistration';
+export { default as VanHoaLichSu } from './VanHoaLichSu';
+export { default as PhanTichGocNhin } from './PhanTichGocNhin';
+export { default as Forum } from './Forum';
+export { default as GiaoDuc } from './GiaoDuc';
+export { default as BaiGiangMinhHoa } from './BaiGiangMinhHoa';
+export { default as TaiLieuBaiGiang } from './TaiLieuBaiGiang';
+export { default as BaiGiangDetail } from './BaiGiangDetail';
+export { default as TaiLieuDetail } from './TaiLieuDetail';
+export { default as BaiHocMinhHoaDetail } from './BaiHocMinhHoaDetail';
+export { default as VirtualChronicle } from './VirtualChronicle';
+export {default as CongNghe} from './CongNghe';
+export {default as TaoTranh} from './TaoTranh';
+export {default as TraiNghiem} from './TraiNghiem';
