@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import PostCard from '../components/forum/PostCard'
-import CreatePostModal from '../components/forum/CreatePostModal'
-import EditPostModal from '../components/forum/EditPostModal'
-import UserProfileModal from '../components/forum/UserProfileModal'
-import PostDetailModal from '../components/forum/PostDetailModal'
+import PostCard from '../../components/forum/PostCard'
+import CreatePostModal from '../../components/forum/CreatePostModal'
+import EditPostModal from '../../components/forum/EditPostModal'
+import UserProfileModal from '../../components/forum/UserProfileModal'
+import PostDetailModal from '../../components/forum/PostDetailModal'
 
 // Mock data
 const initialPosts = [
@@ -24,7 +24,8 @@ const initialPosts = [
     dislikes: 2,
     comments: [],
     timestamp: '2 giờ trước',
-    tags: ['Công nghệ', 'Di sản', 'VR/AR']
+    tags: ['Công nghệ', 'Di sản', 'VR/AR'],
+    images: [] // Thêm field images
   },
   {
     id: 2,
@@ -43,7 +44,8 @@ const initialPosts = [
     dislikes: 0,
     comments: [],
     timestamp: '5 giờ trước',
-    tags: ['Du lịch', 'Huế', 'Di sản']
+    tags: ['Du lịch', 'Huế', 'Di sản'],
+    images: [] // Thêm field images
   },
   {
     id: 3,
@@ -62,7 +64,8 @@ const initialPosts = [
     dislikes: 3,
     comments: [],
     timestamp: '1 ngày trước',
-    tags: ['Giáo dục', 'Lịch sử', 'Gen Z']
+    tags: ['Giáo dục', 'Lịch sử', 'Gen Z'],
+    images: [] // Thêm field images
   }
 ]
 
@@ -93,7 +96,8 @@ export default function Forum() {
       likes: 0,
       dislikes: 0,
       comments: [],
-      timestamp: 'Vừa xong'
+      timestamp: 'Vừa xong',
+      images: newPost.images || [] // Đảm bảo có field images
     }
     setPosts([post, ...posts])
     setShowCreateModal(false)
