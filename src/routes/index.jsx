@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 
 import AppLayout from '../components/layouts/AppLayout'
 import MainLayout from '../components/layouts/MainLayout'
-import { Home, Events, News, EventDetail, NewsDetail, EventRegistration, VanHoaLichSu, PhanTichGocNhin, Forum } from '../pages'
+import { Home, Events, News, EventDetail, NewsDetail, EventRegistration, VanHoaLichSu, PhanTichGocNhin, Forum, TraiNghiem, TaoTranh, CongNghe } from '../pages'
 
 const router = createBrowserRouter([
   {
@@ -46,6 +46,18 @@ const router = createBrowserRouter([
           {
             path: 'news/:newsId',
             element: <NewsDetail />,
+          },
+          {
+            path: 'trainghiem',
+            element: <TraiNghiem />,
+          },
+          {
+            path: 'taotranh',
+            element: <TaoTranh />,
+          },
+          {
+            path: 'congngheai',
+            element: <CongNghe />,
           },
         ],
       },
