@@ -16,16 +16,15 @@ function BaiGiangMinhHoa() {
 
   const sidebarItems = [
     { id: 'all', label: 'Tất cả nội dung', count: '245', filter: 'all' },
-    { id: 'free', label: 'Miễn phí', count: '45', filter: 'Miễn phí' },
     { id: 'ai', label: 'AI cơ bản', count: '67', filter: 'AI' },
-    { id: 'vr', label: 'VR Tours', count: '23', filter: 'VR' },
+    { id: 'history', label: 'Lịch sử Việt Nam', count: '89', filter: 'Lịch sử' },
     { id: 'culture', label: 'Văn hóa số', count: '89', filter: 'Chuyên đề' },
     { id: 'research', label: 'Nghiên cứu', count: '34', filter: 'Nghiên cứu' }
   ];
 
   const progressData = [
     { label: 'AI Cơ bản', progress: 75 },
-    { label: 'Di sản VR', progress: 45 },
+    { label: 'Lịch sử Việt Nam', progress: 45 },
     { label: 'Văn hóa Số', progress: 90 }
   ];
 
@@ -34,7 +33,7 @@ function BaiGiangMinhHoa() {
       id: 1,
       title: 'Hệ thống AI với tiếng Việt - Nghệ thuật dân gian',
       description: 'Tìm hiểu về ứng dụng AI trong việc phân tích và tái tạo nghệ thuật dân gian Việt Nam qua các thuật toán machine learning hiện đại.',
-      type: 'Miễn phí',
+      type: 'AI',
       difficulty: 'Cơ bản',
       duration: '45 phút',
       shortCode: 'AI',
@@ -62,16 +61,16 @@ function BaiGiangMinhHoa() {
     },
     {
       id: 3,
-      title: 'Nghiên cứu - VR Tours: Trải nghiệm di sản',
-      description: 'Nghiên cứu sâu về công nghệ VR trong việc tái tạo và bảo tồn di sản văn hóa, từ lý thuyết đến thực hành.',
+      title: 'Nghiên cứu - Lịch sử Việt Nam thời kỳ phong kiến',
+      description: 'Nghiên cứu sâu về thời kỳ phong kiến Việt Nam từ thế kỷ X đến thế kỷ XIX, phân tích các triều đại, chính sách cai trị và ảnh hưởng văn hóa.',
       type: 'Nghiên cứu',
       difficulty: 'Nâng cao',
       duration: '90 phút',
-      shortCode: 'VR',
-      bgColor: 'from-green-500 to-emerald-600',
+      shortCode: 'HS',
+      bgColor: 'from-amber-500 to-orange-600',
       students: 543,
       rating: 4.9,
-      category: 'VR',
+      category: 'Lịch sử',
       isCompleted: true,
       progress: 100
     },
@@ -107,16 +106,16 @@ function BaiGiangMinhHoa() {
     },
     {
       id: 6,
-      title: 'Workshop - Xây dựng museum ảo',
-      description: 'Workshop thực hành xây dựng bảo tàng ảo tương tác, kết hợp AI và VR để tạo trải nghiệm văn hóa immersive.',
+      title: 'Workshop - Nghiên cứu lịch sử địa phương',
+      description: 'Workshop thực hành thu thập và phân tích tài liệu lịch sử địa phương, học cách bảo tồn và phát huy giá trị di sản văn hóa cộng đồng.',
       type: 'Workshop',
       difficulty: 'Nâng cao',
       duration: '180 phút',
-      shortCode: 'WS',
-      bgColor: 'from-teal-500 to-cyan-600',
+      shortCode: 'LH',
+      bgColor: 'from-blue-500 to-indigo-600',
       students: 156,
       rating: 4.8,
-      category: 'Workshop',
+      category: 'Lịch sử',
       isCompleted: false,
       progress: 15
     },
@@ -124,7 +123,7 @@ function BaiGiangMinhHoa() {
       id: 7,
       title: 'AI Painting - Tái tạo tranh cổ Huế',
       description: 'Sử dụng AI để phân tích và tái tạo các tác phẩm hội họa cổ Huế, học cách ứng dụng GAN và style transfer.',
-      type: 'Miễn phí',
+      type: 'AI',
       difficulty: 'Cơ bản',
       duration: '50 phút',
       shortCode: 'AP',
@@ -137,16 +136,16 @@ function BaiGiangMinhHoa() {
     },
     {
       id: 8,
-      title: 'VR Tour - Chùa Thiên Mụ 360°',
-      description: 'Trải nghiệm thực tế ảo tại chùa Thiên Mụ với công nghệ VR 360°, tìm hiểu lịch sử và kiến trúc độc đáo.',
-      type: 'VR Experience',
+      title: 'Khám phá - Các di tích lịch sử Việt Nam',
+      description: 'Khám phá các di tích lịch sử quan trọng của Việt Nam từ Kinh đô Huế, Hoàng thành Thăng Long đến các đền đài lịch sử, hiểu giá trị văn hóa và ý nghĩa lịch sử.',
+      type: 'Khám phá',
       difficulty: 'Cơ bản',
       duration: '40 phút',
-      shortCode: 'VT',
+      shortCode: 'DT',
       bgColor: 'from-emerald-500 to-teal-500',
       students: 987,
       rating: 4.7,
-      category: 'VR',
+      category: 'Lịch sử',
       isCompleted: false,
       progress: 80
     }
@@ -348,9 +347,9 @@ function BaiGiangMinhHoa() {
 
         // AI Personalization Results from Surveys
         personalizedMethod: {
-          current: "Visual + Interactive + Structured Path",
+          current: "Visual + Interactive + Historical Analysis",
           effectiveness: 92, // Hiệu quả 92%
-          adaptations: ["More diagrams", "Step-by-step guides", "Progress checkpoints"]
+          adaptations: ["More historical maps", "Timeline visualizations", "Primary source analysis"]
         },
 
         aiStatus: "Ready for Final Assessment",
@@ -392,9 +391,9 @@ function BaiGiangMinhHoa() {
         },
 
         personalizedMethod: {
-          current: "Hands-on + Fast-paced + Interactive",
+          current: "Hands-on + Fast-paced + Historical Research",
           effectiveness: 78, // Đang điều chỉnh
-          adaptations: ["More practical exercises", "Gamification", "Quick feedback loops"]
+          adaptations: ["More historical field work", "Archival research", "Oral history interviews"]
         },
 
         aiStatus: "Mid-Progress Assessment Due",
@@ -444,9 +443,9 @@ function BaiGiangMinhHoa() {
         },
 
         personalizedMethod: {
-          current: "Deep Reading + Audio Lectures + Detailed Analysis",
+          current: "Deep Reading + Audio Lectures + Historical Analysis",
           effectiveness: 98, // Hoàn hảo
-          adaptations: ["Advanced materials", "Peer teaching opportunities", "Research projects"]
+          adaptations: ["Advanced historical texts", "Primary source documents", "Historical research projects"]
         },
 
         aiStatus: "Mastered - Exceptional Results",
@@ -482,9 +481,9 @@ function BaiGiangMinhHoa() {
         },
 
         personalizedMethod: {
-          current: "Visual Diagrams + Interactive Demos + Creative Projects",
+          current: "Visual Diagrams + Interactive Demos + Historical Projects",
           effectiveness: 72, // Đang tối ưu hóa
-          adaptations: ["More creative assignments", "Visual storytelling", "Interactive simulations"]
+          adaptations: ["More historical timelines", "Interactive maps", "Historical reenactment activities"]
         },
 
         aiStatus: "Learning - Method Optimizing",
@@ -772,7 +771,7 @@ function BaiGiangMinhHoa() {
   return (
     <div className="min-h-screen flex" style={{ backgroundColor: '#2a1810' }}>
       {/* Sidebar */}
-      <div className="w-64 bg-gray-900 p-6 text-white">
+      <div className="w-64 bg-gray-900 p-6 text-white sticky top-0 h-screen overflow-y-auto">
         <div className="mb-8">
           <h2 className="text-xl font-bold text-yellow-400">Giáo dục & Cộng đồng</h2>
           <p className="text-sm text-gray-400 mt-2">

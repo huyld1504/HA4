@@ -39,10 +39,13 @@ const NavBar = () => {
     {
       label: 'Giáo dục',
       submenu: [
-        // { label: 'Khám phá AI & Di sản', link: '/giaoduc' },
+        { label: 'Trang chủ Giáo dục', link: '/giaoduc' },
         { label: 'Tài liệu & Bài giảng', link: '/tai-lieu-bai-giang' },
         // { label: 'Bài học minh họa', link: '/bai-giang-minh-hoa' },
-        // { label: 'Upload Tài liệu', link: '/upload-tai-lieu' }
+        { label: 'Trò chơi tương tác', link: '/virtual-chronicle' },
+        { label: '---', separator: true },
+        { label: '🏫 LMS - Giáo viên', link: '/lms/teacher/dashboard?teacherId=1' },
+        { label: '🎓 LMS - Học sinh', link: '/lms/student/dashboard?studentId=10' }
       ]
     },
     {
@@ -160,36 +163,40 @@ const NavBar = () => {
                           <ul className="py-2">
                             {item.submenu.map((subItem, subIndex) => (
                               <li key={subIndex}>
-                                <Link
-                                  to={subItem.link}
-                                  className="
-                                    group/item flex items-center gap-3 px-4 py-2.5 mx-2 my-0.5
-                                    text-[#e8dcc4] hover:text-[#ffd54f] text-[0.938rem] font-medium
-                                    rounded-lg transition-all duration-200
-                                    hover:bg-[#3a2515] hover:pl-5
-                                    relative overflow-hidden
-                                  "
-                                >
-                                  {/* Left accent bar */}
-                                  <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-0 bg-gradient-to-b from-[#ffd54f] to-[#ffb84d] rounded-r-full transition-all duration-300 group-hover/item:h-[65%]" />
-
-                                  {/* Arrow icon */}
-                                  <svg
-                                    className="w-4 h-4 flex-shrink-0 opacity-0 -translate-x-2 transition-all duration-300 group-hover/item:opacity-70 group-hover/item:translate-x-0"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
+                                {subItem.separator ? (
+                                  <div className="mx-2 my-2 border-t border-[#4a2d18]/50"></div>
+                                ) : (
+                                  <Link
+                                    to={subItem.link}
+                                    className="
+                                      group/item flex items-center gap-3 px-4 py-2.5 mx-2 my-0.5
+                                      text-[#e8dcc4] hover:text-[#ffd54f] text-[0.938rem] font-medium
+                                      rounded-lg transition-all duration-200
+                                      hover:bg-[#3a2515] hover:pl-5
+                                      relative overflow-hidden
+                                    "
                                   >
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                  </svg>
+                                    {/* Left accent bar */}
+                                    <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-0 bg-gradient-to-b from-[#ffd54f] to-[#ffb84d] rounded-r-full transition-all duration-300 group-hover/item:h-[65%]" />
 
-                                  <span className="relative z-10 transition-transform duration-200 group-hover/item:translate-x-0.5">
-                                    {subItem.label}
-                                  </span>
+                                    {/* Arrow icon */}
+                                    <svg
+                                      className="w-4 h-4 flex-shrink-0 opacity-0 -translate-x-2 transition-all duration-300 group-hover/item:opacity-70 group-hover/item:translate-x-0"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
 
-                                  {/* Shine effect */}
-                                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-[#ffd54f]/5 to-transparent translate-x-[-100%] group-hover/item:translate-x-[100%] transition-transform duration-700" />
-                                </Link>
+                                    <span className="relative z-10 transition-transform duration-200 group-hover/item:translate-x-0.5">
+                                      {subItem.label}
+                                    </span>
+
+                                    {/* Shine effect */}
+                                    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-[#ffd54f]/5 to-transparent translate-x-[-100%] group-hover/item:translate-x-[100%] transition-transform duration-700" />
+                                  </Link>
+                                )}
                               </li>
                             ))}
                           </ul>
