@@ -335,9 +335,9 @@ const Home = () => {
         </video>
         <div className="overlay" />
         <div className="content">
-          <h1>Triển lãm AI &amp; Di tích Việt Nam</h1>
+          <h1>Khám phá &amp; Bảo tồn văn hóa Việt bằng công nghệ AI</h1>
           <p className="subheading subheading-blur">
-            Nối kết quá khứ &amp; tương lai
+            Kết nối quá khứ, sáng tạo tương lai
           </p>
           <div className="cta-buttons">
             <Link className="btn-pill btn-gold" to="/gioithieu">
