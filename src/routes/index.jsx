@@ -1,8 +1,27 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter } from 'react-router-dom';
 
-import AppLayout from '../components/layouts/AppLayout'
-import MainLayout from '../components/layouts/MainLayout'
-import { Home, Events, News, EventDetail, NewsDetail, EventRegistration, VanHoaLichSu, PhanTichGocNhin, Forum } from '../pages'
+import { Home, HomeEvent, Events, News, EventDetail, NewsDetail, EventRegistration, VanHoaLichSu, PhanTichGocNhin, Forum, TraiNghiem, TaoTranh, CongNghe, GiaoDuc, BaiGiangMinhHoa, BaiGiangDetail, TaiLieuBaiGiang, TaiLieuDetail, BaiHocMinhHoaDetail, VirtualChronicle } from '../pages'
+import AppLayout from '../components/layouts/AppLayout.jsx';
+import MainLayout from '../components/layouts/MainLayout.jsx';
+
+import SurveyPage from '../pages/SurveyPage';
+import TrangChu from '../pages/Home/Home.jsx';
+import GioiThieu from '../pages/GioiThieu/GioiThieu.jsx';
+
+// LMS Components
+import TeacherDashboard from '../pages/LMS/Teacher/TeacherDashboard';
+import AssignmentCreator from '../pages/LMS/Teacher/AssignmentCreator';
+import CourseCreator from '../pages/LMS/Teacher/CourseCreator';
+import CourseDetail from '../pages/LMS/Teacher/CourseDetail';
+import LessonCreator from '../pages/LMS/Teacher/LessonCreator';
+import StudentDashboard from '../pages/LMS/Student/StudentDashboard';
+import StudentAssignmentView from '../pages/LMS/Student/StudentAssignmentViewNew';
+import StudentCourseView from '../pages/LMS/Student/StudentCourseView';
+import StudentLessonView from '../pages/LMS/Student/StudentLessonView';
+import StudentAssignmentDetail from '../pages/LMS/Student/StudentAssignmentDetail';
+import TeacherLessonDetail from '../pages/LMS/Teacher/TeacherLessonDetail';
+import TeacherAssignmentDetail from '../pages/LMS/Teacher/TeacherAssignmentDetail';
+import UploadTaiLieu from '../pages/UploadTaiLieu';
 
 const router = createBrowserRouter([
   {
@@ -12,16 +31,32 @@ const router = createBrowserRouter([
         element: <MainLayout />,
         children: [
           {
-            path: 'events-news',
-            element: <Home />,
+            index: true,
+            element: <TrangChu />,
           },
           {
-            path: 'events',
-            element: <Events />,
+            path: 'events-news',
+            element: <HomeEvent />,
+          },
+          {
+            path: 'gioithieu',
+            element: <GioiThieu />,
           },
           {
             path: 'events/:eventId',
             element: <EventDetail />,
+          },
+          {
+            path: 'events/:eventId/register',
+            element: <EventRegistration />,
+          },
+          {
+            path: 'news',
+            element: <News />,
+          },
+          {
+            path: 'news/:newsId',
+            element: <NewsDetail />,
           },
           {
             path: 'vanhoalichsu',
@@ -36,16 +71,102 @@ const router = createBrowserRouter([
             element: <Forum />,
           },
           {
-            path: 'register/:eventId',
-            element: <EventRegistration />,
+            path: 'giaoduc',
+            element: <GiaoDuc />,
           },
           {
-            path: 'news',
-            element: <News />,
+            path: 'bai-giang-minh-hoa',
+            element: <BaiGiangMinhHoa />,
           },
           {
-            path: 'news/:newsId',
-            element: <NewsDetail />,
+            path: 'tai-lieu-bai-giang',
+            element: <TaiLieuBaiGiang />,
+          },
+          {
+            path: 'bai-giang/:id',
+            element: <BaiGiangDetail />,
+          },
+          {
+            path: 'tai-lieu/:id',
+            element: <TaiLieuDetail />,
+          },
+          {
+            path: 'bai-hoc-minh-hoa/:id',
+            element: <BaiHocMinhHoaDetail />,
+          },
+          {
+            path: 'virtual-chronicle',
+            element: <VirtualChronicle />,
+          },
+          // LMS Routes - Teacher
+          {
+            path: 'lms/teacher/dashboard',
+            element: <TeacherDashboard />,
+          },
+          {
+            path: 'lms/teacher/assignments/new',
+            element: <AssignmentCreator />,
+          },
+          {
+            path: 'lms/teacher/courses/new',
+            element: <CourseCreator />,
+          },
+          {
+            path: 'lms/teacher/courses/:courseId',
+            element: <CourseDetail />,
+          },
+          {
+            path: 'lms/teacher/courses/:courseId/lessons/new',
+            element: <LessonCreator />,
+          },
+          {
+            path: 'lms/teacher/courses/:courseId/lessons/:lessonId',
+            element: <TeacherLessonDetail />,
+          },
+          {
+            path: 'lms/teacher/assignments/:assignmentId',
+            element: <TeacherAssignmentDetail />,
+          },
+          // LMS Routes - Student
+          {
+            path: 'lms/student/dashboard',
+            element: <StudentDashboard />,
+          },
+          {
+            path: 'lms/student/assignments/:assignmentId/detail',
+            element: <StudentAssignmentDetail />,
+          },
+          {
+            path: 'lms/student/assignments/:assignmentId',
+            element: <StudentAssignmentView />,
+          },
+          {
+            path: 'lms/student/courses/:courseId',
+            element: <StudentCourseView />,
+          },
+          {
+            path: 'lms/student/courses/:courseId/lessons/:lessonId',
+            element: <StudentLessonView />,
+          },
+          {
+            path: 'survey/:courseId',
+            element: <SurveyPage />,
+          },
+          {
+            path: 'upload-tai-lieu',
+            element: <UploadTaiLieu />,
+          },
+          {
+            path: 'trainghiem',
+            element: <TraiNghiem />,
+          },
+          {
+            path: 'taotranh',
+            element: <TaoTranh />,
+          },
+          {
+            path: 'congngheai',
+            element: <CongNghe />,
           },
         ],
       },
@@ -60,6 +181,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-])
+]);
 
-export default router
+export default router;
