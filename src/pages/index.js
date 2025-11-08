@@ -14,3 +14,6 @@ export { default as BaiGiangDetail } from './BaiGiangDetail';
 export { default as TaiLieuDetail } from './TaiLieuDetail';
 export { default as BaiHocMinhHoaDetail } from './BaiHocMinhHoaDetail';
 export { default as VirtualChronicle } from './VirtualChronicle';
+export {default as CongNghe} from './CongNghe';
+export {default as TaoTranh} from './TaoTranh';
+export {default as TraiNghiem} from './TraiNghiem';

@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Palette, Paintbrush, BookOpen, Check } from 'lucide-react';
 import './Home.css';
 
 import logoImg from '../../assets/logo.png';
 import bannerImg from '../../assets/banner.png';
-import heroVideo from '../../assets/20251017_1209_video.mp4';
+import heroVideo from '../../assets/video/video1.mp4';
 import nhaThoImg from '../../assets/nhatho.png';
 import baoTangImg from '../../assets/baotang.png';
 import diaDaoImg from '../../assets/diadao.png';
@@ -12,6 +13,7 @@ import benCangImg from '../../assets/bencang.png';
 import designerImg from '../../assets/Designer.png';
 import ceoImg from '../../assets/ceo.jpg';
 import creativeHubImg from '../../assets/home.png';
+import vanMieuAudio from '../../assets/Audio/vanmieu.mp3';
 
 const FEATURED_ITEMS = [
   {
@@ -21,7 +23,7 @@ const FEATURED_ITEMS = [
       'Nhà thờ Đức Bà Sài Gòn, tên chính thức là Vương cung thánh đường Chính tòa Đức Bà Sài Gòn, là một trong những công trình kiến trúc biểu tượng và lâu đời nhất tại Thành phố Hồ Chí Minh. Nằm ở trung tâm Quận 1, tại số 01 Công xã Paris, công trình này thu hút đông đảo du khách và người dân địa phương bởi vẻ đẹp cổ kính và giá trị lịch sử.',
     image: nhaThoImg,
     alt: 'Nhà thờ Đức Bà Sài Gòn',
-    audioSrc: 'audio/vanmieu.mp3',
+    audioSrc: vanMieuAudio,
   },
   {
     id: 'bao-tang-chien-tranh',
@@ -30,7 +32,7 @@ const FEATURED_ITEMS = [
       'Bảo tàng Chứng tích Chiến tranh là một trong những bảo tàng nổi tiếng và quan trọng nhất tại Thành phố Hồ Chí Minh, tọa lạc tại địa chỉ 28 Võ Văn Tần, Phường Võ Thị Sáu, Quận 3. Bảo tàng chuyên trưng bày những tư liệu, hình ảnh và hiện vật liên quan đến cuộc Chiến tranh Việt Nam và những hậu quả mà nó gây ra.',
     image: baoTangImg,
     alt: 'Bảo tàng Chứng tích Chiến tranh',
-    audioSrc: 'audio/mo-ta-2.mp3',
+    audioSrc: vanMieuAudio,
   },
   {
     id: 'dia-dao-cu-chi',
@@ -39,7 +41,7 @@ const FEATURED_ITEMS = [
       'Địa đạo Củ Chi là một hệ thống đường hầm ngầm khổng lồ nằm ở huyện Củ Chi, cách trung tâm Thành phố Hồ Chí Minh khoảng 70 km về phía Tây Bắc. Đây là một di tích lịch sử quốc gia đặc biệt, đóng vai trò quan trọng trong cuộc kháng chiến chống Mỹ của quân và dân Việt Nam.',
     image: diaDaoImg,
     alt: 'Địa đạo Củ Chi',
-    audioSrc: 'audio/vanmieu.mp3',
+    audioSrc: vanMieuAudio,
   },
   {
     id: 'ben-cang-nha-rong',
@@ -48,7 +50,7 @@ const FEATURED_ITEMS = [
       'Bến cảng Nhà Rồng, hay còn gọi là Bảo tàng Hồ Chí Minh – Chi nhánh Thành phố Hồ Chí Minh, là một di tích lịch sử quan trọng nằm tại số 1 Nguyễn Tất Thành, Phường 12, Quận 4, Thành phố Hồ Chí Minh.',
     image: benCangImg,
     alt: 'Bến cảng Nhà Rồng',
-    audioSrc: 'audio/mo-ta-2.mp3',
+    audioSrc: vanMieuAudio,
   },
 ];
 
@@ -334,12 +336,17 @@ const Home = () => {
         <div className="overlay" />
         <div className="content">
           <h1>Triển lãm AI &amp; Di tích Việt Nam</h1>
-          <p className="subheading" style={{ color: '#ebd390' }}>
+          <p className="subheading subheading-blur">
             Nối kết quá khứ &amp; tương lai
           </p>
-          <Link className="btn" to="/about" style={{ backgroundColor: '#524602' }}>
-            Giới thiệu
-          </Link>
+          <div className="cta-buttons">
+            <Link className="btn-pill btn-gold" to="/gioithieu">
+              Giới thiệu
+            </Link>
+            <Link className="btn-pill btn-gold" to="/gioithieu#lien-he">
+              Liên hệ hợp tác
+            </Link>
+          </div>
         </div>
       </main>
 
@@ -359,7 +366,7 @@ const Home = () => {
           <div className="services-grid">
             <article className="service-card experience-card">
               <div className="service-icon-wrapper">
-                <div className="service-icon">🎨</div>
+                <div className="service-icon"><Palette size={40} /></div>
               </div>
               <div className="service-content">
                 <h3 className="service-title">Trải nghiệm</h3>
@@ -369,15 +376,15 @@ const Home = () => {
                 </p>
                 <ul className="service-features">
                   <li>
-                    <span className="feature-icon">✓</span>
+                    <span className="feature-icon"><Check size={20} /></span>
                     <span>Bộ sưu tập tranh AI chất lượng cao</span>
                   </li>
                   <li>
-                    <span className="feature-icon">✓</span>
+                    <span className="feature-icon"><Check size={20} /></span>
                     <span>Trải nghiệm thực tế ảo tương tác</span>
                   </li>
                   <li>
-                    <span className="feature-icon">✓</span>
+                    <span className="feature-icon"><Check size={20} /></span>
                     <span>Thư viện di tích phong phú</span>
                   </li>
                 </ul>
@@ -390,7 +397,7 @@ const Home = () => {
 
             <article className="service-card create-card">
               <div className="service-icon-wrapper">
-                <div className="service-icon">🖌️</div>
+                <div className="service-icon"><Paintbrush size={40} /></div>
               </div>
               <div className="service-content">
                 <h3 className="service-title">Tạo tranh</h3>
@@ -399,15 +406,15 @@ const Home = () => {
                 </p>
                 <ul className="service-features">
                   <li>
-                    <span className="feature-icon">✓</span>
+                    <span className="feature-icon"><Check size={20} /></span>
                     <span>Công cụ AI tạo tranh mạnh mẽ</span>
                   </li>
                   <li>
-                    <span className="feature-icon">✓</span>
+                    <span className="feature-icon"><Check size={20} /></span>
                     <span>Đa dạng phong cách nghệ thuật</span>
                   </li>
                   <li>
-                    <span className="feature-icon">✓</span>
+                    <span className="feature-icon"><Check size={20} /></span>
                     <span>Lưu trữ & chia sẻ tác phẩm</span>
                   </li>
                 </ul>
@@ -420,7 +427,7 @@ const Home = () => {
 
             <article className="service-card education-card">
               <div className="service-icon-wrapper">
-                <div className="service-icon">📚</div>
+                <div className="service-icon"><BookOpen size={40} /></div>
               </div>
               <div className="service-content">
                 <h3 className="service-title" >Giáo dục <br /> & Cộng đồng</h3>
@@ -430,15 +437,15 @@ const Home = () => {
                 </p>
                 <ul className="service-features">
                   <li>
-                    <span className="feature-icon">✓</span>
+                    <span className="feature-icon"><Check size={20} /></span>
                     <span>Tài liệu giáo dục tương tác</span>
                   </li>
                   <li>
-                    <span className="feature-icon">✓</span>
+                    <span className="feature-icon"><Check size={20} /></span>
                     <span>Cộng đồng sáng tạo sôi động</span>
                   </li>
                   <li>
-                    <span className="feature-icon">✓</span>
+                    <span className="feature-icon"><Check size={20} /></span>
                     <span>Cuộc thi & sự kiện định kỳ</span>
                   </li>
                 </ul>
