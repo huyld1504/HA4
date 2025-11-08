@@ -336,7 +336,7 @@ const TaiLieuBaiGiang = () => {
             <div className="mb-8 rounded-3xl border border-amber-200 bg-white p-8 shadow-lg">
               <div className="text-center mb-6">
                 <h1 className="mb-4 text-4xl font-serif font-bold text-stone-800 sm:text-5xl">
-                  Tài liệu & Bài giảng
+                  Học liệu số
                 </h1>
                 <p className="text-lg text-stone-600 max-w-3xl mx-auto">
                   Khám phá kho tàng tri thức phong phú về lịch sử và văn hóa Việt Nam qua các tài liệu,
