@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { dynastyData as dynastyDataRaw } from '../../data/mockData'
 import nhangoImg from '../../assets/nhango.jpg'
 import nhathoImg from '../../assets/nhatho.png'
@@ -34,97 +34,48 @@ const dynastyData = Object.keys(dynastyDataRaw).reduce((acc, key) => {
 export default function VanHoaLichSu() {
 const [modalData, setModalData] = useState(null)
 const [eventModalData, setEventModalData] = useState(null)
-const [slideshowIndex, setSlideshowIndex] = useState(0)
+// const [slideshowIndex, setSlideshowIndex] = useState(0)
 const [openDynasty, setOpenDynasty] = useState(null)
-const slideshowRef = useRef(null)
-const autoplayRef = useRef(null)
-const compareAfterRef = useRef(null)
-const compareBoxRef = useRef(null)
-const sliderRef = useRef(null)
-const [isDragging, setIsDragging] = useState(false)
 
 useEffect(() => {
-    // autoplay slideshow
-    autoplayRef.current = setInterval(() => {
-        setSlideshowIndex(i => (i + 1) % 4)
-    }, 4500)
-    return () => clearInterval(autoplayRef.current)
-}, [])
-
-useEffect(() => {
-    // update compare initial position
-    const box = compareBoxRef.current
-    const after = compareAfterRef.current
-    const slider = sliderRef.current
-    if (!box || !after || !slider) return
-    const rect = box.getBoundingClientRect()
-    const initial = rect.width / 2
-    after.style.width = initial + 'px'
-    slider.style.left = initial + 'px'
-
-    const handleMouseMove = (e) => {
-        if (!isDragging) return
-        setPos(e.clientX)
-    }
-    const handleTouchMove = (e) => {
-        if (!isDragging) return
-        setPos(e.touches[0].clientX)
-    }
-    function setPos(clientX) {
-        const rect = box.getBoundingClientRect()
-        let px = clientX - rect.left
-        if (px < 0) px = 0
-        if (px > rect.width) px = rect.width
-        after.style.width = px + 'px'
-        slider.style.left = px + 'px'
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
-    window.addEventListener('touchmove', handleTouchMove)
-    window.addEventListener('mouseup', () => setIsDragging(false))
-    window.addEventListener('touchend', () => setIsDragging(false))
-
-    // keyboard support when slider has focus
-    const handleKey = (e) => {
-        const slider = sliderRef.current
-        const box = compareBoxRef.current
-        const after = compareAfterRef.current
-        if (!slider || !box || !after) return
-        const rect = box.getBoundingClientRect()
-        let left = parseFloat(slider.style.left || rect.width/2)
-        if (e.key === 'ArrowLeft') {
-            left = Math.max(0, left - 10)
-            after.style.width = left + 'px'
-            slider.style.left = left + 'px'
+    // Inject responsive styles for event content modal and hide scrollbar
+    const style = document.createElement('style')
+    style.id = 'event-modal-styles'
+    style.textContent = `
+        .event-content {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        if (e.key === 'ArrowRight') {
-            left = Math.min(rect.width, left + 10)
-            after.style.width = left + 'px'
-            slider.style.left = left + 'px'
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
         }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        @media (max-width: 768px) {
+            .event-content > div {
+                padding: 1rem !important;
+            }
+            .event-content h2 {
+                font-size: 1.5rem !important;
+            }
+            .event-content h3 {
+                font-size: 1.2rem !important;
+            }
+            .event-content section > div {
+                padding: 1rem !important;
+            }
+        }
+    `
+    if (!document.getElementById('event-modal-styles')) {
+        document.head.appendChild(style)
     }
-    window.addEventListener('keydown', handleKey)
-
+    
     return () => {
-        window.removeEventListener('mousemove', handleMouseMove)
-        window.removeEventListener('touchmove', handleTouchMove)
-        window.removeEventListener('mouseup', () => setIsDragging(false))
-        window.removeEventListener('touchend', () => setIsDragging(false))
-        window.removeEventListener('keydown', handleKey)
-    }
-}, [isDragging])
-
-useEffect(() => {
-    // pause autoplay on hover
-    const el = slideshowRef.current
-    if (!el) return
-    function onEnter() { clearInterval(autoplayRef.current) }
-    function onLeave() { autoplayRef.current = setInterval(() => setSlideshowIndex(i => (i + 1) % 4), 4500) }
-    el.addEventListener('mouseenter', onEnter)
-    el.addEventListener('mouseleave', onLeave)
-    return () => {
-        el.removeEventListener('mouseenter', onEnter)
-        el.removeEventListener('mouseleave', onLeave)
+        const existingStyle = document.getElementById('event-modal-styles')
+        if (existingStyle) {
+            existingStyle.remove()
+        }
     }
 }, [])
 
@@ -146,23 +97,167 @@ function toggleDynasty(key) {
     setOpenDynasty(prev => prev === key ? null : key)
 }
 
-function startDrag(e) {
-    e.preventDefault()
-    setIsDragging(true)
-}
+// Component to render dynasty content (figures + events)
+const DynastyContent = ({ dynasty, isOpen, onEventClick }) => {
+    const [scrollPosition, setScrollPosition] = React.useState(0)
+    const scrollContainerRef = React.useRef(null)
+    
+    const hasMultipleFigures = dynasty.figures && dynasty.figures.length > 2
+    
+    const scroll = (direction) => {
+        const container = scrollContainerRef.current
+        if (!container) return
+        
+        const cardWidth = 320 // approximate card width + gap
+        const scrollAmount = direction === 'left' ? -cardWidth : cardWidth
+        
+        container.scrollBy({ left: scrollAmount, behavior: 'smooth' })
+    }
+    
+    const handleScroll = () => {
+        if (scrollContainerRef.current) {
+            setScrollPosition(scrollContainerRef.current.scrollLeft)
+        }
+    }
+    
+    const canScrollLeft = scrollPosition > 0
+    const canScrollRight = scrollContainerRef.current 
+        ? scrollPosition < (scrollContainerRef.current.scrollWidth - scrollContainerRef.current.clientWidth - 10)
+        : false
 
-function compareClick(e) {
-    const box = compareBoxRef.current
-    if (!box) return
-    const rect = box.getBoundingClientRect()
-    let px = e.clientX - rect.left
-    if (px < 0) px = 0
-    if (px > rect.width) px = rect.width
-    compareAfterRef.current.style.width = px + 'px'
-    sliderRef.current.style.left = px + 'px'
+    return (
+        <div className={`overflow-hidden transition-all duration-500 ${isOpen ? 'max-h-[4000px] opacity-100 mt-3' : 'max-h-0 opacity-0'}`}>
+            <div className="ml-16 space-y-4">
+                {/* Heroes/Figures Section */}
+                {dynasty.figures && dynasty.figures.length > 0 && (
+                    <div className="mb-4">
+                        <div className="flex items-center justify-between mb-3">
+                            <div className="flex items-center gap-2">
+                                <svg className="w-5 h-5 text-amber-700" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                                </svg>
+                                <h4 className="text-sm font-bold text-amber-900">Danh nhân tiêu biểu</h4>
+                            </div>
+                            
+                            {/* Navigation Buttons - Only show if more than 2 figures */}
+                            {hasMultipleFigures && (
+                                <div className="flex gap-2">
+                                    <button
+                                        onClick={() => scroll('left')}
+                                        disabled={!canScrollLeft}
+                                        className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
+                                            canScrollLeft 
+                                                ? 'bg-amber-100 hover:bg-amber-200 text-amber-700 hover:shadow-md' 
+                                                : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                                        }`}
+                                        aria-label="Scroll left"
+                                    >
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                        </svg>
+                                    </button>
+                                    <button
+                                        onClick={() => scroll('right')}
+                                        disabled={!canScrollRight}
+                                        className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
+                                            canScrollRight 
+                                                ? 'bg-amber-100 hover:bg-amber-200 text-amber-700 hover:shadow-md' 
+                                                : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                                        }`}
+                                        aria-label="Scroll right"
+                                    >
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                        
+                        {/* Cards Container - Conditional layout */}
+                        <div className="relative">
+                            <div 
+                                ref={hasMultipleFigures ? scrollContainerRef : null}
+                                onScroll={hasMultipleFigures ? handleScroll : undefined}
+                                className={hasMultipleFigures 
+                                    ? "flex gap-3 overflow-x-auto scroll-smooth hide-scrollbar pb-2" 
+                                    : "grid grid-cols-1 sm:grid-cols-2 gap-3"
+                                }
+                            >
+                                {dynasty.figures.map((figure, idx) => (
+                                    <div 
+                                        key={idx} 
+                                        className={`group relative bg-gradient-to-br from-white to-amber-50/50 rounded-xl overflow-hidden border-2 border-amber-200 hover:border-amber-400 hover:shadow-lg transition-all duration-300 ${
+                                            hasMultipleFigures ? 'flex-shrink-0 w-[300px]' : ''
+                                        }`}
+                                    >
+                                        <div className="flex gap-3 p-3">
+                                            <div className="relative w-20 h-20 rounded-lg overflow-hidden border-2 border-amber-300 shadow-md flex-shrink-0 bg-amber-100">
+                                                <img 
+                                                    src={figure.img} 
+                                                    alt={figure.name}
+                                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                                    onError={(e) => {
+                                                        e.target.src = nhangoImg
+                                                    }}
+                                                />
+                                                {/* Decorative corner */}
+                                                <div className="absolute top-0 right-0 w-6 h-6 bg-amber-500/20 backdrop-blur-sm"></div>
+                                            </div>
+                                            <div className="flex-1 min-w-0">
+                                                <h5 className="font-bold text-amber-900 text-sm mb-1 flex items-center gap-1">
+                                                    <span className="text-amber-600">⭐</span>
+                                                    {figure.name}
+                                                </h5>
+                                                <p className="text-xs text-gray-700 leading-relaxed line-clamp-3">{figure.bio}</p>
+                                            </div>
+                                        </div>
+                                        {/* Decorative gradient bar */}
+                                        <div className="h-1 bg-gradient-to-r from-amber-300 via-amber-500 to-amber-300"></div>
+                                    </div>
+                                ))}
+                            </div>
+                            
+                            {/* Gradient fade edges - Only show if more than 2 figures */}
+                            {hasMultipleFigures && (
+                                <>
+                                    {canScrollLeft && (
+                                        <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white to-transparent pointer-events-none z-10"></div>
+                                    )}
+                                    {canScrollRight && (
+                                        <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none z-10"></div>
+                                    )}
+                                </>
+                            )}
+                        </div>
+                    </div>
+                )}
+            
+                {/* Events Section */}
+                <div className="border-l-2 border-amber-300 pl-6 space-y-2.5">
+                    <div className="flex items-center gap-2 mb-3">
+                        <svg className="w-5 h-5 text-amber-700" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+                        </svg>
+                        <h4 className="text-sm font-bold text-amber-900">Sự kiện lịch sử</h4>
+                    </div>
+                    {dynasty.events.map((event, idx) => (
+                        <div 
+                            key={idx} 
+                            className="relative p-3.5 bg-white rounded-lg border border-amber-200 hover:border-amber-400 hover:shadow-md transition-all cursor-pointer group"
+                            onClick={() => onEventClick(event)}
+                        >
+                            <div className="absolute -left-[31px] top-5 w-3 h-3 bg-amber-400 rounded-full border-2 border-white"></div>
+                            
+                            <div className="font-medium text-amber-900 text-sm group-hover:text-amber-700">{event.name}</div>
+                            <div className="text-xs text-amber-700 mt-1.5 bg-amber-50 inline-block px-2 py-0.5 rounded">📅 {event.year}</div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
 }
-
-const slideshowImages = [hueImg, diadaoImg, nhathoImg, nhathoDucbaAiImg]
 
     return (
         <div className="min-h-screen bg-[#f6eadf] text-gray-800 py-7">
@@ -176,438 +271,239 @@ const slideshowImages = [hueImg, diadaoImg, nhathoImg, nhathoDucbaAiImg]
                     </div>
                 </header>
 
-                <main className="grid lg:grid-cols-[1fr_460px] gap-6 mt-6" role="main">
-                    <section className="bg-white p-5 rounded-xl shadow-xl border border-amber-200">
-                        <div className="flex items-center justify-between flex-wrap gap-3">
-                            <h2 className="text-xl text-amber-800 font-semibold">Hành trình lịch sử (MiniTree)</h2>
-                            <div className="text-sm text-gray-600">Click vào triều đại để xem các sự kiện</div>
+                <main className="mt-6" role="main">
+                    <section className="bg-white p-6 rounded-xl shadow-xl border border-amber-200 max-w-5xl mx-auto">
+                        <div className="flex items-center justify-between flex-wrap gap-3 mb-6">
+                            <h2 className="text-2xl text-amber-800 font-bold flex items-center gap-2">
+                                <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
+                                </svg>
+                                Hành trình lịch sử Việt Nam
+                            </h2>
+                            <div className="text-sm text-gray-600 bg-amber-50 px-4 py-2 rounded-full border border-amber-200">
+                                💡 Click vào triều đại để xem các sự kiện
+                            </div>
                         </div>
 
-                        <nav className="mt-4 pl-6" aria-label="Timeline tree">
+                        <nav className="mt-6" aria-label="Timeline tree">
                             <ul className="relative">
-                                <li className="relative pl-6 before:absolute before:left-2 before:top-0 before:bottom-0 before:w-[2px] before:bg-gradient-to-b before:from-amber-400 before:to-amber-600">
-                                    <div className="flex flex-col gap-3">
-                                        {/* Nhà Ngô */}
-                                        <div>
-                                            <div 
-                                                className="flex items-center gap-3 p-3 rounded-lg cursor-pointer bg-amber-50 border border-amber-200 hover:-translate-y-1 hover:bg-amber-100 hover:shadow-md transition-all duration-300 min-h-[76px]" 
-                                                onClick={() => toggleDynasty('ngo')}
-                                            >
-                                                <div className="w-11 h-11 rounded-md flex items-center justify-center bg-gradient-to-tr from-amber-500 to-amber-600 overflow-hidden border-2 border-amber-300 shadow-md flex-shrink-0">
-                                                    <img loading="lazy" src={nhangoImg} alt="Ngô" className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" />
-                                                </div>
-                                                <div className="flex-1 min-w-0">
-                                                    <div className="font-semibold text-amber-800">Ngô (939-967)</div>
-                                                    <div className="text-sm text-gray-600 line-clamp-1">Khởi lập vương triều</div>
-                                                </div>
-                                                <svg className={`w-5 h-5 text-amber-600 transition-transform duration-300 flex-shrink-0 ${openDynasty === 'ngo' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                                </svg>
-                                            </div>
-                                            
-                                            {/* Events cho Nhà Ngô */}
-                                            <div className={`overflow-hidden transition-all duration-300 ${openDynasty === 'ngo' ? 'max-h-[2000px] opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
-                                                <div className="ml-14 space-y-2 border-l-2 border-amber-300 pl-4">
-                                                    {dynastyData.ngo.events.map((event, idx) => (
-                                                        <div 
-                                                            key={idx} 
-                                                            className="p-3 bg-amber-50/50 rounded-lg border border-amber-100 hover:bg-amber-100 transition cursor-pointer"
-                                                            onClick={() => openEventModal(event)}
-                                                        >
-                                                            <div className="font-medium text-amber-900 text-sm">{event.name}</div>
-                                                            <div className="text-xs text-amber-700 mt-1">Năm: {event.year}</div>
-                                                            <div className="text-xs text-gray-600 mt-1">{event.tomtat}</div>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* Nhà Đinh */}
-                                            <div>
+                                <li className="relative pl-8 before:absolute before:left-3 before:top-0 before:bottom-0 before:w-[3px] before:bg-gradient-to-b before:from-amber-400 before:via-amber-500 before:to-amber-600 before:rounded-full before:shadow-sm">
+                                    <div className="flex flex-col gap-4">
+                                        {/* Thời Tiền Sử - Hồng Bàng */}
+                                        {dynastyData.prehistory && (
+                                            <div className="relative">
+                                                {/* Timeline dot */}
+                                                <div className="absolute -left-[30px] top-4 w-5 h-5 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full border-4 border-white shadow-md z-10"></div>
+                                                
                                                 <div 
-                                                    className="flex items-center gap-3 p-3 rounded-lg cursor-pointer bg-amber-50 border border-amber-200 hover:-translate-y-1 hover:bg-amber-100 hover:shadow-md transition-all duration-300 min-h-[76px]" 
-                                                    onClick={() => toggleDynasty('dinh')}
+                                                    className="flex items-center gap-4 p-4 rounded-xl cursor-pointer bg-gradient-to-br from-amber-50 to-white border-2 border-amber-200 hover:border-amber-400 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 min-h-[88px]" 
+                                                    onClick={() => toggleDynasty('prehistory')}
                                                 >
-                                                    <div className="w-11 h-11 rounded-md overflow-hidden border-2 border-amber-300 shadow-sm flex-shrink-0">
+                                                    <div className="w-14 h-14 rounded-xl overflow-hidden border-2 border-amber-400 shadow-md flex-shrink-0 bg-white">
+                                                        <img loading="lazy" src={nhangoImg} alt="Tiền Sử" className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" />
+                                                    </div>
+                                                    <div className="flex-1 min-w-0">
+                                                        <div className="font-bold text-amber-900 text-base mb-1">{dynastyData.prehistory.title}</div>
+                                                        <div className="text-sm text-gray-600 line-clamp-2 leading-relaxed">{dynastyData.prehistory.desc}</div>
+                                                    </div>
+                                                    <div className="flex items-center gap-2 flex-shrink-0">
+                                                        <span className="text-xs font-semibold text-amber-700 bg-amber-100 px-2 py-1 rounded-full">
+                                                            {dynastyData.prehistory.events.length} sự kiện
+                                                        </span>
+                                                        <svg className={`w-6 h-6 text-amber-600 transition-transform duration-300 ${openDynasty === 'prehistory' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                
+                                                <DynastyContent dynasty={dynastyData.prehistory} isOpen={openDynasty === 'prehistory'} onEventClick={openEventModal} />
+                                            </div>
+                                        )}
+
+                                        {/* Nước Âu Lạc & Bắc Thuộc */}
+                                        {dynastyData.aulac && (
+                                            <div className="relative">
+                                                <div className="absolute -left-[30px] top-4 w-5 h-5 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full border-4 border-white shadow-md z-10"></div>
+                                                
+                                                <div 
+                                                    className="flex items-center gap-4 p-4 rounded-xl cursor-pointer bg-gradient-to-br from-amber-50 to-white border-2 border-amber-200 hover:border-amber-400 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 min-h-[88px]" 
+                                                    onClick={() => toggleDynasty('aulac')}
+                                                >
+                                                    <div className="w-14 h-14 rounded-xl overflow-hidden border-2 border-amber-400 shadow-md flex-shrink-0 bg-white">
+                                                        <img loading="lazy" src={nhangoImg} alt="Âu Lạc" className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" />
+                                                    </div>
+                                                    <div className="flex-1 min-w-0">
+                                                        <div className="font-bold text-amber-900 text-base mb-1">{dynastyData.aulac.title}</div>
+                                                        <div className="text-sm text-gray-600 line-clamp-2 leading-relaxed">{dynastyData.aulac.desc}</div>
+                                                    </div>
+                                                    <div className="flex items-center gap-2 flex-shrink-0">
+                                                        <span className="text-xs font-semibold text-amber-700 bg-amber-100 px-2 py-1 rounded-full">
+                                                            {dynastyData.aulac.events.length} sự kiện
+                                                        </span>
+                                                        <svg className={`w-6 h-6 text-amber-600 transition-transform duration-300 ${openDynasty === 'aulac' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                
+                                                <DynastyContent dynasty={dynastyData.aulac} isOpen={openDynasty === 'aulac'} onEventClick={openEventModal} />
+                                            </div>
+                                        )}
+
+                                        {/* Phong kiến tự chủ */}
+                                        {dynastyData.phongkientuchu && (
+                                            <div className="relative">
+                                                <div className="absolute -left-[30px] top-4 w-5 h-5 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full border-4 border-white shadow-md z-10"></div>
+                                                
+                                                <div 
+                                                    className="flex items-center gap-4 p-4 rounded-xl cursor-pointer bg-gradient-to-br from-amber-50 to-white border-2 border-amber-200 hover:border-amber-400 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 min-h-[88px]" 
+                                                    onClick={() => toggleDynasty('phongkientuchu')}
+                                                >
+                                                    <div className="w-14 h-14 rounded-xl overflow-hidden border-2 border-amber-400 shadow-md flex-shrink-0 bg-white">
+                                                        <img loading="lazy" src={nhangoImg} alt="Ngô" className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" />
+                                                    </div>
+                                                    <div className="flex-1 min-w-0">
+                                                        <div className="font-bold text-amber-900 text-base mb-1">{dynastyData.phongkientuchu.title}</div>
+                                                        <div className="text-sm text-gray-600 line-clamp-2 leading-relaxed">{dynastyData.phongkientuchu.desc}</div>
+                                                    </div>
+                                                    <div className="flex items-center gap-2 flex-shrink-0">
+                                                        <span className="text-xs font-semibold text-amber-700 bg-amber-100 px-2 py-1 rounded-full">
+                                                            {dynastyData.phongkientuchu.events.length} sự kiện
+                                                        </span>
+                                                        <svg className={`w-6 h-6 text-amber-600 transition-transform duration-300 ${openDynasty === 'phongkientuchu' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                
+                                                <DynastyContent dynasty={dynastyData.phongkientuchu} isOpen={openDynasty === 'phongkientuchu'} onEventClick={openEventModal} />
+                                            </div>
+                                        )}
+
+                                        {/* Thời kỳ Pháp đô hộ */}
+                                        {dynastyData.phapdoho && (
+                                            <div className="relative">
+                                                <div className="absolute -left-[30px] top-4 w-5 h-5 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full border-4 border-white shadow-md z-10"></div>
+                                                
+                                                <div 
+                                                    className="flex items-center gap-4 p-4 rounded-xl cursor-pointer bg-gradient-to-br from-amber-50 to-white border-2 border-amber-200 hover:border-amber-400 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 min-h-[88px]" 
+                                                    onClick={() => toggleDynasty('phapdoho')}
+                                                >
+                                                    <div className="w-14 h-14 rounded-xl overflow-hidden border-2 border-amber-400 shadow-md flex-shrink-0 bg-white">
                                                         <img loading="lazy" src={nhangoImg} alt="Đinh" className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" />
                                                     </div>
                                                     <div className="flex-1 min-w-0">
-                                                        <div className="font-semibold text-amber-800">Đinh (968–980)</div>
-                                                        <div className="text-sm text-gray-600 line-clamp-1">Thống nhất đất nước, Đại Cồ Việt</div>
+                                                        <div className="font-bold text-amber-900 text-base mb-1">{dynastyData.phapdoho.title}</div>
+                                                        <div className="text-sm text-gray-600 line-clamp-2 leading-relaxed">{dynastyData.phapdoho.desc}</div>
                                                     </div>
-                                                    <svg className={`w-5 h-5 text-amber-600 transition-transform duration-300 flex-shrink-0 ${openDynasty === 'dinh' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                                    </svg>
+                                                    <div className="flex items-center gap-2 flex-shrink-0">
+                                                        <span className="text-xs font-semibold text-amber-700 bg-amber-100 px-2 py-1 rounded-full">
+                                                            {dynastyData.phapdoho.events.length} sự kiện
+                                                        </span>
+                                                        <svg className={`w-6 h-6 text-amber-600 transition-transform duration-300 ${openDynasty === 'phapdoho' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                                        </svg>
+                                                    </div>
                                                 </div>
                                                 
-                                                <div className={`overflow-hidden transition-all duration-300 ${openDynasty === 'dinh' ? 'max-h-[2000px] opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
-                                                    <div className="ml-14 space-y-2 border-l-2 border-amber-300 pl-4">
-                                                        {dynastyData.dinh.events.map((event, idx) => (
-                                                            <div 
-                                                                key={idx} 
-                                                                className="p-3 bg-amber-50/50 rounded-lg border border-amber-100 hover:bg-amber-100 transition cursor-pointer"
-                                                                onClick={() => openEventModal(event)}
-                                                            >
-                                                                <div className="font-medium text-amber-900 text-sm">{event.name}</div>
-                                                                <div className="text-xs text-amber-700 mt-1">Năm: {event.year}</div>
-                                                                <div className="text-xs text-gray-600 mt-1">{event.tomtat}</div>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                </div>
+                                                <DynastyContent dynasty={dynastyData.phapdoho} isOpen={openDynasty === 'phapdoho'} onEventClick={openEventModal} />
                                             </div>
+                                        )}
 
-                                            {/* Nhà Tiền Lê */}
-                                            <div>
-                                                <div 
-                                                    className="flex items-center gap-3 p-3 rounded-lg cursor-pointer bg-amber-50 border border-amber-200 hover:-translate-y-1 hover:bg-amber-100 hover:shadow-md transition-all duration-300 min-h-[76px]" 
-                                                    onClick={() => toggleDynasty('tienle')}
-                                                >
-                                                    <div className="w-11 h-11 rounded-md overflow-hidden border-2 border-amber-300 shadow-sm flex-shrink-0">
-                                                        <img loading="lazy" src={nhangoImg} alt="Tiền Lê" className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" />
-                                                    </div>
-                                                    <div className="flex-1 min-w-0">
-                                                        <div className="font-semibold text-amber-800">Tiền Lê (980–1009)</div>
-                                                        <div className="text-sm text-gray-600 line-clamp-1">Đánh thắng quân Tống</div>
-                                                    </div>
-                                                    <svg className={`w-5 h-5 text-amber-600 transition-transform duration-300 flex-shrink-0 ${openDynasty === 'tienle' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                                    </svg>
-                                                </div>
+                                        {/* Khang chien chong phap */}
+                                        {dynastyData.khangchienchongphap && (
+                                            <div className="relative">
+                                                <div className="absolute -left-[30px] top-4 w-5 h-5 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full border-4 border-white shadow-md z-10"></div>
                                                 
-                                                <div className={`overflow-hidden transition-all duration-300 ${openDynasty === 'tienle' ? 'max-h-[2000px] opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
-                                                    <div className="ml-14 space-y-2 border-l-2 border-amber-300 pl-4">
-                                                        {dynastyData.tienle.events.map((event, idx) => (
-                                                            <div 
-                                                                key={idx} 
-                                                                className="p-3 bg-amber-50/50 rounded-lg border border-amber-100 hover:bg-amber-100 transition cursor-pointer"
-                                                                onClick={() => openEventModal(event)}
-                                                            >
-                                                                <div className="font-medium text-amber-900 text-sm">{event.name}</div>
-                                                                <div className="text-xs text-amber-700 mt-1">Năm: {event.year}</div>
-                                                                <div className="text-xs text-gray-600 mt-1">{event.tomtat}</div>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            {/* Nhà Lý */}
-                                            <div>
                                                 <div 
-                                                    className="flex items-center gap-3 p-3 rounded-lg cursor-pointer bg-amber-50 border border-amber-200 hover:-translate-y-1 hover:bg-amber-100 hover:shadow-md transition-all duration-300 min-h-[76px]" 
-                                                    onClick={() => toggleDynasty('ly')}
+                                                    className="flex items-center gap-4 p-4 rounded-xl cursor-pointer bg-gradient-to-br from-amber-50 to-white border-2 border-amber-200 hover:border-amber-400 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 min-h-[88px]" 
+                                                    onClick={() => toggleDynasty('khangchienchongphap')}
                                                 >
-                                                    <div className="w-11 h-11 rounded-md overflow-hidden border-2 border-amber-300 shadow-sm flex-shrink-0">
+                                                    <div className="w-14 h-14 rounded-xl overflow-hidden border-2 border-amber-400 shadow-md flex-shrink-0 bg-white">
                                                         <img loading="lazy" src={nhathoDucbaImg} alt="Lý" className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" />
                                                     </div>
                                                     <div className="flex-1 min-w-0">
-                                                        <div className="font-semibold text-amber-800">Lý (1009–1225)</div>
-                                                        <div className="text-sm text-gray-600 line-clamp-1">Quốc gia thịnh vượng, Phật giáo thịnh hành</div>
+                                                        <div className="font-bold text-amber-900 text-base mb-1">{dynastyData.khangchienchongphap.title}</div>
+                                                        <div className="text-sm text-gray-600 line-clamp-2 leading-relaxed">{dynastyData.khangchienchongphap.desc}</div>
                                                     </div>
-                                                    <svg className={`w-5 h-5 text-amber-600 transition-transform duration-300 flex-shrink-0 ${openDynasty === 'ly' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                                    </svg>
+                                                    <div className="flex items-center gap-2 flex-shrink-0">
+                                                        <span className="text-xs font-semibold text-amber-700 bg-amber-100 px-2 py-1 rounded-full">
+                                                            {dynastyData.khangchienchongphap.events.length} sự kiện
+                                                        </span>
+                                                        <svg className={`w-6 h-6 text-amber-600 transition-transform duration-300 ${openDynasty === 'khangchienchongphap' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                                        </svg>
+                                                    </div>
                                                 </div>
                                                 
-                                                <div className={`overflow-hidden transition-all duration-300 ${openDynasty === 'ly' ? 'max-h-[2000px] opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
-                                                    <div className="ml-14 space-y-2 border-l-2 border-amber-300 pl-4">
-                                                        {dynastyData.ly.events.map((event, idx) => (
-                                                            <div 
-                                                                key={idx} 
-                                                                className="p-3 bg-amber-50/50 rounded-lg border border-amber-100 hover:bg-amber-100 transition cursor-pointer"
-                                                                onClick={() => openEventModal(event)}
-                                                            >
-                                                                <div className="font-medium text-amber-900 text-sm">{event.name}</div>
-                                                                <div className="text-xs text-amber-700 mt-1">Năm: {event.year}</div>
-                                                                <div className="text-xs text-gray-600 mt-1">{event.tomtat}</div>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                </div>
+                                                <DynastyContent dynasty={dynastyData.khangchienchongphap} isOpen={openDynasty === 'khangchienchongphap'} onEventClick={openEventModal} />
                                             </div>
+                                        )}
 
-                                            {/* Nhà Trần */}
-                                            <div>
+                                        {/* khang chien chong my */}
+                                        {dynastyData.khangchienchongmy && (
+                                            <div className="relative">
+                                                <div className="absolute -left-[30px] top-4 w-5 h-5 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full border-4 border-white shadow-md z-10"></div>
+                                                
                                                 <div 
-                                                    className="flex items-center gap-3 p-3 rounded-lg cursor-pointer bg-amber-50 border border-amber-200 hover:-translate-y-1 hover:bg-amber-100 hover:shadow-md transition-all duration-300 min-h-[76px]" 
-                                                    onClick={() => toggleDynasty('tran')}
+                                                    className="flex items-center gap-4 p-4 rounded-xl cursor-pointer bg-gradient-to-br from-amber-50 to-white border-2 border-amber-200 hover:border-amber-400 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 min-h-[88px]" 
+                                                    onClick={() => toggleDynasty('khangchienchongmy')}
                                                 >
-                                                    <div className="w-11 h-11 rounded-md overflow-hidden border-2 border-amber-300 shadow-sm flex-shrink-0">
+                                                    <div className="w-14 h-14 rounded-xl overflow-hidden border-2 border-amber-400 shadow-md flex-shrink-0 bg-white">
                                                         <img loading="lazy" src={diadaoImg} alt="Trần" className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" />
                                                     </div>
                                                     <div className="flex-1 min-w-0">
-                                                        <div className="font-semibold text-amber-800">Trần (1225–1400)</div>
-                                                        <div className="text-sm text-gray-600 line-clamp-1">Chiến thắng quân Nguyên, phát triển văn hóa</div>
+                                                        <div className="font-bold text-amber-900 text-base mb-1">{dynastyData.khangchienchongmy.title}</div>
+                                                        <div className="text-sm text-gray-600 line-clamp-2 leading-relaxed">{dynastyData.khangchienchongmy.desc}</div>
                                                     </div>
-                                                    <svg className={`w-5 h-5 text-amber-600 transition-transform duration-300 flex-shrink-0 ${openDynasty === 'tran' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                                    </svg>
+                                                    <div className="flex items-center gap-2 flex-shrink-0">
+                                                        <span className="text-xs font-semibold text-amber-700 bg-amber-100 px-2 py-1 rounded-full">
+                                                            {dynastyData.khangchienchongmy.events.length} sự kiện
+                                                        </span>
+                                                        <svg className={`w-6 h-6 text-amber-600 transition-transform duration-300 ${openDynasty === 'khangchienchongmy' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                                        </svg>
+                                                    </div>
                                                 </div>
                                                 
-                                                <div className={`overflow-hidden transition-all duration-300 ${openDynasty === 'tran' ? 'max-h-[2000px] opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
-                                                    <div className="ml-14 space-y-2 border-l-2 border-amber-300 pl-4">
-                                                        {dynastyData.tran.events.map((event, idx) => (
-                                                            <div 
-                                                                key={idx} 
-                                                                className="p-3 bg-amber-50/50 rounded-lg border border-amber-100 hover:bg-amber-100 transition cursor-pointer"
-                                                                onClick={() => openEventModal(event)}
-                                                            >
-                                                                <div className="font-medium text-amber-900 text-sm">{event.name}</div>
-                                                                <div className="text-xs text-amber-700 mt-1">Năm: {event.year}</div>
-                                                                <div className="text-xs text-gray-600 mt-1">{event.tomtat}</div>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                </div>
+                                                <DynastyContent dynasty={dynastyData.khangchienchongmy} isOpen={openDynasty === 'khangchienchongmy'} onEventClick={openEventModal} />
                                             </div>
+                                        )}
 
-                                            {/* Nhà Hồ */}
-                                            <div>
-                                                <div 
-                                                    className="flex items-center gap-3 p-3 rounded-lg cursor-pointer bg-amber-50 border border-amber-200 hover:-translate-y-1 hover:bg-amber-100 hover:shadow-md transition-all duration-300 min-h-[76px]" 
-                                                    onClick={() => toggleDynasty('ho')}
-                                                >
-                                                    <div className="w-11 h-11 rounded-md overflow-hidden border-2 border-amber-300 shadow-sm flex-shrink-0">
-                                                        <img loading="lazy" src={hueImg} alt="Hồ" className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" />
-                                                    </div>
-                                                    <div className="flex-1 min-w-0">
-                                                        <div className="font-semibold text-amber-800">Hồ (1400–1407)</div>
-                                                        <div className="text-sm text-gray-600 line-clamp-1">Cải cách triệt để, ngắn ngủi</div>
-                                                    </div>
-                                                    <svg className={`w-5 h-5 text-amber-600 transition-transform duration-300 flex-shrink-0 ${openDynasty === 'ho' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                                    </svg>
-                                                </div>
+                                        {/* Hiện đại */}
+                                        {dynastyData.modern && (
+                                            <div className="relative">
+                                                <div className="absolute -left-[30px] top-4 w-5 h-5 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full border-4 border-white shadow-md z-10"></div>
                                                 
-                                                <div className={`overflow-hidden transition-all duration-300 ${openDynasty === 'ho' ? 'max-h-[2000px] opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
-                                                    <div className="ml-14 space-y-2 border-l-2 border-amber-300 pl-4">
-                                                        {dynastyData.ho.events.map((event, idx) => (
-                                                            <div 
-                                                                key={idx} 
-                                                                className="p-3 bg-amber-50/50 rounded-lg border border-amber-100 hover:bg-amber-100 transition cursor-pointer"
-                                                                onClick={() => openEventModal(event)}
-                                                            >
-                                                                <div className="font-medium text-amber-900 text-sm">{event.name}</div>
-                                                                <div className="text-xs text-amber-700 mt-1">Năm: {event.year}</div>
-                                                                <div className="text-xs text-gray-600 mt-1">{event.tomtat}</div>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            {/* Nhà Lê */}
-                                            <div>
                                                 <div 
-                                                    className="flex items-center gap-3 p-3 rounded-lg cursor-pointer bg-amber-50 border border-amber-200 hover:-translate-y-1 hover:bg-amber-100 hover:shadow-md transition-all duration-300 min-h-[76px]" 
-                                                    onClick={() => toggleDynasty('le')}
-                                                >
-                                                    <div className="w-11 h-11 rounded-md overflow-hidden border-2 border-amber-300 shadow-sm flex-shrink-0">
-                                                        <img loading="lazy" src={hueImg} alt="Lê" className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" />
-                                                    </div>
-                                                    <div className="flex-1 min-w-0">
-                                                        <div className="font-semibold text-amber-800">Lê (1428–1789)</div>
-                                                        <div className="text-sm text-gray-600 line-clamp-1">Lê sơ, Lê trung hưng</div>
-                                                    </div>
-                                                    <svg className={`w-5 h-5 text-amber-600 transition-transform duration-300 flex-shrink-0 ${openDynasty === 'le' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                                    </svg>
-                                                </div>
-                                                
-                                                <div className={`overflow-hidden transition-all duration-300 ${openDynasty === 'le' ? 'max-h-[2000px] opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
-                                                    <div className="ml-14 space-y-2 border-l-2 border-amber-300 pl-4">
-                                                        {dynastyData.le.events.map((event, idx) => (
-                                                            <div 
-                                                                key={idx} 
-                                                                className="p-3 bg-amber-50/50 rounded-lg border border-amber-100 hover:bg-amber-100 transition cursor-pointer"
-                                                                onClick={() => openEventModal(event)}
-                                                            >
-                                                                <div className="font-medium text-amber-900 text-sm">{event.name}</div>
-                                                                <div className="text-xs text-amber-700 mt-1">Năm: {event.year}</div>
-                                                                <div className="text-xs text-gray-600 mt-1">{event.tomtat}</div>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            {/* Nhà Mạc */}
-                                            <div>
-                                                <div 
-                                                    className="flex items-center gap-3 p-3 rounded-lg cursor-pointer bg-amber-50 border border-amber-200 hover:-translate-y-1 hover:bg-amber-100 hover:shadow-md transition-all duration-300 min-h-[76px]" 
-                                                    onClick={() => toggleDynasty('mac')}
-                                                >
-                                                    <div className="w-11 h-11 rounded-md overflow-hidden border-2 border-amber-300 shadow-sm flex-shrink-0">
-                                                        <img loading="lazy" src={diadaoImg} alt="Mạc" className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" />
-                                                    </div>
-                                                    <div className="flex-1 min-w-0">
-                                                        <div className="font-semibold text-amber-800">Mạc (1527–1592)</div>
-                                                        <div className="text-sm text-gray-600 line-clamp-1">Song song với Lê</div>
-                                                    </div>
-                                                    <svg className={`w-5 h-5 text-amber-600 transition-transform duration-300 flex-shrink-0 ${openDynasty === 'mac' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                                    </svg>
-                                                </div>
-                                                
-                                                <div className={`overflow-hidden transition-all duration-300 ${openDynasty === 'mac' ? 'max-h-[2000px] opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
-                                                    <div className="ml-14 space-y-2 border-l-2 border-amber-300 pl-4">
-                                                        {dynastyData.mac.events.map((event, idx) => (
-                                                            <div 
-                                                                key={idx} 
-                                                                className="p-3 bg-amber-50/50 rounded-lg border border-amber-100 hover:bg-amber-100 transition cursor-pointer"
-                                                                onClick={() => openEventModal(event)}
-                                                            >
-                                                                <div className="font-medium text-amber-900 text-sm">{event.name}</div>
-                                                                <div className="text-xs text-amber-700 mt-1">Năm: {event.year}</div>
-                                                                <div className="text-xs text-gray-600 mt-1">{event.tomtat}</div>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            {/* Nhà Tây Sơn */}
-                                            <div>
-                                                <div 
-                                                    className="flex items-center gap-3 p-3 rounded-lg cursor-pointer bg-amber-50 border border-amber-200 hover:-translate-y-1 hover:bg-amber-100 hover:shadow-md transition-all duration-300 min-h-[76px]" 
-                                                    onClick={() => toggleDynasty('tayson')}
-                                                >
-                                                    <div className="w-11 h-11 rounded-md overflow-hidden border-2 border-amber-300 shadow-sm flex-shrink-0">
-                                                        <img loading="lazy" src={nhathoImg} alt="Tây Sơn" className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" />
-                                                    </div>
-                                                    <div className="flex-1 min-w-0">
-                                                        <div className="font-semibold text-amber-800">Tây Sơn (1778–1802)</div>
-                                                        <div className="text-sm text-gray-600 line-clamp-1">Quang Trung, chiến thắng Ngọc Hồi</div>
-                                                    </div>
-                                                    <svg className={`w-5 h-5 text-amber-600 transition-transform duration-300 flex-shrink-0 ${openDynasty === 'tayson' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                                    </svg>
-                                                </div>
-                                                
-                                                <div className={`overflow-hidden transition-all duration-300 ${openDynasty === 'tayson' ? 'max-h-[2000px] opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
-                                                    <div className="ml-14 space-y-2 border-l-2 border-amber-300 pl-4">
-                                                        {dynastyData.tayson.events.map((event, idx) => (
-                                                            <div 
-                                                                key={idx} 
-                                                                className="p-3 bg-amber-50/50 rounded-lg border border-amber-100 hover:bg-amber-100 transition cursor-pointer"
-                                                                onClick={() => openEventModal(event)}
-                                                            >
-                                                                <div className="font-medium text-amber-900 text-sm">{event.name}</div>
-                                                                <div className="text-xs text-amber-700 mt-1">Năm: {event.year}</div>
-                                                                <div className="text-xs text-gray-600 mt-1">{event.tomtat}</div>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            {/* Nhà Nguyễn */}
-                                            <div>
-                                                <div 
-                                                    className="flex items-center gap-3 p-3 rounded-lg cursor-pointer bg-amber-50 border border-amber-200 hover:-translate-y-1 hover:bg-amber-100 hover:shadow-md transition-all duration-300 min-h-[76px]" 
-                                                    onClick={() => toggleDynasty('nguyen')}
-                                                >
-                                                    <div className="w-11 h-11 rounded-md overflow-hidden border-2 border-amber-300 shadow-sm flex-shrink-0">
-                                                        <img loading="lazy" src={nhathoImg} alt="Nguyễn" className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" />
-                                                    </div>
-                                                    <div className="flex-1 min-w-0">
-                                                        <div className="font-semibold text-amber-800">Nguyễn (1802–1945)</div>
-                                                        <div className="text-sm text-gray-600 line-clamp-1">Triều Nguyễn & di sản kiến trúc</div>
-                                                    </div>
-                                                    <svg className={`w-5 h-5 text-amber-600 transition-transform duration-300 flex-shrink-0 ${openDynasty === 'nguyen' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                                    </svg>
-                                                </div>
-                                                
-                                                <div className={`overflow-hidden transition-all duration-300 ${openDynasty === 'nguyen' ? 'max-h-[2000px] opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
-                                                    <div className="ml-14 space-y-2 border-l-2 border-amber-300 pl-4">
-                                                        {dynastyData.nguyen.events.map((event, idx) => (
-                                                            <div 
-                                                                key={idx} 
-                                                                className="p-3 bg-amber-50/50 rounded-lg border border-amber-100 hover:bg-amber-100 transition cursor-pointer"
-                                                                onClick={() => openEventModal(event)}
-                                                            >
-                                                                <div className="font-medium text-amber-900 text-sm">{event.name}</div>
-                                                                <div className="text-xs text-amber-700 mt-1">Năm: {event.year}</div>
-                                                                <div className="text-xs text-gray-600 mt-1">{event.tomtat}</div>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            {/* Hiện đại */}
-                                            <div>
-                                                <div 
-                                                    className="flex items-center gap-3 p-3 rounded-lg cursor-pointer bg-amber-50 border border-amber-200 hover:-translate-y-1 hover:bg-amber-100 hover:shadow-md transition-all duration-300 min-h-[76px]" 
+                                                    className="flex items-center gap-4 p-4 rounded-xl cursor-pointer bg-gradient-to-br from-amber-50 to-white border-2 border-amber-200 hover:border-amber-400 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 min-h-[88px]" 
                                                     onClick={() => toggleDynasty('modern')}
                                                 >
-                                                    <div className="w-11 h-11 rounded-md overflow-hidden border-2 border-amber-300 shadow-sm flex-shrink-0">
+                                                    <div className="w-14 h-14 rounded-xl overflow-hidden border-2 border-amber-400 shadow-md flex-shrink-0 bg-white">
                                                         <img loading="lazy" src={nhathoDucbaAiImg} alt="Hiện đại" className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" />
                                                     </div>
                                                     <div className="flex-1 min-w-0">
-                                                        <div className="font-semibold text-amber-800">Hiện đại</div>
-                                                        <div className="text-sm text-gray-600 line-clamp-1">Đổi mới, số hóa di sản</div>
+                                                        <div className="font-bold text-amber-900 text-base mb-1">Hiện đại (1975-2025)</div>
+                                                        <div className="text-sm text-gray-600 line-clamp-2 leading-relaxed">Đổi mới, số hóa di sản</div>
                                                     </div>
-                                                    <svg className={`w-5 h-5 text-amber-600 transition-transform duration-300 flex-shrink-0 ${openDynasty === 'modern' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                                    </svg>
+                                                    <div className="flex items-center gap-2 flex-shrink-0">
+                                                        <span className="text-xs font-semibold text-amber-700 bg-amber-100 px-2 py-1 rounded-full">
+                                                            {dynastyData.modern.events.length} sự kiện
+                                                        </span>
+                                                        <svg className={`w-6 h-6 text-amber-600 transition-transform duration-300 ${openDynasty === 'modern' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                                        </svg>
+                                                    </div>
                                                 </div>
                                                 
-                                                <div className={`overflow-hidden transition-all duration-300 ${openDynasty === 'modern' ? 'max-h-[2000px] opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
-                                                    <div className="ml-14 space-y-2 border-l-2 border-amber-300 pl-4">
-                                                        {dynastyData.modern.events.map((event, idx) => (
-                                                            <div 
-                                                                key={idx} 
-                                                                className="p-3 bg-amber-50/50 rounded-lg border border-amber-100 hover:bg-amber-100 transition cursor-pointer"
-                                                                onClick={() => openEventModal(event)}
-                                                            >
-                                                                <div className="font-medium text-amber-900 text-sm">{event.name}</div>
-                                                                <div className="text-xs text-amber-700 mt-1">Năm: {event.year}</div>
-                                                                <div className="text-xs text-gray-600 mt-1">{event.tomtat}</div>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                </div>
+                                                <DynastyContent dynasty={dynastyData.modern} isOpen={openDynasty === 'modern'} onEventClick={openEventModal} />
                                             </div>
+                                        )}
                                     </div>
                                 </li>
                             </ul>
                         </nav>
                     </section>
-
-                    <aside>
-                        <div className="bg-white p-4 rounded-xl shadow-xl mb-4 border border-amber-200">
-                            <h3 className="text-amber-800 font-semibold mb-3">So sánh: Ảnh gốc ↔ Ảnh AI</h3>
-                            <div className="relative overflow-hidden rounded-lg h-[240px] shadow-lg" ref={compareBoxRef} onClick={compareClick}>
-                                <img src={nhathoDucbaImg} alt="Ảnh gốc" className="w-full h-[240px] object-cover" />
-                                <div className="absolute left-0 top-0 bottom-0 w-1/2 overflow-hidden" ref={compareAfterRef}>
-                                    <img src={nhathoDucbaAiImg} alt="Phiên bản AI" className="w-full h-[240px] object-cover" />
-                                </div>
-                                <div className="absolute top-0 h-full w-1 left-1/2 -translate-x-1 bg-gradient-to-b from-amber-500 to-amber-600 shadow-xl cursor-ew-resize" ref={sliderRef}
-                                    role="separator" aria-orientation="horizontal" tabIndex={0} aria-label="Kéo để so sánh ảnh"
-                                    onMouseDown={(e) => startDrag(e)} onTouchStart={(e) => { e.preventDefault(); setIsDragging(true) }} />
-                            </div>
-                        </div>
-
-                        <div className="bg-white p-4 rounded-xl shadow-xl border border-amber-200">
-                            <h3 className="text-amber-800 font-semibold mb-3">Bộ sưu tập AI</h3>
-                            <div className="relative overflow-hidden rounded-lg h-[240px] shadow-lg" ref={slideshowRef}>
-                                {slideshowImages.map((src, i) => (
-                                    <img key={i} src={src} className={`${i === slideshowIndex ? 'block' : 'hidden'} w-full h-[240px] object-cover transition-opacity duration-500`} alt={`Tranh AI ${i+1}`} />
-                                ))}
-                                <button className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full text-gray-800 shadow-lg transition" onClick={() => setSlideshowIndex((slideshowIndex-1+slideshowImages.length)%slideshowImages.length)} aria-label="Previous">&#10094;</button>
-                                <button className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full text-gray-800 shadow-lg transition" onClick={() => setSlideshowIndex((slideshowIndex+1)%slideshowImages.length)} aria-label="Next">&#10095;</button>
-                            </div>
-                            <div className="flex justify-center gap-3 mt-3">
-                                {slideshowImages.map((_, i) => (
-                                    <button key={i} className={`${i === slideshowIndex ? 'bg-amber-600 scale-110' : 'bg-gray-300'} w-3 h-3 rounded-full transition-all duration-300 hover:scale-110`} onClick={() => setSlideshowIndex(i)} aria-label={`Go to slide ${i+1}`} />
-                                ))}
-                            </div>
-                        </div>
-                    </aside>
                 </main>
 
                 {/* Modal */}
@@ -639,67 +535,137 @@ const slideshowImages = [hueImg, diadaoImg, nhathoImg, nhathoDucbaAiImg]
                 {/* Event Detail Modal */}
                 <div className={`${eventModalData ? 'flex' : 'hidden'} fixed inset-0 z-50 items-center justify-center bg-black/60 backdrop-blur-sm p-6`} onClick={(e) => { if (e.target === e.currentTarget) closeEventModal() }}>
                     {eventModalData && (
-                        <div className="max-w-[920px] w-full max-h-[90vh] overflow-y-auto bg-gradient-to-br from-white to-purple-50 rounded-2xl p-6 shadow-2xl relative border-2 border-purple-300">
-                            <button className="sticky top-0 right-0 float-right text-gray-600 text-3xl hover:text-purple-700 transition z-10" onClick={closeEventModal} aria-label="Đóng">&times;</button>
-                            
-                            <div className="mb-6">
-                                <h2 className="text-2xl font-bold text-purple-800 mb-2">{eventModalData.name}</h2>
-                                <div className="text-purple-600 font-semibold mb-4">📅 Năm: {eventModalData.year}</div>
+                        <div className="max-w-[920px] w-full max-h-[90vh] overflow-y-auto bg-gradient-to-br from-white to-amber-50 rounded-2xl shadow-2xl relative border-2 border-amber-300">
+                            {/* Hero Image Section with Title Overlay */}
+                            <div className="relative h-[320px] rounded-t-2xl overflow-hidden">
+                                {/* Background Image */}
+                                <img 
+                                    src={eventModalData.image || nhangoImg} 
+                                    alt={eventModalData.name}
+                                    className="w-full h-full object-cover"
+                                />
+                                
+                                {/* Gradient Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70" />
+                                
+                                {/* Content Overlay */}
+                                <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                                    <h2 className="text-4xl font-bold mb-3 drop-shadow-lg">{eventModalData.name}</h2>
+                                    <div className="flex flex-wrap items-center gap-4 text-lg">
+                                        <div className="flex items-center gap-2">
+                                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+                                            </svg>
+                                            <span className="font-semibold">{eventModalData.year}</span>
+                                        </div>
+                                        {(() => {
+                                            let dynastyName = ''
+                                            for (const [_key, dynasty] of Object.entries(dynastyData)) {
+                                                const eventIndex = dynasty.events.findIndex(e => e.name === eventModalData.name)
+                                                if (eventIndex !== -1) {
+                                                    dynastyName = dynasty.title
+                                                    break
+                                                }
+                                            }
+                                            return dynastyName && (
+                                                <div className="flex items-center gap-2">
+                                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
+                                                    </svg>
+                                                    <span>Thời kỳ: <span className="font-semibold">{dynastyName}</span></span>
+                                                </div>
+                                            )
+                                        })()}
+                                    </div>
+                                </div>
+                                
+                                {/* Close Button */}
+                                <button 
+                                    className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full text-white text-2xl transition-all hover:rotate-90 duration-300" 
+                                    onClick={closeEventModal} 
+                                    aria-label="Đóng"
+                                >
+                                    &times;
+                                </button>
                             </div>
 
-                            {/* Tóm tắt */}
-                            <div className="mb-6 p-4 bg-purple-100 rounded-lg border border-purple-200">
-                                <h3 className="text-lg font-semibold text-purple-800 mb-2">📌 Tóm tắt</h3>
-                                <p className="text-gray-700 leading-relaxed">{eventModalData.tomtat}</p>
+                            {/* Content Section */}
+                            <div className="p-6">
+                                {/* Render HTML content */}
+                                <div 
+                                    className="event-content"
+                                    dangerouslySetInnerHTML={{ __html: eventModalData.content }}
+                                />
+
+                            {/* Related Events Section */}
+                            {(() => {
+                                // Find which dynasty this event belongs to
+                                let relatedEvents = []
+                                
+                                for (const [_key, dynasty] of Object.entries(dynastyData)) {
+                                    const eventIndex = dynasty.events.findIndex(e => e.name === eventModalData.name)
+                                    if (eventIndex !== -1) {
+                                        // Get 1 event before and 2 events after current event
+                                        const beforeEvent = eventIndex > 0 ? [dynasty.events[eventIndex - 1]] : []
+                                        const afterEvents = dynasty.events.slice(eventIndex + 1, eventIndex + 3)
+                                        relatedEvents = [...beforeEvent, ...afterEvents]
+                                        break
+                                    }
+                                }
+
+                                if (relatedEvents.length > 0) {
+                                    return (
+                                        <div className="mt-8 pt-6 border-t-2 border-amber-200">
+                                            <h3 className="text-xl font-bold text-[#dc2626] mb-6">
+                                                Các sự kiện liên quan
+                                            </h3>
+                                            <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                                                {relatedEvents.map((event, idx) => (
+                                                    <div 
+                                                        key={idx}
+                                                        className="group bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-200"
+                                                        onClick={() => {
+                                                            setEventModalData(event)
+                                                            // Scroll to top of modal
+                                                            document.querySelector('.max-h-\\[90vh\\]')?.scrollTo({ top: 0, behavior: 'smooth' })
+                                                        }}
+                                                    >
+                                                        {/* Event Image */}
+                                                        <div className="relative h-[180px] overflow-hidden">
+                                                            <img 
+                                                                src={imageMap[event.image] || event.image || nhangoImg} 
+                                                                alt={event.name}
+                                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                                            />
+                                                            {/* Overlay gradient */}
+                                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                                                            
+                                                            {/* Year badge */}
+                                                            <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-md shadow-md">
+                                                                <span className="text-sm font-bold text-gray-800">{event.year}</span>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        {/* Event Info */}
+                                                        <div className="p-4">
+                                                            <h4 className="font-semibold text-gray-800 text-sm leading-snug line-clamp-2 group-hover:text-[#dc2626] transition-colors min-h-[40px]">
+                                                                {event.name}
+                                                            </h4>
+                                                            {event.tomtat && (
+                                                                <p className="text-xs text-gray-600 mt-2 line-clamp-2 leading-relaxed">
+                                                                    {event.tomtat}
+                                                                </p>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )
+                                }
+                                return null
+                            })()}
                             </div>
-
-                            {/* Bối cảnh lịch sử */}
-                            {eventModalData.context && (
-                                <div className="mb-6">
-                                    <h3 className="text-lg font-semibold text-purple-800 mb-3 flex items-center gap-2">
-                                        <span>📜</span> Bối cảnh lịch sử
-                                    </h3>
-                                    <p className="text-gray-700 leading-relaxed bg-white p-4 rounded-lg border border-purple-100">
-                                        {eventModalData.context}
-                                    </p>
-                                </div>
-                            )}
-
-                            {/* Diễn biến */}
-                            {eventModalData.dienbien && eventModalData.dienbien.length > 0 && (
-                                <div className="mb-6">
-                                    <h3 className="text-lg font-semibold text-purple-800 mb-3 flex items-center gap-2">
-                                        <span>⚔️</span> Diễn biến sự kiện
-                                    </h3>
-                                    <ol className="space-y-3">
-                                        {eventModalData.dienbien.map((step, idx) => (
-                                            <li key={idx} className="flex gap-3 bg-white p-4 rounded-lg border border-purple-100 hover:bg-purple-50 transition">
-                                                <span className="flex-shrink-0 w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
-                                                    {idx + 1}
-                                                </span>
-                                                <p className="text-gray-700 leading-relaxed flex-1">{step}</p>
-                                            </li>
-                                        ))}
-                                    </ol>
-                                </div>
-                            )}
-
-                            {/* Ý nghĩa */}
-                            {eventModalData.ynghia && eventModalData.ynghia.length > 0 && (
-                                <div className="mb-6">
-                                    <h3 className="text-lg font-semibold text-purple-800 mb-3 flex items-center gap-2">
-                                        <span>💡</span> Ý nghĩa lịch sử
-                                    </h3>
-                                    <ul className="space-y-2">
-                                        {eventModalData.ynghia.map((meaning, idx) => (
-                                            <li key={idx} className="flex gap-3 bg-gradient-to-r from-purple-50 to-white p-4 rounded-lg border border-purple-100">
-                                                <span className="text-purple-600 font-bold">✓</span>
-                                                <p className="text-gray-700 leading-relaxed flex-1">{meaning}</p>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
                         </div>
                     )}
                 </div>

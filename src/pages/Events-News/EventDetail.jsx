@@ -1,15 +1,18 @@
 import { Link, useParams } from 'react-router-dom'
 import { useState } from 'react'
-import { getEventById } from '../../data/mockData'
+import { getEventById, events } from '../../data/mockData'
 
 const EventDetail = () => {
-const { eventId } = useParams()
-const event = getEventById(eventId)
-const [openFaqIndex, setOpenFaqIndex] = useState(null)
+  const { eventId } = useParams()
+  const event = getEventById(eventId)
+  const [openFaqIndex, setOpenFaqIndex] = useState(null)
 
-const toggleFaq = (index) => {
+  // Get other events (exclude current event)
+  const otherEvents = events.filter(e => e.id !== eventId).slice(0, 3)
+
+  const toggleFaq = (index) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index)
-}
+  }
 
 if (!event) {
 return (
@@ -35,7 +38,7 @@ return (
 
 return (
 <div className="min-h-screen bg-[#f6eadf]">
-    <div className="mx-auto max-w-4xl px-4 py-6 sm:py-10">
+    <div className="mx-auto max-w-7xl px-4 py-6 sm:py-10">
     {/* Breadcrumb */}
     <div className="mb-6">
         <Link
@@ -48,8 +51,11 @@ return (
         </Link>
     </div>
 
-    {/* Single Event Card */}
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+    {/* Main Grid Layout */}
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Main Content - Event Detail */}
+        <div className="lg:col-span-2">
+        <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
         {/* Header Image */}
         {event.imageUrl && (
         <div className="relative h-64 sm:h-80 overflow-hidden">
@@ -298,6 +304,58 @@ return (
             </div>
         </div>
         </div>
+        </div>
+        </div>
+
+        {/* Sidebar - Suggestions */}
+        <aside className="lg:col-span-1">
+        <div className="lg:sticky lg:top-24 space-y-6">
+        {/* Other Events */}
+        <div className="bg-white rounded-2xl shadow-lg p-6">
+            <h3 className="text-lg font-bold text-gray-900 mb-4 pb-3 border-b border-gray-200">
+            Sự kiện khác
+            </h3>
+            <div className="space-y-4">
+            {otherEvents.map((evt) => (
+                <Link
+                key={evt.id}
+                to={`/events/${evt.id}`}
+                className="group block"
+                >
+                <div className="flex gap-3">
+                    {evt.imageUrl && (
+                    <div className="flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden">
+                        <img 
+                        src={evt.imageUrl} 
+                        alt={evt.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        />
+                    </div>
+                    )}
+                    <div className="flex-1 min-w-0">
+                    <h4 className="text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2 mb-1">
+                        {evt.title}
+                    </h4>
+                    <div className="flex items-center gap-2 text-xs text-gray-500">
+                        <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
+                        </svg>
+                        <span>{evt.date}</span>
+                    </div>
+                    </div>
+                </div>
+                </Link>
+            ))}
+            </div>
+            <Link
+            to="/events"
+            className="mt-4 block text-center text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors"
+            >
+            Xem tất cả sự kiện →
+            </Link>
+        </div>
+        </div>
+        </aside>
     </div>
     </div>
 </div>

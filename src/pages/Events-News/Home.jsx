@@ -48,7 +48,7 @@ const Home = () => {
                 return (
                   <Link
                     key={article.id}
-                    to={`/news/${article.id}`}
+                    to={`/${article.type === 'event' ? 'events' : 'news'}/${article.id}`}
                     className={`group flex gap-3 rounded-xl bg-white p-3 shadow-sm transition-all duration-300 border-2 ${
                       isActive 
                         ? 'border-amber-400 shadow-lg scale-[1.02]' 

@@ -1,9 +1,12 @@
 import { Link, useParams } from 'react-router-dom'
-import { getNewsById } from '../../data/mockData'
+import { getNewsById, news } from '../../data/mockData'
 
 const NewsDetail = () => {
 const { newsId } = useParams()
 const article = getNewsById(newsId)
+
+// Get other news (exclude current article)
+const otherNews = news.filter(n => n.id !== newsId).slice(0, 3)
 
 if (!article) {
 return (
@@ -29,11 +32,14 @@ return (
 
 return (
 <div className="min-h-screen bg-[#f6eadf]">
-    <div className="mx-auto max-w-4xl px-4 py-6 sm:py-10">
+    <div className="mx-auto max-w-7xl px-4 py-6 sm:py-10">
     
 
-    {/* Single Article Card */}
-    <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-10">
+    {/* Main Grid Layout */}
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Main Content - Article Detail */}
+        <div className="lg:col-span-2">
+        <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-10">
         {/* Breadcrumb */}
         <div className="mb-6">
             <Link
@@ -150,6 +156,58 @@ return (
             </Link>
         </div>
         </div>
+        </div>
+        </div>
+
+        {/* Sidebar - Suggestions */}
+        <aside className="lg:col-span-1">
+        <div className="lg:sticky lg:top-24 space-y-6">
+        {/* Other News */}
+        <div className="bg-white rounded-2xl shadow-lg p-6">
+            <h3 className="text-lg font-bold text-gray-900 mb-4 pb-3 border-b border-gray-200">
+            Tin tức khác
+            </h3>
+            <div className="space-y-4">
+            {otherNews.map((article) => (
+                <Link
+                key={article.id}
+                to={`/news/${article.id}`}
+                className="group block"
+                >
+                <div className="flex gap-3">
+                    {article.imageUrl && (
+                    <div className="flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden">
+                        <img 
+                        src={article.imageUrl} 
+                        alt={article.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        />
+                    </div>
+                    )}
+                    <div className="flex-1 min-w-0">
+                    <h4 className="text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2 mb-1">
+                        {article.title}
+                    </h4>
+                    <div className="flex items-center gap-2 text-xs text-gray-500">
+                        <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
+                        </svg>
+                        <span>{article.date}</span>
+                    </div>
+                    </div>
+                </div>
+                </Link>
+            ))}
+            </div>
+            <Link
+            to="/news"
+            className="mt-4 block text-center text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors"
+            >
+            Xem tất cả tin tức →
+            </Link>
+        </div>
+        </div>
+        </aside>
     </div>
     </div>
 </div>

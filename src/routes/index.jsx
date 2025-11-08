@@ -12,7 +12,7 @@ const router = createBrowserRouter([
         element: <MainLayout />,
         children: [
           {
-            index: true,
+            path: 'events-news',
             element: <Home />,
           },
           {

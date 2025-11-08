@@ -109,7 +109,7 @@ export default function PostCard({ post, onEdit, onDelete, onViewProfile, onView
               {post.comments?.length || 0}
             </div>
             <div className="text-xs text-gray-500 mb-1">
-              Views:
+              Likes:
             </div>
             <div className="text-base font-semibold text-gray-600">
               {post.likes + post.dislikes || 0}

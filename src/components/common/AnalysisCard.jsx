@@ -47,6 +47,24 @@ export default function AnalysisCard({ item, isVisible, onOpenModal }) {
         {/* Shine effect overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none z-[1]" />
 
+        {/* Image Section */}
+        {item.image && (
+          <div className="relative h-48 overflow-hidden">
+            <img 
+              src={item.image} 
+              alt={item.title}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            {/* Image overlay gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+            
+            {/* Category badge on image */}
+            <div className="absolute top-3 left-3 bg-amber-500/90 backdrop-blur-sm text-white px-3 py-1 rounded-lg text-xs font-semibold shadow-lg">
+              {item.category}
+            </div>
+          </div>
+        )}
+
         <div className="p-5 flex flex-col flex-grow">
           <h3 className="text-amber-700 font-semibold text-lg mb-2 flex items-center gap-2 group-hover:text-amber-800 transition-colors duration-300">
             <i className={`fa-solid ${item.icon} transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12`}></i>

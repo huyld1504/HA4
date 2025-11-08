@@ -571,177 +571,477 @@ export const speakers = [
 
 // Mock data for dynasty history
 export const dynastyData = {
-    ngo: {
-        title: "Nhà Ngô (939–967)",
+    prehistory: {
+        title: "Thời Tiền Sử - Hồng Bàng (40.000 TCN - 258 TCN)",
+        img: '/src/assets/prehistory.jpg',
+        desc: "Hình thành cộng đồng người Việt cổ. Thời kỳ các vua Hùng dựng nước Văn Lang.",
+        figures: [
+            { name: "Vua Hùng", img: '/src/assets/vuahung.jpg', bio: "Các vị vua huyền thoại dựng nước Văn Lang, tổ tiên của dân tộc Việt Nam." },
+            { name: "Thánh Gióng", img: '/src/assets/thanhgiong.jpg', bio: "Biểu tượng tinh thần chống giặc ngoại xâm, đánh đuổi giặc Ân." }
+        ],
+        events: [
+            {
+                name: "Thời kỳ Đồ đá (Văn hóa Hòa Bình, Bắc Sơn)",
+                year: "≈ 40.000 – 3.000 TCN",
+                image: '/src/assets/dongsan.jpg',
+                content: `<p>Xuất hiện con người nguyên thủy, biết chế tác công cụ đá.</p>`
+            },
+            {
+                name: "Thời kỳ Đồ đồng – Đồ sắt",
+                year: "≈ 3.000 – 1.000 TCN",
+                image: '/src/assets/dongsan.jpg',
+                content: `<p>Phát triển luyện kim, mở đầu nông nghiệp lúa nước.</p>`
+            },
+            {
+                name: "Thời kỳ Đồ gốm sơ khai",
+                year: "≈ 1.500 – 700 TCN",
+                image: '/src/assets/dongsan.jpg',
+                content: `<p>Kỹ thuật chế tác gốm, định cư và đời sống tinh thần phát triển.</p>`
+            },
+            {
+                name: "Văn hóa Đông Sơn",
+                year: "≈ 700 TCN – 100 CN",
+                image: '/src/assets/dongsan.jpg',
+                content: `<p>Ra đời trống đồng – biểu tượng văn minh Việt cổ.</p>`
+            },
+            {
+                name: "Nhà nước Văn Lang (Các vua Hùng)",
+                year: "2879 – 258 TCN",
+                image: '/src/assets/dongsan.jpg',
+                content: `<p>Nhà nước đầu tiên, hình thành bản sắc dân tộc.</p>`
+            },
+            {
+                name: "Truyền thuyết: Con Rồng Cháu Tiên, Thánh Gióng",
+                year: "2879 – 258 TCN",
+                image: '/src/assets/dongsan.jpg',
+                content: `<p>Biểu tượng nguồn gốc dân tộc và tinh thần chống giặc.</p>`
+            },
+            {
+                name: "Lễ hội Đền Hùng (10/3 âm lịch)",
+                year: "2879 – 258 TCN",
+                image: '/src/assets/dongsan.jpg',
+                content: `<p>Tưởng nhớ tổ tiên – quốc lễ truyền thống.</p>`
+            },
+        ]
+    },
+
+    aulac: {
+        title: "Nước Âu Lạc & Thời Bắc Thuộc (257 TCN - 938)",
+        img: '/src/assets/aulac.jpg',
+        desc: "Hợp nhất các bộ tộc Việt cổ - rồi gần 1000 năm đấu tranh giành độc lập.",
+        figures: [
+            { name: "An Dương Vương", img: '/src/assets/aduongvuong.jpg', bio: "Vua nước Âu Lạc, xây thành Cổ Loa, chế tạo nỏ thần." },
+            { name: "Hai Bà Trưng", img: '/src/assets/habaTrung.jpg', bio: "Nữ anh hùng dân tộc, lãnh đạo cuộc khởi nghĩa đầu tiên giành độc lập năm 40-43 CN." },
+            { name: "Bà Triệu", img: '/src/assets/batrieu.jpg', bio: "Nữ tướng với câu nói bất hủ: 'Tôi muốn cưỡi cơn gió mạnh, đạp luồng sóng dữ...'" }
+        ],
+        events: [
+            {
+                name: "An Dương Vương lập nước Âu Lạc – thành Cổ Loa",
+                year: "257 – 179 TCN",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Biểu tượng trí tuệ và tổ chức nhà nước sơ khai.</p>`
+            },
+            {
+                name: "Âu Lạc bị Triệu Đà thôn tính",
+                year: "179 TCN",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>lorem ipsum</p>`
+            },
+            {
+                name: "Khởi nghĩa Hai Bà Trưng",
+                year: "40-43 CN",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Cuộc khởi nghĩa đầu tiên giành độc lập, biểu tượng nữ anh hùng dân tộc.</p>`
+            },
+            {
+                name: "Khởi nghĩa Bà Triệu",
+                year: "248",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Tinh thần “Tôi muốn cưỡi cơn gió mạnh, đạp luồng sóng dữ…”</p>`
+            },
+            {
+                name: "Lý Bí lập nước Vạn Xuân",
+                year: "542 – 602",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Nhà nước độc lập đầu tiên sau Bắc thuộc.</p>`
+            },
+            {
+                name: "Khởi nghĩa Mai Thúc Loan",
+                year: "722",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Phong trào chống ách đô hộ nhà Đường.</p>`
+            },
+            {
+                name: "Khởi nghĩa Phùng Hưng",
+                year: "791",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Giành quyền tự chủ ở Đường Lâm.</p>`
+            },
+            {
+                name: "Khúc Thừa Dụ giành quyền tự chủ",
+                year: "905",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Bước đầu phục hồi nền độc lập.</p>`
+            },
+            {
+                name: "Dương Đình Nghệ kháng Nam Hán",
+                year: "931",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Mở đường cho thắng lợi sau này.</p>`
+            },
+            {
+                name: "Ngô Quyền chiến thắng Bạch Đằng",
+                year: "938",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Kết thúc 1000 năm Bắc thuộc, mở đầu thời kỳ độc lập.</p>`
+            }
+        ]
+    },
+
+    phongkientuchu: {
+        title: "Thời Phong Kiến Tự Chủ (939 – 1858)",
         img: '/src/assets/nhango.jpg',
-        desc: "Triều đại đầu tiên của Việt Nam độc lập sau 1000 năm Bắc thuộc. Ngô Quyền đánh tan quân Nam Hán tại trận Bạch Đằng (938), mở ra kỷ nguyên tự chủ. Tuy nhiên, sau khi Ngô Quyền mất, đất nước rơi vào thời kỳ Loạn 12 Sứ Quân.",
+        desc: "Gần 1.000 năm xây dựng và phát triển quốc gia Đại Việt",
         figures: [
-            { name: "Ngô Quyền", img: '/src/assets/nhango.jpg', bio: "Vua đầu tiên của Việt Nam độc lập. Chiến thắng Bạch Đằng (938) giành độc lập từ Nam Hán, mở đầu kỷ nguyên tự chủ của dân tộc." },
-            { name: "Dương Tam Kha", img: '/src/assets/nhango.jpg', bio: "Tướng lĩnh dưới trướng Ngô Quyền, sau khi Ngô Quyền mất đã tiếm quyền xưng vương (6 năm). Nhân vật phức tạp: vừa có công, vừa mang tiếng phản nghịch." }
+            { name: "Ngô Quyền", img: '/src/assets/ngoquyen.jpg', bio: "Vua đầu tiên của Việt Nam độc lập. Chiến thắng Bạch Đằng (938) giành độc lập từ Nam Hán, mở đầu kỷ nguyên tự chủ của dân tộc." },
+            { name: "Dương Tam Kha", img: '/src/assets/duongtamkha.jpg', bio: "Tướng lĩnh dưới trướng Ngô Quyền, sau khi Ngô Quyền mất đã tiếm quyền xưng vương (6 năm)." }
         ],
         events: [
-            { name: "Ngô Quyền Đại Thắng Bạch Đằng – Chấm Dứt 1000 Năm Bắc Thuộc", year: "938", tomtat: "Trận Bạch Đằng năm 938 đánh dấu chiến thắng của Ngô Quyền trước quân Nam Hán, kết thúc thời kỳ Bắc thuộc kéo dài hơn 1000 năm.", context: "Đầu thế kỷ X, sau nhiều năm bị các triều đại phương Bắc đô hộ, nước ta tuy có lúc tự chủ dưới nhà Ngô nhưng vẫn chưa thật sự yên. Năm 938, quân Nam Hán đem đại quân sang xâm lược, với âm mưu đặt ách cai trị trở lại. Dẫn đầu là Hoằng Tháo con trai vua Nam Hán. Lúc này, Ngô Quyền, vốn là một tướng tài của Dương Đình Nghệ, vừa đánh tan Kiều Công Tiễn (kẻ phản bội) ở Đại La. Ông biết quân Nam Hán sẽ theo đường biển tiến vào sông Bạch Đằng để đánh thẳng vào kinh đô.", dienbien: ["Ngô Quyền quyết định chọn Bạch Đằng một con sông thủy triều mạnh, nhiều khúc quanh để làm nơi đặt bẫy.", "Ông cho quân đóng cọc nhọn dưới lòng sông, chỉ chừa đầu cọc ngập dưới nước. Khi thủy triều dâng, cọc bị che kín sẽ không có ai nhận ra.", "Ngày quân Nam Hán kéo vào cửa sông, Ngô Quyền cho quân ra khiêu chiến rồi giả vờ thua, rút lui.", "Quân giặc hăm hở đuổi theo, tiến sâu vào bãi cọc đúng lúc triều bắt đầu rút. Nước xuống nhanh, thuyền giặc mắc cạn, va vào cọc nhọn vỡ tan.", "Quân ta quay lại phản công, tiêu diệt gần như toàn bộ, Hoằng Tháo tử trận."], ynghia: ["Xóa bỏ hoàn toàn âm mưu tái xâm lược của Nam Hán.", "Mở ra thời kỳ độc lập lâu dài cho dân tộc, chấm dứt hơn 1.000 năm Bắc thuộc.", "Khẳng định tài thao lược xuất chúng của Ngô Quyền, trở thành hình mẫu cho các chiến thắng Bạch Đằng sau này (năm 981 và 1288)."]},
-            { name: "Ngô Quyền Lập Nhà Ngô – Khai Mở Thời Đại Độc Lập", year: "939 SCN – 944 SCN", tomtat: "Năm 939, Ngô Quyền xưng Vương, lập nhà Ngô, đóng đô tại Cổ Loa. Tổ chức lại triều đình, chính thức đặt nền móng độc lập lâu dài cho dân tộc.", context: "Năm 938, sau đại thắng Bạch Đằng, Ngô Quyền đã đánh tan quân Nam Hán, chấm dứt hơn 1.000 năm Bắc thuộc. Tuy nhiên, chiến thắng mới chỉ là bước đầu. Đất nước lúc đó vẫn còn rối ren, các thế lực địa phương chưa hoàn toàn quy phục, bộ máy cai trị chưa thống nhất. Ngô Quyền hiểu rằng muốn giữ được độc lập, cần phải có một triều đình mạnh, luật pháp rõ ràng, và một vị vua đủ uy quyền để trấn giữ bờ cõi.", dienbien: ["Sau chiến thắng, Ngô Quyền lên ngôi vua, lập ra Nhà Ngô, đóng đô tại Cổ Loa (Hà Nội ngày nay).", "Ông bắt tay xây dựng chính quyền trung ương tập quyền, củng cố quân đội, đặt các chức quan cai trị ở các châu, huyện.", "Nhà Ngô cũng chú trọng giữ hòa hiếu với các nước láng giềng để tránh chiến tranh, đồng thời ổn định đời sống nhân dân sau nhiều năm chiến loạn.", "Dưới sự trị vì của Ngô Quyền, đất nước được yên ổn, trật tự xã hội dần hồi phục, nông nghiệp và sản xuất bắt đầu khởi sắc."], ynghia: ["Khai mở thời đại độc lập tự chủ lâu dài của dân tộc Việt.", "Đặt nền móng cho nhà nước phong kiến tập quyền sơ khai.", "Khẳng định tầm nhìn chiến lược của Ngô Quyền: từ một tướng quân chiến thắng trở thành một nhà chính trị biết xây dựng đất nước."]},
-            { name: "Khủng Hoảng Của Nhà Ngô", year: "944 SCN – 965 SCN", tomtat: "Năm 944, Ngô Quyền mất, em vợ là Dương Tam Kha cướp ngôi, xưng là Dương Bình Vương gây nên khủng hoảng dòng chính nhà Ngô", context: "Sau khi Ngô Quyền mất năm 944, ngai vàng rơi vào tay Dương Tam Kha – em vợ của ông. Thay vì phò tá con của Ngô Quyền, Dương Tam Kha lại tự xưng vương, gây bất mãn trong triều và trong lòng dân. Con trai Ngô Quyền là Ngô Xương Ngập và Ngô Xương Văn phải lánh nạn, tình hình đất nước bắt đầu rạn nứt.", dienbien: ["944 – 950: Dương Tam Kha trị vì nhưng không được lòng các hào trưởng. Nhiều nơi nảy sinh chống đối ngầm.", "Sau này, Ngô Xương Văn được đưa về kinh, buộc Dương Tam Kha nhường ngôi, rồi mời anh là Ngô Xương Ngập cùng trị vì, sử gọi là Loạn hai vua.", "Hai vua liên tục bất hòa trong đường lối trị nước. Trong khi đó, các thế lực địa phương lợi dụng tình trạng phân quyền để củng cố lực lượng, không còn tuân phục triều đình như trước.", "Khi Ngô Xương Ngập mất, Ngô Xương Văn tiếp tục cầm quyền nhưng tình hình đã rất yếu. Đến khi ông tử trận trong một cuộc dẹp loạn, triều đình gần như tê liệt.", "Kết quả là, đất nước rơi vào cảnh phân tán, mở đầu cho thời kỳ hỗn loạn mà sau này sử gọi là Loạn 12 sứ quân."], ynghia: ["Cho thấy nền tảng chính trị của Nhà Ngô còn yếu, chưa đủ vững để duy trì thống nhất lâu dài.", "Việc tranh quyền đoạt vị đã tạo cơ hội cho các thế lực địa phương nổi dậy.", "Khủng hoảng Nhà Ngô là nguyên nhân trực tiếp dẫn tới thời kỳ 12 sứ quân, kéo dài suốt nhiều năm cho tới khi Đinh Bộ Lĩnh dẹp yên."]},
-            // { name: "Loạn 12 Sứ Quân", year: "965 SCN – 968 SCN", context: "Đầu thế kỷ X, sau nhiều năm bị các triều đại phương Bắc đô hộ, nước ta tuy có lúc tự chủ dưới nhà Ngô nhưng vẫn chưa thật sự yên. Năm 938, quân Nam Hán đem đại quân sang xâm lược, với âm mưu đặt ách cai trị trở lại. Dẫn đầu là Hoằng Tháo con trai vua Nam Hán. Lúc này, Ngô Quyền, vốn là một tướng tài của Dương Đình Nghệ, vừa đánh tan Kiều Công Tiễn (kẻ phản bội) ở Đại La. Ông biết quân Nam Hán sẽ theo đường biển tiến vào sông Bạch Đằng để đánh thẳng vào kinh đô.", dienbien: ["Ngô Quyền quyết định chọn Bạch Đằng một con sông thủy triều mạnh, nhiều khúc quanh để làm nơi đặt bẫy.", "Ông cho quân đóng cọc nhọn dưới lòng sông, chỉ chừa đầu cọc ngập dưới nước. Khi thủy triều dâng, cọc bị che kín sẽ không có ai nhận ra.", "Ngày quân Nam Hán kéo vào cửa sông, Ngô Quyền cho quân ra khiêu chiến rồi giả vờ thua, rút lui.", "Quân giặc hăm hở đuổi theo, tiến sâu vào bãi cọc đúng lúc triều bắt đầu rút. Nước xuống nhanh, thuyền giặc mắc cạn, va vào cọc nhọn vỡ tan.", "Quân ta quay lại phản công, tiêu diệt gần như toàn bộ, Hoằng Tháo tử trận."], ynghia: ["Xóa bỏ hoàn toàn âm mưu tái xâm lược của Nam Hán.", "Mở ra thời kỳ độc lập lâu dài cho dân tộc, chấm dứt hơn 1.000 năm Bắc thuộc.", "Khẳng định tài thao lược xuất chúng của Ngô Quyền, trở thành hình mẫu cho các chiến thắng Bạch Đằng sau này (năm 981 và 1288)."]},
+            {
+                name: "Nhà Ngô (Ngô Quyền)",
+                year: "939 – 965",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Xây nền độc lập, hình thành chính quyền tự chủ.</p>`
+            },
+            {
+                name: "Nhà Đinh (Đinh Bộ Lĩnh – Đại Cồ Việt)",
+                year: "968 – 980",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Thống nhất đất nước, đặt nền móng quốc gia phong kiến.</p>`
+            },
+            {
+                name: "Nhà Tiền Lê (Lê Hoàn)",
+                year: "980 – 1009",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Đánh thắng quân Tống, củng cố quốc phòng.</p>`
+            },
+            {
+                name: "Nhà Lý (Lý Công Uẩn – Thăng Long)",
+                year: "1009 – 1225",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Thời kỳ hưng thịnh: dời đô, lập Văn Miếu – Quốc Tử Giám, chống Tống thắng lợi.</p>`
+            },
+            {
+                name: "Nhà Trần",
+                year: "1225 – 1400",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>3 lần kháng chiến chống Nguyên – Mông (1258, 1285, 1288) – Hào khí Đông A.</p>`
+            },
+            {
+                name: "Nhà Hồ (Hồ Quý Ly – Đại Ngu)",
+                year: "1400 – 1407",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Cải cách mạnh mẽ nhưng thất bại trước quân Minh.</p>`
+            },
+            {
+                name: "Khởi nghĩa Lam Sơn – Lê Lợi",
+                year: "1418 – 1427",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Giải phóng đất nước, lập triều Hậu Lê.</p>`
+            },
+            {
+                name: "Nhà Lê Sơ (Thịnh trị)",
+                year: "1428 – 1527",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Ban hành Bộ luật Hồng Đức, mở mang giáo dục, lãnh thổ.</p>`
+            },
+            {
+                name: "Nhà Mạc – Nam Bắc triều",
+                year: "1527 – 1592",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Nội chiến kéo dài, đất nước chia cắt.</p>`
+            },
+            {
+                name: "Trịnh – Nguyễn phân tranh",
+                year: "1600 – 1777",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Đàng Ngoài – Đàng Trong chia đôi, hình thành lãnh thổ hình chữ S (1711).</p>`
+            },
+            {
+                name: "Khởi nghĩa Tây Sơn – Nguyễn Huệ (Quang Trung)",
+                year: "1771 – 1802",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Dẹp Trịnh Nguyễn, đánh tan quân Xiêm (1785) và Thanh (1789), thống nhất đất nước.</p>`
+            },
+            {
+                name: "Nhà Nguyễn (Gia Long – Tự Đức)",
+                year: "1802 – 1858",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
         ]
     },
-    dinh: {
-        title: "Nhà Đinh (968–980)",
-        img: '/src/assets/nhango.jpg',
-        desc: "Đinh Bộ Lĩnh chấm dứt Loạn 12 Sứ Quân, thống nhất đất nước, xưng Đại Thắng Minh hoàng đế, đặt quốc hiệu Đại Cồ Việt. Thiết lập bộ máy nhà nước, quân đội, ngoại giao. Mở đường cho thời kỳ độc lập lâu dài.",
+
+    phapdoho: {
+        title: "Thời Kỳ Pháp Đô Hộ (1858 – 1945)",
+        img: '/src/assets/nhadinh.jpg',
+        desc: "Mất nước, đấu tranh giành lại độc lập bằng nhiều phong trào yêu nước.",
         figures: [
-            { name: "Đinh Tiên Hoàng (Đinh Bộ Lĩnh)", img: '/src/assets/nhango.jpg', bio: "Vua đầu tiên xưng hoàng đế (968-979). Thống nhất đất nước sau Loạn 12 Sứ Quân, đặt quốc hiệu Đại Cồ Việt, xây dựng nền móng nhà nước độc lập." },
-            { name: "Đinh Toàn", img: '/src/assets/nhango.jpg', bio: "Con trai Đinh Tiên Hoàng. Vua trị vì ngắn (979-980), lúc còn nhỏ tuổi. Bị Lê Hoàn lật đổ trong biến cố triều đình." }
+            { name: "Đinh Tiên Hoàng", img: '/src/assets/dinhtienhoang.jpg', bio: "Vua đầu tiên xưng hoàng đế (968-979). Thống nhất đất nước sau Loạn 12 Sứ Quân, đặt quốc hiệu Đại Cồ Việt." },
+            { name: "Đinh Liễn", img: '/src/assets/dinhlien.jpg', bio: "Con trai trưởng Đinh Tiên Hoàng, có công dẹp loạn 12 sứ quân." }
         ],
         events: [
-            { name: "Ngô Quyền Đại Thắng Bạch Đằng – Chấm Dứt 1000 Năm Bắc Thuộc", year: "938", tomtat: "Trận Bạch Đằng năm 938 đánh dấu chiến thắng của Ngô Quyền trước quân Nam Hán, kết thúc thời kỳ Bắc thuộc kéo dài hơn 1000 năm.", context: "Đầu thế kỷ X, sau nhiều năm bị các triều đại phương Bắc đô hộ, nước ta tuy có lúc tự chủ dưới nhà Ngô nhưng vẫn chưa thật sự yên. Năm 938, quân Nam Hán đem đại quân sang xâm lược, với âm mưu đặt ách cai trị trở lại. Dẫn đầu là Hoằng Tháo con trai vua Nam Hán. Lúc này, Ngô Quyền, vốn là một tướng tài của Dương Đình Nghệ, vừa đánh tan Kiều Công Tiễn (kẻ phản bội) ở Đại La. Ông biết quân Nam Hán sẽ theo đường biển tiến vào sông Bạch Đằng để đánh thẳng vào kinh đô.", dienbien: ["Ngô Quyền quyết định chọn Bạch Đằng một con sông thủy triều mạnh, nhiều khúc quanh để làm nơi đặt bẫy.", "Ông cho quân đóng cọc nhọn dưới lòng sông, chỉ chừa đầu cọc ngập dưới nước. Khi thủy triều dâng, cọc bị che kín sẽ không có ai nhận ra.", "Ngày quân Nam Hán kéo vào cửa sông, Ngô Quyền cho quân ra khiêu chiến rồi giả vờ thua, rút lui.", "Quân giặc hăm hở đuổi theo, tiến sâu vào bãi cọc đúng lúc triều bắt đầu rút. Nước xuống nhanh, thuyền giặc mắc cạn, va vào cọc nhọn vỡ tan.", "Quân ta quay lại phản công, tiêu diệt gần như toàn bộ, Hoằng Tháo tử trận."], ynghia: ["Xóa bỏ hoàn toàn âm mưu tái xâm lược của Nam Hán.", "Mở ra thời kỳ độc lập lâu dài cho dân tộc, chấm dứt hơn 1.000 năm Bắc thuộc.", "Khẳng định tài thao lược xuất chúng của Ngô Quyền, trở thành hình mẫu cho các chiến thắng Bạch Đằng sau này (năm 981 và 1288)."]},
-            { name: "Ngô Quyền Lập Nhà Ngô – Khai Mở Thời Đại Độc Lập", year: "939 SCN – 944 SCN", tomtat: "Năm 939, Ngô Quyền xưng Vương, lập nhà Ngô, đóng đô tại Cổ Loa. Tổ chức lại triều đình, chính thức đặt nền móng độc lập lâu dài cho dân tộc.", context: "Năm 938, sau đại thắng Bạch Đằng, Ngô Quyền đã đánh tan quân Nam Hán, chấm dứt hơn 1.000 năm Bắc thuộc. Tuy nhiên, chiến thắng mới chỉ là bước đầu. Đất nước lúc đó vẫn còn rối ren, các thế lực địa phương chưa hoàn toàn quy phục, bộ máy cai trị chưa thống nhất. Ngô Quyền hiểu rằng muốn giữ được độc lập, cần phải có một triều đình mạnh, luật pháp rõ ràng, và một vị vua đủ uy quyền để trấn giữ bờ cõi.", dienbien: ["Sau chiến thắng, Ngô Quyền lên ngôi vua, lập ra Nhà Ngô, đóng đô tại Cổ Loa (Hà Nội ngày nay).", "Ông bắt tay xây dựng chính quyền trung ương tập quyền, củng cố quân đội, đặt các chức quan cai trị ở các châu, huyện.", "Nhà Ngô cũng chú trọng giữ hòa hiếu với các nước láng giềng để tránh chiến tranh, đồng thời ổn định đời sống nhân dân sau nhiều năm chiến loạn.", "Dưới sự trị vì của Ngô Quyền, đất nước được yên ổn, trật tự xã hội dần hồi phục, nông nghiệp và sản xuất bắt đầu khởi sắc."], ynghia: ["Khai mở thời đại độc lập tự chủ lâu dài của dân tộc Việt.", "Đặt nền móng cho nhà nước phong kiến tập quyền sơ khai.", "Khẳng định tầm nhìn chiến lược của Ngô Quyền: từ một tướng quân chiến thắng trở thành một nhà chính trị biết xây dựng đất nước."]},
-            { name: "Khủng Hoảng Của Nhà Ngô", year: "944 SCN – 965 SCN", tomtat: "Năm 944, Ngô Quyền mất, em vợ là Dương Tam Kha cướp ngôi, xưng là Dương Bình Vương gây nên khủng hoảng dòng chính nhà Ngô", context: "Sau khi Ngô Quyền mất năm 944, ngai vàng rơi vào tay Dương Tam Kha – em vợ của ông. Thay vì phò tá con của Ngô Quyền, Dương Tam Kha lại tự xưng vương, gây bất mãn trong triều và trong lòng dân. Con trai Ngô Quyền là Ngô Xương Ngập và Ngô Xương Văn phải lánh nạn, tình hình đất nước bắt đầu rạn nứt.", dienbien: ["944 – 950: Dương Tam Kha trị vì nhưng không được lòng các hào trưởng. Nhiều nơi nảy sinh chống đối ngầm.", "Sau này, Ngô Xương Văn được đưa về kinh, buộc Dương Tam Kha nhường ngôi, rồi mời anh là Ngô Xương Ngập cùng trị vì, sử gọi là Loạn hai vua.", "Hai vua liên tục bất hòa trong đường lối trị nước. Trong khi đó, các thế lực địa phương lợi dụng tình trạng phân quyền để củng cố lực lượng, không còn tuân phục triều đình như trước.", "Khi Ngô Xương Ngập mất, Ngô Xương Văn tiếp tục cầm quyền nhưng tình hình đã rất yếu. Đến khi ông tử trận trong một cuộc dẹp loạn, triều đình gần như tê liệt.", "Kết quả là, đất nước rơi vào cảnh phân tán, mở đầu cho thời kỳ hỗn loạn mà sau này sử gọi là Loạn 12 sứ quân."], ynghia: ["Cho thấy nền tảng chính trị của Nhà Ngô còn yếu, chưa đủ vững để duy trì thống nhất lâu dài.", "Việc tranh quyền đoạt vị đã tạo cơ hội cho các thế lực địa phương nổi dậy.", "Khủng hoảng Nhà Ngô là nguyên nhân trực tiếp dẫn tới thời kỳ 12 sứ quân, kéo dài suốt nhiều năm cho tới khi Đinh Bộ Lĩnh dẹp yên."]},
-            // { name: "Loạn 12 Sứ Quân", year: "965 SCN – 968 SCN", context: "Đầu thế kỷ X, sau nhiều năm bị các triều đại phương Bắc đô hộ, nước ta tuy có lúc tự chủ dưới nhà Ngô nhưng vẫn chưa thật sự yên. Năm 938, quân Nam Hán đem đại quân sang xâm lược, với âm mưu đặt ách cai trị trở lại. Dẫn đầu là Hoằng Tháo con trai vua Nam Hán. Lúc này, Ngô Quyền, vốn là một tướng tài của Dương Đình Nghệ, vừa đánh tan Kiều Công Tiễn (kẻ phản bội) ở Đại La. Ông biết quân Nam Hán sẽ theo đường biển tiến vào sông Bạch Đằng để đánh thẳng vào kinh đô.", dienbien: ["Ngô Quyền quyết định chọn Bạch Đằng một con sông thủy triều mạnh, nhiều khúc quanh để làm nơi đặt bẫy.", "Ông cho quân đóng cọc nhọn dưới lòng sông, chỉ chừa đầu cọc ngập dưới nước. Khi thủy triều dâng, cọc bị che kín sẽ không có ai nhận ra.", "Ngày quân Nam Hán kéo vào cửa sông, Ngô Quyền cho quân ra khiêu chiến rồi giả vờ thua, rút lui.", "Quân giặc hăm hở đuổi theo, tiến sâu vào bãi cọc đúng lúc triều bắt đầu rút. Nước xuống nhanh, thuyền giặc mắc cạn, va vào cọc nhọn vỡ tan.", "Quân ta quay lại phản công, tiêu diệt gần như toàn bộ, Hoằng Tháo tử trận."], ynghia: ["Xóa bỏ hoàn toàn âm mưu tái xâm lược của Nam Hán.", "Mở ra thời kỳ độc lập lâu dài cho dân tộc, chấm dứt hơn 1.000 năm Bắc thuộc.", "Khẳng định tài thao lược xuất chúng của Ngô Quyền, trở thành hình mẫu cho các chiến thắng Bạch Đằng sau này (năm 981 và 1288)."]},
+            {
+                name: "Pháp nổ súng xâm lược Đà Nẵng",
+                year: "1858",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Dẹp Trịnh Nguyễn, đánh tan quân Xiêm (1785) và Thanh (1789), thống nhất đất nước.</p>`
+            },
+            {
+                name: "Hiệp ước Nhâm Tuất – mất 3 tỉnh Nam Kỳ",
+                year: "1862",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Phong trào Cần Vương",
+                year: "1885 – 1896",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Nguyễn Ái Quốc (Hồ Chí Minh) ra đời",
+                year: "1890",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Phong trào Đông Du (Phan Bội Châu)",
+                year: "1905 – 1909",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Phong trào Duy Tân (Phan Châu Trinh)",
+                year: "1906 – 1908",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Đông Kinh Nghĩa Thục",
+                year: "1907",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Thành lập Đảng Cộng sản Việt Nam",
+                year: "3/2/1930",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Phong trào Xô viết Nghệ Tĩnh",
+                year: "1930–1931",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Thành lập Việt Minh",
+                year: "1941",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Tuyên ngôn Độc lập – Nước Việt Nam Dân chủ Cộng hòa",
+                year: "2/9/1945",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            }
         ]
     },
-    tienle: {
-        title: "Nhà Tiền Lê (980–1009)",
-        img: '/src/assets/nhango.jpg',
-        desc: "Lê Hoàn lên ngôi sau biến cố nhà Đinh. Đánh thắng quân Tống xâm lược (981), bảo vệ nền độc lập. Thiết lập chế độ quân chủ vững chắc, tạo nền tảng cho triều Lý sau này.",
+
+    khangchienchongphap: {
+        title: "Kháng Chiến Chống Pháp (1945 – 1954)",
+        img: '/src/assets/nhaly.jpg',
+        desc: "Triều đại hưng thịnh nhất trong lịch sử phong kiến Việt Nam. Lý Công Uẩn dời đô về Thăng Long (1010), xây dựng quốc gia hùng mạnh.",
         figures: [
-            { name: "Lê Đại Hành (Lê Hoàn)", img: '/src/assets/nhango.jpg', bio: "Vua đầu tiên nhà Tiền Lê (980-1005). Tướng lĩnh kiệt xuất, đánh thắng quân Tống xâm lược (981), bảo vệ độc lập dân tộc." },
-            { name: "Lê Long Đĩnh", img: '/src/assets/nhango.jpg', bio: "Vua cuối nhà Tiền Lê (1005-1009). Trị vì ngắn, không có con, nhường ngôi cho Lý Công Uẩn, mở đầu triều Lý." }
+            { name: "Lý Thái Tổ", img: '/src/assets/lythaito.jpg', bio: "Vua khai quốc triều Lý (1009-1028). Dời đô về Thăng Long (Hà Nội), xây dựng nền móng vững chắc cho triều đại." },
+            { name: "Lý Thánh Tông", img: '/src/assets/lythanhtong.jpg', bio: "Vua thứ 3 triều Lý (1054-1072). Xây dựng Văn Miếu (1070) - trường đại học đầu tiên của Việt Nam." }
         ],
         events: [
-            { name: "Ngô Quyền Đại Thắng Bạch Đằng – Chấm Dứt 1000 Năm Bắc Thuộc", year: "938", tomtat: "Trận Bạch Đằng năm 938 đánh dấu chiến thắng của Ngô Quyền trước quân Nam Hán, kết thúc thời kỳ Bắc thuộc kéo dài hơn 1000 năm.", context: "Đầu thế kỷ X, sau nhiều năm bị các triều đại phương Bắc đô hộ, nước ta tuy có lúc tự chủ dưới nhà Ngô nhưng vẫn chưa thật sự yên. Năm 938, quân Nam Hán đem đại quân sang xâm lược, với âm mưu đặt ách cai trị trở lại. Dẫn đầu là Hoằng Tháo con trai vua Nam Hán. Lúc này, Ngô Quyền, vốn là một tướng tài của Dương Đình Nghệ, vừa đánh tan Kiều Công Tiễn (kẻ phản bội) ở Đại La. Ông biết quân Nam Hán sẽ theo đường biển tiến vào sông Bạch Đằng để đánh thẳng vào kinh đô.", dienbien: ["Ngô Quyền quyết định chọn Bạch Đằng một con sông thủy triều mạnh, nhiều khúc quanh để làm nơi đặt bẫy.", "Ông cho quân đóng cọc nhọn dưới lòng sông, chỉ chừa đầu cọc ngập dưới nước. Khi thủy triều dâng, cọc bị che kín sẽ không có ai nhận ra.", "Ngày quân Nam Hán kéo vào cửa sông, Ngô Quyền cho quân ra khiêu chiến rồi giả vờ thua, rút lui.", "Quân giặc hăm hở đuổi theo, tiến sâu vào bãi cọc đúng lúc triều bắt đầu rút. Nước xuống nhanh, thuyền giặc mắc cạn, va vào cọc nhọn vỡ tan.", "Quân ta quay lại phản công, tiêu diệt gần như toàn bộ, Hoằng Tháo tử trận."], ynghia: ["Xóa bỏ hoàn toàn âm mưu tái xâm lược của Nam Hán.", "Mở ra thời kỳ độc lập lâu dài cho dân tộc, chấm dứt hơn 1.000 năm Bắc thuộc.", "Khẳng định tài thao lược xuất chúng của Ngô Quyền, trở thành hình mẫu cho các chiến thắng Bạch Đằng sau này (năm 981 và 1288)."]},
-            { name: "Ngô Quyền Lập Nhà Ngô – Khai Mở Thời Đại Độc Lập", year: "939 SCN – 944 SCN", tomtat: "Năm 939, Ngô Quyền xưng Vương, lập nhà Ngô, đóng đô tại Cổ Loa. Tổ chức lại triều đình, chính thức đặt nền móng độc lập lâu dài cho dân tộc.", context: "Năm 938, sau đại thắng Bạch Đằng, Ngô Quyền đã đánh tan quân Nam Hán, chấm dứt hơn 1.000 năm Bắc thuộc. Tuy nhiên, chiến thắng mới chỉ là bước đầu. Đất nước lúc đó vẫn còn rối ren, các thế lực địa phương chưa hoàn toàn quy phục, bộ máy cai trị chưa thống nhất. Ngô Quyền hiểu rằng muốn giữ được độc lập, cần phải có một triều đình mạnh, luật pháp rõ ràng, và một vị vua đủ uy quyền để trấn giữ bờ cõi.", dienbien: ["Sau chiến thắng, Ngô Quyền lên ngôi vua, lập ra Nhà Ngô, đóng đô tại Cổ Loa (Hà Nội ngày nay).", "Ông bắt tay xây dựng chính quyền trung ương tập quyền, củng cố quân đội, đặt các chức quan cai trị ở các châu, huyện.", "Nhà Ngô cũng chú trọng giữ hòa hiếu với các nước láng giềng để tránh chiến tranh, đồng thời ổn định đời sống nhân dân sau nhiều năm chiến loạn.", "Dưới sự trị vì của Ngô Quyền, đất nước được yên ổn, trật tự xã hội dần hồi phục, nông nghiệp và sản xuất bắt đầu khởi sắc."], ynghia: ["Khai mở thời đại độc lập tự chủ lâu dài của dân tộc Việt.", "Đặt nền móng cho nhà nước phong kiến tập quyền sơ khai.", "Khẳng định tầm nhìn chiến lược của Ngô Quyền: từ một tướng quân chiến thắng trở thành một nhà chính trị biết xây dựng đất nước."]},
-            { name: "Khủng Hoảng Của Nhà Ngô", year: "944 SCN – 965 SCN", tomtat: "Năm 944, Ngô Quyền mất, em vợ là Dương Tam Kha cướp ngôi, xưng là Dương Bình Vương gây nên khủng hoảng dòng chính nhà Ngô", context: "Sau khi Ngô Quyền mất năm 944, ngai vàng rơi vào tay Dương Tam Kha – em vợ của ông. Thay vì phò tá con của Ngô Quyền, Dương Tam Kha lại tự xưng vương, gây bất mãn trong triều và trong lòng dân. Con trai Ngô Quyền là Ngô Xương Ngập và Ngô Xương Văn phải lánh nạn, tình hình đất nước bắt đầu rạn nứt.", dienbien: ["944 – 950: Dương Tam Kha trị vì nhưng không được lòng các hào trưởng. Nhiều nơi nảy sinh chống đối ngầm.", "Sau này, Ngô Xương Văn được đưa về kinh, buộc Dương Tam Kha nhường ngôi, rồi mời anh là Ngô Xương Ngập cùng trị vì, sử gọi là Loạn hai vua.", "Hai vua liên tục bất hòa trong đường lối trị nước. Trong khi đó, các thế lực địa phương lợi dụng tình trạng phân quyền để củng cố lực lượng, không còn tuân phục triều đình như trước.", "Khi Ngô Xương Ngập mất, Ngô Xương Văn tiếp tục cầm quyền nhưng tình hình đã rất yếu. Đến khi ông tử trận trong một cuộc dẹp loạn, triều đình gần như tê liệt.", "Kết quả là, đất nước rơi vào cảnh phân tán, mở đầu cho thời kỳ hỗn loạn mà sau này sử gọi là Loạn 12 sứ quân."], ynghia: ["Cho thấy nền tảng chính trị của Nhà Ngô còn yếu, chưa đủ vững để duy trì thống nhất lâu dài.", "Việc tranh quyền đoạt vị đã tạo cơ hội cho các thế lực địa phương nổi dậy.", "Khủng hoảng Nhà Ngô là nguyên nhân trực tiếp dẫn tới thời kỳ 12 sứ quân, kéo dài suốt nhiều năm cho tới khi Đinh Bộ Lĩnh dẹp yên."]},
-            // { name: "Loạn 12 Sứ Quân", year: "965 SCN – 968 SCN", context: "Đầu thế kỷ X, sau nhiều năm bị các triều đại phương Bắc đô hộ, nước ta tuy có lúc tự chủ dưới nhà Ngô nhưng vẫn chưa thật sự yên. Năm 938, quân Nam Hán đem đại quân sang xâm lược, với âm mưu đặt ách cai trị trở lại. Dẫn đầu là Hoằng Tháo con trai vua Nam Hán. Lúc này, Ngô Quyền, vốn là một tướng tài của Dương Đình Nghệ, vừa đánh tan Kiều Công Tiễn (kẻ phản bội) ở Đại La. Ông biết quân Nam Hán sẽ theo đường biển tiến vào sông Bạch Đằng để đánh thẳng vào kinh đô.", dienbien: ["Ngô Quyền quyết định chọn Bạch Đằng một con sông thủy triều mạnh, nhiều khúc quanh để làm nơi đặt bẫy.", "Ông cho quân đóng cọc nhọn dưới lòng sông, chỉ chừa đầu cọc ngập dưới nước. Khi thủy triều dâng, cọc bị che kín sẽ không có ai nhận ra.", "Ngày quân Nam Hán kéo vào cửa sông, Ngô Quyền cho quân ra khiêu chiến rồi giả vờ thua, rút lui.", "Quân giặc hăm hở đuổi theo, tiến sâu vào bãi cọc đúng lúc triều bắt đầu rút. Nước xuống nhanh, thuyền giặc mắc cạn, va vào cọc nhọn vỡ tan.", "Quân ta quay lại phản công, tiêu diệt gần như toàn bộ, Hoằng Tháo tử trận."], ynghia: ["Xóa bỏ hoàn toàn âm mưu tái xâm lược của Nam Hán.", "Mở ra thời kỳ độc lập lâu dài cho dân tộc, chấm dứt hơn 1.000 năm Bắc thuộc.", "Khẳng định tài thao lược xuất chúng của Ngô Quyền, trở thành hình mẫu cho các chiến thắng Bạch Đằng sau này (năm 981 và 1288)."]},
+            {
+                name: "Toàn quốc kháng chiến",
+                year: "19/12/1946",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Dẹp Trịnh Nguyễn, đánh tan quân Xiêm (1785) và Thanh (1789), thống nhất đất nước.</p>`
+            },
+            {
+                name: "Chiến dịch Việt Bắc",
+                year: "1947",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Chiến dịch Biên giới",
+                year: "1950",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Chiến dịch Tây Bắc",
+                year: "1952",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Chiến thắng Điện Biên Phủ",
+                year: "7/5/1954",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Hiệp định Giơ-ne-vơ",
+                year: "1954",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            }
         ]
     },
-    ly: {
-        title: "Nhà Lý (1009–1225)",
-        img: '/src/assets/nhathoducba.jpg',
-        desc: "Triều đại hưng thịnh nhất trong lịch sử phong kiến Việt Nam. Lý Công Uẩn (Lý Thái Tổ) dời đô về Thăng Long (1010), xây dựng quốc gia hùng mạnh. Phật giáo phát triển mạnh, kinh tế phồn vinh, giáo dục văn hiến được đề cao. Triều Lý kéo dài 216 năm với 9 đời vua.",
+
+    khangchienchongmy: {
+        title: "Kháng Chiến Chống Mỹ (1954 – 1975)",
+        img: '/src/assets/nhatran.jpg',
+        desc: "Triều đại anh hùng với 3 lần đánh thắng quân Mông-Nguyên xâm lược (1258, 1285, 1288). Trần Hưng Đạo lãnh đạo chiến thắng vang dội tại Bạch Đằng.",
         figures: [
-            { name: "Lý Thái Tổ (Lý Công Uẩn)", img: '/src/assets/nhathoducba.jpg', bio: "Vua khai quốc triều Lý (1009-1028). Dời đô về Thăng Long (Hà Nội), xây dựng nền móng vững chắc cho triều đại. Sắc dụ dời đô là văn bản lịch sử quan trọng." },
-            { name: "Lý Thánh Tông", img: '/src/assets/nhathoducba.jpg', bio: "Vua thứ 3 triều Lý (1054-1072). Xây dựng Văn Miếu (1070) - trường đại học đầu tiên của Việt Nam. Đổi tên nước thành Đại Việt (1054)." },
-            { name: "Lý Chiêu Hoàng", img: '/src/assets/nhathoducba.jpg', bio: "Nữ hoàng duy nhất trong lịch sử Việt Nam (1224-1225). Nhường ngôi cho Trần Cảnh, chuyển giao quyền lực từ triều Lý sang Trần." }
+            { name: "Trần Thái Tông", img: '/src/assets/tranthaithong.jpg', bio: "Vua đầu tiên triều Trần (1225-1258). Xây dựng thể chế vững mạnh, đánh thắng quân Mông Cổ lần 1." },
+            { name: "Trần Hưng Đạo", img: '/src/assets/tranhungdao.jpg', bio: "Danh tướng thiên tài, chỉ huy 3 lần chiến thắng quân Nguyên-Mông. Tác giả 'Hịch tướng sĩ' bất hủ." }
         ],
         events: [
-            { name: "Ngô Quyền Đại Thắng Bạch Đằng – Chấm Dứt 1000 Năm Bắc Thuộc", year: "938", tomtat: "Trận Bạch Đằng năm 938 đánh dấu chiến thắng của Ngô Quyền trước quân Nam Hán, kết thúc thời kỳ Bắc thuộc kéo dài hơn 1000 năm.", context: "Đầu thế kỷ X, sau nhiều năm bị các triều đại phương Bắc đô hộ, nước ta tuy có lúc tự chủ dưới nhà Ngô nhưng vẫn chưa thật sự yên. Năm 938, quân Nam Hán đem đại quân sang xâm lược, với âm mưu đặt ách cai trị trở lại. Dẫn đầu là Hoằng Tháo con trai vua Nam Hán. Lúc này, Ngô Quyền, vốn là một tướng tài của Dương Đình Nghệ, vừa đánh tan Kiều Công Tiễn (kẻ phản bội) ở Đại La. Ông biết quân Nam Hán sẽ theo đường biển tiến vào sông Bạch Đằng để đánh thẳng vào kinh đô.", dienbien: ["Ngô Quyền quyết định chọn Bạch Đằng một con sông thủy triều mạnh, nhiều khúc quanh để làm nơi đặt bẫy.", "Ông cho quân đóng cọc nhọn dưới lòng sông, chỉ chừa đầu cọc ngập dưới nước. Khi thủy triều dâng, cọc bị che kín sẽ không có ai nhận ra.", "Ngày quân Nam Hán kéo vào cửa sông, Ngô Quyền cho quân ra khiêu chiến rồi giả vờ thua, rút lui.", "Quân giặc hăm hở đuổi theo, tiến sâu vào bãi cọc đúng lúc triều bắt đầu rút. Nước xuống nhanh, thuyền giặc mắc cạn, va vào cọc nhọn vỡ tan.", "Quân ta quay lại phản công, tiêu diệt gần như toàn bộ, Hoằng Tháo tử trận."], ynghia: ["Xóa bỏ hoàn toàn âm mưu tái xâm lược của Nam Hán.", "Mở ra thời kỳ độc lập lâu dài cho dân tộc, chấm dứt hơn 1.000 năm Bắc thuộc.", "Khẳng định tài thao lược xuất chúng của Ngô Quyền, trở thành hình mẫu cho các chiến thắng Bạch Đằng sau này (năm 981 và 1288)."]},
-            { name: "Ngô Quyền Lập Nhà Ngô – Khai Mở Thời Đại Độc Lập", year: "939 SCN – 944 SCN", tomtat: "Năm 939, Ngô Quyền xưng Vương, lập nhà Ngô, đóng đô tại Cổ Loa. Tổ chức lại triều đình, chính thức đặt nền móng độc lập lâu dài cho dân tộc.", context: "Năm 938, sau đại thắng Bạch Đằng, Ngô Quyền đã đánh tan quân Nam Hán, chấm dứt hơn 1.000 năm Bắc thuộc. Tuy nhiên, chiến thắng mới chỉ là bước đầu. Đất nước lúc đó vẫn còn rối ren, các thế lực địa phương chưa hoàn toàn quy phục, bộ máy cai trị chưa thống nhất. Ngô Quyền hiểu rằng muốn giữ được độc lập, cần phải có một triều đình mạnh, luật pháp rõ ràng, và một vị vua đủ uy quyền để trấn giữ bờ cõi.", dienbien: ["Sau chiến thắng, Ngô Quyền lên ngôi vua, lập ra Nhà Ngô, đóng đô tại Cổ Loa (Hà Nội ngày nay).", "Ông bắt tay xây dựng chính quyền trung ương tập quyền, củng cố quân đội, đặt các chức quan cai trị ở các châu, huyện.", "Nhà Ngô cũng chú trọng giữ hòa hiếu với các nước láng giềng để tránh chiến tranh, đồng thời ổn định đời sống nhân dân sau nhiều năm chiến loạn.", "Dưới sự trị vì của Ngô Quyền, đất nước được yên ổn, trật tự xã hội dần hồi phục, nông nghiệp và sản xuất bắt đầu khởi sắc."], ynghia: ["Khai mở thời đại độc lập tự chủ lâu dài của dân tộc Việt.", "Đặt nền móng cho nhà nước phong kiến tập quyền sơ khai.", "Khẳng định tầm nhìn chiến lược của Ngô Quyền: từ một tướng quân chiến thắng trở thành một nhà chính trị biết xây dựng đất nước."]},
-            { name: "Khủng Hoảng Của Nhà Ngô", year: "944 SCN – 965 SCN", tomtat: "Năm 944, Ngô Quyền mất, em vợ là Dương Tam Kha cướp ngôi, xưng là Dương Bình Vương gây nên khủng hoảng dòng chính nhà Ngô", context: "Sau khi Ngô Quyền mất năm 944, ngai vàng rơi vào tay Dương Tam Kha – em vợ của ông. Thay vì phò tá con của Ngô Quyền, Dương Tam Kha lại tự xưng vương, gây bất mãn trong triều và trong lòng dân. Con trai Ngô Quyền là Ngô Xương Ngập và Ngô Xương Văn phải lánh nạn, tình hình đất nước bắt đầu rạn nứt.", dienbien: ["944 – 950: Dương Tam Kha trị vì nhưng không được lòng các hào trưởng. Nhiều nơi nảy sinh chống đối ngầm.", "Sau này, Ngô Xương Văn được đưa về kinh, buộc Dương Tam Kha nhường ngôi, rồi mời anh là Ngô Xương Ngập cùng trị vì, sử gọi là Loạn hai vua.", "Hai vua liên tục bất hòa trong đường lối trị nước. Trong khi đó, các thế lực địa phương lợi dụng tình trạng phân quyền để củng cố lực lượng, không còn tuân phục triều đình như trước.", "Khi Ngô Xương Ngập mất, Ngô Xương Văn tiếp tục cầm quyền nhưng tình hình đã rất yếu. Đến khi ông tử trận trong một cuộc dẹp loạn, triều đình gần như tê liệt.", "Kết quả là, đất nước rơi vào cảnh phân tán, mở đầu cho thời kỳ hỗn loạn mà sau này sử gọi là Loạn 12 sứ quân."], ynghia: ["Cho thấy nền tảng chính trị của Nhà Ngô còn yếu, chưa đủ vững để duy trì thống nhất lâu dài.", "Việc tranh quyền đoạt vị đã tạo cơ hội cho các thế lực địa phương nổi dậy.", "Khủng hoảng Nhà Ngô là nguyên nhân trực tiếp dẫn tới thời kỳ 12 sứ quân, kéo dài suốt nhiều năm cho tới khi Đinh Bộ Lĩnh dẹp yên."]},
-            // { name: "Loạn 12 Sứ Quân", year: "965 SCN – 968 SCN", context: "Đầu thế kỷ X, sau nhiều năm bị các triều đại phương Bắc đô hộ, nước ta tuy có lúc tự chủ dưới nhà Ngô nhưng vẫn chưa thật sự yên. Năm 938, quân Nam Hán đem đại quân sang xâm lược, với âm mưu đặt ách cai trị trở lại. Dẫn đầu là Hoằng Tháo con trai vua Nam Hán. Lúc này, Ngô Quyền, vốn là một tướng tài của Dương Đình Nghệ, vừa đánh tan Kiều Công Tiễn (kẻ phản bội) ở Đại La. Ông biết quân Nam Hán sẽ theo đường biển tiến vào sông Bạch Đằng để đánh thẳng vào kinh đô.", dienbien: ["Ngô Quyền quyết định chọn Bạch Đằng một con sông thủy triều mạnh, nhiều khúc quanh để làm nơi đặt bẫy.", "Ông cho quân đóng cọc nhọn dưới lòng sông, chỉ chừa đầu cọc ngập dưới nước. Khi thủy triều dâng, cọc bị che kín sẽ không có ai nhận ra.", "Ngày quân Nam Hán kéo vào cửa sông, Ngô Quyền cho quân ra khiêu chiến rồi giả vờ thua, rút lui.", "Quân giặc hăm hở đuổi theo, tiến sâu vào bãi cọc đúng lúc triều bắt đầu rút. Nước xuống nhanh, thuyền giặc mắc cạn, va vào cọc nhọn vỡ tan.", "Quân ta quay lại phản công, tiêu diệt gần như toàn bộ, Hoằng Tháo tử trận."], ynghia: ["Xóa bỏ hoàn toàn âm mưu tái xâm lược của Nam Hán.", "Mở ra thời kỳ độc lập lâu dài cho dân tộc, chấm dứt hơn 1.000 năm Bắc thuộc.", "Khẳng định tài thao lược xuất chúng của Ngô Quyền, trở thành hình mẫu cho các chiến thắng Bạch Đằng sau này (năm 981 và 1288)."]},
+            {
+                name: "Phong trào Đồng Khởi",
+                year: "1959 – 1960",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Dẹp Trịnh Nguyễn, đánh tan quân Xiêm (1785) và Thanh (1789), thống nhất đất nước.</p>`
+            },
+            {
+                name: "Chiến thắng Ấp Bắc",
+                year: "1963",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Chiến dịch Bình Giã",
+                year: "1964 – 1965",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Đánh bại cuộc hành quân Junction City",
+                year: "1967",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Đường 9 – Khe Sanh & Tổng tiến công Mậu Thân",
+                year: "1968",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "“Điện Biên Phủ trên không” – Hà Nội",
+                year: "1972",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Chiến dịch Hồ Chí Minh – Giải phóng miền Nam",
+                year: "30/4/1975",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            }
         ]
     },
-    tran: {
-        title: "Nhà Trần (1225–1400)",
-        img: '/src/assets/diadao.png',
-        desc: "Triều đại anh hùng với 3 lần đánh thắng quân Mông-Nguyên xâm lược (1258, 1285, 1288). Trần Hưng Đạo lãnh đạo chiến thắng vang dội tại Bạch Đằng. Phật giáo Thiền phái Trúc Lâm phát triển. Văn hóa, giáo dục thịnh vượng với chữ Nôm ra đời.",
-        figures: [
-            { name: "Trần Thái Tông", img: '/src/assets/diadao.png', bio: "Vua đầu tiên triều Trần (1225-1258). Xây dựng thể chế vững mạnh, đánh thắng quân Mông Cổ lần 1. Sáng lập phái Thiền Trúc Lâm." },
-            { name: "Trần Hưng Đạo", img: '/src/assets/diadao.png', bio: "Danh tướng thiên tài, chỉ huy 3 lần chiến thắng quân Nguyên-Mông. Chiến thắng Bạch Đằng (1288) vang dội lịch sử. Tác giả 'Hịch tướng sĩ' bất hủ." },
-            { name: "Trần Nhân Tông", img: '/src/assets/diadao.png', bio: "Vua thứ 3 triều Trần (1278-1293). Vừa là quân vương anh minh, vừa là thiền sư khai sáng phái Trúc Lâm Yên Tử. Đánh thắng quân Nguyên lần 2 và 3." }
-        ],
-        events: [
-            { name: "Ngô Quyền Đại Thắng Bạch Đằng – Chấm Dứt 1000 Năm Bắc Thuộc", year: "938", tomtat: "Trận Bạch Đằng năm 938 đánh dấu chiến thắng của Ngô Quyền trước quân Nam Hán, kết thúc thời kỳ Bắc thuộc kéo dài hơn 1000 năm.", context: "Đầu thế kỷ X, sau nhiều năm bị các triều đại phương Bắc đô hộ, nước ta tuy có lúc tự chủ dưới nhà Ngô nhưng vẫn chưa thật sự yên. Năm 938, quân Nam Hán đem đại quân sang xâm lược, với âm mưu đặt ách cai trị trở lại. Dẫn đầu là Hoằng Tháo con trai vua Nam Hán. Lúc này, Ngô Quyền, vốn là một tướng tài của Dương Đình Nghệ, vừa đánh tan Kiều Công Tiễn (kẻ phản bội) ở Đại La. Ông biết quân Nam Hán sẽ theo đường biển tiến vào sông Bạch Đằng để đánh thẳng vào kinh đô.", dienbien: ["Ngô Quyền quyết định chọn Bạch Đằng một con sông thủy triều mạnh, nhiều khúc quanh để làm nơi đặt bẫy.", "Ông cho quân đóng cọc nhọn dưới lòng sông, chỉ chừa đầu cọc ngập dưới nước. Khi thủy triều dâng, cọc bị che kín sẽ không có ai nhận ra.", "Ngày quân Nam Hán kéo vào cửa sông, Ngô Quyền cho quân ra khiêu chiến rồi giả vờ thua, rút lui.", "Quân giặc hăm hở đuổi theo, tiến sâu vào bãi cọc đúng lúc triều bắt đầu rút. Nước xuống nhanh, thuyền giặc mắc cạn, va vào cọc nhọn vỡ tan.", "Quân ta quay lại phản công, tiêu diệt gần như toàn bộ, Hoằng Tháo tử trận."], ynghia: ["Xóa bỏ hoàn toàn âm mưu tái xâm lược của Nam Hán.", "Mở ra thời kỳ độc lập lâu dài cho dân tộc, chấm dứt hơn 1.000 năm Bắc thuộc.", "Khẳng định tài thao lược xuất chúng của Ngô Quyền, trở thành hình mẫu cho các chiến thắng Bạch Đằng sau này (năm 981 và 1288)."]},
-            { name: "Ngô Quyền Lập Nhà Ngô – Khai Mở Thời Đại Độc Lập", year: "939 SCN – 944 SCN", tomtat: "Năm 939, Ngô Quyền xưng Vương, lập nhà Ngô, đóng đô tại Cổ Loa. Tổ chức lại triều đình, chính thức đặt nền móng độc lập lâu dài cho dân tộc.", context: "Năm 938, sau đại thắng Bạch Đằng, Ngô Quyền đã đánh tan quân Nam Hán, chấm dứt hơn 1.000 năm Bắc thuộc. Tuy nhiên, chiến thắng mới chỉ là bước đầu. Đất nước lúc đó vẫn còn rối ren, các thế lực địa phương chưa hoàn toàn quy phục, bộ máy cai trị chưa thống nhất. Ngô Quyền hiểu rằng muốn giữ được độc lập, cần phải có một triều đình mạnh, luật pháp rõ ràng, và một vị vua đủ uy quyền để trấn giữ bờ cõi.", dienbien: ["Sau chiến thắng, Ngô Quyền lên ngôi vua, lập ra Nhà Ngô, đóng đô tại Cổ Loa (Hà Nội ngày nay).", "Ông bắt tay xây dựng chính quyền trung ương tập quyền, củng cố quân đội, đặt các chức quan cai trị ở các châu, huyện.", "Nhà Ngô cũng chú trọng giữ hòa hiếu với các nước láng giềng để tránh chiến tranh, đồng thời ổn định đời sống nhân dân sau nhiều năm chiến loạn.", "Dưới sự trị vì của Ngô Quyền, đất nước được yên ổn, trật tự xã hội dần hồi phục, nông nghiệp và sản xuất bắt đầu khởi sắc."], ynghia: ["Khai mở thời đại độc lập tự chủ lâu dài của dân tộc Việt.", "Đặt nền móng cho nhà nước phong kiến tập quyền sơ khai.", "Khẳng định tầm nhìn chiến lược của Ngô Quyền: từ một tướng quân chiến thắng trở thành một nhà chính trị biết xây dựng đất nước."]},
-            { name: "Khủng Hoảng Của Nhà Ngô", year: "944 SCN – 965 SCN", tomtat: "Năm 944, Ngô Quyền mất, em vợ là Dương Tam Kha cướp ngôi, xưng là Dương Bình Vương gây nên khủng hoảng dòng chính nhà Ngô", context: "Sau khi Ngô Quyền mất năm 944, ngai vàng rơi vào tay Dương Tam Kha – em vợ của ông. Thay vì phò tá con của Ngô Quyền, Dương Tam Kha lại tự xưng vương, gây bất mãn trong triều và trong lòng dân. Con trai Ngô Quyền là Ngô Xương Ngập và Ngô Xương Văn phải lánh nạn, tình hình đất nước bắt đầu rạn nứt.", dienbien: ["944 – 950: Dương Tam Kha trị vì nhưng không được lòng các hào trưởng. Nhiều nơi nảy sinh chống đối ngầm.", "Sau này, Ngô Xương Văn được đưa về kinh, buộc Dương Tam Kha nhường ngôi, rồi mời anh là Ngô Xương Ngập cùng trị vì, sử gọi là Loạn hai vua.", "Hai vua liên tục bất hòa trong đường lối trị nước. Trong khi đó, các thế lực địa phương lợi dụng tình trạng phân quyền để củng cố lực lượng, không còn tuân phục triều đình như trước.", "Khi Ngô Xương Ngập mất, Ngô Xương Văn tiếp tục cầm quyền nhưng tình hình đã rất yếu. Đến khi ông tử trận trong một cuộc dẹp loạn, triều đình gần như tê liệt.", "Kết quả là, đất nước rơi vào cảnh phân tán, mở đầu cho thời kỳ hỗn loạn mà sau này sử gọi là Loạn 12 sứ quân."], ynghia: ["Cho thấy nền tảng chính trị của Nhà Ngô còn yếu, chưa đủ vững để duy trì thống nhất lâu dài.", "Việc tranh quyền đoạt vị đã tạo cơ hội cho các thế lực địa phương nổi dậy.", "Khủng hoảng Nhà Ngô là nguyên nhân trực tiếp dẫn tới thời kỳ 12 sứ quân, kéo dài suốt nhiều năm cho tới khi Đinh Bộ Lĩnh dẹp yên."]},
-            // { name: "Loạn 12 Sứ Quân", year: "965 SCN – 968 SCN", context: "Đầu thế kỷ X, sau nhiều năm bị các triều đại phương Bắc đô hộ, nước ta tuy có lúc tự chủ dưới nhà Ngô nhưng vẫn chưa thật sự yên. Năm 938, quân Nam Hán đem đại quân sang xâm lược, với âm mưu đặt ách cai trị trở lại. Dẫn đầu là Hoằng Tháo con trai vua Nam Hán. Lúc này, Ngô Quyền, vốn là một tướng tài của Dương Đình Nghệ, vừa đánh tan Kiều Công Tiễn (kẻ phản bội) ở Đại La. Ông biết quân Nam Hán sẽ theo đường biển tiến vào sông Bạch Đằng để đánh thẳng vào kinh đô.", dienbien: ["Ngô Quyền quyết định chọn Bạch Đằng một con sông thủy triều mạnh, nhiều khúc quanh để làm nơi đặt bẫy.", "Ông cho quân đóng cọc nhọn dưới lòng sông, chỉ chừa đầu cọc ngập dưới nước. Khi thủy triều dâng, cọc bị che kín sẽ không có ai nhận ra.", "Ngày quân Nam Hán kéo vào cửa sông, Ngô Quyền cho quân ra khiêu chiến rồi giả vờ thua, rút lui.", "Quân giặc hăm hở đuổi theo, tiến sâu vào bãi cọc đúng lúc triều bắt đầu rút. Nước xuống nhanh, thuyền giặc mắc cạn, va vào cọc nhọn vỡ tan.", "Quân ta quay lại phản công, tiêu diệt gần như toàn bộ, Hoằng Tháo tử trận."], ynghia: ["Xóa bỏ hoàn toàn âm mưu tái xâm lược của Nam Hán.", "Mở ra thời kỳ độc lập lâu dài cho dân tộc, chấm dứt hơn 1.000 năm Bắc thuộc.", "Khẳng định tài thao lược xuất chúng của Ngô Quyền, trở thành hình mẫu cho các chiến thắng Bạch Đằng sau này (năm 981 và 1288)."]},
-        ]
-    },
-    ho: {
-        title: "Nhà Hồ (1400–1407)",
-        img: '/src/assets/hue.jpg',
-        desc: "Hồ Quý Ly cải cách triệt để: đổi tiền giấy, cải cách ruộng đất, giáo dục. Nhưng triều đại ngắn ngủi, quân Minh xâm lược (1407), mở đầu 20 năm Bắc thuộc lần 4.",
-        figures: [
-            { name: "Hồ Quý Ly", img: '/src/assets/hue.jpg', bio: "Nhà cải cách lớn (1400-1407). Thực hiện nhiều cải cách cấp tiến: tiền tệ, ruộng đất, giáo dục, luật pháp. Bị quân Minh đánh bại." },
-            { name: "Hồ Hán Thương", img: '/src/assets/hue.jpg', bio: "Con trai Hồ Quý Ly. Vua thứ 2 nhà Hồ (1401-1407). Cùng cha chống quân Minh nhưng thất bại, bị bắt đưa về Trung Quốc." }
-        ],
-        events: [
-            { name: "Ngô Quyền Đại Thắng Bạch Đằng – Chấm Dứt 1000 Năm Bắc Thuộc", year: "938", tomtat: "Trận Bạch Đằng năm 938 đánh dấu chiến thắng của Ngô Quyền trước quân Nam Hán, kết thúc thời kỳ Bắc thuộc kéo dài hơn 1000 năm.", context: "Đầu thế kỷ X, sau nhiều năm bị các triều đại phương Bắc đô hộ, nước ta tuy có lúc tự chủ dưới nhà Ngô nhưng vẫn chưa thật sự yên. Năm 938, quân Nam Hán đem đại quân sang xâm lược, với âm mưu đặt ách cai trị trở lại. Dẫn đầu là Hoằng Tháo con trai vua Nam Hán. Lúc này, Ngô Quyền, vốn là một tướng tài của Dương Đình Nghệ, vừa đánh tan Kiều Công Tiễn (kẻ phản bội) ở Đại La. Ông biết quân Nam Hán sẽ theo đường biển tiến vào sông Bạch Đằng để đánh thẳng vào kinh đô.", dienbien: ["Ngô Quyền quyết định chọn Bạch Đằng một con sông thủy triều mạnh, nhiều khúc quanh để làm nơi đặt bẫy.", "Ông cho quân đóng cọc nhọn dưới lòng sông, chỉ chừa đầu cọc ngập dưới nước. Khi thủy triều dâng, cọc bị che kín sẽ không có ai nhận ra.", "Ngày quân Nam Hán kéo vào cửa sông, Ngô Quyền cho quân ra khiêu chiến rồi giả vờ thua, rút lui.", "Quân giặc hăm hở đuổi theo, tiến sâu vào bãi cọc đúng lúc triều bắt đầu rút. Nước xuống nhanh, thuyền giặc mắc cạn, va vào cọc nhọn vỡ tan.", "Quân ta quay lại phản công, tiêu diệt gần như toàn bộ, Hoằng Tháo tử trận."], ynghia: ["Xóa bỏ hoàn toàn âm mưu tái xâm lược của Nam Hán.", "Mở ra thời kỳ độc lập lâu dài cho dân tộc, chấm dứt hơn 1.000 năm Bắc thuộc.", "Khẳng định tài thao lược xuất chúng của Ngô Quyền, trở thành hình mẫu cho các chiến thắng Bạch Đằng sau này (năm 981 và 1288)."]},
-            { name: "Ngô Quyền Lập Nhà Ngô – Khai Mở Thời Đại Độc Lập", year: "939 SCN – 944 SCN", tomtat: "Năm 939, Ngô Quyền xưng Vương, lập nhà Ngô, đóng đô tại Cổ Loa. Tổ chức lại triều đình, chính thức đặt nền móng độc lập lâu dài cho dân tộc.", context: "Năm 938, sau đại thắng Bạch Đằng, Ngô Quyền đã đánh tan quân Nam Hán, chấm dứt hơn 1.000 năm Bắc thuộc. Tuy nhiên, chiến thắng mới chỉ là bước đầu. Đất nước lúc đó vẫn còn rối ren, các thế lực địa phương chưa hoàn toàn quy phục, bộ máy cai trị chưa thống nhất. Ngô Quyền hiểu rằng muốn giữ được độc lập, cần phải có một triều đình mạnh, luật pháp rõ ràng, và một vị vua đủ uy quyền để trấn giữ bờ cõi.", dienbien: ["Sau chiến thắng, Ngô Quyền lên ngôi vua, lập ra Nhà Ngô, đóng đô tại Cổ Loa (Hà Nội ngày nay).", "Ông bắt tay xây dựng chính quyền trung ương tập quyền, củng cố quân đội, đặt các chức quan cai trị ở các châu, huyện.", "Nhà Ngô cũng chú trọng giữ hòa hiếu với các nước láng giềng để tránh chiến tranh, đồng thời ổn định đời sống nhân dân sau nhiều năm chiến loạn.", "Dưới sự trị vì của Ngô Quyền, đất nước được yên ổn, trật tự xã hội dần hồi phục, nông nghiệp và sản xuất bắt đầu khởi sắc."], ynghia: ["Khai mở thời đại độc lập tự chủ lâu dài của dân tộc Việt.", "Đặt nền móng cho nhà nước phong kiến tập quyền sơ khai.", "Khẳng định tầm nhìn chiến lược của Ngô Quyền: từ một tướng quân chiến thắng trở thành một nhà chính trị biết xây dựng đất nước."]},
-            { name: "Khủng Hoảng Của Nhà Ngô", year: "944 SCN – 965 SCN", tomtat: "Năm 944, Ngô Quyền mất, em vợ là Dương Tam Kha cướp ngôi, xưng là Dương Bình Vương gây nên khủng hoảng dòng chính nhà Ngô", context: "Sau khi Ngô Quyền mất năm 944, ngai vàng rơi vào tay Dương Tam Kha – em vợ của ông. Thay vì phò tá con của Ngô Quyền, Dương Tam Kha lại tự xưng vương, gây bất mãn trong triều và trong lòng dân. Con trai Ngô Quyền là Ngô Xương Ngập và Ngô Xương Văn phải lánh nạn, tình hình đất nước bắt đầu rạn nứt.", dienbien: ["944 – 950: Dương Tam Kha trị vì nhưng không được lòng các hào trưởng. Nhiều nơi nảy sinh chống đối ngầm.", "Sau này, Ngô Xương Văn được đưa về kinh, buộc Dương Tam Kha nhường ngôi, rồi mời anh là Ngô Xương Ngập cùng trị vì, sử gọi là Loạn hai vua.", "Hai vua liên tục bất hòa trong đường lối trị nước. Trong khi đó, các thế lực địa phương lợi dụng tình trạng phân quyền để củng cố lực lượng, không còn tuân phục triều đình như trước.", "Khi Ngô Xương Ngập mất, Ngô Xương Văn tiếp tục cầm quyền nhưng tình hình đã rất yếu. Đến khi ông tử trận trong một cuộc dẹp loạn, triều đình gần như tê liệt.", "Kết quả là, đất nước rơi vào cảnh phân tán, mở đầu cho thời kỳ hỗn loạn mà sau này sử gọi là Loạn 12 sứ quân."], ynghia: ["Cho thấy nền tảng chính trị của Nhà Ngô còn yếu, chưa đủ vững để duy trì thống nhất lâu dài.", "Việc tranh quyền đoạt vị đã tạo cơ hội cho các thế lực địa phương nổi dậy.", "Khủng hoảng Nhà Ngô là nguyên nhân trực tiếp dẫn tới thời kỳ 12 sứ quân, kéo dài suốt nhiều năm cho tới khi Đinh Bộ Lĩnh dẹp yên."]},
-            // { name: "Loạn 12 Sứ Quân", year: "965 SCN – 968 SCN", context: "Đầu thế kỷ X, sau nhiều năm bị các triều đại phương Bắc đô hộ, nước ta tuy có lúc tự chủ dưới nhà Ngô nhưng vẫn chưa thật sự yên. Năm 938, quân Nam Hán đem đại quân sang xâm lược, với âm mưu đặt ách cai trị trở lại. Dẫn đầu là Hoằng Tháo con trai vua Nam Hán. Lúc này, Ngô Quyền, vốn là một tướng tài của Dương Đình Nghệ, vừa đánh tan Kiều Công Tiễn (kẻ phản bội) ở Đại La. Ông biết quân Nam Hán sẽ theo đường biển tiến vào sông Bạch Đằng để đánh thẳng vào kinh đô.", dienbien: ["Ngô Quyền quyết định chọn Bạch Đằng một con sông thủy triều mạnh, nhiều khúc quanh để làm nơi đặt bẫy.", "Ông cho quân đóng cọc nhọn dưới lòng sông, chỉ chừa đầu cọc ngập dưới nước. Khi thủy triều dâng, cọc bị che kín sẽ không có ai nhận ra.", "Ngày quân Nam Hán kéo vào cửa sông, Ngô Quyền cho quân ra khiêu chiến rồi giả vờ thua, rút lui.", "Quân giặc hăm hở đuổi theo, tiến sâu vào bãi cọc đúng lúc triều bắt đầu rút. Nước xuống nhanh, thuyền giặc mắc cạn, va vào cọc nhọn vỡ tan.", "Quân ta quay lại phản công, tiêu diệt gần như toàn bộ, Hoằng Tháo tử trận."], ynghia: ["Xóa bỏ hoàn toàn âm mưu tái xâm lược của Nam Hán.", "Mở ra thời kỳ độc lập lâu dài cho dân tộc, chấm dứt hơn 1.000 năm Bắc thuộc.", "Khẳng định tài thao lược xuất chúng của Ngô Quyền, trở thành hình mẫu cho các chiến thắng Bạch Đằng sau này (năm 981 và 1288)."]},
-        ]
-    },
-    le: {
-        title: "Nhà Lê (1428–1789)",
-        img: '/src/assets/hue.jpg',
-        desc: "Triều đại dài nhất lịch sử Việt Nam (361 năm). Lê Lợi khởi nghĩa Lam Sơn (1418-1428), đánh đuổi quân Minh. Thời Lê Sơ: Bộ luật Hồng Đức, khoa cử phát triển. Sau thời kỳ Lê Trung Hưng (1533), đất nước chia cắt Đàng Trong-Đàng Ngoài (Trịnh-Nguyễn phân tranh).",
-        figures: [
-            { name: "Lê Lợi (Lê Thái Tổ)", img: '/src/assets/hue.jpg', bio: "Lãnh tụ khởi nghĩa Lam Sơn (1418-1428), đánh đuổi quân Minh sau 20 năm Bắc thuộc lần 4. Khai sáng triều Lê, xây dựng nền tảng hùng mạnh." },
-            { name: "Nguyễn Trãi", img: '/src/assets/hue.jpg', bio: "Danh sĩ, quân sư, nhà thơ, nhà ngoại giao lỗi lạc. Tác giả 'Bình Ngô đại cáo', 'Lam Sơn thực lục'. Biểu tượng trí tuệ Việt Nam." },
-            { name: "Lê Thánh Tông", img: '/src/assets/hue.jpg', bio: "Vua anh minh nhất triều Lê (1460-1497). Ban hành Bộ luật Hồng Đức tiến bộ. Mở rộng bờ cõi, văn học nghệ thuật thịnh vượng. Thời kỳ hoàng kim." }
-        ],
-        events: [
-            { name: "Ngô Quyền Đại Thắng Bạch Đằng – Chấm Dứt 1000 Năm Bắc Thuộc", year: "938", tomtat: "Trận Bạch Đằng năm 938 đánh dấu chiến thắng của Ngô Quyền trước quân Nam Hán, kết thúc thời kỳ Bắc thuộc kéo dài hơn 1000 năm.", context: "Đầu thế kỷ X, sau nhiều năm bị các triều đại phương Bắc đô hộ, nước ta tuy có lúc tự chủ dưới nhà Ngô nhưng vẫn chưa thật sự yên. Năm 938, quân Nam Hán đem đại quân sang xâm lược, với âm mưu đặt ách cai trị trở lại. Dẫn đầu là Hoằng Tháo con trai vua Nam Hán. Lúc này, Ngô Quyền, vốn là một tướng tài của Dương Đình Nghệ, vừa đánh tan Kiều Công Tiễn (kẻ phản bội) ở Đại La. Ông biết quân Nam Hán sẽ theo đường biển tiến vào sông Bạch Đằng để đánh thẳng vào kinh đô.", dienbien: ["Ngô Quyền quyết định chọn Bạch Đằng một con sông thủy triều mạnh, nhiều khúc quanh để làm nơi đặt bẫy.", "Ông cho quân đóng cọc nhọn dưới lòng sông, chỉ chừa đầu cọc ngập dưới nước. Khi thủy triều dâng, cọc bị che kín sẽ không có ai nhận ra.", "Ngày quân Nam Hán kéo vào cửa sông, Ngô Quyền cho quân ra khiêu chiến rồi giả vờ thua, rút lui.", "Quân giặc hăm hở đuổi theo, tiến sâu vào bãi cọc đúng lúc triều bắt đầu rút. Nước xuống nhanh, thuyền giặc mắc cạn, va vào cọc nhọn vỡ tan.", "Quân ta quay lại phản công, tiêu diệt gần như toàn bộ, Hoằng Tháo tử trận."], ynghia: ["Xóa bỏ hoàn toàn âm mưu tái xâm lược của Nam Hán.", "Mở ra thời kỳ độc lập lâu dài cho dân tộc, chấm dứt hơn 1.000 năm Bắc thuộc.", "Khẳng định tài thao lược xuất chúng của Ngô Quyền, trở thành hình mẫu cho các chiến thắng Bạch Đằng sau này (năm 981 và 1288)."]},
-            { name: "Ngô Quyền Lập Nhà Ngô – Khai Mở Thời Đại Độc Lập", year: "939 SCN – 944 SCN", tomtat: "Năm 939, Ngô Quyền xưng Vương, lập nhà Ngô, đóng đô tại Cổ Loa. Tổ chức lại triều đình, chính thức đặt nền móng độc lập lâu dài cho dân tộc.", context: "Năm 938, sau đại thắng Bạch Đằng, Ngô Quyền đã đánh tan quân Nam Hán, chấm dứt hơn 1.000 năm Bắc thuộc. Tuy nhiên, chiến thắng mới chỉ là bước đầu. Đất nước lúc đó vẫn còn rối ren, các thế lực địa phương chưa hoàn toàn quy phục, bộ máy cai trị chưa thống nhất. Ngô Quyền hiểu rằng muốn giữ được độc lập, cần phải có một triều đình mạnh, luật pháp rõ ràng, và một vị vua đủ uy quyền để trấn giữ bờ cõi.", dienbien: ["Sau chiến thắng, Ngô Quyền lên ngôi vua, lập ra Nhà Ngô, đóng đô tại Cổ Loa (Hà Nội ngày nay).", "Ông bắt tay xây dựng chính quyền trung ương tập quyền, củng cố quân đội, đặt các chức quan cai trị ở các châu, huyện.", "Nhà Ngô cũng chú trọng giữ hòa hiếu với các nước láng giềng để tránh chiến tranh, đồng thời ổn định đời sống nhân dân sau nhiều năm chiến loạn.", "Dưới sự trị vì của Ngô Quyền, đất nước được yên ổn, trật tự xã hội dần hồi phục, nông nghiệp và sản xuất bắt đầu khởi sắc."], ynghia: ["Khai mở thời đại độc lập tự chủ lâu dài của dân tộc Việt.", "Đặt nền móng cho nhà nước phong kiến tập quyền sơ khai.", "Khẳng định tầm nhìn chiến lược của Ngô Quyền: từ một tướng quân chiến thắng trở thành một nhà chính trị biết xây dựng đất nước."]},
-            { name: "Khủng Hoảng Của Nhà Ngô", year: "944 SCN – 965 SCN", tomtat: "Năm 944, Ngô Quyền mất, em vợ là Dương Tam Kha cướp ngôi, xưng là Dương Bình Vương gây nên khủng hoảng dòng chính nhà Ngô", context: "Sau khi Ngô Quyền mất năm 944, ngai vàng rơi vào tay Dương Tam Kha – em vợ của ông. Thay vì phò tá con của Ngô Quyền, Dương Tam Kha lại tự xưng vương, gây bất mãn trong triều và trong lòng dân. Con trai Ngô Quyền là Ngô Xương Ngập và Ngô Xương Văn phải lánh nạn, tình hình đất nước bắt đầu rạn nứt.", dienbien: ["944 – 950: Dương Tam Kha trị vì nhưng không được lòng các hào trưởng. Nhiều nơi nảy sinh chống đối ngầm.", "Sau này, Ngô Xương Văn được đưa về kinh, buộc Dương Tam Kha nhường ngôi, rồi mời anh là Ngô Xương Ngập cùng trị vì, sử gọi là Loạn hai vua.", "Hai vua liên tục bất hòa trong đường lối trị nước. Trong khi đó, các thế lực địa phương lợi dụng tình trạng phân quyền để củng cố lực lượng, không còn tuân phục triều đình như trước.", "Khi Ngô Xương Ngập mất, Ngô Xương Văn tiếp tục cầm quyền nhưng tình hình đã rất yếu. Đến khi ông tử trận trong một cuộc dẹp loạn, triều đình gần như tê liệt.", "Kết quả là, đất nước rơi vào cảnh phân tán, mở đầu cho thời kỳ hỗn loạn mà sau này sử gọi là Loạn 12 sứ quân."], ynghia: ["Cho thấy nền tảng chính trị của Nhà Ngô còn yếu, chưa đủ vững để duy trì thống nhất lâu dài.", "Việc tranh quyền đoạt vị đã tạo cơ hội cho các thế lực địa phương nổi dậy.", "Khủng hoảng Nhà Ngô là nguyên nhân trực tiếp dẫn tới thời kỳ 12 sứ quân, kéo dài suốt nhiều năm cho tới khi Đinh Bộ Lĩnh dẹp yên."]},
-            // { name: "Loạn 12 Sứ Quân", year: "965 SCN – 968 SCN", context: "Đầu thế kỷ X, sau nhiều năm bị các triều đại phương Bắc đô hộ, nước ta tuy có lúc tự chủ dưới nhà Ngô nhưng vẫn chưa thật sự yên. Năm 938, quân Nam Hán đem đại quân sang xâm lược, với âm mưu đặt ách cai trị trở lại. Dẫn đầu là Hoằng Tháo con trai vua Nam Hán. Lúc này, Ngô Quyền, vốn là một tướng tài của Dương Đình Nghệ, vừa đánh tan Kiều Công Tiễn (kẻ phản bội) ở Đại La. Ông biết quân Nam Hán sẽ theo đường biển tiến vào sông Bạch Đằng để đánh thẳng vào kinh đô.", dienbien: ["Ngô Quyền quyết định chọn Bạch Đằng một con sông thủy triều mạnh, nhiều khúc quanh để làm nơi đặt bẫy.", "Ông cho quân đóng cọc nhọn dưới lòng sông, chỉ chừa đầu cọc ngập dưới nước. Khi thủy triều dâng, cọc bị che kín sẽ không có ai nhận ra.", "Ngày quân Nam Hán kéo vào cửa sông, Ngô Quyền cho quân ra khiêu chiến rồi giả vờ thua, rút lui.", "Quân giặc hăm hở đuổi theo, tiến sâu vào bãi cọc đúng lúc triều bắt đầu rút. Nước xuống nhanh, thuyền giặc mắc cạn, va vào cọc nhọn vỡ tan.", "Quân ta quay lại phản công, tiêu diệt gần như toàn bộ, Hoằng Tháo tử trận."], ynghia: ["Xóa bỏ hoàn toàn âm mưu tái xâm lược của Nam Hán.", "Mở ra thời kỳ độc lập lâu dài cho dân tộc, chấm dứt hơn 1.000 năm Bắc thuộc.", "Khẳng định tài thao lược xuất chúng của Ngô Quyền, trở thành hình mẫu cho các chiến thắng Bạch Đằng sau này (năm 981 và 1288)."]},
-        ]
-    },
-    mac: {
-        title: "Nhà Mạc (1527–1592)",
-        img: '/src/assets/diadao.png',
-        desc: "Mạc Đăng Dung soạn ngôi nhà Lê (1527). Tồn tại song song với Lê Trung Hưng. Triều Mạc cai trị miền Bắc, sau bị nhà Lê-Trịnh đánh bại, chạy về Cao Bằng đến 1677 mới hết.",
-        figures: [
-            { name: "Mạc Đăng Dung", img: '/src/assets/diadao.png', bio: "Khai quốc nhà Mạc (1527-1541). Soạn ngôi nhà Lê, tự xưng hoàng đế. Cải cách hành chính, giáo dục nhưng gặp phản kháng từ Lê-Trịnh." },
-            { name: "Mạc Đăng Doanh", img: '/src/assets/diadao.png', bio: "Vua thứ 2 nhà Mạc (1541-1546). Con trai Mạc Đăng Dung. Tiếp tục củng cố triều đại nhưng áp lực từ phe Lê ngày càng lớn." }
-        ],
-        events: [
-            { name: "Ngô Quyền Đại Thắng Bạch Đằng – Chấm Dứt 1000 Năm Bắc Thuộc", year: "938", tomtat: "Trận Bạch Đằng năm 938 đánh dấu chiến thắng của Ngô Quyền trước quân Nam Hán, kết thúc thời kỳ Bắc thuộc kéo dài hơn 1000 năm.", context: "Đầu thế kỷ X, sau nhiều năm bị các triều đại phương Bắc đô hộ, nước ta tuy có lúc tự chủ dưới nhà Ngô nhưng vẫn chưa thật sự yên. Năm 938, quân Nam Hán đem đại quân sang xâm lược, với âm mưu đặt ách cai trị trở lại. Dẫn đầu là Hoằng Tháo con trai vua Nam Hán. Lúc này, Ngô Quyền, vốn là một tướng tài của Dương Đình Nghệ, vừa đánh tan Kiều Công Tiễn (kẻ phản bội) ở Đại La. Ông biết quân Nam Hán sẽ theo đường biển tiến vào sông Bạch Đằng để đánh thẳng vào kinh đô.", dienbien: ["Ngô Quyền quyết định chọn Bạch Đằng một con sông thủy triều mạnh, nhiều khúc quanh để làm nơi đặt bẫy.", "Ông cho quân đóng cọc nhọn dưới lòng sông, chỉ chừa đầu cọc ngập dưới nước. Khi thủy triều dâng, cọc bị che kín sẽ không có ai nhận ra.", "Ngày quân Nam Hán kéo vào cửa sông, Ngô Quyền cho quân ra khiêu chiến rồi giả vờ thua, rút lui.", "Quân giặc hăm hở đuổi theo, tiến sâu vào bãi cọc đúng lúc triều bắt đầu rút. Nước xuống nhanh, thuyền giặc mắc cạn, va vào cọc nhọn vỡ tan.", "Quân ta quay lại phản công, tiêu diệt gần như toàn bộ, Hoằng Tháo tử trận."], ynghia: ["Xóa bỏ hoàn toàn âm mưu tái xâm lược của Nam Hán.", "Mở ra thời kỳ độc lập lâu dài cho dân tộc, chấm dứt hơn 1.000 năm Bắc thuộc.", "Khẳng định tài thao lược xuất chúng của Ngô Quyền, trở thành hình mẫu cho các chiến thắng Bạch Đằng sau này (năm 981 và 1288)."]},
-            { name: "Ngô Quyền Lập Nhà Ngô – Khai Mở Thời Đại Độc Lập", year: "939 SCN – 944 SCN", tomtat: "Năm 939, Ngô Quyền xưng Vương, lập nhà Ngô, đóng đô tại Cổ Loa. Tổ chức lại triều đình, chính thức đặt nền móng độc lập lâu dài cho dân tộc.", context: "Năm 938, sau đại thắng Bạch Đằng, Ngô Quyền đã đánh tan quân Nam Hán, chấm dứt hơn 1.000 năm Bắc thuộc. Tuy nhiên, chiến thắng mới chỉ là bước đầu. Đất nước lúc đó vẫn còn rối ren, các thế lực địa phương chưa hoàn toàn quy phục, bộ máy cai trị chưa thống nhất. Ngô Quyền hiểu rằng muốn giữ được độc lập, cần phải có một triều đình mạnh, luật pháp rõ ràng, và một vị vua đủ uy quyền để trấn giữ bờ cõi.", dienbien: ["Sau chiến thắng, Ngô Quyền lên ngôi vua, lập ra Nhà Ngô, đóng đô tại Cổ Loa (Hà Nội ngày nay).", "Ông bắt tay xây dựng chính quyền trung ương tập quyền, củng cố quân đội, đặt các chức quan cai trị ở các châu, huyện.", "Nhà Ngô cũng chú trọng giữ hòa hiếu với các nước láng giềng để tránh chiến tranh, đồng thời ổn định đời sống nhân dân sau nhiều năm chiến loạn.", "Dưới sự trị vì của Ngô Quyền, đất nước được yên ổn, trật tự xã hội dần hồi phục, nông nghiệp và sản xuất bắt đầu khởi sắc."], ynghia: ["Khai mở thời đại độc lập tự chủ lâu dài của dân tộc Việt.", "Đặt nền móng cho nhà nước phong kiến tập quyền sơ khai.", "Khẳng định tầm nhìn chiến lược của Ngô Quyền: từ một tướng quân chiến thắng trở thành một nhà chính trị biết xây dựng đất nước."]},
-            { name: "Khủng Hoảng Của Nhà Ngô", year: "944 SCN – 965 SCN", tomtat: "Năm 944, Ngô Quyền mất, em vợ là Dương Tam Kha cướp ngôi, xưng là Dương Bình Vương gây nên khủng hoảng dòng chính nhà Ngô", context: "Sau khi Ngô Quyền mất năm 944, ngai vàng rơi vào tay Dương Tam Kha – em vợ của ông. Thay vì phò tá con của Ngô Quyền, Dương Tam Kha lại tự xưng vương, gây bất mãn trong triều và trong lòng dân. Con trai Ngô Quyền là Ngô Xương Ngập và Ngô Xương Văn phải lánh nạn, tình hình đất nước bắt đầu rạn nứt.", dienbien: ["944 – 950: Dương Tam Kha trị vì nhưng không được lòng các hào trưởng. Nhiều nơi nảy sinh chống đối ngầm.", "Sau này, Ngô Xương Văn được đưa về kinh, buộc Dương Tam Kha nhường ngôi, rồi mời anh là Ngô Xương Ngập cùng trị vì, sử gọi là Loạn hai vua.", "Hai vua liên tục bất hòa trong đường lối trị nước. Trong khi đó, các thế lực địa phương lợi dụng tình trạng phân quyền để củng cố lực lượng, không còn tuân phục triều đình như trước.", "Khi Ngô Xương Ngập mất, Ngô Xương Văn tiếp tục cầm quyền nhưng tình hình đã rất yếu. Đến khi ông tử trận trong một cuộc dẹp loạn, triều đình gần như tê liệt.", "Kết quả là, đất nước rơi vào cảnh phân tán, mở đầu cho thời kỳ hỗn loạn mà sau này sử gọi là Loạn 12 sứ quân."], ynghia: ["Cho thấy nền tảng chính trị của Nhà Ngô còn yếu, chưa đủ vững để duy trì thống nhất lâu dài.", "Việc tranh quyền đoạt vị đã tạo cơ hội cho các thế lực địa phương nổi dậy.", "Khủng hoảng Nhà Ngô là nguyên nhân trực tiếp dẫn tới thời kỳ 12 sứ quân, kéo dài suốt nhiều năm cho tới khi Đinh Bộ Lĩnh dẹp yên."]},
-            // { name: "Loạn 12 Sứ Quân", year: "965 SCN – 968 SCN", context: "Đầu thế kỷ X, sau nhiều năm bị các triều đại phương Bắc đô hộ, nước ta tuy có lúc tự chủ dưới nhà Ngô nhưng vẫn chưa thật sự yên. Năm 938, quân Nam Hán đem đại quân sang xâm lược, với âm mưu đặt ách cai trị trở lại. Dẫn đầu là Hoằng Tháo con trai vua Nam Hán. Lúc này, Ngô Quyền, vốn là một tướng tài của Dương Đình Nghệ, vừa đánh tan Kiều Công Tiễn (kẻ phản bội) ở Đại La. Ông biết quân Nam Hán sẽ theo đường biển tiến vào sông Bạch Đằng để đánh thẳng vào kinh đô.", dienbien: ["Ngô Quyền quyết định chọn Bạch Đằng một con sông thủy triều mạnh, nhiều khúc quanh để làm nơi đặt bẫy.", "Ông cho quân đóng cọc nhọn dưới lòng sông, chỉ chừa đầu cọc ngập dưới nước. Khi thủy triều dâng, cọc bị che kín sẽ không có ai nhận ra.", "Ngày quân Nam Hán kéo vào cửa sông, Ngô Quyền cho quân ra khiêu chiến rồi giả vờ thua, rút lui.", "Quân giặc hăm hở đuổi theo, tiến sâu vào bãi cọc đúng lúc triều bắt đầu rút. Nước xuống nhanh, thuyền giặc mắc cạn, va vào cọc nhọn vỡ tan.", "Quân ta quay lại phản công, tiêu diệt gần như toàn bộ, Hoằng Tháo tử trận."], ynghia: ["Xóa bỏ hoàn toàn âm mưu tái xâm lược của Nam Hán.", "Mở ra thời kỳ độc lập lâu dài cho dân tộc, chấm dứt hơn 1.000 năm Bắc thuộc.", "Khẳng định tài thao lược xuất chúng của Ngô Quyền, trở thành hình mẫu cho các chiến thắng Bạch Đằng sau này (năm 981 và 1288)."]},
-        ]
-    },
-    tayson: {
-        title: "Nhà Tây Sơn (1778–1802)",
-        img: '/src/assets/nhatho.png',
-        desc: "Khởi nghĩa nông dân lật đổ chúa Nguyễn và chúa Trịnh. Nguyễn Huệ (Quang Trung) đánh tan 29 vạn quân Thanh ở Ngọc Hồi-Đống Đa (1789), chiến công lừng lẫy nhất lịch sử. Cải cách xã hội, kinh tế nhưng triều đại ngắn ngủi.",
-        figures: [
-            { name: "Nguyễn Nhạc", img: '/src/assets/nhatho.png', bio: "Anh cả ba anh em Tây Sơn. Xưng đế ở Quy Nhơn (1778-1793). Lãnh đạo khởi nghĩa lật đổ chúa Nguyễn, thống nhất miền Trung." },
-            { name: "Nguyễn Huệ (Quang Trung)", img: '/src/assets/nhatho.png', bio: "Hoàng đế vĩ đại nhất Tây Sơn (1788-1792). Thiên tài quân sự, đánh tan 29 vạn quân Thanh (1789), chiến thắng Ngọc Hồi-Đống Đa bất hủ." },
-            { name: "Nguyễn Lữ (Bảo Hưng)", img: '/src/assets/nhatho.png', bio: "Em út ba anh em. Chinh phục miền Bắc, lật đổ chúa Trịnh. Sau chết Quang Trung, không giữ được giang sơn, thua Nguyễn Ánh." }
-        ],
-        events: [
-            { name: "Ngô Quyền Đại Thắng Bạch Đằng – Chấm Dứt 1000 Năm Bắc Thuộc", year: "938", tomtat: "Trận Bạch Đằng năm 938 đánh dấu chiến thắng của Ngô Quyền trước quân Nam Hán, kết thúc thời kỳ Bắc thuộc kéo dài hơn 1000 năm.", context: "Đầu thế kỷ X, sau nhiều năm bị các triều đại phương Bắc đô hộ, nước ta tuy có lúc tự chủ dưới nhà Ngô nhưng vẫn chưa thật sự yên. Năm 938, quân Nam Hán đem đại quân sang xâm lược, với âm mưu đặt ách cai trị trở lại. Dẫn đầu là Hoằng Tháo con trai vua Nam Hán. Lúc này, Ngô Quyền, vốn là một tướng tài của Dương Đình Nghệ, vừa đánh tan Kiều Công Tiễn (kẻ phản bội) ở Đại La. Ông biết quân Nam Hán sẽ theo đường biển tiến vào sông Bạch Đằng để đánh thẳng vào kinh đô.", dienbien: ["Ngô Quyền quyết định chọn Bạch Đằng một con sông thủy triều mạnh, nhiều khúc quanh để làm nơi đặt bẫy.", "Ông cho quân đóng cọc nhọn dưới lòng sông, chỉ chừa đầu cọc ngập dưới nước. Khi thủy triều dâng, cọc bị che kín sẽ không có ai nhận ra.", "Ngày quân Nam Hán kéo vào cửa sông, Ngô Quyền cho quân ra khiêu chiến rồi giả vờ thua, rút lui.", "Quân giặc hăm hở đuổi theo, tiến sâu vào bãi cọc đúng lúc triều bắt đầu rút. Nước xuống nhanh, thuyền giặc mắc cạn, va vào cọc nhọn vỡ tan.", "Quân ta quay lại phản công, tiêu diệt gần như toàn bộ, Hoằng Tháo tử trận."], ynghia: ["Xóa bỏ hoàn toàn âm mưu tái xâm lược của Nam Hán.", "Mở ra thời kỳ độc lập lâu dài cho dân tộc, chấm dứt hơn 1.000 năm Bắc thuộc.", "Khẳng định tài thao lược xuất chúng của Ngô Quyền, trở thành hình mẫu cho các chiến thắng Bạch Đằng sau này (năm 981 và 1288)."]},
-            { name: "Ngô Quyền Lập Nhà Ngô – Khai Mở Thời Đại Độc Lập", year: "939 SCN – 944 SCN", tomtat: "Năm 939, Ngô Quyền xưng Vương, lập nhà Ngô, đóng đô tại Cổ Loa. Tổ chức lại triều đình, chính thức đặt nền móng độc lập lâu dài cho dân tộc.", context: "Năm 938, sau đại thắng Bạch Đằng, Ngô Quyền đã đánh tan quân Nam Hán, chấm dứt hơn 1.000 năm Bắc thuộc. Tuy nhiên, chiến thắng mới chỉ là bước đầu. Đất nước lúc đó vẫn còn rối ren, các thế lực địa phương chưa hoàn toàn quy phục, bộ máy cai trị chưa thống nhất. Ngô Quyền hiểu rằng muốn giữ được độc lập, cần phải có một triều đình mạnh, luật pháp rõ ràng, và một vị vua đủ uy quyền để trấn giữ bờ cõi.", dienbien: ["Sau chiến thắng, Ngô Quyền lên ngôi vua, lập ra Nhà Ngô, đóng đô tại Cổ Loa (Hà Nội ngày nay).", "Ông bắt tay xây dựng chính quyền trung ương tập quyền, củng cố quân đội, đặt các chức quan cai trị ở các châu, huyện.", "Nhà Ngô cũng chú trọng giữ hòa hiếu với các nước láng giềng để tránh chiến tranh, đồng thời ổn định đời sống nhân dân sau nhiều năm chiến loạn.", "Dưới sự trị vì của Ngô Quyền, đất nước được yên ổn, trật tự xã hội dần hồi phục, nông nghiệp và sản xuất bắt đầu khởi sắc."], ynghia: ["Khai mở thời đại độc lập tự chủ lâu dài của dân tộc Việt.", "Đặt nền móng cho nhà nước phong kiến tập quyền sơ khai.", "Khẳng định tầm nhìn chiến lược của Ngô Quyền: từ một tướng quân chiến thắng trở thành một nhà chính trị biết xây dựng đất nước."]},
-            { name: "Khủng Hoảng Của Nhà Ngô", year: "944 SCN – 965 SCN", tomtat: "Năm 944, Ngô Quyền mất, em vợ là Dương Tam Kha cướp ngôi, xưng là Dương Bình Vương gây nên khủng hoảng dòng chính nhà Ngô", context: "Sau khi Ngô Quyền mất năm 944, ngai vàng rơi vào tay Dương Tam Kha – em vợ của ông. Thay vì phò tá con của Ngô Quyền, Dương Tam Kha lại tự xưng vương, gây bất mãn trong triều và trong lòng dân. Con trai Ngô Quyền là Ngô Xương Ngập và Ngô Xương Văn phải lánh nạn, tình hình đất nước bắt đầu rạn nứt.", dienbien: ["944 – 950: Dương Tam Kha trị vì nhưng không được lòng các hào trưởng. Nhiều nơi nảy sinh chống đối ngầm.", "Sau này, Ngô Xương Văn được đưa về kinh, buộc Dương Tam Kha nhường ngôi, rồi mời anh là Ngô Xương Ngập cùng trị vì, sử gọi là Loạn hai vua.", "Hai vua liên tục bất hòa trong đường lối trị nước. Trong khi đó, các thế lực địa phương lợi dụng tình trạng phân quyền để củng cố lực lượng, không còn tuân phục triều đình như trước.", "Khi Ngô Xương Ngập mất, Ngô Xương Văn tiếp tục cầm quyền nhưng tình hình đã rất yếu. Đến khi ông tử trận trong một cuộc dẹp loạn, triều đình gần như tê liệt.", "Kết quả là, đất nước rơi vào cảnh phân tán, mở đầu cho thời kỳ hỗn loạn mà sau này sử gọi là Loạn 12 sứ quân."], ynghia: ["Cho thấy nền tảng chính trị của Nhà Ngô còn yếu, chưa đủ vững để duy trì thống nhất lâu dài.", "Việc tranh quyền đoạt vị đã tạo cơ hội cho các thế lực địa phương nổi dậy.", "Khủng hoảng Nhà Ngô là nguyên nhân trực tiếp dẫn tới thời kỳ 12 sứ quân, kéo dài suốt nhiều năm cho tới khi Đinh Bộ Lĩnh dẹp yên."]},
-            // { name: "Loạn 12 Sứ Quân", year: "965 SCN – 968 SCN", context: "Đầu thế kỷ X, sau nhiều năm bị các triều đại phương Bắc đô hộ, nước ta tuy có lúc tự chủ dưới nhà Ngô nhưng vẫn chưa thật sự yên. Năm 938, quân Nam Hán đem đại quân sang xâm lược, với âm mưu đặt ách cai trị trở lại. Dẫn đầu là Hoằng Tháo con trai vua Nam Hán. Lúc này, Ngô Quyền, vốn là một tướng tài của Dương Đình Nghệ, vừa đánh tan Kiều Công Tiễn (kẻ phản bội) ở Đại La. Ông biết quân Nam Hán sẽ theo đường biển tiến vào sông Bạch Đằng để đánh thẳng vào kinh đô.", dienbien: ["Ngô Quyền quyết định chọn Bạch Đằng một con sông thủy triều mạnh, nhiều khúc quanh để làm nơi đặt bẫy.", "Ông cho quân đóng cọc nhọn dưới lòng sông, chỉ chừa đầu cọc ngập dưới nước. Khi thủy triều dâng, cọc bị che kín sẽ không có ai nhận ra.", "Ngày quân Nam Hán kéo vào cửa sông, Ngô Quyền cho quân ra khiêu chiến rồi giả vờ thua, rút lui.", "Quân giặc hăm hở đuổi theo, tiến sâu vào bãi cọc đúng lúc triều bắt đầu rút. Nước xuống nhanh, thuyền giặc mắc cạn, va vào cọc nhọn vỡ tan.", "Quân ta quay lại phản công, tiêu diệt gần như toàn bộ, Hoằng Tháo tử trận."], ynghia: ["Xóa bỏ hoàn toàn âm mưu tái xâm lược của Nam Hán.", "Mở ra thời kỳ độc lập lâu dài cho dân tộc, chấm dứt hơn 1.000 năm Bắc thuộc.", "Khẳng định tài thao lược xuất chúng của Ngô Quyền, trở thành hình mẫu cho các chiến thắng Bạch Đằng sau này (năm 981 và 1288)."]},
-        ]
-    },
-    nguyen: {
-        title: "Nhà Nguyễn (1802–1945)",
-        img: '/src/assets/nhatho.png',
-        desc: "Triều đại phong kiến cuối cùng của Việt Nam. Nguyễn Ánh (Gia Long) thống nhất đất nước, đóng đô ở Phú Xuân (Huế). Xây dựng Kinh thành Huế, hệ thống lăng tẩm hoàng gia. Từ 1858, Pháp xâm lược, triều Nguyễn dần mất chủ quyền. Kết thúc với sự thoái vị của Bảo Đại (1945).",
-        figures: [
-            { name: "Gia Long (Nguyễn Ánh)", img: '/src/assets/nhatho.png', bio: "Vua khai quốc (1802-1820). Thống nhất đất nước sau 200 năm chia cắt Đàng Trong-Đàng Ngoài. Đặt quốc hiệu Việt Nam, xây dựng Kinh thành Huế." },
-            { name: "Minh Mạng", img: '/src/assets/nhatho.png', bio: "Vua thứ 2 (1820-1841). Củng cố trung ương tập quyền, phát triển văn hóa Nho giáo, xây dựng lăng tẩm và đền đài. Chính sách bài Thiên Chúa giáo." },
-            { name: "Tự Đức", img: '/src/assets/nhatho.png', bio: "Vua thứ 4 (1847-1883). Trị vì thời kỳ Pháp xâm lược. Ký Hòa ước Nhâm Tuất (1862), mất 3 tỉnh miền Đông Nam Bộ. Triều đại suy yếu." }
-        ],
-        events: [
-            { name: "Ngô Quyền Đại Thắng Bạch Đằng – Chấm Dứt 1000 Năm Bắc Thuộc", year: "938", tomtat: "Trận Bạch Đằng năm 938 đánh dấu chiến thắng của Ngô Quyền trước quân Nam Hán, kết thúc thời kỳ Bắc thuộc kéo dài hơn 1000 năm.", context: "Đầu thế kỷ X, sau nhiều năm bị các triều đại phương Bắc đô hộ, nước ta tuy có lúc tự chủ dưới nhà Ngô nhưng vẫn chưa thật sự yên. Năm 938, quân Nam Hán đem đại quân sang xâm lược, với âm mưu đặt ách cai trị trở lại. Dẫn đầu là Hoằng Tháo con trai vua Nam Hán. Lúc này, Ngô Quyền, vốn là một tướng tài của Dương Đình Nghệ, vừa đánh tan Kiều Công Tiễn (kẻ phản bội) ở Đại La. Ông biết quân Nam Hán sẽ theo đường biển tiến vào sông Bạch Đằng để đánh thẳng vào kinh đô.", dienbien: ["Ngô Quyền quyết định chọn Bạch Đằng một con sông thủy triều mạnh, nhiều khúc quanh để làm nơi đặt bẫy.", "Ông cho quân đóng cọc nhọn dưới lòng sông, chỉ chừa đầu cọc ngập dưới nước. Khi thủy triều dâng, cọc bị che kín sẽ không có ai nhận ra.", "Ngày quân Nam Hán kéo vào cửa sông, Ngô Quyền cho quân ra khiêu chiến rồi giả vờ thua, rút lui.", "Quân giặc hăm hở đuổi theo, tiến sâu vào bãi cọc đúng lúc triều bắt đầu rút. Nước xuống nhanh, thuyền giặc mắc cạn, va vào cọc nhọn vỡ tan.", "Quân ta quay lại phản công, tiêu diệt gần như toàn bộ, Hoằng Tháo tử trận."], ynghia: ["Xóa bỏ hoàn toàn âm mưu tái xâm lược của Nam Hán.", "Mở ra thời kỳ độc lập lâu dài cho dân tộc, chấm dứt hơn 1.000 năm Bắc thuộc.", "Khẳng định tài thao lược xuất chúng của Ngô Quyền, trở thành hình mẫu cho các chiến thắng Bạch Đằng sau này (năm 981 và 1288)."]},
-            { name: "Ngô Quyền Lập Nhà Ngô – Khai Mở Thời Đại Độc Lập", year: "939 SCN – 944 SCN", tomtat: "Năm 939, Ngô Quyền xưng Vương, lập nhà Ngô, đóng đô tại Cổ Loa. Tổ chức lại triều đình, chính thức đặt nền móng độc lập lâu dài cho dân tộc.", context: "Năm 938, sau đại thắng Bạch Đằng, Ngô Quyền đã đánh tan quân Nam Hán, chấm dứt hơn 1.000 năm Bắc thuộc. Tuy nhiên, chiến thắng mới chỉ là bước đầu. Đất nước lúc đó vẫn còn rối ren, các thế lực địa phương chưa hoàn toàn quy phục, bộ máy cai trị chưa thống nhất. Ngô Quyền hiểu rằng muốn giữ được độc lập, cần phải có một triều đình mạnh, luật pháp rõ ràng, và một vị vua đủ uy quyền để trấn giữ bờ cõi.", dienbien: ["Sau chiến thắng, Ngô Quyền lên ngôi vua, lập ra Nhà Ngô, đóng đô tại Cổ Loa (Hà Nội ngày nay).", "Ông bắt tay xây dựng chính quyền trung ương tập quyền, củng cố quân đội, đặt các chức quan cai trị ở các châu, huyện.", "Nhà Ngô cũng chú trọng giữ hòa hiếu với các nước láng giềng để tránh chiến tranh, đồng thời ổn định đời sống nhân dân sau nhiều năm chiến loạn.", "Dưới sự trị vì của Ngô Quyền, đất nước được yên ổn, trật tự xã hội dần hồi phục, nông nghiệp và sản xuất bắt đầu khởi sắc."], ynghia: ["Khai mở thời đại độc lập tự chủ lâu dài của dân tộc Việt.", "Đặt nền móng cho nhà nước phong kiến tập quyền sơ khai.", "Khẳng định tầm nhìn chiến lược của Ngô Quyền: từ một tướng quân chiến thắng trở thành một nhà chính trị biết xây dựng đất nước."]},
-            { name: "Khủng Hoảng Của Nhà Ngô", year: "944 SCN – 965 SCN", tomtat: "Năm 944, Ngô Quyền mất, em vợ là Dương Tam Kha cướp ngôi, xưng là Dương Bình Vương gây nên khủng hoảng dòng chính nhà Ngô", context: "Sau khi Ngô Quyền mất năm 944, ngai vàng rơi vào tay Dương Tam Kha – em vợ của ông. Thay vì phò tá con của Ngô Quyền, Dương Tam Kha lại tự xưng vương, gây bất mãn trong triều và trong lòng dân. Con trai Ngô Quyền là Ngô Xương Ngập và Ngô Xương Văn phải lánh nạn, tình hình đất nước bắt đầu rạn nứt.", dienbien: ["944 – 950: Dương Tam Kha trị vì nhưng không được lòng các hào trưởng. Nhiều nơi nảy sinh chống đối ngầm.", "Sau này, Ngô Xương Văn được đưa về kinh, buộc Dương Tam Kha nhường ngôi, rồi mời anh là Ngô Xương Ngập cùng trị vì, sử gọi là Loạn hai vua.", "Hai vua liên tục bất hòa trong đường lối trị nước. Trong khi đó, các thế lực địa phương lợi dụng tình trạng phân quyền để củng cố lực lượng, không còn tuân phục triều đình như trước.", "Khi Ngô Xương Ngập mất, Ngô Xương Văn tiếp tục cầm quyền nhưng tình hình đã rất yếu. Đến khi ông tử trận trong một cuộc dẹp loạn, triều đình gần như tê liệt.", "Kết quả là, đất nước rơi vào cảnh phân tán, mở đầu cho thời kỳ hỗn loạn mà sau này sử gọi là Loạn 12 sứ quân."], ynghia: ["Cho thấy nền tảng chính trị của Nhà Ngô còn yếu, chưa đủ vững để duy trì thống nhất lâu dài.", "Việc tranh quyền đoạt vị đã tạo cơ hội cho các thế lực địa phương nổi dậy.", "Khủng hoảng Nhà Ngô là nguyên nhân trực tiếp dẫn tới thời kỳ 12 sứ quân, kéo dài suốt nhiều năm cho tới khi Đinh Bộ Lĩnh dẹp yên."]},
-            // { name: "Loạn 12 Sứ Quân", year: "965 SCN – 968 SCN", context: "Đầu thế kỷ X, sau nhiều năm bị các triều đại phương Bắc đô hộ, nước ta tuy có lúc tự chủ dưới nhà Ngô nhưng vẫn chưa thật sự yên. Năm 938, quân Nam Hán đem đại quân sang xâm lược, với âm mưu đặt ách cai trị trở lại. Dẫn đầu là Hoằng Tháo con trai vua Nam Hán. Lúc này, Ngô Quyền, vốn là một tướng tài của Dương Đình Nghệ, vừa đánh tan Kiều Công Tiễn (kẻ phản bội) ở Đại La. Ông biết quân Nam Hán sẽ theo đường biển tiến vào sông Bạch Đằng để đánh thẳng vào kinh đô.", dienbien: ["Ngô Quyền quyết định chọn Bạch Đằng một con sông thủy triều mạnh, nhiều khúc quanh để làm nơi đặt bẫy.", "Ông cho quân đóng cọc nhọn dưới lòng sông, chỉ chừa đầu cọc ngập dưới nước. Khi thủy triều dâng, cọc bị che kín sẽ không có ai nhận ra.", "Ngày quân Nam Hán kéo vào cửa sông, Ngô Quyền cho quân ra khiêu chiến rồi giả vờ thua, rút lui.", "Quân giặc hăm hở đuổi theo, tiến sâu vào bãi cọc đúng lúc triều bắt đầu rút. Nước xuống nhanh, thuyền giặc mắc cạn, va vào cọc nhọn vỡ tan.", "Quân ta quay lại phản công, tiêu diệt gần như toàn bộ, Hoằng Tháo tử trận."], ynghia: ["Xóa bỏ hoàn toàn âm mưu tái xâm lược của Nam Hán.", "Mở ra thời kỳ độc lập lâu dài cho dân tộc, chấm dứt hơn 1.000 năm Bắc thuộc.", "Khẳng định tài thao lược xuất chúng của Ngô Quyền, trở thành hình mẫu cho các chiến thắng Bạch Đằng sau này (năm 981 và 1288)."]},
-        ]
-    },
+
+    // ... (các triều đại tiếp theo)
+
     modern: {
-        title: "Hiện đại (Đổi mới & Số hóa)",
-        img: '/src/assets/nhathoducbaai.png',
-        desc: "Giai đoạn hội nhập, số hóa, bảo tồn di sản bằng công nghệ và AI.",
+        title: "Việt Nam Thống Nhất & Hiện Đại (1975 – 2025)",
+        img: '/src/assets/vietnammodern.jpg',
+        desc: "Giai đoạn thống nhất đất nước, đổi mới, hội nhập quốc tế và phát triển trong kỷ nguyên số.",
         figures: [
-            { name: "Nhà nghiên cứu văn hóa", img: '/src/assets/nhathoducbaai.png', bio: "Những chuyên gia đang số hóa và nghiên cứu di sản." },
-            { name: "Cộng đồng trẻ", img: '/src/assets/nhathoducbaai.png', bio: "Thế hệ kết nối kỹ thuật số với quá khứ." }
+            { name: "Lãnh đạo Đổi mới", img: '/src/assets/doimoi.jpg', bio: "Những nhà lãnh đạo có công trong công cuộc Đổi mới đất nước từ 1986." },
+            { name: "Thế hệ trẻ", img: '/src/assets/thehetre.jpg', bio: "Thế hệ trẻ Việt Nam trong kỷ nguyên số và hội nhập quốc tế." }
         ],
         events: [
-            { name: "Ngô Quyền Đại Thắng Bạch Đằng – Chấm Dứt 1000 Năm Bắc Thuộc", year: "938", tomtat: "Trận Bạch Đằng năm 938 đánh dấu chiến thắng của Ngô Quyền trước quân Nam Hán, kết thúc thời kỳ Bắc thuộc kéo dài hơn 1000 năm.", context: "Đầu thế kỷ X, sau nhiều năm bị các triều đại phương Bắc đô hộ, nước ta tuy có lúc tự chủ dưới nhà Ngô nhưng vẫn chưa thật sự yên. Năm 938, quân Nam Hán đem đại quân sang xâm lược, với âm mưu đặt ách cai trị trở lại. Dẫn đầu là Hoằng Tháo con trai vua Nam Hán. Lúc này, Ngô Quyền, vốn là một tướng tài của Dương Đình Nghệ, vừa đánh tan Kiều Công Tiễn (kẻ phản bội) ở Đại La. Ông biết quân Nam Hán sẽ theo đường biển tiến vào sông Bạch Đằng để đánh thẳng vào kinh đô.", dienbien: ["Ngô Quyền quyết định chọn Bạch Đằng một con sông thủy triều mạnh, nhiều khúc quanh để làm nơi đặt bẫy.", "Ông cho quân đóng cọc nhọn dưới lòng sông, chỉ chừa đầu cọc ngập dưới nước. Khi thủy triều dâng, cọc bị che kín sẽ không có ai nhận ra.", "Ngày quân Nam Hán kéo vào cửa sông, Ngô Quyền cho quân ra khiêu chiến rồi giả vờ thua, rút lui.", "Quân giặc hăm hở đuổi theo, tiến sâu vào bãi cọc đúng lúc triều bắt đầu rút. Nước xuống nhanh, thuyền giặc mắc cạn, va vào cọc nhọn vỡ tan.", "Quân ta quay lại phản công, tiêu diệt gần như toàn bộ, Hoằng Tháo tử trận."], ynghia: ["Xóa bỏ hoàn toàn âm mưu tái xâm lược của Nam Hán.", "Mở ra thời kỳ độc lập lâu dài cho dân tộc, chấm dứt hơn 1.000 năm Bắc thuộc.", "Khẳng định tài thao lược xuất chúng của Ngô Quyền, trở thành hình mẫu cho các chiến thắng Bạch Đằng sau này (năm 981 và 1288)."]},
-            { name: "Ngô Quyền Lập Nhà Ngô – Khai Mở Thời Đại Độc Lập", year: "939 SCN – 944 SCN", tomtat: "Năm 939, Ngô Quyền xưng Vương, lập nhà Ngô, đóng đô tại Cổ Loa. Tổ chức lại triều đình, chính thức đặt nền móng độc lập lâu dài cho dân tộc.", context: "Năm 938, sau đại thắng Bạch Đằng, Ngô Quyền đã đánh tan quân Nam Hán, chấm dứt hơn 1.000 năm Bắc thuộc. Tuy nhiên, chiến thắng mới chỉ là bước đầu. Đất nước lúc đó vẫn còn rối ren, các thế lực địa phương chưa hoàn toàn quy phục, bộ máy cai trị chưa thống nhất. Ngô Quyền hiểu rằng muốn giữ được độc lập, cần phải có một triều đình mạnh, luật pháp rõ ràng, và một vị vua đủ uy quyền để trấn giữ bờ cõi.", dienbien: ["Sau chiến thắng, Ngô Quyền lên ngôi vua, lập ra Nhà Ngô, đóng đô tại Cổ Loa (Hà Nội ngày nay).", "Ông bắt tay xây dựng chính quyền trung ương tập quyền, củng cố quân đội, đặt các chức quan cai trị ở các châu, huyện.", "Nhà Ngô cũng chú trọng giữ hòa hiếu với các nước láng giềng để tránh chiến tranh, đồng thời ổn định đời sống nhân dân sau nhiều năm chiến loạn.", "Dưới sự trị vì của Ngô Quyền, đất nước được yên ổn, trật tự xã hội dần hồi phục, nông nghiệp và sản xuất bắt đầu khởi sắc."], ynghia: ["Khai mở thời đại độc lập tự chủ lâu dài của dân tộc Việt.", "Đặt nền móng cho nhà nước phong kiến tập quyền sơ khai.", "Khẳng định tầm nhìn chiến lược của Ngô Quyền: từ một tướng quân chiến thắng trở thành một nhà chính trị biết xây dựng đất nước."]},
-            { name: "Khủng Hoảng Của Nhà Ngô", year: "944 SCN – 965 SCN", tomtat: "Năm 944, Ngô Quyền mất, em vợ là Dương Tam Kha cướp ngôi, xưng là Dương Bình Vương gây nên khủng hoảng dòng chính nhà Ngô", context: "Sau khi Ngô Quyền mất năm 944, ngai vàng rơi vào tay Dương Tam Kha – em vợ của ông. Thay vì phò tá con của Ngô Quyền, Dương Tam Kha lại tự xưng vương, gây bất mãn trong triều và trong lòng dân. Con trai Ngô Quyền là Ngô Xương Ngập và Ngô Xương Văn phải lánh nạn, tình hình đất nước bắt đầu rạn nứt.", dienbien: ["944 – 950: Dương Tam Kha trị vì nhưng không được lòng các hào trưởng. Nhiều nơi nảy sinh chống đối ngầm.", "Sau này, Ngô Xương Văn được đưa về kinh, buộc Dương Tam Kha nhường ngôi, rồi mời anh là Ngô Xương Ngập cùng trị vì, sử gọi là Loạn hai vua.", "Hai vua liên tục bất hòa trong đường lối trị nước. Trong khi đó, các thế lực địa phương lợi dụng tình trạng phân quyền để củng cố lực lượng, không còn tuân phục triều đình như trước.", "Khi Ngô Xương Ngập mất, Ngô Xương Văn tiếp tục cầm quyền nhưng tình hình đã rất yếu. Đến khi ông tử trận trong một cuộc dẹp loạn, triều đình gần như tê liệt.", "Kết quả là, đất nước rơi vào cảnh phân tán, mở đầu cho thời kỳ hỗn loạn mà sau này sử gọi là Loạn 12 sứ quân."], ynghia: ["Cho thấy nền tảng chính trị của Nhà Ngô còn yếu, chưa đủ vững để duy trì thống nhất lâu dài.", "Việc tranh quyền đoạt vị đã tạo cơ hội cho các thế lực địa phương nổi dậy.", "Khủng hoảng Nhà Ngô là nguyên nhân trực tiếp dẫn tới thời kỳ 12 sứ quân, kéo dài suốt nhiều năm cho tới khi Đinh Bộ Lĩnh dẹp yên."]},
-            // { name: "Loạn 12 Sứ Quân", year: "965 SCN – 968 SCN", context: "Đầu thế kỷ X, sau nhiều năm bị các triều đại phương Bắc đô hộ, nước ta tuy có lúc tự chủ dưới nhà Ngô nhưng vẫn chưa thật sự yên. Năm 938, quân Nam Hán đem đại quân sang xâm lược, với âm mưu đặt ách cai trị trở lại. Dẫn đầu là Hoằng Tháo con trai vua Nam Hán. Lúc này, Ngô Quyền, vốn là một tướng tài của Dương Đình Nghệ, vừa đánh tan Kiều Công Tiễn (kẻ phản bội) ở Đại La. Ông biết quân Nam Hán sẽ theo đường biển tiến vào sông Bạch Đằng để đánh thẳng vào kinh đô.", dienbien: ["Ngô Quyền quyết định chọn Bạch Đằng một con sông thủy triều mạnh, nhiều khúc quanh để làm nơi đặt bẫy.", "Ông cho quân đóng cọc nhọn dưới lòng sông, chỉ chừa đầu cọc ngập dưới nước. Khi thủy triều dâng, cọc bị che kín sẽ không có ai nhận ra.", "Ngày quân Nam Hán kéo vào cửa sông, Ngô Quyền cho quân ra khiêu chiến rồi giả vờ thua, rút lui.", "Quân giặc hăm hở đuổi theo, tiến sâu vào bãi cọc đúng lúc triều bắt đầu rút. Nước xuống nhanh, thuyền giặc mắc cạn, va vào cọc nhọn vỡ tan.", "Quân ta quay lại phản công, tiêu diệt gần như toàn bộ, Hoằng Tháo tử trận."], ynghia: ["Xóa bỏ hoàn toàn âm mưu tái xâm lược của Nam Hán.", "Mở ra thời kỳ độc lập lâu dài cho dân tộc, chấm dứt hơn 1.000 năm Bắc thuộc.", "Khẳng định tài thao lược xuất chúng của Ngô Quyền, trở thành hình mẫu cho các chiến thắng Bạch Đằng sau này (năm 981 và 1288)."]},
+            {
+                name: "Thành lập nước CHXHCN Việt Nam",
+                year: "2/7/1976",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Dẹp Trịnh Nguyễn, đánh tan quân Xiêm (1785) và Thanh (1789), thống nhất đất nước.</p>`
+            },
+            {
+                name: "Gia nhập Liên Hợp Quốc",
+                year: "1977",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Chiến tranh biên giới phía Bắc",
+                year: "1979",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Đại hội VI – Đổi mới toàn diện",
+                year: "1986",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Gia nhập ASEAN – bình thường hóa quan hệ Mỹ – Việt",
+                year: "1995",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Gia nhập WTO",
+                year: "2007",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Kỷ niệm 1000 năm Thăng Long – Hà Nội",
+                year: "2010",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Hiến pháp 2013 (hiệu lực 2014)",
+                year: "2013",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Tổ chức thành công APEC tại Đà Nẵng",
+                year: "2017",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Ủy viên HĐBA LHQ (không thường trực)",
+                year: "2020–2021",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            },
+            {
+                name: "Kỷ nguyên chuyển đổi số, AI, công nghiệp 4.0",
+                year: "2025",
+                image: '/src/assets/habaTrung.jpg',
+                content: `<p>Lập quốc hiệu Việt Nam (1804), sau đổi Đại Nam (1839), thống nhất nhưng cô lập – suy yếu.</p>`
+            }
         ]
     }
-}
+};
 
 // Helper functions
 export const getEventById = (id) => events.find(event => event.id === id)
