@@ -39,9 +39,10 @@ const NavBar = () => {
     {
       label: 'Giáo dục',
       submenu: [
-        { label: 'Khám phá AI & Di sản', link: '/giaoduc' },
+        // { label: 'Khám phá AI & Di sản', link: '/giaoduc' },
         { label: 'Tài liệu & Bài giảng', link: '/tai-lieu-bai-giang' },
-        { label: 'Bài học minh họa', link: '/bai-giang-minh-hoa' }
+        // { label: 'Bài học minh họa', link: '/bai-giang-minh-hoa' },
+        // { label: 'Upload Tài liệu', link: '/upload-tai-lieu' }
       ]
     },
     {

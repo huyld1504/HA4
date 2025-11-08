@@ -19,8 +19,9 @@ import {
   VirtualChronicle
 } from '../pages';
 import SurveyPage from '../pages/SurveyPage';
-import TrangChu from '../pages/Home/Home.jsx'
-import GioiThieu from '../pages/GioiThieu/GioiThieu.jsx'
+import TrangChu from '../pages/Home/Home.jsx';
+import GioiThieu from '../pages/GioiThieu/GioiThieu.jsx';
+import UploadTaiLieu from '../pages/UploadTaiLieu';
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -95,6 +96,10 @@ const router = createBrowserRouter([
           {
             path: 'survey/:courseId',
             element: <SurveyPage />,
+          },
+          {
+            path: 'upload-tai-lieu',
+            element: <UploadTaiLieu />,
           },
         ],
       },
