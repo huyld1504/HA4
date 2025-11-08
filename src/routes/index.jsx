@@ -1,23 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import AppLayout from '../components/layouts/AppLayout';
-import MainLayout from '../components/layouts/MainLayout';
-import {
-  News,
-  EventDetail,
-  NewsDetail,
-  EventRegistration,
-  VanHoaLichSu,
-  PhanTichGocNhin,
-  Forum,
-  GiaoDuc,
-  BaiGiangMinhHoa,
-  TaiLieuBaiGiang,
-  BaiGiangDetail,
-  TaiLieuDetail,
-  BaiHocMinhHoaDetail,
-  VirtualChronicle
-} from '../pages';
+import { Home, Events, News, EventDetail, NewsDetail, EventRegistration, VanHoaLichSu, PhanTichGocNhin, Forum, TraiNghiem, TaoTranh, CongNghe, GiaoDuc, BaiGiangMinhHoa, BaiGiangDetail, TaiLieuBaiGiang, TaiLieuDetail, BaiHocMinhHoaDetail, VirtualChronicle } from '../pages'
+import AppLayout from '../components/layouts/AppLayout.jsx';
+import MainLayout from '../components/layouts/MainLayout.jsx';
+
 import SurveyPage from '../pages/SurveyPage';
 import TrangChu from '../pages/Home/Home.jsx';
 import GioiThieu from '../pages/GioiThieu/GioiThieu.jsx';
@@ -35,6 +21,8 @@ import StudentLessonView from '../pages/LMS/Student/StudentLessonView';
 import StudentAssignmentDetail from '../pages/LMS/Student/StudentAssignmentDetail';
 import TeacherLessonDetail from '../pages/LMS/Teacher/TeacherLessonDetail';
 import TeacherAssignmentDetail from '../pages/LMS/Teacher/TeacherAssignmentDetail';
+import UploadTaiLieu from '../pages/UploadTaiLieu';
+
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -159,6 +147,22 @@ const router = createBrowserRouter([
           {
             path: 'survey/:courseId',
             element: <SurveyPage />,
+          },
+          {
+            path: 'upload-tai-lieu',
+            element: <UploadTaiLieu />,
+          },
+          {
+            path: 'trainghiem',
+            element: <TraiNghiem />,
+          },
+          {
+            path: 'taotranh',
+            element: <TaoTranh />,
+          },
+          {
+            path: 'congngheai',
+            element: <CongNghe />,
           },
         ],
       },

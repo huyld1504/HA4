@@ -1,31 +1,43 @@
 import React, { useEffect, useState } from 'react';
+import { 
+  Palette, 
+  Archive, 
+  Sparkles, 
+  Star, 
+  Sprout, 
+  Building2, 
+  Theater, 
+  Users, 
+  Target, 
+  Landmark 
+} from 'lucide-react';
 import './GioiThieu.css';
 
 
 // Dữ liệu cho trang Giới thiệu
 const GT_MISSION_POINTS = [
   {
-    icon: '🎨',
+    icon: <Palette size={48} />,
     title: 'Truyền cảm hứng khám phá di sản qua công nghệ',
     description: 'Tạo ra các công cụ hỗ trợ học tập, triển lãm số, và giao diện tương tác sử dụng AI để mọi người dễ dàng tiếp cận và cảm nhận lịch sử Việt Nam một cách sống động.',
   },
   {
-    icon: '💾',
+    icon: <Archive size={48} />,
     title: 'Bảo tồn ký ức văn hóa dân tộc',
     description: 'Bảo tồn và tái hiện ký ức văn hóa dân tộc bằng công nghệ AI và kỹ thuật số.',
   },
   {
-    icon: '✨',
+    icon: <Sparkles size={48} />,
     title: 'Trải nghiệm nghệ thuật số sống động',
     description: 'Tạo ra trải nghiệm nghệ thuật số sống động, giúp người xem không chỉ "thấy" mà còn "cảm" được chiều sâu văn hóa.',
   },
   {
-    icon: '🌟',
+    icon: <Star size={48} />,
     title: 'Nâng cao nhận thức cộng đồng',
     description: 'Nâng cao nhận thức cộng đồng về tầm quan trọng của việc giữ gìn và phát huy di sản văn hóa.',
   },
   {
-    icon: '🌱',
+    icon: <Sprout size={48} />,
     title: 'Truyền cảm hứng cho thế hệ trẻ',
     description: 'Truyền cảm hứng cho thế hệ trẻ, để họ trân trọng và tiếp nối những giá trị truyền thống quý báu.',
   },
@@ -33,17 +45,17 @@ const GT_MISSION_POINTS = [
 
 const GT_VISION_HIGHLIGHTS = [
   {
-    icon: '🌉',
+    icon: <Building2 size={48} />,
     title: 'Cầu nối quá khứ - hiện tại',
     description: 'Trở thành cầu nối giữa quá khứ và hiện tại',
   },
   {
-    icon: '🎭',
+    icon: <Theater size={48} />,
     title: 'Không gian nghệ thuật số',
     description: 'Tạo nên không gian nghệ thuật kỹ thuật số',
   },
   {
-    icon: '👥',
+    icon: <Users size={48} />,
     title: 'Gần gũi với thế hệ trẻ',
     description: 'Đưa văn hóa đến gần hơn với thế hệ trẻ',
   },
@@ -156,17 +168,17 @@ const GioiThieu = () => {
 
               <div className="gt-overview-features">
                 <div className="gt-feature-item">
-                  <div className="gt-feature-icon">🎨</div>
+                  <div className="gt-feature-icon"><Palette size={48} /></div>
                   <h3>Nghệ thuật & AI</h3>
                   <p>Kết hợp sáng tạo truyền thống với công nghệ trí tuệ nhân tạo tiên tiến</p>
                 </div>
                 <div className="gt-feature-item">
-                  <div className="gt-feature-icon">🏛️</div>
+                  <div className="gt-feature-icon"><Landmark size={48} /></div>
                   <h3>Di sản số hóa</h3>
                   <p>Tái hiện các di sản văn hóa Việt Nam dưới dạng trải nghiệm tương tác</p>
                 </div>
                 <div className="gt-feature-item">
-                  <div className="gt-feature-icon">💡</div>
+                  <div className="gt-feature-icon"><Sparkles size={48} /></div>
                   <h3>Trải nghiệm mới</h3>
                   <p>Mang đến cách tiếp cận văn hóa gần gũi và hấp dẫn cho mọi thế hệ</p>
                 </div>
@@ -202,7 +214,7 @@ const GioiThieu = () => {
 
             <div className="gt-mission-summary">
               <div className="gt-summary-box">
-                <h3>🎯 Mục tiêu cốt lõi</h3>
+                <h3><Target size={24} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px' }} /> Mục tiêu cốt lõi</h3>
                 <p>
                   Chúng tôi không chỉ đơn thuần số hóa di sản, mà tạo ra những trải nghiệm 
                   có khả năng chạm đến cảm xúc, khơi gợi niềm tự hào và truyền cảm hứng 
@@ -256,7 +268,7 @@ const GioiThieu = () => {
               </div>
 
               <div className="gt-vision-impact">
-                <h3>🌟 Tác động mong đợi</h3>
+                <h3><Star size={24} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px' }} /> Tác động mong đợi</h3>
                 <div className="gt-impact-grid">
                   <div className="gt-impact-item">
                     <strong>Giáo dục</strong>
@@ -281,7 +293,7 @@ const GioiThieu = () => {
         </section>
 
         {/* Call to Action */}
-        <section className="gioithieu-cta">
+  <section className="gioithieu-cta" id="lien-he">
           <div className="gt-cta-content">
             <h2>Cùng chúng tôi bảo vệ di sản</h2>
             <p>

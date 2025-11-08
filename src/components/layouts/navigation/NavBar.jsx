@@ -41,7 +41,7 @@ const NavBar = () => {
       submenu: [
         { label: 'Trang chủ Giáo dục', link: '/giaoduc' },
         { label: 'Tài liệu & Bài giảng', link: '/tai-lieu-bai-giang' },
-        { label: 'Bài học minh họa', link: '/bai-giang-minh-hoa' },
+        // { label: 'Bài học minh họa', link: '/bai-giang-minh-hoa' },
         { label: 'Trò chơi tương tác', link: '/virtual-chronicle' },
         { label: '---', separator: true },
         { label: '🏫 LMS - Giáo viên', link: '/lms/teacher/dashboard?teacherId=1' },
