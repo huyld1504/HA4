@@ -27,7 +27,7 @@ const Breadcrumb = () => (
     <span className="text-stone-400">/</span>
     <Link to="/giao-duc" className="hover:text-amber-700 transition-colors">Giáo dục</Link>
     <span className="text-stone-400">/</span>
-    <span className="text-amber-800 font-medium">Tài liệu & Bài giảng</span>
+    <span className="text-amber-800 font-medium">Học liệu số</span>
   </nav>
 );
 
