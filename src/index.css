@@ -12,6 +12,10 @@
   --brand-brown-950: #2e1e10;
 }
 
+*{
+  font-family: 'Roboto', sans-serif !important;
+}
+
 /* Custom Utility Classes */
 .brand-brown-50 {
   color: var(--brand-brown-50);
