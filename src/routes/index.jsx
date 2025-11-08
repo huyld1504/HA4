@@ -1,8 +1,8 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, Navigate } from 'react-router-dom'
 
 import AppLayout from '../components/layouts/AppLayout'
 import MainLayout from '../components/layouts/MainLayout'
-import { Home, Events, News, EventDetail, NewsDetail, EventRegistration, VanHoaLichSu, PhanTichGocNhin, Forum, Settings, Guides, Contact } from '../pages'
+import { Home, Events, News, EventDetail, NewsDetail, EventRegistration, VanHoaLichSu, PhanTichGocNhin, Forum, Settings, Guides, Contact, ContactPage, FriendsPage, InfoPage, LoginPage, RegisterPage } from '../pages'
 
 const router = createBrowserRouter([
   {
@@ -58,6 +58,30 @@ const router = createBrowserRouter([
           {
             path: 'contact',
             element: <Contact />,
+          },
+          {
+            path: 'contact-page',
+            element: <ContactPage />,
+          },
+          {
+            path: 'friends',
+            element: <FriendsPage />,
+          },
+          {
+            path: 'info',
+            element: <InfoPage />,
+          },
+          {
+            path: 'profile',
+            element: <Navigate to="/info" replace />,
+          },
+          {
+            path: 'login',
+            element: <LoginPage />,
+          },
+          {
+            path: 'register',
+            element: <RegisterPage />,
           },
         ],
       },

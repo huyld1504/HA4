@@ -10,3 +10,9 @@ export { default as Forum } from './Forum'
 export { default as Settings } from './accountAndSupport/Settings'
 export { default as Guides } from './accountAndSupport/Guides'
 export { default as Contact } from './accountAndSupport/Contact'
+
+// New Pages
+export { default as ContactPage } from './ContactPage'
+export { default as FriendsPage } from './FriendsPage'
+export { default as InfoPage } from './InfoPage'
+export { LoginPage, RegisterPage } from './auth'
