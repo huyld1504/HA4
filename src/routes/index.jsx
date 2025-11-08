@@ -7,6 +7,7 @@ import MainLayout from '../components/layouts/MainLayout.jsx';
 import SurveyPage from '../pages/SurveyPage';
 import TrangChu from '../pages/Home/Home.jsx';
 import GioiThieu from '../pages/GioiThieu/GioiThieu.jsx';
+import UploadTaiLieu from '../pages/UploadTaiLieu';
 
 const router = createBrowserRouter([
   {
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
           {
             path: 'survey/:courseId',
             element: <SurveyPage />,
+          },
+          {
+            path: 'upload-tai-lieu',
+            element: <UploadTaiLieu />,
           },
           {
             path: 'trainghiem',
