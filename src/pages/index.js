@@ -1,18 +1,20 @@
-export { default as Home } from './Home'
-export { default as Events } from './Events'
-export { default as News } from './News'
-export { default as EventDetail } from './EventDetail'
-export { default as NewsDetail } from './NewsDetail'
-export { default as EventRegistration } from './EventRegistration'
-export { default as VanHoaLichSu } from './VanHoaLichSu'
-export { default as PhanTichGocNhin } from './PhanTichGocNhin'
-export { default as Forum } from './Forum'
-export { default as Settings } from './accountAndSupport/Settings'
-export { default as Guides } from './accountAndSupport/Guides'
-export { default as Contact } from './accountAndSupport/Contact'
-
-// New Pages
-export { default as ContactPage } from './ContactPage'
-export { default as FriendsPage } from './FriendsPage'
-export { default as InfoPage } from './InfoPage'
-export { LoginPage, RegisterPage } from './auth'
+export { default as Home } from './Home/Home';
+export { default as HomeEvent } from './Events-News/Home'
+export { default as Events } from './Events-News/Events'
+export { default as News } from './Events-News/News'
+export { default as EventDetail } from './Events-News/EventDetail'
+export { default as NewsDetail } from './Events-News/NewsDetail'
+export { default as EventRegistration } from './Events-News/EventRegistration'
+export { default as VanHoaLichSu } from './Events-News/VanHoaLichSu'
+export { default as PhanTichGocNhin } from './Events-News/PhanTichGocNhin'
+export { default as Forum } from './Events-News/Forum'
+export { default as GiaoDuc } from './GiaoDuc';
+export { default as BaiGiangMinhHoa } from './BaiGiangMinhHoa';
+export { default as TaiLieuBaiGiang } from './TaiLieuBaiGiang';
+export { default as BaiGiangDetail } from './BaiGiangDetail';
+export { default as TaiLieuDetail } from './TaiLieuDetail';
+export { default as BaiHocMinhHoaDetail } from './BaiHocMinhHoaDetail';
+export { default as VirtualChronicle } from './VirtualChronicle';
+export {default as CongNghe} from './CongNghe';
+export {default as TaoTranh} from './TaoTranh';
+export {default as TraiNghiem} from './TraiNghiem';
