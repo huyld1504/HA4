@@ -1,6 +1,6 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 
-import { Home, HomeEvent, Events, News, EventDetail, NewsDetail, EventRegistration, VanHoaLichSu, PhanTichGocNhin, Forum, TraiNghiem, TaoTranh, CongNghe, GiaoDuc, BaiGiangMinhHoa, BaiGiangDetail, TaiLieuBaiGiang, TaiLieuDetail, BaiHocMinhHoaDetail, VirtualChronicle } from '../pages'
+import { Home, HomeEvent, Events, News, EventDetail, NewsDetail, EventRegistration, VanHoaLichSu, PhanTichGocNhin, Forum, TraiNghiem, TaoTranh, CongNghe, GiaoDuc, BaiGiangMinhHoa, BaiGiangDetail, TaiLieuBaiGiang, TaiLieuDetail, BaiHocMinhHoaDetail, VirtualChronicle, ProfilePage, InfoPage, FriendsPage, ContactPage, Settings, Guides, Contact, LoginPage, RegisterPage } from '../pages'
 import AppLayout from '../components/layouts/AppLayout.jsx';
 import MainLayout from '../components/layouts/MainLayout.jsx';
 
@@ -167,6 +167,43 @@ const router = createBrowserRouter([
           {
             path: 'congngheai',
             element: <CongNghe />,
+          },
+          // Account & Support Routes
+          {
+            path: 'profile',
+            element: <InfoPage />,
+          },
+          {
+            path: 'info',
+            element: <InfoPage />,
+          },
+          {
+            path: 'friends',
+            element: <FriendsPage />,
+          },
+          {
+            path: 'contact-page',
+            element: <ContactPage />,
+          },
+          {
+            path: 'settings',
+            element: <Settings />,
+          },
+          {
+            path: 'guides',
+            element: <Guides />,
+          },
+          {
+            path: 'contact',
+            element: <Contact />,
+          },
+          {
+            path: 'login',
+            element: <LoginPage />,
+          },
+          {
+            path: 'register',
+            element: <RegisterPage />,
           },
         ],
       },
