@@ -52,9 +52,9 @@ const NavBar = () => {
     {
       label: 'Cửa hàng',
       submenu: [
-        { label: 'Mua tranh in', link: '/shop-mua' },
-        { label: 'Donate / Ủng hộ', link: '/shop-donate' },
-        { label: 'Thành viên VIP', link: '/shop-vip' }
+        { label: 'Mua tranh in', link: '/mua-tranh-in' },
+        { label: 'Donate / Ủng hộ', link: '/donat-ung-ho' },
+        { label: 'Thành viên VIP', link: '/thanh-vien-vip' }
       ]
     }
   ], []);
