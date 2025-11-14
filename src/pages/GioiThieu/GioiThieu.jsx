@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import drumBgMusic from '../../assets/Audio/drum_s.mp3';
 import { 
   Palette, 
   Archive, 
@@ -75,6 +76,33 @@ const GT_STATISTICS = [
 
 const GioiThieu = () => {
   const [userEmail, setUserEmail] = useState(null);
+  // --- Background music state ---
+  const bgAudioRef = useRef(null);
+  const [isBgMusicPlaying, setIsBgMusicPlaying] = useState(true); // auto-play by default
+
+  // Handle background music play/pause
+  useEffect(() => {
+    const bgAudio = bgAudioRef.current;
+    if (!bgAudio) return;
+    if (isBgMusicPlaying) {
+      bgAudio.volume = 0.5;
+      const playPromise = bgAudio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
+    } else {
+      bgAudio.pause();
+    }
+  }, [isBgMusicPlaying]);
+
+  // Auto-play on mount
+  useEffect(() => {
+    setIsBgMusicPlaying(true);
+  }, []);
+
+  const handleBgMusicToggle = () => {
+    setIsBgMusicPlaying((prev) => !prev);
+  };
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -101,6 +129,22 @@ const GioiThieu = () => {
 
   return (
     <div className="gioithieu-page">
+      {/* Background music audio element and toggle button */}
+      <audio
+        ref={bgAudioRef}
+        src={drumBgMusic}
+        loop
+        autoPlay
+        style={{ display: 'none' }}
+      />
+      <button
+        className={`btn-bg-music-toggle${isBgMusicPlaying ? ' is-playing' : ''}`}
+        onClick={handleBgMusicToggle}
+        style={{ position: 'fixed', top: 16, right: 16, zIndex: 1000 }}
+        aria-label={isBgMusicPlaying ? 'Tắt nhạc nền' : 'Bật nhạc nền'}
+      >
+        {isBgMusicPlaying ? '🔊 Đang phát nhạc nền' : '🔇 Bật nhạc nền'}
+      </button>
 
       <main className="gioithieu-main">
         {/* Hero Section */}

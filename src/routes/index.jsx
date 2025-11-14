@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { Home, HomeEvent, Events, News, EventDetail, NewsDetail, EventRegistration, VanHoaLichSu, PhanTichGocNhin, Forum, TraiNghiem, TaoTranh, CongNghe, GiaoDuc, BaiGiangMinhHoa, BaiGiangDetail, TaiLieuBaiGiang, TaiLieuDetail, BaiHocMinhHoaDetail, VirtualChronicle } from '../pages'
+import { Home, HomeEvent, Events, News, EventDetail, NewsDetail, EventRegistration, VanHoaLichSu, PhanTichGocNhin, Forum, TraiNghiem, TaoTranh, CongNghe, GiaoDuc, BaiGiangMinhHoa, BaiGiangDetail, TaiLieuBaiGiang, TaiLieuDetail, BaiHocMinhHoaDetail, VirtualChronicle, ChiTietTranh, DonatUngHo, MuaTranhIn, ThanhVienVIP, ThankYou } from '../pages'
 import AppLayout from '../components/layouts/AppLayout.jsx';
 import MainLayout from '../components/layouts/MainLayout.jsx';
 
@@ -167,6 +167,26 @@ const router = createBrowserRouter([
           {
             path: 'congngheai',
             element: <CongNghe />,
+          },
+          {
+            path: 'chi-tiet/:id',
+            element: <ChiTietTranh />,
+          },
+          {
+            path: 'donat-ung-ho',
+            element: <DonatUngHo />,
+          },
+          {
+            path: 'mua-tranh-in',
+            element: <MuaTranhIn />,
+          },
+          {
+            path: 'thanh-vien-vip',
+            element: <ThanhVienVIP />,
+          },
+          {
+            path: 'thank-you',
+            element: <ThankYou />,
           },
         ],
       },
