@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { Home, HomeEvent, Events, News, EventDetail, NewsDetail, EventRegistration, VanHoaLichSu, PhanTichGocNhin, Forum, TraiNghiem, TaoTranh, CongNghe, GiaoDuc, BaiGiangMinhHoa, BaiGiangDetail, TaiLieuBaiGiang, TaiLieuDetail, BaiHocMinhHoaDetail, VirtualChronicle, ChiTietTranh, DonatUngHo, MuaTranhIn, ThanhVienVIP, ThankYou } from '../pages'
+import { Home, HomeEvent, Events, News, EventDetail, NewsDetail, EventRegistration, VanHoaLichSu, HeroesList, PhanTichGocNhin, Forum, TraiNghiem, TaoTranh, CongNghe, GiaoDuc, BaiGiangMinhHoa, BaiGiangDetail, TaiLieuBaiGiang, TaiLieuDetail, BaiHocMinhHoaDetail, VirtualChronicle, ChiTietTranh, DonatUngHo, MuaTranhIn, ThanhVienVIP, ThankYou } from '../pages'
 import AppLayout from '../components/layouts/AppLayout.jsx';
 import MainLayout from '../components/layouts/MainLayout.jsx';
 
@@ -61,6 +61,10 @@ const router = createBrowserRouter([
           {
             path: 'vanhoalichsu',
             element: <VanHoaLichSu />,
+          },
+          {
+            path: 'heroes',
+            element: <HeroesList />,
           },
           {
             path: 'phantichgocnhin',

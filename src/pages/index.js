@@ -6,6 +6,7 @@ export { default as EventDetail } from './Events-News/EventDetail'
 export { default as NewsDetail } from './Events-News/NewsDetail'
 export { default as EventRegistration } from './Events-News/EventRegistration'
 export { default as VanHoaLichSu } from './Events-News/VanHoaLichSu'
+export { default as HeroesList } from './Events-News/HeroesList'
 export { default as PhanTichGocNhin } from './Events-News/PhanTichGocNhin'
 export { default as Forum } from './Events-News/Forum'
 export { default as GiaoDuc } from './GiaoDuc';

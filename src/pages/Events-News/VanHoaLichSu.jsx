@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { dynastyData as dynastyDataRaw } from '../../data/mockData'
 import nhangoImg from '../../assets/nhango.jpg'
 import nhathoImg from '../../assets/nhatho.png'
@@ -36,6 +37,7 @@ const [modalData, setModalData] = useState(null)
 const [eventModalData, setEventModalData] = useState(null)
 // const [slideshowIndex, setSlideshowIndex] = useState(0)
 const [openDynasty, setOpenDynasty] = useState(null)
+const navigate = useNavigate()
 
 useEffect(() => {
     // Inject responsive styles for event content modal and hide scrollbar
@@ -98,7 +100,7 @@ function toggleDynasty(key) {
 }
 
 // Component to render dynasty content (figures + events)
-const DynastyContent = ({ dynasty, isOpen, onEventClick }) => {
+const DynastyContent = ({ dynasty, isOpen, onEventClick, navigate }) => {
     const [scrollPosition, setScrollPosition] = React.useState(0)
     const scrollContainerRef = React.useRef(null)
     
@@ -137,6 +139,18 @@ const DynastyContent = ({ dynasty, isOpen, onEventClick }) => {
                                     <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
                                 </svg>
                                 <h4 className="text-sm font-bold text-amber-900">Danh nhân tiêu biểu</h4>
+                                <button
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        navigate(`/heroes?period=${encodeURIComponent(dynasty.title)}`)
+                                    }}
+                                    className="ml-auto text-xs font-semibold text-amber-700 hover:text-amber-900 bg-amber-100 hover:bg-amber-200 px-3 py-1.5 rounded-full transition-all duration-300 flex items-center gap-1.5"
+                                >
+                                    <span>Xem thêm</span>
+                                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
                             </div>
                             
                             {/* Navigation Buttons - Only show if more than 2 figures */}
@@ -316,7 +330,7 @@ const DynastyContent = ({ dynasty, isOpen, onEventClick }) => {
                                                     </div>
                                                 </div>
                                                 
-                                                <DynastyContent dynasty={dynastyData.prehistory} isOpen={openDynasty === 'prehistory'} onEventClick={openEventModal} />
+                                                <DynastyContent dynasty={dynastyData.prehistory} isOpen={openDynasty === 'prehistory'} onEventClick={openEventModal} navigate={navigate} />
                                             </div>
                                         )}
 
@@ -346,7 +360,7 @@ const DynastyContent = ({ dynasty, isOpen, onEventClick }) => {
                                                     </div>
                                                 </div>
                                                 
-                                                <DynastyContent dynasty={dynastyData.aulac} isOpen={openDynasty === 'aulac'} onEventClick={openEventModal} />
+                                                <DynastyContent dynasty={dynastyData.aulac} isOpen={openDynasty === 'aulac'} onEventClick={openEventModal} navigate={navigate} />
                                             </div>
                                         )}
 
@@ -376,7 +390,7 @@ const DynastyContent = ({ dynasty, isOpen, onEventClick }) => {
                                                     </div>
                                                 </div>
                                                 
-                                                <DynastyContent dynasty={dynastyData.phongkientuchu} isOpen={openDynasty === 'phongkientuchu'} onEventClick={openEventModal} />
+                                                <DynastyContent dynasty={dynastyData.phongkientuchu} isOpen={openDynasty === 'phongkientuchu'} onEventClick={openEventModal} navigate={navigate} />
                                             </div>
                                         )}
 
@@ -406,7 +420,7 @@ const DynastyContent = ({ dynasty, isOpen, onEventClick }) => {
                                                     </div>
                                                 </div>
                                                 
-                                                <DynastyContent dynasty={dynastyData.phapdoho} isOpen={openDynasty === 'phapdoho'} onEventClick={openEventModal} />
+                                                <DynastyContent dynasty={dynastyData.phapdoho} isOpen={openDynasty === 'phapdoho'} onEventClick={openEventModal} navigate={navigate} />
                                             </div>
                                         )}
 
@@ -436,7 +450,7 @@ const DynastyContent = ({ dynasty, isOpen, onEventClick }) => {
                                                     </div>
                                                 </div>
                                                 
-                                                <DynastyContent dynasty={dynastyData.khangchienchongphap} isOpen={openDynasty === 'khangchienchongphap'} onEventClick={openEventModal} />
+                                                <DynastyContent dynasty={dynastyData.khangchienchongphap} isOpen={openDynasty === 'khangchienchongphap'} onEventClick={openEventModal} navigate={navigate} />
                                             </div>
                                         )}
 
@@ -466,7 +480,7 @@ const DynastyContent = ({ dynasty, isOpen, onEventClick }) => {
                                                     </div>
                                                 </div>
                                                 
-                                                <DynastyContent dynasty={dynastyData.khangchienchongmy} isOpen={openDynasty === 'khangchienchongmy'} onEventClick={openEventModal} />
+                                                <DynastyContent dynasty={dynastyData.khangchienchongmy} isOpen={openDynasty === 'khangchienchongmy'} onEventClick={openEventModal} navigate={navigate} />
                                             </div>
                                         )}
 
@@ -496,7 +510,7 @@ const DynastyContent = ({ dynasty, isOpen, onEventClick }) => {
                                                     </div>
                                                 </div>
                                                 
-                                                <DynastyContent dynasty={dynastyData.modern} isOpen={openDynasty === 'modern'} onEventClick={openEventModal} />
+                                                <DynastyContent dynasty={dynastyData.modern} isOpen={openDynasty === 'modern'} onEventClick={openEventModal} navigate={navigate} />
                                             </div>
                                         )}
                                     </div>
