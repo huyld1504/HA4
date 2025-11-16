@@ -408,7 +408,7 @@ const NavBar = () => {
 
               {/* Cart Button: chỉ hiển thị khi ở trang Cửa hàng */}
               {typeof window !== 'undefined' &&
-                (/^\/((mua-tranh-in)|(donat-ung-ho)|(thanh-vien-vip)|(cart)|(checkout))/.test(window.location.pathname)) && (
+                (/^\/((mua-tranh-in)|(donat-ung-ho)|(thanh-vien-vip)|(cart)|(checkout)|(chi-tiet))/.test(window.location.pathname)) && (
                   <li className="ml-3 pl-3 border-l border-[#5a3822]/50">
                     <Link
                       to="/cart"
