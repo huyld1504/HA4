@@ -4,7 +4,9 @@ import PaymentMethods from "../../components/PaymentMethods";
 import { Link } from "react-router-dom";
 
 export default function Checkout() {
+	// Lấy dữ liệu giỏ hàng và các hàm xử lý
 	const { cart, getTotalPrice, clearCart } = useCart();
+	// State thông tin khách hàng
 	const [customer, setCustomer] = useState({
 		name: "",
 		email: "",
@@ -13,13 +15,16 @@ export default function Checkout() {
 		note: "",
 	});
 
+	// Tính toán tổng tiền
 	const subtotal = useMemo(() => getTotalPrice(), [getTotalPrice]);
 	const shipping = 0; // Có thể cấu hình sau
 	const total = subtotal + shipping;
 
+	// Kiểm tra hợp lệ thông tin
 	const isValid = () =>
 		customer.name.trim() && customer.phone.trim() && customer.address.trim();
 
+	// Xử lý thanh toán
 	const onPay = (method, details) => {
 		const order = {
 			id: `ORD-${Date.now()}`,
@@ -54,6 +59,7 @@ export default function Checkout() {
 			<div className="mx-auto max-w-6xl px-4 py-8">
 				<h1 className="mb-6 text-2xl font-bold text-gray-800">Thanh toán</h1>
 
+				{/* Nếu giỏ hàng rỗng */}
 				{cart.length === 0 ? (
 					<div className="rounded-xl border border-dashed border-gray-300 bg-white p-10 text-center">
 						<p className="mb-4 text-gray-600">Giỏ hàng trống. Hãy thêm sản phẩm trước khi thanh toán.</p>

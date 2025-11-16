@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+// Trang cảm ơn sau thanh toán
 export default function ThankYou() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[70vh] text-center p-6">

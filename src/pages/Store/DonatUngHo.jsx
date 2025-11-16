@@ -1,42 +1,23 @@
-// File moved to ./Store/DonatUngHo.jsx
-// src/pages/DonatUngHo.jsx
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import PaymentMethods from "../../components/PaymentMethods";
 
 export default function DonatUngHo() {
+  // State cho số tiền, ẩn danh, carousel, modal
   const [selectedAmount, setSelectedAmount] = useState(null);
   const [customAmount, setCustomAmount] = useState("");
   const [isAnonymous, setIsAnonymous] = useState(false);
   const [showReport, setShowReport] = useState(false);
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
+  // Dữ liệu mức ủng hộ và nhà tài trợ
   const donateLevels = [
-    { 
-      amount: 50000, 
-      desc: "Ủng hộ nhỏ – Cảm ơn tấm lòng của bạn", 
-      img: "https://cdn-icons-png.freepik.com/512/2545/2545462.png",
-      perks: ["Nhận thư cảm ơn điện tử", "Tên hiển thị trong danh sách tri ân"]
-    },
-    { 
-      amount: 100000, 
-      desc: "Ủng hộ vừa – Đồng hành cùng dự án", 
-      img: "https://cdn-icons-png.flaticon.com/512/10642/10642264.png",
-      perks: ["Thư cảm ơn cá nhân hóa", "Tên hiển thị nổi bật", "Nhận 1 hình nền AI độc quyền"]
-    },
-    { 
-      amount: 500000, 
-      desc: "Ủng hộ lớn – Vinh danh trên website", 
-      img: "https://cdn-icons-png.freepik.com/512/16135/16135977.png",
-      perks: ["Logo/tên trên trang tri ân", "Truy cập nội dung đặc biệt", "Giấy chứng nhận ủng hộ"]
-    },
-    { 
-      amount: 1000000, 
-      desc: "Nhà bảo trợ nghệ thuật – Góp vào quỹ từ thiện", 
-      img: "	https://cdn-icons-png.flaticon.com/256/10303/10303229.png",
-      perks: ["Vinh danh riêng trên trang chủ", "Tặng NFT tranh AI độc bản", "Mời tham dự sự kiện offline"]
-    },
+    { amount: 50000, desc: "Ủng hộ nhỏ – Cảm ơn tấm lòng của bạn", img: "https://cdn-icons-png.freepik.com/512/2545/2545462.png", perks: ["Nhận thư cảm ơn điện tử", "Tên hiển thị trong danh sách tri ân"] },
+    { amount: 100000, desc: "Ủng hộ vừa – Đồng hành cùng dự án", img: "https://cdn-icons-png.flaticon.com/512/10642/10642264.png", perks: ["Thư cảm ơn cá nhân hóa", "Tên hiển thị nổi bật", "Nhận 1 hình nền AI độc quyền"] },
+    { amount: 500000, desc: "Ủng hộ lớn – Vinh danh trên website", img: "https://cdn-icons-png.freepik.com/512/16135/16135977.png", perks: ["Logo/tên trên trang tri ân", "Truy cập nội dung đặc biệt", "Giấy chứng nhận ủng hộ"] },
+    { amount: 1000000, desc: "Nhà bảo trợ nghệ thuật – Góp vào quỹ từ thiện", img: "https://cdn-icons-png.flaticon.com/256/10303/10303229.png", perks: ["Vinh danh riêng trên trang chủ", "Tặng NFT tranh AI độc bản", "Mời tham dự sự kiện offline"] },
   ];
-
   const donors = [
     { name: "Nguyễn Minh Anh", level: "Nhà bảo trợ nghệ thuật", amount: "1.000.000₫" },
     { name: "Trần Quốc Huy", level: "Ủng hộ lớn", amount: "500.000₫" },
@@ -52,8 +33,19 @@ export default function DonatUngHo() {
     { name: "Nguyễn Khánh Linh", level: "Nhà bảo trợ nghệ thuật", amount: "1.000.000₫" },
   ];
 
-  const handleDonateClick = (amount) => setSelectedAmount(amount);
+  // Hiệu ứng chuyển động
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1, transition: { staggerChildren: 0.15 } },
+  };
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  };
 
+  // Xử lý chọn mức ủng hộ
+  const handleDonateClick = (amount) => setSelectedAmount(amount);
+  // Xử lý nhập số tiền tuỳ chọn
   const handleCustomDonate = () => {
     const parsed = parseInt(customAmount);
     if (!parsed || parsed < 10000) {
@@ -62,7 +54,7 @@ export default function DonatUngHo() {
     }
     setSelectedAmount(parsed);
   };
-
+  // Xử lý thanh toán
   const handlePayment = (method, details) => {
     const donorName = isAnonymous ? "Người ủng hộ ẩn danh" : details.name || "Bạn";
     alert(`🎉 Cảm ơn ${donorName} đã ủng hộ ${details.amount.toLocaleString()}₫ bằng ${method}!`);
@@ -70,35 +62,19 @@ export default function DonatUngHo() {
     setCustomAmount("");
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: { opacity: 1, transition: { staggerChildren: 0.15 } },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-  };
-
-  // Carousel state
-  const [carouselIndex, setCarouselIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  // Carousel nhà tài trợ
   const visibleCount = 3;
   const total = donors.length;
-
   useEffect(() => {
     const interval = setInterval(() => {
-      if (!isPaused) {
-        setCarouselIndex((prev) => (prev + 1) % total);
-      }
+      if (!isPaused) setCarouselIndex((prev) => (prev + 1) % total);
     }, 4000);
     return () => clearInterval(interval);
   }, [isPaused, total]);
-
   const prevSlide = () => setCarouselIndex((prev) => (prev - 1 + total) % total);
   const nextSlide = () => setCarouselIndex((prev) => (prev + 1) % total);
 
-  // Report Modal
+  // Modal báo cáo minh bạch
   const ReportModal = () => (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
       <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="bg-white rounded-2xl p-6 max-w-3xl w-full relative shadow-xl">
@@ -164,7 +140,7 @@ export default function DonatUngHo() {
                 <button onClick={handleCustomDonate} className="bg-gradient-to-r from-orange-500 to-amber-500 text-white px-6 py-2 rounded-xl shadow hover:from-orange-600 hover:to-amber-600 transition font-semibold">Ủng hộ ngay</button>
               </div>
               <div className="mt-4 flex justify-center items-center gap-2">
-                <input type="checkbox" id="anonymous" checked={isAnonymous} onChange={(e) => setIsPaused(e.target.checked)} className="w-4 h-4 text-orange-500 focus:ring-orange-400" />
+                <input type="checkbox" id="anonymous" checked={isAnonymous} onChange={(e) => setIsAnonymous(e.target.checked)} className="w-4 h-4 text-orange-500 focus:ring-orange-400" />
                 <label htmlFor="anonymous" className="text-gray-700 text-sm">Ủng hộ ẩn danh</label>
               </div>
             </motion.div>
@@ -182,56 +158,35 @@ export default function DonatUngHo() {
           </motion.div>
         )}
 
-       {/* TRI ÂN NHÀ TÀI TRỢ - RESPONSIVE CAROUSEL */}
-<section className="mt-20 relative">
-  <h2 className="text-3xl font-bold text-orange-600 mb-8 text-center">🌟 Tri Ân Nhà Tài Trợ</h2>
-  <p className="text-gray-600 mb-12 text-center max-w-3xl mx-auto">
-    Cảm ơn những tấm lòng vàng đã đồng hành cùng dự án. Mỗi đóng góp là một viên gạch xây nên hành trình bảo tồn văn hóa Việt.
-  </p>
-
-  <div
-    className="relative flex justify-center items-center"
-    onMouseEnter={() => setIsPaused(true)}
-    onMouseLeave={() => setIsPaused(false)}
-  >
-    <AnimatePresence initial={false}>
-      <motion.div
-        key={carouselIndex}
-        initial={{ x: "100%", opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        exit={{ x: "-100%", opacity: 0 }}
-        transition={{ type: "tween", duration: 0.8 }}
-        className="flex gap-6"
-      >
-        {Array.from({ length: visibleCount }).map((_, i) => {
-          const donor = donors[(carouselIndex + i) % total];
-          return (
-            <div
-              key={i}
-              className="w-full sm:w-1/2 lg:w-1/3 bg-gradient-to-tr from-orange-50 via-white to-amber-50 rounded-2xl shadow-lg p-6 flex flex-col items-center text-center border border-orange-100 transition-all hover:shadow-2xl"
-            >
-              <img src={`https://i.pravatar.cc/150?u=${donor.name}`} alt={donor.name} className="w-24 h-24 rounded-full mb-4 shadow-md object-cover" />
-              <h3 className="text-xl font-semibold text-orange-600">{donor.name}</h3>
-              <p className="text-gray-700 mt-1">{donor.level}</p>
-              <p className="text-gray-500 mt-2 font-medium">{donor.amount}</p>
-              <span className="mt-4 inline-block bg-orange-100 text-orange-700 text-xs font-semibold px-3 py-1 rounded-full">
-                Nhà tài trợ
-              </span>
-            </div>
-          );
-        })}
-      </motion.div>
-    </AnimatePresence>
-
-    {/* Prev / Next buttons */}
-    <button onClick={prevSlide} className="absolute left-0 top-1/2 -translate-y-1/2 bg-white text-orange-600 hover:bg-orange-100 rounded-full p-3 shadow-lg z-10">◀</button>
-    <button onClick={nextSlide} className="absolute right-0 top-1/2 -translate-y-1/2 bg-white text-orange-600 hover:bg-orange-100 rounded-full p-3 shadow-lg z-10">▶</button>
-  </div>
-</section>
-
-
+        {/* TRI ÂN NHÀ TÀI TRỢ - CAROUSEL */}
+        <section className="mt-20 relative">
+          <h2 className="text-3xl font-bold text-orange-600 mb-8 text-center">🌟 Tri Ân Nhà Tài Trợ</h2>
+          <p className="text-gray-600 mb-12 text-center max-w-3xl mx-auto">
+            Cảm ơn những tấm lòng vàng đã đồng hành cùng dự án. Mỗi đóng góp là một viên gạch xây nên hành trình bảo tồn văn hóa Việt.
+          </p>
+          <div className="relative flex justify-center items-center" onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
+            <AnimatePresence initial={false}>
+              <motion.div key={carouselIndex} initial={{ x: "100%", opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: "-100%", opacity: 0 }} transition={{ type: "tween", duration: 0.8 }} className="flex gap-6">
+                {Array.from({ length: visibleCount }).map((_, i) => {
+                  const donor = donors[(carouselIndex + i) % total];
+                  return (
+                    <div key={i} className="w-full sm:w-1/2 lg:w-1/3 bg-gradient-to-tr from-orange-50 via-white to-amber-50 rounded-2xl shadow-lg p-6 flex flex-col items-center text-center border border-orange-100 transition-all hover:shadow-2xl">
+                      <img src={`https://i.pravatar.cc/150?u=${donor.name}`} alt={donor.name} className="w-24 h-24 rounded-full mb-4 shadow-md object-cover" />
+                      <h3 className="text-xl font-semibold text-orange-600">{donor.name}</h3>
+                      <p className="text-gray-700 mt-1">{donor.level}</p>
+                      <p className="text-gray-500 mt-2 font-medium">{donor.amount}</p>
+                      <span className="mt-4 inline-block bg-orange-100 text-orange-700 text-xs font-semibold px-3 py-1 rounded-full">Nhà tài trợ</span>
+                    </div>
+                  );
+                })}
+              </motion.div>
+            </AnimatePresence>
+            {/* Prev / Next buttons */}
+            <button onClick={prevSlide} className="absolute left-0 top-1/2 -translate-y-1/2 bg-white text-orange-600 hover:bg-orange-100 rounded-full p-3 shadow-lg z-10">◀</button>
+            <button onClick={nextSlide} className="absolute right-0 top-1/2 -translate-y-1/2 bg-white text-orange-600 hover:bg-orange-100 rounded-full p-3 shadow-lg z-10">▶</button>
+          </div>
+        </section>
       </div>
-
       {/* SHARE + CONTACT */}
       <div className="mt-16 flex justify-center space-x-4">
         <a href="https://facebook.com/sharer/sharer.php?u=https://nghethuackyuc.vn" target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Chia sẻ Facebook</a>
@@ -241,7 +196,6 @@ export default function DonatUngHo() {
         <h2 className="text-2xl font-bold text-gray-800 mb-4">Hợp tác tài trợ</h2>
         <a href="mailto:lienhe@nghethuackyuc.vn" className="text-orange-600 font-semibold underline hover:text-amber-600">📧 Gửi email: lienhe@nghethuackyuc.vn</a>
       </div>
-
       {/* MODAL */}
       {showReport && <ReportModal />}
     </div>

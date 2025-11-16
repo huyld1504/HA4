@@ -15,7 +15,7 @@ export function CartProvider({ children }) {
   }, [cart]);
 
   // Thêm sản phẩm vào giỏ hàng
-  const addToCart = (art, selectedType = "Tranh Canvas") => {
+  const addToCart = (art, selectedType = "Tranh Canvas", quantity = 1) => {
     const existingItem = cart.find(
       (item) => item.id === art.id && item.selectedType === selectedType
     );
@@ -25,7 +25,7 @@ export function CartProvider({ children }) {
       setCart(
         cart.map((item) =>
           item.id === art.id && item.selectedType === selectedType
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + Math.max(1, quantity) }
             : item
         )
       );
@@ -40,7 +40,7 @@ export function CartProvider({ children }) {
           selectedType,
           price: art.price[selectedType],
           image: art.images[selectedType],
-          quantity: 1,
+          quantity: Math.max(1, quantity),
         },
       ]);
     }
