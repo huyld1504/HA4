@@ -1,8 +1,10 @@
 import React, { useState, useRef, useCallback, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useCart } from '../../../context/CartContext';
 import logo from '../../../assets/logo.png';
 
 const NavBar = () => {
+  const { getTotalItems } = useCart();
   const [openSubmenu, setOpenSubmenu] = useState(null)
   const [isAuthenticated, setIsAuthenticated] = useState(true) // TODO: Kết nối với auth context/state
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -403,6 +405,28 @@ const NavBar = () => {
                   </div>
                 </li>
               )}
+
+              {/* Cart Button: chỉ hiển thị khi ở trang Cửa hàng */}
+              {typeof window !== 'undefined' &&
+                (/^\/((mua-tranh-in)|(donat-ung-ho)|(thanh-vien-vip)|(cart)|(checkout))/.test(window.location.pathname)) && (
+                  <li className="ml-3 pl-3 border-l border-[#5a3822]/50">
+                    <Link
+                      to="/cart"
+                      className="relative flex items-center gap-2 rounded-lg px-3 py-2 text-[#fff1c7] hover:text-[#ffd54f] hover:bg-[#4a2d18]/50 transition-colors"
+                      aria-label="Giỏ hàng"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-2 9m12-9l2 9M9 22a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z" />
+                      </svg>
+                      <span className="font-semibold">Giỏ hàng</span>
+                      {getTotalItems() > 0 && (
+                        <span className="absolute -top-2 -right-2 rounded-full bg-[#ffd54f] px-1.5 py-0.5 text-xs font-bold text-[#3b2412] shadow">
+                          {getTotalItems()}
+                        </span>
+                      )}
+                    </Link>
+                  </li>
+                )}
             </ul>
           </nav>
 
@@ -580,6 +604,25 @@ const NavBar = () => {
                     ))}
                     
                     <li className="my-2 mx-4 border-t border-[#4a2d18]/50"></li>
+
+                    {/* Mobile Cart Link */}
+                    <li>
+                      <Link
+                        to="/cart"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="flex items-center gap-3 px-4 py-2.5 text-[#e8dcc4] hover:text-[#ffd54f] text-[0.875rem] font-medium rounded-lg transition-all duration-200 hover:bg-[#3a2515]"
+                      >
+                        <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-2 9m12-9l2 9M9 22a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z" />
+                        </svg>
+                        Giỏ hàng
+                        {getTotalItems() > 0 && (
+                          <span className="ml-auto inline-flex h-5 min-w-[20px] items-center justify-center rounded-full bg-[#ffd54f] px-1 text-xs font-bold text-[#3b2412]">
+                            {getTotalItems()}
+                          </span>
+                        )}
+                      </Link>
+                    </li>
                     
                     <li>
                       <button

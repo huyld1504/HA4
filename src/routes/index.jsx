@@ -3,6 +3,8 @@ import { createBrowserRouter } from 'react-router-dom';
 import { Home, HomeEvent, Events, News, EventDetail, NewsDetail, EventRegistration, VanHoaLichSu, HeroesList, PhanTichGocNhin, Forum, TraiNghiem, TaoTranh, CongNghe, GiaoDuc, BaiGiangMinhHoa, BaiGiangDetail, TaiLieuBaiGiang, TaiLieuDetail, BaiHocMinhHoaDetail, VirtualChronicle, ChiTietTranh, DonatUngHo, MuaTranhIn, ThanhVienVIP, ThankYou } from '../pages'
 import AppLayout from '../components/layouts/AppLayout.jsx';
 import MainLayout from '../components/layouts/MainLayout.jsx';
+import Cart from '../components/Cart.jsx';
+import Checkout from '../pages/Store/Checkout.jsx';
 
 import SurveyPage from '../pages/SurveyPage';
 import TrangChu from '../pages/Home/Home.jsx';
@@ -183,6 +185,14 @@ const router = createBrowserRouter([
           {
             path: 'mua-tranh-in',
             element: <MuaTranhIn />,
+          },
+          {
+            path: 'cart',
+            element: <Cart />,
+          },
+          {
+            path: 'checkout',
+            element: <Checkout />,
           },
           {
             path: 'thanh-vien-vip',
