@@ -77,8 +77,9 @@ const GT_STATISTICS = [
 const GioiThieu = () => {
   const [userEmail, setUserEmail] = useState(null);
   // --- Background music state ---
+  const BG_MUSIC_KEY = 'bgMusicEnabled';
   const bgAudioRef = useRef(null);
-  const [isBgMusicPlaying, setIsBgMusicPlaying] = useState(true); // auto-play by default
+  const [isBgMusicPlaying, setIsBgMusicPlaying] = useState(true); // default true, will be persisted
 
   // Handle background music play/pause
   useEffect(() => {
@@ -95,13 +96,51 @@ const GioiThieu = () => {
     }
   }, [isBgMusicPlaying]);
 
-  // Auto-play on mount
+  // Initialize from localStorage and setup interaction-based autoplay retries
   useEffect(() => {
-    setIsBgMusicPlaying(true);
-  }, []);
+    try {
+      const saved = localStorage.getItem(BG_MUSIC_KEY);
+      if (saved !== null) {
+        setIsBgMusicPlaying(saved === 'true');
+      }
+    } catch {}
+
+    const attemptPlay = () => {
+      if (!isBgMusicPlaying) return;
+      const el = bgAudioRef.current;
+      if (!el) return;
+      el.volume = 0.5;
+      const p = el.play();
+      if (p && p.catch) p.catch(() => {});
+    };
+
+    const onVisibility = () => {
+      if (document.visibilityState === 'visible') attemptPlay();
+    };
+
+    document.addEventListener('click', attemptPlay);
+    document.addEventListener('keydown', attemptPlay);
+    document.addEventListener('touchstart', attemptPlay, { passive: true });
+    document.addEventListener('pointerdown', attemptPlay);
+    document.addEventListener('visibilitychange', onVisibility);
+    const t = setTimeout(attemptPlay, 0);
+
+    return () => {
+      clearTimeout(t);
+      document.removeEventListener('click', attemptPlay);
+      document.removeEventListener('keydown', attemptPlay);
+      document.removeEventListener('touchstart', attemptPlay);
+      document.removeEventListener('pointerdown', attemptPlay);
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
+  }, [isBgMusicPlaying]);
 
   const handleBgMusicToggle = () => {
-    setIsBgMusicPlaying((prev) => !prev);
+    setIsBgMusicPlaying((prev) => {
+      const next = !prev;
+      try { localStorage.setItem(BG_MUSIC_KEY, String(next)); } catch {}
+      return next;
+    });
   };
 
   useEffect(() => {
