@@ -1,8 +1,10 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 
-import { Home, HomeEvent, Events, News, EventDetail, NewsDetail, EventRegistration, VanHoaLichSu, PhanTichGocNhin, Forum, TraiNghiem, TaoTranh, CongNghe, GiaoDuc, BaiGiangMinhHoa, BaiGiangDetail, TaiLieuBaiGiang, TaiLieuDetail, BaiHocMinhHoaDetail, VirtualChronicle, ProfilePage, InfoPage, FriendsPage, ContactPage, Settings, Guides, Contact, LoginPage, RegisterPage } from '../pages'
+import { Home, HomeEvent, Events, News, EventDetail, NewsDetail, EventRegistration, VanHoaLichSu, PhanTichGocNhin, Forum, TraiNghiem, TaoTranh, CongNghe, GiaoDuc, BaiGiangMinhHoa, BaiGiangDetail, TaiLieuBaiGiang, TaiLieuDetail, BaiHocMinhHoaDetail, VirtualChronicle } from '../pages'
 import AppLayout from '../components/layouts/AppLayout.jsx';
 import MainLayout from '../components/layouts/MainLayout.jsx';
+import Cart from '../components/Cart.jsx';
+import Checkout from '../pages/Store/Checkout.jsx';
 
 import SurveyPage from '../pages/SurveyPage';
 import TrangChu from '../pages/Home/Home.jsx';
@@ -61,6 +63,10 @@ const router = createBrowserRouter([
           {
             path: 'vanhoalichsu',
             element: <VanHoaLichSu />,
+          },
+          {
+            path: 'heroes',
+            element: <HeroesList />,
           },
           {
             path: 'phantichgocnhin',
@@ -167,43 +173,6 @@ const router = createBrowserRouter([
           {
             path: 'congngheai',
             element: <CongNghe />,
-          },
-          // Account & Support Routes
-          {
-            path: 'profile',
-            element: <InfoPage />,
-          },
-          {
-            path: 'info',
-            element: <InfoPage />,
-          },
-          {
-            path: 'friends',
-            element: <FriendsPage />,
-          },
-          {
-            path: 'contact-page',
-            element: <ContactPage />,
-          },
-          {
-            path: 'settings',
-            element: <Settings />,
-          },
-          {
-            path: 'guides',
-            element: <Guides />,
-          },
-          {
-            path: 'contact',
-            element: <Contact />,
-          },
-          {
-            path: 'login',
-            element: <LoginPage />,
-          },
-          {
-            path: 'register',
-            element: <RegisterPage />,
           },
         ],
       },

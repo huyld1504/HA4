@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import drumBgMusic from '../../assets/Audio/drum_s.mp3';
 import { 
   Palette, 
   Archive, 
@@ -75,6 +76,72 @@ const GT_STATISTICS = [
 
 const GioiThieu = () => {
   const [userEmail, setUserEmail] = useState(null);
+  // --- Background music state ---
+  const BG_MUSIC_KEY = 'bgMusicEnabled';
+  const bgAudioRef = useRef(null);
+  const [isBgMusicPlaying, setIsBgMusicPlaying] = useState(true); // default true, will be persisted
+
+  // Handle background music play/pause
+  useEffect(() => {
+    const bgAudio = bgAudioRef.current;
+    if (!bgAudio) return;
+    if (isBgMusicPlaying) {
+      bgAudio.volume = 0.5;
+      const playPromise = bgAudio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
+    } else {
+      bgAudio.pause();
+    }
+  }, [isBgMusicPlaying]);
+
+  // Initialize from localStorage and setup interaction-based autoplay retries
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(BG_MUSIC_KEY);
+      if (saved !== null) {
+        setIsBgMusicPlaying(saved === 'true');
+      }
+    } catch {}
+
+    const attemptPlay = () => {
+      if (!isBgMusicPlaying) return;
+      const el = bgAudioRef.current;
+      if (!el) return;
+      el.volume = 0.5;
+      const p = el.play();
+      if (p && p.catch) p.catch(() => {});
+    };
+
+    const onVisibility = () => {
+      if (document.visibilityState === 'visible') attemptPlay();
+    };
+
+    document.addEventListener('click', attemptPlay);
+    document.addEventListener('keydown', attemptPlay);
+    document.addEventListener('touchstart', attemptPlay, { passive: true });
+    document.addEventListener('pointerdown', attemptPlay);
+    document.addEventListener('visibilitychange', onVisibility);
+    const t = setTimeout(attemptPlay, 0);
+
+    return () => {
+      clearTimeout(t);
+      document.removeEventListener('click', attemptPlay);
+      document.removeEventListener('keydown', attemptPlay);
+      document.removeEventListener('touchstart', attemptPlay);
+      document.removeEventListener('pointerdown', attemptPlay);
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
+  }, [isBgMusicPlaying]);
+
+  const handleBgMusicToggle = () => {
+    setIsBgMusicPlaying((prev) => {
+      const next = !prev;
+      try { localStorage.setItem(BG_MUSIC_KEY, String(next)); } catch {}
+      return next;
+    });
+  };
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -101,6 +168,22 @@ const GioiThieu = () => {
 
   return (
     <div className="gioithieu-page">
+      {/* Background music audio element and toggle button */}
+      <audio
+        ref={bgAudioRef}
+        src={drumBgMusic}
+        loop
+        autoPlay
+        style={{ display: 'none' }}
+      />
+      <button
+        className={`btn-bg-music-toggle${isBgMusicPlaying ? ' is-playing' : ''}`}
+        onClick={handleBgMusicToggle}
+        style={{ position: 'fixed', top: 16, right: 16, zIndex: 1000 }}
+        aria-label={isBgMusicPlaying ? 'Tắt nhạc nền' : 'Bật nhạc nền'}
+      >
+        {isBgMusicPlaying ? '🔊 Đang phát nhạc nền' : '🔇 Bật nhạc nền'}
+      </button>
 
       <main className="gioithieu-main">
         {/* Hero Section */}
