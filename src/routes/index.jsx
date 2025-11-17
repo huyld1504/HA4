@@ -1,11 +1,11 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 
-import { Home, HomeEvent, Events, News, EventDetail, NewsDetail, EventRegistration, VanHoaLichSu, HeroesList, PhanTichGocNhin, Forum, TraiNghiem, TaoTranh, CongNghe, GiaoDuc, BaiGiangMinhHoa, BaiGiangDetail, TaiLieuBaiGiang, TaiLieuDetail, BaiHocMinhHoaDetail, VirtualChronicle, ChiTietTranh, DonatUngHo, MuaTranhIn, ThanhVienVIP, ThankYou } from '../pages'
+import { Home, HomeEvent, Events, News, EventDetail, NewsDetail, EventRegistration, VanHoaLichSu, PhanTichGocNhin, Forum, TraiNghiem, TaoTranh, CongNghe, GiaoDuc, BaiGiangMinhHoa, BaiGiangDetail, TaiLieuBaiGiang, TaiLieuDetail, BaiHocMinhHoaDetail, VirtualChronicle, ProfilePage, InfoPage, FriendsPage, ContactPage, Settings, Guides, Contact, LoginPage, RegisterPage } from '../pages'
 import AppLayout from '../components/layouts/AppLayout.jsx';
 import MainLayout from '../components/layouts/MainLayout.jsx';
 import Cart from '../components/Cart.jsx';
 import Checkout from '../pages/Store/Checkout.jsx';
-
+import HeroesList from '../pages/Events-News/HeroesList.jsx';
 import SurveyPage from '../pages/SurveyPage';
 import TrangChu from '../pages/Home/Home.jsx';
 import GioiThieu from '../pages/GioiThieu/GioiThieu.jsx';
@@ -174,33 +174,39 @@ const router = createBrowserRouter([
             path: 'congngheai',
             element: <CongNghe />,
           },
+          // Account & Support Pages
+      
           {
-            path: 'chi-tiet/:id',
-            element: <ChiTietTranh />,
+            path: 'info',
+            element: <InfoPage />,
           },
           {
-            path: 'donat-ung-ho',
-            element: <DonatUngHo />,
+            path: 'friends',
+            element: <FriendsPage />,
           },
           {
-            path: 'mua-tranh-in',
-            element: <MuaTranhIn />,
+            path: 'contact-page',
+            element: <ContactPage />,
           },
           {
-            path: 'cart',
-            element: <Cart />,
+            path: 'settings',
+            element: <Settings />,
           },
           {
-            path: 'checkout',
-            element: <Checkout />,
+            path: 'guides',
+            element: <Guides />,
           },
           {
-            path: 'thanh-vien-vip',
-            element: <ThanhVienVIP />,
+            path: 'contact',
+            element: <Contact />,
           },
           {
-            path: 'thank-you',
-            element: <ThankYou />,
+            path: 'login',
+            element: <LoginPage />,
+          },
+          {
+            path: 'register',
+            element: <RegisterPage />,
           },
         ],
       },

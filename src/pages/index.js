@@ -16,11 +16,17 @@ export { default as BaiGiangDetail } from './BaiGiangDetail';
 export { default as TaiLieuDetail } from './TaiLieuDetail';
 export { default as BaiHocMinhHoaDetail } from './BaiHocMinhHoaDetail';
 export { default as VirtualChronicle } from './VirtualChronicle';
-export { default as CongNghe } from './CongNghe';
-export { default as TaoTranh } from './TaoTranh';
-export { default as TraiNghiem } from './TraiNghiem';
-export { default as ChiTietTranh } from './Store/ChiTietTranh';
-export { default as DonatUngHo } from './Store/DonatUngHo';
-export { default as MuaTranhIn } from './Store/MuaTranhIn';
-export { default as ThanhVienVIP } from './Store/ThanhVienVIP';
-export { default as ThankYou } from './Store/ThankYou';
+export {default as CongNghe} from './CongNghe';
+export {default as TaoTranh} from './TaoTranh';
+export {default as TraiNghiem} from './TraiNghiem';
+
+// Account & Support Pages
+export { default as ProfilePage } from './ProfilePage';
+export { default as InfoPage } from './InfoPage';
+export { default as FriendsPage } from './FriendsPage';
+export { default as ContactPage } from './ContactPage';
+export { default as Settings } from './accountAndSupport/Settings';
+export { default as Guides } from './accountAndSupport/Guides';
+export { default as Contact } from './accountAndSupport/Contact';
+export { default as LoginPage } from './auth/LoginPage';
+export { default as RegisterPage } from './auth/RegisterPage';
