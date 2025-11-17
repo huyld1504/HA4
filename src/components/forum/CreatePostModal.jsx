@@ -5,7 +5,8 @@ export default function CreatePostModal({ onClose, onCreate }) {
     title: '',
     content: '',
     category: 'Thảo luận',
-    tags: []
+    tags: [],
+    images: [] // Thêm mảng để lưu ảnh
   })
   const [tagInput, setTagInput] = useState('')
 
@@ -25,6 +26,39 @@ export default function CreatePostModal({ onClose, onCreate }) {
     setFormData({
       ...formData,
       tags: formData.tags.filter((_, i) => i !== index)
+    })
+  }
+
+  // Xử lý upload ảnh
+  const handleImageUpload = (e) => {
+    const files = Array.from(e.target.files)
+    if (files.length + formData.images.length > 4) {
+      alert('Chỉ được tải lên tối đa 4 ảnh')
+      return
+    }
+
+    files.forEach(file => {
+      if (file.size > 5 * 1024 * 1024) {
+        alert('Kích thước ảnh không được vượt quá 5MB')
+        return
+      }
+
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setFormData(prev => ({
+          ...prev,
+          images: [...prev.images, reader.result]
+        }))
+      }
+      reader.readAsDataURL(file)
+    })
+  }
+
+  // Xóa ảnh
+  const handleRemoveImage = (index) => {
+    setFormData({
+      ...formData,
+      images: formData.images.filter((_, i) => i !== index)
     })
   }
 
@@ -106,6 +140,49 @@ export default function CreatePostModal({ onClose, onCreate }) {
               className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-amber-500 focus:ring-4 focus:ring-amber-200 outline-none transition-all text-gray-800 resize-none"
               required
             />
+          </div>
+
+          {/* Image Upload */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Thêm ảnh (Tối đa 4 ảnh, mỗi ảnh tối đa 5MB)
+            </label>
+            <div className="space-y-3">
+              <label className="flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-amber-300 bg-amber-50/50 rounded-xl cursor-pointer hover:bg-amber-100 hover:border-amber-400 transition-all duration-300 group">
+                <i className="fa-solid fa-image text-amber-600 text-xl group-hover:scale-110 transition-transform" />
+                <span className="text-amber-700 font-medium">Chọn ảnh từ máy tính</span>
+                <input
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  onChange={handleImageUpload}
+                  className="hidden"
+                  disabled={formData.images.length >= 4}
+                />
+              </label>
+
+              {/* Preview Images */}
+              {formData.images.length > 0 && (
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {formData.images.map((image, index) => (
+                    <div key={index} className="relative group">
+                      <img
+                        src={image}
+                        alt={`Upload ${index + 1}`}
+                        className="w-full h-24 object-cover rounded-lg border-2 border-gray-200"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveImage(index)}
+                        className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg hover:bg-red-600"
+                      >
+                        <i className="fa-solid fa-times text-xs" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Tags */}

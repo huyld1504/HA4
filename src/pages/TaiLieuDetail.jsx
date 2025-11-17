@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { periodsData } from '../data/educationData';
+import CitationModal from '../components/common/CitationModal';
+import ShareModal from '../components/common/ShareModal';
 
 const TaiLieuDetail = () => {
   const { id } = useParams();
@@ -10,6 +12,16 @@ const TaiLieuDetail = () => {
   const [showNotes, setShowNotes] = useState(false);
   const [showTableOfContents, setShowTableOfContents] = useState(true);
   const [relatedDocuments, setRelatedDocuments] = useState([]);
+
+  // Phase 2 new states
+  const [zoomLevel, setZoomLevel] = useState(100);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showCitationModal, setShowCitationModal] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [readingProgress, setReadingProgress] = useState(0);
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [notes, setNotes] = useState('');
+  const documentViewerRef = useRef(null);
 
   useEffect(() => {
     // Tìm document từ periodsData
@@ -36,8 +48,131 @@ const TaiLieuDetail = () => {
         });
       });
       setRelatedDocuments(related);
+
+      // Load saved data from localStorage
+      const savedBookmarks = JSON.parse(localStorage.getItem('bookmarked_documents') || '[]');
+      setIsBookmarked(savedBookmarks.includes(foundDocument.id));
+
+      const savedNotes = localStorage.getItem(`notes_${foundDocument.id}`);
+      if (savedNotes) setNotes(savedNotes);
+
+      const savedProgress = localStorage.getItem(`progress_${foundDocument.id}`);
+      if (savedProgress) setReadingProgress(parseInt(savedProgress));
     }
   }, [id]);
+
+  // Track reading progress
+  useEffect(() => {
+    if (document) {
+      const progress = Math.round((currentPage / document.pages) * 100);
+      setReadingProgress(progress);
+      localStorage.setItem(`progress_${document.id}`, progress.toString());
+    }
+  }, [currentPage, document]);
+
+  // Save notes to localStorage
+  useEffect(() => {
+    if (document && notes) {
+      localStorage.setItem(`notes_${document.id}`, notes);
+    }
+  }, [notes, document]);
+
+  // Fullscreen handling
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!window.document.fullscreenElement);
+    };
+
+    window.document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => window.document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
+
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (!document) return;
+
+      // Don't trigger if typing in input/textarea
+      if (e.target.matches('input, textarea')) return;
+
+      switch (e.key) {
+        case 'ArrowLeft':
+          setCurrentPage(prev => Math.max(1, prev - 1));
+          break;
+        case 'ArrowRight':
+          setCurrentPage(prev => Math.min(document.pages, prev + 1));
+          break;
+        case 'f':
+        case 'F':
+          if (e.ctrlKey || e.metaKey) {
+            e.preventDefault();
+            toggleFullscreen();
+          }
+          break;
+        case '+':
+        case '=':
+          if (e.ctrlKey || e.metaKey) {
+            e.preventDefault();
+            setZoomLevel(prev => Math.min(200, prev + 10));
+          }
+          break;
+        case '-':
+        case '_':
+          if (e.ctrlKey || e.metaKey) {
+            e.preventDefault();
+            setZoomLevel(prev => Math.max(50, prev - 10));
+          }
+          break;
+        case '0':
+          if (e.ctrlKey || e.metaKey) {
+            e.preventDefault();
+            setZoomLevel(100);
+          }
+          break;
+        default:
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [document]);
+
+  const toggleFullscreen = () => {
+    if (!documentViewerRef.current) return;
+
+    if (!window.document.fullscreenElement) {
+      documentViewerRef.current.requestFullscreen();
+    } else {
+      window.document.exitFullscreen();
+    }
+  };
+
+  const toggleBookmark = () => {
+    if (!document) return;
+
+    const savedBookmarks = JSON.parse(localStorage.getItem('bookmarked_documents') || '[]');
+    let newBookmarks;
+
+    if (isBookmarked) {
+      newBookmarks = savedBookmarks.filter(id => id !== document.id);
+    } else {
+      newBookmarks = [...savedBookmarks, document.id];
+    }
+
+    localStorage.setItem('bookmarked_documents', JSON.stringify(newBookmarks));
+    setIsBookmarked(!isBookmarked);
+  };
+
+  const handlePrint = () => {
+    window.print();
+  };
+
+  const handleDownload = (format = 'pdf') => {
+    // Simulate download - in real app, this would call an API
+    console.log(`Downloading as ${format}...`);
+    alert(`Tải về tài liệu dạng ${format.toUpperCase()}. Tính năng sẽ được triển khai với backend.`);
+  };
 
   const tableOfContents = [
     { page: 1, title: "Giới thiệu chung", level: 1 },
@@ -176,28 +311,95 @@ const TaiLieuDetail = () => {
 
               {/* Action Buttons */}
               <div className="space-y-3">
-                <button className="w-full flex items-center justify-center space-x-2 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 px-6 py-3 font-semibold text-white transition-all hover:from-green-600 hover:to-emerald-600 hover:scale-105">
+                <button
+                  onClick={() => handleDownload('pdf')}
+                  className="w-full flex items-center justify-center space-x-2 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 px-6 py-3 font-semibold text-white transition-all hover:from-green-600 hover:to-emerald-600 hover:scale-105"
+                >
                   <span>📥</span>
                   <span>Tải về PDF</span>
                 </button>
+
+                {/* New Download Options Dropdown */}
+                <div className="relative group">
+                  <button className="w-full flex items-center justify-center space-x-2 rounded-full border-2 border-green-500 bg-white px-6 py-3 font-semibold text-green-600 transition-all hover:bg-green-50 hover:scale-105">
+                    <span>📄</span>
+                    <span>Định dạng khác</span>
+                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-stone-200 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-10">
+                    <button onClick={() => handleDownload('docx')} className="w-full px-4 py-3 text-left hover:bg-stone-50 rounded-t-xl transition-colors">
+                      <span className="font-medium">📝 Word (.docx)</span>
+                    </button>
+                    <button onClick={() => handleDownload('txt')} className="w-full px-4 py-3 text-left hover:bg-stone-50 transition-colors">
+                      <span className="font-medium">📄 Text (.txt)</span>
+                    </button>
+                    <button onClick={() => handleDownload('epub')} className="w-full px-4 py-3 text-left hover:bg-stone-50 rounded-b-xl transition-colors">
+                      <span className="font-medium">📚 eBook (.epub)</span>
+                    </button>
+                  </div>
+                </div>
+
                 <button
                   onClick={() => setShowNotes(!showNotes)}
                   className={`w-full flex items-center justify-center space-x-2 rounded-full border-2 px-6 py-3 font-semibold transition-all hover:scale-105 ${showNotes
                     ? 'border-amber-500 bg-amber-500 text-white'
                     : 'border-amber-500 bg-white text-amber-600 hover:bg-amber-50'
                     }`}
+                  aria-pressed={showNotes}
                 >
                   <span>📝</span>
                   <span>Ghi chú</span>
                 </button>
-                <button className="w-full flex items-center justify-center space-x-2 rounded-full border-2 border-stone-300 bg-white px-6 py-3 font-semibold text-stone-700 transition-all hover:bg-stone-50 hover:scale-105">
-                  <span>🔖</span>
-                  <span>Đánh dấu</span>
+
+                <button
+                  onClick={toggleBookmark}
+                  className={`w-full flex items-center justify-center space-x-2 rounded-full border-2 px-6 py-3 font-semibold transition-all hover:scale-105 ${isBookmarked
+                    ? 'border-red-500 bg-red-500 text-white'
+                    : 'border-stone-300 bg-white text-stone-700 hover:bg-stone-50'
+                    }`}
+                  aria-pressed={isBookmarked}
+                >
+                  <span>{isBookmarked ? '❤️' : '🔖'}</span>
+                  <span>{isBookmarked ? 'Đã lưu' : 'Đánh dấu'}</span>
                 </button>
-                <button className="w-full flex items-center justify-center space-x-2 rounded-full border-2 border-stone-300 bg-white px-6 py-3 font-semibold text-stone-700 transition-all hover:bg-stone-50 hover:scale-105">
+
+                <button
+                  onClick={() => setShowCitationModal(true)}
+                  className="w-full flex items-center justify-center space-x-2 rounded-full border-2 border-stone-300 bg-white px-6 py-3 font-semibold text-stone-700 transition-all hover:bg-stone-50 hover:scale-105"
+                >
+                  <span>�</span>
+                  <span>Trích dẫn</span>
+                </button>
+
+                <button
+                  onClick={() => setShowShareModal(true)}
+                  className="w-full flex items-center justify-center space-x-2 rounded-full border-2 border-stone-300 bg-white px-6 py-3 font-semibold text-stone-700 transition-all hover:bg-stone-50 hover:scale-105"
+                >
                   <span>📤</span>
                   <span>Chia sẻ</span>
                 </button>
+              </div>
+
+              {/* Reading Progress */}
+              <div className="rounded-2xl border border-amber-200 bg-white p-6 shadow-lg">
+                <h3 className="font-serif text-lg font-bold text-stone-800 mb-4">Tiến độ đọc</h3>
+                <div className="space-y-3">
+                  <div className="flex justify-between text-sm text-stone-600 mb-2">
+                    <span>Đã đọc:</span>
+                    <span className="font-bold text-amber-600">{readingProgress}%</span>
+                  </div>
+                  <div className="h-3 bg-stone-200 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-gradient-to-r from-amber-500 to-orange-500 transition-all duration-500 ease-out"
+                      style={{ width: `${readingProgress}%` }}
+                    ></div>
+                  </div>
+                  <p className="text-xs text-stone-500 text-center">
+                    Trang {currentPage} / {document.pages}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -263,10 +465,83 @@ const TaiLieuDetail = () => {
             </div>
 
             {/* Document Viewer */}
-            <div className="mb-8 rounded-3xl border border-amber-200 bg-white shadow-lg overflow-hidden">
+            <div ref={documentViewerRef} className="mb-8 rounded-3xl border border-amber-200 bg-white shadow-lg overflow-hidden">
+              {/* Viewer Controls Bar */}
+              <div className="bg-stone-100 border-b border-stone-200 px-6 py-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-sm font-medium text-stone-700">Zoom:</span>
+                    <button
+                      onClick={() => setZoomLevel(prev => Math.max(50, prev - 10))}
+                      className="p-2 rounded-lg hover:bg-stone-200 transition-colors"
+                      aria-label="Thu nhỏ"
+                    >
+                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                      </svg>
+                    </button>
+                    <span className="min-w-[60px] text-center text-sm font-medium text-stone-700">
+                      {zoomLevel}%
+                    </span>
+                    <button
+                      onClick={() => setZoomLevel(prev => Math.min(200, prev + 10))}
+                      className="p-2 rounded-lg hover:bg-stone-200 transition-colors"
+                      aria-label="Phóng to"
+                    >
+                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                      </svg>
+                    </button>
+                    <button
+                      onClick={() => setZoomLevel(100)}
+                      className="px-3 py-1 text-xs bg-stone-200 hover:bg-stone-300 rounded-lg font-medium transition-colors"
+                    >
+                      Reset
+                    </button>
+                  </div>
+
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={handlePrint}
+                      className="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-stone-200 transition-colors"
+                      aria-label="In tài liệu"
+                    >
+                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                      </svg>
+                      <span className="text-sm font-medium">In</span>
+                    </button>
+                    <button
+                      onClick={toggleFullscreen}
+                      className="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-stone-200 transition-colors"
+                      aria-label={isFullscreen ? "Thoát toàn màn hình" : "Toàn màn hình"}
+                    >
+                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        {isFullscreen ? (
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        ) : (
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                        )}
+                      </svg>
+                      <span className="text-sm font-medium">{isFullscreen ? 'Thu nhỏ' : 'Toàn màn hình'}</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Keyboard Shortcuts Hint */}
+                <div className="mt-2 text-xs text-stone-500 text-center">
+                  💡 Phím tắt: <kbd className="px-2 py-1 bg-white rounded border">←</kbd> <kbd className="px-2 py-1 bg-white rounded border">→</kbd> di chuyển trang,
+                  <kbd className="px-2 py-1 bg-white rounded border">Ctrl</kbd> + <kbd className="px-2 py-1 bg-white rounded border">+/-</kbd> zoom,
+                  <kbd className="px-2 py-1 bg-white rounded border">Ctrl</kbd> + <kbd className="px-2 py-1 bg-white rounded border">F</kbd> toàn màn hình
+                </div>
+              </div>
+
               {/* Document Page */}
               <div className="aspect-[8.5/11] bg-white border-b border-stone-200 relative overflow-auto">
-                <div className="p-8 h-full">
+                <div
+                  className="p-8 h-full transition-transform duration-200"
+                  style={{ transform: `scale(${zoomLevel / 100})`, transformOrigin: 'top center' }}
+                >
                   {/* Mock Document Content */}
                   <div className="space-y-6 text-stone-800">
                     <div className="text-center mb-8">
@@ -407,24 +682,46 @@ const TaiLieuDetail = () => {
               <div className="mb-8 rounded-3xl border border-amber-200 bg-white p-8 shadow-lg">
                 <h2 className="mb-6 text-2xl font-serif font-bold text-stone-800">Ghi chú của bạn</h2>
                 <div className="space-y-4">
-                  <div className="flex items-start space-x-3 p-4 bg-amber-50 rounded-xl">
-                    <span className="text-amber-600 text-sm font-medium">Trang {currentPage}</span>
-                    <textarea
-                      placeholder="Thêm ghi chú cho trang này..."
-                      className="flex-1 bg-transparent border-none resize-none focus:outline-none text-sm"
-                      rows="3"
-                    ></textarea>
+                  <textarea
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    placeholder="Viết ghi chú cho tài liệu này... Ghi chú sẽ được tự động lưu."
+                    className="w-full h-40 rounded-xl border border-stone-300 p-4 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20 resize-none"
+                  ></textarea>
+                  <div className="flex items-center justify-between text-xs text-stone-500">
+                    <span>
+                      {notes.length > 0
+                        ? `${notes.length} ký tự • Tự động lưu vào thiết bị`
+                        : 'Ghi chú của bạn sẽ được lưu tự động'}
+                    </span>
+                    {notes.length > 0 && (
+                      <span className="text-green-600 flex items-center gap-1">
+                        <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        Đã lưu
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="mt-4 flex justify-end space-x-4">
                   <button
+                    onClick={() => {
+                      if (window.confirm('Bạn có chắc muốn xóa tất cả ghi chú?')) {
+                        setNotes('');
+                        localStorage.removeItem(`notes_${document.id}`);
+                      }
+                    }}
+                    className="rounded-full border-2 border-red-300 bg-white px-6 py-2 font-semibold text-red-600 transition-all hover:bg-red-50"
+                    disabled={!notes}
+                  >
+                    Xóa ghi chú
+                  </button>
+                  <button
                     onClick={() => setShowNotes(false)}
-                    className="rounded-full border-2 border-stone-300 bg-white px-6 py-2 font-semibold text-stone-700 transition-all hover:bg-stone-50"
+                    className="rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-2 font-semibold text-white transition-all hover:from-amber-600 hover:to-orange-600"
                   >
                     Đóng
-                  </button>
-                  <button className="rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-2 font-semibold text-white transition-all hover:from-amber-600 hover:to-orange-600">
-                    Lưu ghi chú
                   </button>
                 </div>
               </div>
@@ -525,6 +822,27 @@ const TaiLieuDetail = () => {
           </div>
         </div>
       </div>
+
+      {/* Modals */}
+      {showCitationModal && document && (
+        <CitationModal
+          title={document.title}
+          author={document.author}
+          date={document.createdDate}
+          period={document.period}
+          url={window.location.href}
+          onClose={() => setShowCitationModal(false)}
+        />
+      )}
+
+      {showShareModal && document && (
+        <ShareModal
+          title={document.title}
+          description={document.description}
+          url={window.location.href}
+          onClose={() => setShowShareModal(false)}
+        />
+      )}
     </div>
   );
 };

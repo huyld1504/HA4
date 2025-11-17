@@ -1,7 +1,7 @@
 :root {
   --bg-dark: #1c1208;
   --bg-card: #2b1d11;
-  --text-light: #fff8e1;
+  --text-light: #22292f;
   --text-bright: #fffbf0;
   --text-gold: #ffd966;
   --text-gold-bright: #ffe899;
@@ -54,13 +54,18 @@ body {
 }
 
 .content h1 {
-  font-size: clamp(2.8rem, 6vw, 4.2rem);
-  margin-bottom: 1.5rem;
+  /* smaller, responsive sizing so the hero heading fits on one line */
+  font-size: clamp(2rem, 3vw, 3rem);
+  margin-bottom: 1rem;
   font-weight: 800;
-  line-height: 1.15;
+  line-height: 1.55;
   color: #ffe5b3;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.342), 0 2px 8px rgba(0, 0, 0, 0.5);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
+  white-space: nowrap; /* keep text on a single line */
+  overflow: hidden;
+  text-overflow: clip;
+  max-width: 95vw; /* avoid overflowing the viewport */
 }
 
 .subheading {

@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import drumBgMusic from '../../assets/Audio/drum_s.mp3';
 import { Link } from 'react-router-dom';
 import { Palette, Paintbrush, BookOpen, Check } from 'lucide-react';
 import './Home.css';
 
 import logoImg from '../../assets/logo.png';
 import bannerImg from '../../assets/banner.png';
-import heroVideo from '../../assets/video/video1.mp4';
+import heroGif from '../../assets/Hero_vid.gif';
 import nhaThoImg from '../../assets/nhatho.png';
 import baoTangImg from '../../assets/baotang.png';
 import diaDaoImg from '../../assets/diadao.png';
@@ -115,6 +116,78 @@ const Home = () => {
   const isHoveringRef = useRef(false);
   const totalSlides = FEATURED_ITEMS.length;
   const activeItem = FEATURED_ITEMS[currentSlide] ?? null;
+
+  // --- Background music state ---
+  const BG_MUSIC_KEY = 'bgMusicEnabled';
+  const bgAudioRef = useRef(null);
+  const [isBgMusicPlaying, setIsBgMusicPlaying] = useState(true); // default true, persisted below
+
+  // Handle background music play/pause
+  useEffect(() => {
+    const bgAudio = bgAudioRef.current;
+    if (!bgAudio) return;
+    if (isBgMusicPlaying) {
+      bgAudio.volume = 0.5;
+      const playPromise = bgAudio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
+    } else {
+      bgAudio.pause();
+    }
+  }, [isBgMusicPlaying]);
+
+  // Initialize from localStorage and setup interaction-based autoplay retries
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(BG_MUSIC_KEY);
+      if (saved !== null) {
+        setIsBgMusicPlaying(saved === 'true');
+      }
+    } catch {}
+
+    const attemptPlay = () => {
+      if (!isBgMusicPlaying) return;
+      const el = bgAudioRef.current;
+      if (!el) return;
+      el.volume = 0.5;
+      const p = el.play();
+      if (p && typeof p.catch === 'function') {
+        p.catch(() => {});
+      }
+    };
+
+    const onVisibility = () => {
+      if (document.visibilityState === 'visible') attemptPlay();
+    };
+
+    // Retry on common user interactions to satisfy autoplay policies
+    document.addEventListener('click', attemptPlay);
+    document.addEventListener('keydown', attemptPlay);
+    document.addEventListener('touchstart', attemptPlay, { passive: true });
+    document.addEventListener('pointerdown', attemptPlay);
+    document.addEventListener('visibilitychange', onVisibility);
+
+    // Initial deferred attempt
+    const t = setTimeout(attemptPlay, 0);
+
+    return () => {
+      clearTimeout(t);
+      document.removeEventListener('click', attemptPlay);
+      document.removeEventListener('keydown', attemptPlay);
+      document.removeEventListener('touchstart', attemptPlay);
+      document.removeEventListener('pointerdown', attemptPlay);
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
+  }, [isBgMusicPlaying]);
+
+  const handleBgMusicToggle = () => {
+    setIsBgMusicPlaying((prev) => {
+      const next = !prev;
+      try { localStorage.setItem(BG_MUSIC_KEY, String(next)); } catch {}
+      return next;
+    });
+  };
   
   const startAutoSlide = useCallback(() => {
     if (autoSlideRef.current || totalSlides <= 1) {
@@ -325,19 +398,47 @@ const Home = () => {
 
   return (
     <div className="home-page">
-     
-    
+      {/* Background music audio element and toggle button */}
+      <audio
+        ref={bgAudioRef}
+        src={drumBgMusic}
+        loop
+        autoPlay
+        style={{ display: 'none' }}
+      />
+      <button
+        className={`btn-bg-music-toggle${isBgMusicPlaying ? ' is-playing' : ''}`}
+        onClick={handleBgMusicToggle}
+        style={{ position: 'fixed', top: 16, right: 16, zIndex: 1000 }}
+        aria-label={isBgMusicPlaying ? 'Tắt nhạc nền' : 'Bật nhạc nền'}
+      >
+        {isBgMusicPlaying ? '🔊 Đang phát nhạc nền' : '🔇 Bật nhạc nền'}
+      </button>
 
       <main className="hero">
-        <video autoPlay muted loop playsInline className="background-video">
-          <source src={heroVideo} type="video/mp4" />
-          Trình duyệt của bạn không hỗ trợ video.
-        </video>
+        <img
+          src={heroGif}
+          alt="Hero background"
+          className="background-video"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 0,
+            minWidth: '100vw',
+            minHeight: '100%',
+            maxWidth: '100vw',
+            maxHeight: '100%',
+          }}
+        />
         <div className="overlay" />
         <div className="content">
-          <h1>Triển lãm AI &amp; Di tích Việt Nam</h1>
+          <h1>Khám phá &amp; Bảo tồn văn hóa Việt bằng công nghệ AI</h1>
           <p className="subheading subheading-blur">
-            Nối kết quá khứ &amp; tương lai
+            Kết nối quá khứ, sáng tạo tương lai
           </p>
           <div className="cta-buttons">
             <Link className="btn-pill btn-gold" to="/gioithieu">

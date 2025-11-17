@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 export default function PostDetailModal({ post, onClose, onLike, onDislike, onAddComment, onViewProfile }) {
   const [comment, setComment] = useState('')
+  const [selectedImage, setSelectedImage] = useState(null) // State cho ảnh được chọn
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -74,6 +75,34 @@ export default function PostDetailModal({ post, onClose, onLike, onDislike, onAd
             <p className="text-gray-700 leading-relaxed text-lg mb-4 whitespace-pre-wrap">
               {post.content}
             </p>
+
+            {/* Images Gallery */}
+            {post.images && post.images.length > 0 && (
+              <div className="mb-4">
+                <div className={`grid gap-3 ${
+                  post.images.length === 1 ? 'grid-cols-1' : 
+                  post.images.length === 2 ? 'grid-cols-2' : 
+                  'grid-cols-2 md:grid-cols-3'
+                }`}>
+                  {post.images.map((image, index) => (
+                    <div 
+                      key={index} 
+                      className="relative group overflow-hidden rounded-lg border-2 border-gray-200 hover:border-amber-400 transition-all cursor-pointer"
+                      onClick={() => setSelectedImage(image)}
+                    >
+                      <img
+                        src={image}
+                        alt={`Post image ${index + 1}`}
+                        className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300 flex items-center justify-center">
+                        <i className="fa-solid fa-search-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Tags */}
             <div className="flex flex-wrap gap-2">
@@ -183,6 +212,59 @@ export default function PostDetailModal({ post, onClose, onLike, onDislike, onAd
           </div>
         </div>
       </div>
+
+      {/* Image Lightbox Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-in fade-in duration-300"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button
+            onClick={() => setSelectedImage(null)}
+            className="absolute top-4 right-4 text-white hover:bg-white/20 p-3 rounded-full transition-all duration-300 hover:rotate-90 z-10"
+          >
+            <i className="fa-solid fa-times text-2xl" />
+          </button>
+          
+          <div 
+            className="relative max-w-6xl max-h-[90vh] animate-in zoom-in slide-in-from-bottom-4 duration-500"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={selectedImage}
+              alt="Full size"
+              className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+            />
+            
+            {/* Image controls */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/60 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-3">
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="text-white hover:text-amber-400 transition-colors px-3 py-1"
+                title="Đóng (ESC)"
+              >
+                <i className="fa-solid fa-times mr-2" />
+                Đóng
+              </button>
+              <span className="text-white/40">|</span>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  const link = document.createElement('a')
+                  link.href = selectedImage
+                  link.download = 'image.jpg'
+                  link.click()
+                }}
+                className="text-white hover:text-amber-400 transition-colors px-3 py-1"
+                title="Tải xuống"
+              >
+                <i className="fa-solid fa-download mr-2" />
+                Tải xuống
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

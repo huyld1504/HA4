@@ -110,20 +110,46 @@ const VirtualChronicle = () => {
         setStage(s.stage || 'intro');
         setSceneId(s.sceneId || 'start');
         setRole(s.role || null);
-        setAvatar(s.avatar || SAMPLE_AVATARS[0]);
-        setInventory(s.inventory || []);
+        // Không load avatar từ localStorage, để user upload lại
+        // Khôi phục inventory nhưng set lại ảnh từ avatar hiện tại
+        setInventory(s.inventory ? s.inventory.map(item => ({
+          ...item,
+          art: avatar, // Sử dụng avatar hiện tại
+          userAvatar: avatar // Sử dụng avatar hiện tại
+        })) : []);
         setHistory(s.history || []);
       } catch (error) {
         console.error('Error loading saved state:', error);
+        // Nếu có lỗi, reset game
+        localStorage.removeItem('vc_state');
       }
     }
-  }, []);
+  }, [avatar]); // Thêm dependency avatar để update khi avatar thay đổi
 
   useEffect(() => {
-    localStorage.setItem('vc_state', JSON.stringify({
-      stage, sceneId, role, avatar, inventory, history
-    }));
-  }, [stage, sceneId, role, avatar, inventory, history]);
+    // Chỉ lưu metadata, không lưu ảnh base64
+    const stateToSave = {
+      stage,
+      sceneId,
+      role,
+      // Không lưu avatar (data URL lớn)
+      inventory: inventory.map(item => ({
+        ...item,
+        art: null, // Không lưu data URL
+        userAvatar: null // Không lưu data URL
+      })),
+      history
+    };
+
+    try {
+      localStorage.setItem('vc_state', JSON.stringify(stateToSave));
+    } catch (error) {
+      console.error('Error saving game state:', error);
+      // Nếu vượt quota, xóa localStorage và reset
+      localStorage.removeItem('vc_state');
+      alert('Không thể lưu trạng thái game. Đã reset để tiếp tục chơi.');
+    }
+  }, [stage, sceneId, role, inventory, history]);
 
   function startGame(selectedRole) {
     setRole(selectedRole);
@@ -135,32 +161,50 @@ const VirtualChronicle = () => {
 
   async function choose(target) {
     const next = SCENES.find(s => s.id === target);
-    setHistory(prev => [...prev, { from: sceneId, to: target }]);
+    setHistory(prev => {
+      const newHistory = [...prev, { from: sceneId, to: target }];
+      // Giới hạn history tối đa 50 entries
+      return newHistory.slice(-50);
+    });
     if (!next) return;
 
     if (next.reward) {
       setLoading(true);
       try {
-        // Mock API call - replace with real endpoint
+        // Mock API call - sử dụng ảnh user đã upload để demo AI gen
         await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate API delay
-        const art = ART_PLACEHOLDERS[next.reward.artId];
-        setInventory(prev => [...prev, {
-          artId: next.reward.artId,
-          art,
-          coupon: next.reward.coupon,
-          title: next.title,
-          timestamp: new Date().toISOString()
-        }]);
+        // Thay vì dùng ART_PLACEHOLDERS, sử dụng avatar của user
+        setInventory(prev => {
+          const newItem = {
+            artId: next.reward.artId,
+            art: avatar, // Sử dụng ảnh user đã upload
+            coupon: next.reward.coupon,
+            title: next.title,
+            timestamp: new Date().toISOString(),
+            userAvatar: avatar, // Lưu lại avatar gốc
+            role: role // Lưu vai trò đã chọn
+          };
+          const newInventory = [...prev, newItem];
+          // Giới hạn inventory tối đa 10 items
+          return newInventory.slice(-10);
+        });
       } catch (err) {
-        console.error("Lỗi API:", err);
-        const art = ART_PLACEHOLDERS[next.reward.artId];
-        setInventory(prev => [...prev, {
-          artId: next.reward.artId,
-          art,
-          coupon: next.reward.coupon,
-          title: next.title,
-          timestamp: new Date().toISOString()
-        }]);
+        console.error("Lỗi tạo ảnh AI:", err);
+        // Fallback vẫn dùng avatar user
+        setInventory(prev => {
+          const newItem = {
+            artId: next.reward.artId,
+            art: avatar,
+            coupon: next.reward.coupon,
+            title: next.title,
+            timestamp: new Date().toISOString(),
+            userAvatar: avatar,
+            role: role
+          };
+          const newInventory = [...prev, newItem];
+          // Giới hạn inventory tối đa 10 items
+          return newInventory.slice(-10);
+        });
       }
       setLoading(false);
       setStage('reward');
@@ -254,7 +298,7 @@ const VirtualChronicle = () => {
                   Chào mừng đến với Virtual Chronicle
                 </h2>
                 <p className="mx-auto max-w-2xl text-lg text-gray-300">
-                  Khám phá lịch sử Việt Nam qua góc nhìn của bạn. Mỗi lựa chọn sẽ tạo ra một tác phẩm nghệ thuật AI độc đáo.
+                  Khám phá lịch sử Việt Nam qua góc nhìn của bạn. Upload ảnh cá nhân để AI tạo ra tác phẩm nghệ thuật độc đáo từ hành trình của bạn.
                 </p>
               </div>
 
@@ -355,19 +399,37 @@ const VirtualChronicle = () => {
                   <div>
                     <h4 className="mb-2 font-medium text-purple-400">🎯 Mục tiêu</h4>
                     <ul className="space-y-1 text-sm text-gray-300">
-                      <li>• Đưa ra lựa chọn thông minh qua các tình huống lịch sử</li>
-                      <li>• Mở khóa tác phẩm nghệ thuật AI độc đáo</li>
+                      <li>• Upload ảnh cá nhân để AI tạo tác phẩm nghệ thuật</li>
+                      <li>• Đóng vai các nhân vật lịch sử qua các tình huống</li>
                       <li>• Nhận mã giảm giá để in thành sản phẩm thực tế</li>
                     </ul>
                   </div>
                   <div>
                     <h4 className="mb-2 font-medium text-blue-400">🎮 Cách chơi</h4>
                     <ul className="space-y-1 text-sm text-gray-300">
-                      <li>• Chọn vai trò phù hợp với phong cách của bạn</li>
-                      <li>• Đọc tình huống và chọn hành động</li>
-                      <li>• Khám phá những kết thúc khác nhau</li>
+                      <li>• Upload ảnh cá nhân của bạn khi bắt đầu</li>
+                      <li>• Chọn vai trò và trải qua các tình huống lịch sử</li>
+                      <li>• AI sẽ tạo tác phẩm nghệ thuật từ ảnh và câu chuyện của bạn</li>
                     </ul>
                   </div>
+                </div>
+
+                <div className="mt-4 flex justify-center border-t border-gray-600 pt-4">
+                  <button
+                    onClick={() => {
+                      localStorage.removeItem('vc_state');
+                      setStage('intro');
+                      setRole(null);
+                      setAvatar(SAMPLE_AVATARS[0]);
+                      setInventory([]);
+                      setHistory([]);
+                      setSceneId('start');
+                      alert('Đã xóa dữ liệu game đã lưu!');
+                    }}
+                    className="text-sm text-gray-400 hover:text-gray-300 underline transition-colors"
+                  >
+                    🗑️ Xóa dữ liệu đã lưu (nếu gặp lỗi storage)
+                  </button>
                 </div>
               </div>
             </motion.div>
@@ -484,11 +546,17 @@ const VirtualChronicle = () => {
                 <div className="space-y-6">
                   <div className="rounded-2xl border border-gray-700 bg-gray-800/50 p-6">
                     <h3 className="mb-3 text-xl font-semibold text-white">
-                      🎨 Tác phẩm nghệ thuật mới
+                      🎨 Tác phẩm nghệ thuật AI
                     </h3>
                     <p className="text-gray-300">
-                      "{inventory[inventory.length - 1]?.title}" - Được tạo ra từ lựa chọn độc đáo của bạn trong vai {role}.
+                      "{inventory[inventory.length - 1]?.title}" - Được tạo ra từ ảnh của bạn trong vai {role}.
+                      AI đã biến đổi và nghệ thuật hóa hình ảnh gốc thành tác phẩm độc đáo.
                     </p>
+                    <div className="mt-3 rounded-lg bg-purple-900/30 border border-purple-500/30 p-3">
+                      <div className="text-sm text-purple-300">
+                        💡 Tác phẩm này được tạo từ ảnh bạn đã upload, kết hợp với lựa chọn câu chuyện của bạn.
+                      </div>
+                    </div>
                   </div>
 
                   <div className="rounded-2xl border border-gray-700 bg-gray-800/50 p-6">
@@ -585,7 +653,10 @@ const VirtualChronicle = () => {
                         <div>
                           <div className="font-semibold text-white">{item.title || item.artId}</div>
                           <div className="text-sm text-gray-400">
-                            {new Date(item.timestamp).toLocaleDateString('vi-VN')}
+                            {new Date(item.timestamp).toLocaleDateString('vi-VN')} • Vai: {item.role}
+                          </div>
+                          <div className="text-xs text-purple-300 mt-1">
+                            🎨 Tạo từ ảnh của bạn
                           </div>
                         </div>
 
@@ -646,10 +717,10 @@ const VirtualChronicle = () => {
                   className="mx-auto mb-4 h-12 w-12 rounded-full border-4 border-purple-600 border-t-transparent"
                 />
                 <div className="text-xl font-semibold text-white">
-                  🎨 Đang tạo tác phẩm nghệ thuật...
+                  🎨 Đang tạo tác phẩm nghệ thuật AI từ ảnh của bạn...
                 </div>
                 <div className="mt-2 text-gray-400">
-                  Vui lòng chờ trong giây lát
+                  AI đang xử lý và tạo ra phiên bản nghệ thuật độc đáo
                 </div>
               </div>
             </motion.div>
@@ -657,11 +728,10 @@ const VirtualChronicle = () => {
         </AnimatePresence>
       </main>
 
-      {/* Footer */}
       <footer className="border-t border-gray-700 bg-gray-900/50 p-6 text-center text-sm text-gray-400">
         <div>
-          Virtual Chronicle - Game tương tác khám phá lịch sử Việt Nam |
-          <span className="ml-2 text-purple-400">Được hỗ trợ bởi AI</span>
+          Virtual Chronicle - Game tương tác khám phá lịch sử Việt Nam với AI tạo ảnh |
+          <span className="ml-2 text-purple-400">Upload ảnh cá nhân để tạo tác phẩm nghệ thuật độc đáo</span>
         </div>
       </footer>
     </div>

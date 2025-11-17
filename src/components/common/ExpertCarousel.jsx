@@ -77,78 +77,70 @@ export default function ExpertCarousel({ onViewVideo }) {
   const visibleCards = getVisibleCards()
 
   return (
-    <div className="relative w-full max-w-7xl mx-auto px-4 md:px-6 py-8" ref={carouselRef}>
+    <div className="relative w-full max-w-[1400px] mx-auto px-6 md:px-10 py-10 md:py-14" ref={carouselRef}>
       {/* Section Header */}
-      <div className="text-center mb-16 animate-in fade-in slide-in-from-top duration-700">
-        <div className="inline-flex items-center gap-2 bg-amber-100 px-4 py-2 rounded-full mb-4">
-          <i className="fa-solid fa-users text-amber-600" />
-          <span className="text-sm uppercase tracking-wider text-amber-700 font-bold">DIỄN GIẢ</span>
+      <div className="text-center mb-16 md:mb-20 animate-in fade-in slide-in-from-top duration-700">
+        <div className="inline-flex items-center gap-3 bg-gradient-to-r from-amber-50 to-amber-100 px-7 py-3.5 rounded-full mb-6 shadow-sm border border-amber-200/50">
+          <i className="fa-solid fa-users text-amber-600 text-lg" />
+          <span className="text-sm md:text-base uppercase tracking-widest text-amber-700 font-bold">Chuyên gia</span>
         </div>
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
-          Diễn giả đồng hành
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-gray-800 via-amber-800 to-gray-800 bg-clip-text text-transparent">
+          Phỏng vấn Diễn giả
         </h2>
         <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed text-base md:text-lg px-4">
-          Gặp gỡ những người truyền cảm hứng, dẫn dắt bạn qua hành trình khám phá chiều sâu lịch sử và văn hóa Việt Nam.
+          Gặp gỡ những người truyền cảm hứng, khám phá chiều sâu lịch sử và văn hóa Việt Nam
         </p>
       </div>
 
-      {/* Carousel Container - Responsive height */}
-      <div className="relative h-[450px] md:h-[500px] lg:h-[550px] flex items-center justify-center">
+      {/* Carousel Container - Horizontal Layout */}
+      <div className="relative h-[360px] md:h-[400px] lg:h-[440px] flex items-center justify-center overflow-hidden">
         {/* Navigation Buttons */}
         <button
           onClick={goToPrevious}
-          className="absolute left-0 md:left-4 z-20 bg-white hover:bg-amber-50 text-gray-800 p-3 md:p-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 group border-2 border-amber-200 hover:border-amber-400"
+          className="absolute left-2 md:left-6 z-20 bg-white/95 backdrop-blur-sm hover:bg-amber-50 text-gray-700 p-4 md:p-5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group border border-amber-200/50 hover:border-amber-400"
           aria-label="Previous expert"
         >
-          <i className="fa-solid fa-chevron-left text-lg md:text-xl group-hover:text-amber-600 transition-colors" />
+          <i className="fa-solid fa-chevron-left text-xl md:text-2xl group-hover:text-amber-600 transition-colors" />
         </button>
 
         <button
           onClick={goToNext}
-          className="absolute right-0 md:right-4 z-20 bg-white hover:bg-amber-50 text-gray-800 p-3 md:p-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 group border-2 border-amber-200 hover:border-amber-400"
+          className="absolute right-2 md:right-6 z-20 bg-white/95 backdrop-blur-sm hover:bg-amber-50 text-gray-700 p-4 md:p-5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group border border-amber-200/50 hover:border-amber-400"
           aria-label="Next expert"
         >
-          <i className="fa-solid fa-chevron-right text-lg md:text-xl group-hover:text-amber-600 transition-colors" />
+          <i className="fa-solid fa-chevron-right text-xl md:text-2xl group-hover:text-amber-600 transition-colors" />
         </button>
 
-        {/* Cards */}
-        <div className="relative w-full h-full flex items-center justify-center">
+        {/* Cards - Horizontal Rectangle Layout */}
+        <div className="relative w-full h-full flex items-center justify-center px-12 md:px-20">
           {visibleCards.map(({ data, offset }) => {
             const isCenter = offset === 0
-            const isLeft = offset === -1
+            
+            // Rút gọn chiều rộng và tăng khoảng cách để không đè lên nhau
+            const translateDistance = 560 // Khoảng cách giữa các card
 
             return (
               <div
                 key={data.id}
                 className={`absolute transition-all duration-700 ease-out ${
                   isCenter
-                    ? 'z-30 scale-100 opacity-100 translate-x-0'
-                    : isLeft
-                    ? 'z-10 scale-75 opacity-40 -translate-x-[400px]'
-                    : 'z-10 scale-75 opacity-40 translate-x-[400px]'
+                    ? 'z-30 scale-100 opacity-100'
+                    : 'z-10 scale-85 opacity-30'
                 }`}
                 style={{
                   transform: `
-                    translateX(${offset * 400}px) 
-                    scale(${isCenter ? 1 : 0.75}) 
-                    rotateY(${offset * 15}deg)
+                    translateX(${offset * translateDistance}px) 
+                    scale(${isCenter ? 1 : 0.85})
                   `,
-                  opacity: isCenter ? 1 : 0.4
+                  opacity: isCenter ? 1 : 0.3
                 }}
               >
-                <div className={`bg-white rounded-3xl overflow-hidden shadow-2xl border-2 border-amber-100 w-[300px] sm:w-[340px] md:w-[380px] group ${
-                  isCenter ? 'hover:shadow-amber-300/50 cursor-pointer' : 'pointer-events-none'
+                {/* Card với layout ngang gọn hơn */}
+                <div className={`bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl border border-amber-100/50 w-[480px] sm:w-[500px] md:w-[520px] lg:w-[540px] group flex flex-row transition-all duration-300 ${
+                  isCenter ? 'hover:shadow-amber-300/40 cursor-pointer hover:border-amber-200' : 'pointer-events-none'
                 }`}>
-                  {/* Tooltip */}
-                  {isCenter && (
-                    <div className="absolute top-4 right-4 bg-gradient-to-r from-amber-500 to-amber-600 text-white px-3 py-1.5 rounded-lg text-xs font-medium opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300 z-10 shadow-lg">
-                      <i className={`fa-solid ${data.icon} mr-1`} />
-                      {data.tooltip}
-                    </div>
-                  )}
-
-                  {/* Image */}
-                  <div className="relative h-64 sm:h-72 md:h-80 overflow-hidden bg-gray-100">
+                  {/* Image bên trái - chiếm 38% width */}
+                  <div className="relative w-[38%] overflow-hidden bg-gradient-to-br from-amber-50 to-gray-100 flex-shrink-0">
                     <img
                       src={data.image}
                       alt={data.name}
@@ -157,27 +149,50 @@ export default function ExpertCarousel({ onViewVideo }) {
                       }`}
                     />
                     {/* Gradient overlay */}
-                    <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent ${
+                    <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-black/10 ${
                       isCenter ? 'opacity-0 group-hover:opacity-100' : ''
                     } transition-opacity duration-300`} />
+                    
+                    {/* Icon overlay với animation */}
+                    {isCenter && (
+                      <div className="absolute bottom-4 right-4 bg-gradient-to-br from-amber-500 to-amber-600 text-white p-3 rounded-xl shadow-md opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
+                        <i className={`fa-solid ${data.icon} text-base`} />
+                      </div>
+                    )}
                   </div>
 
-                  {/* Content */}
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-800 mb-1 flex items-center gap-2">
-                      {data.name}
-                    </h3>
-                    <p className="text-amber-600 font-medium text-sm mb-3">{data.title}</p>
-                    <p className="text-gray-600 text-sm leading-relaxed mb-4">{data.description}</p>
+                  {/* Content bên phải - chiếm 62% width */}
+                  <div className="w-[62%] p-6 md:p-7 flex flex-col justify-between bg-gradient-to-br from-white to-amber-50/30">
+                    {/* Tooltip tinh tế hơn */}
+                    {isCenter && (
+                      <div className="absolute top-3 right-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white px-4 py-1.5 rounded-lg text-xs md:text-sm font-medium opacity-0 group-hover:opacity-100 group-hover:-translate-y-0.5 transition-all duration-300 z-10 shadow-md">
+                        {data.tooltip}
+                      </div>
+                    )}
+
+                    {/* Header */}
+                    <div className="mb-4">
+                      <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-2 line-clamp-1 group-hover:text-amber-700 transition-colors">
+                        {data.name}
+                      </h3>
+                      <p className="text-amber-600 font-medium text-sm md:text-base mb-3 flex items-center gap-2">
+                        <i className="fa-solid fa-graduation-cap text-base" />
+                        <span>{data.title}</span>
+                      </p>
+                      <p className="text-gray-600 text-sm md:text-base leading-relaxed line-clamp-2 md:line-clamp-3">
+                        {data.description}
+                      </p>
+                    </div>
                     
+                    {/* Button với design mới */}
                     {isCenter && (
                       <button
                         onClick={() => onViewVideo && onViewVideo(data)}
-                        className="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white px-5 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-amber-300/50 flex items-center justify-center gap-2 group/btn"
+                        className="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white px-5 py-3.5 md:py-4 rounded-xl font-semibold text-sm md:text-base transition-all duration-300 hover:scale-[1.02] hover:shadow-md hover:shadow-amber-400/50 flex items-center justify-center gap-3 group/btn active:scale-95"
                       >
-                        <i className="fa-solid fa-play-circle text-lg" />
+                        <i className="fa-solid fa-play-circle text-lg md:text-xl" />
                         <span>Xem phỏng vấn</span>
-                        <i className="fa-solid fa-arrow-right transition-transform duration-300 group-hover/btn:translate-x-1" />
+                        <i className="fa-solid fa-arrow-right text-xs transition-transform duration-300 group-hover/btn:translate-x-0.5" />
                       </button>
                     )}
                   </div>
@@ -189,30 +204,19 @@ export default function ExpertCarousel({ onViewVideo }) {
       </div>
 
       {/* Dots Navigation */}
-      <div className="flex justify-center gap-3 mt-10 md:mt-12">
+      <div className="flex justify-center gap-3.5 mt-12 md:mt-14">
         {expertsData.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
             className={`transition-all duration-300 rounded-full ${
               index === currentIndex
-                ? 'w-10 md:w-12 h-2.5 md:h-3 bg-gradient-to-r from-amber-500 to-amber-600 shadow-lg ring-2 ring-amber-300 ring-offset-2'
-                : 'w-2.5 md:w-3 h-2.5 md:h-3 bg-gray-300 hover:bg-amber-400 hover:scale-125 hover:shadow-md'
+                ? 'w-12 md:w-14 h-3 md:h-3.5 bg-gradient-to-r from-amber-500 to-amber-600 shadow-md ring-2 ring-amber-300/50 ring-offset-2'
+                : 'w-3 md:w-3.5 h-3 md:h-3.5 bg-gray-300 hover:bg-amber-400 hover:scale-125 hover:shadow-sm'
             }`}
             aria-label={`Go to expert ${index + 1}`}
           />
         ))}
-      </div>
-
-      {/* Auto-play indicator */}
-      <div className="flex justify-center mt-6">
-        <button
-          onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-          className="group text-sm text-gray-600 hover:text-amber-600 transition-colors flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 hover:border-amber-400 hover:bg-amber-50"
-        >
-          <i className={`fa-solid ${isAutoPlaying ? 'fa-pause' : 'fa-play'} text-amber-600 transition-transform group-hover:scale-110`} />
-          <span className="font-medium">{isAutoPlaying ? 'Tạm dừng tự động' : 'Bật tự động chuyển'}</span>
-        </button>
       </div>
     </div>
   )
