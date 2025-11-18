@@ -53,6 +53,11 @@ body {
   z-index: -1;
 }
 
+.content {
+  position: relative;
+  z-index: 2;
+}
+
 .content h1 {
   /* smaller, responsive sizing so the hero heading fits on one line */
   font-size: clamp(2rem, 3vw, 3rem);
@@ -66,6 +71,7 @@ body {
   overflow: hidden;
   text-overflow: clip;
   max-width: 95vw; /* avoid overflowing the viewport */
+  font-family: 'Be Vietnam Pro', 'Segoe UI', Arial, Helvetica, Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .subheading {
