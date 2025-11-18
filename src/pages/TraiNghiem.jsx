@@ -20,6 +20,41 @@ import dienngochoang from "../assets/dienngochoang.png";
 import mieuthienhau from "../assets/mieuthienhau.png";
 import toaannhandan from "../assets/toaannhandan.png";
 import baotanglichsu from "../assets/baotangthanhpho.png";
+import dinhchihoa from "../assets/Đình Chí Hoà (1).png";
+import chuagiacvien from "../assets/Chùa Giác Viên (1).png";
+import chuaphungson from "../assets/Chùa Phụng Sơn (1).png";
+import dinhminhhuong from "../assets/Đình Minh Hương Gia Thạnh (1).png";
+import hoiquanhachuong from "../assets/Hội quán Hà Chương.png";
+import hoiquannghiaan from "../assets/Hội quán Nghĩa An (Miếu Quan Đế hay Chùa Ông).png";
+import hoiquannghianhuan from "../assets/Hội quán Nghĩa Nhuận (1).png";
+import hoiquanonlang from "../assets/Hội quán Ôn Lăng (1).png";
+import hoiquantuethanh from "../assets/Hội quán Tuệ Thành (Chùa Bà).png";
+import mieunhiphu from "../assets/Miếu Nhị Phủ (Chùa Ông Bổn).png";
+import nhathotobac from "../assets/Nhà thờ tổ thợ bạc (hội quán Lệ Châu)(1).png";
+import hoiquanquynhphu from "../assets/Hội quán Quỳnh Phủ.png";
+import chuahoison from "../assets/Chùa Hội Sơn.png";
+import chuaphuoctuong from "../assets/Chùa Phước Tường.png";
+import dinhtruongtho from "../assets/Đình Trường Thọ.png";
+import dinhxuanhiep from "../assets/Đình Xuân Hiệp (1).png";
+import dinhthanlinhdong from "../assets/Đình Thần Linh Đông.png";
+import dinhbinhhoa from "../assets/Đình Bình Hòa.png";
+import langlevanduyet from "../assets/Lăng Lê Văn Duyệt.png";
+import chuasactutruongtho from "../assets/Chùa Sắc Tứ Trường Thọ.png";
+import dinhthongtayhoi from "../assets/Đình Thông Tây Hội.png";
+import dinhphunhuan from "../assets/Đình Phú Nhuận.png";
+import langtruongtanbuu from "../assets/Lăng Trương Tấn Bửu.png";
+import langvodinguy from "../assets/Lăng Võ Di Nguy.png";
+import chuagiaclam from "../assets/Chùa Giác Lâm.png";
+import cancurungsac from "../assets/Căn cứ Rừng Sác.png";
+import dinhquanhocmon from "../assets/Dinh Quận Hóc Môn.png";
+import ngabagiong from "../assets/Ngã Ba Giồng.png";
+import bason from "../assets/bason.png";
+import noithanhlapannam from "../assets/Nơi thành lập An Nam Cộng sản Đảng năm 1929.png";
+import noithanhlapkybo from "../assets/Nơi thành lập Kỳ bộ Việt Nam Thanh niên đồng chí Hội.png";
+import toadaisuquan from "../assets/Tòa Đại sứ quán Mỹ (nay là Tổng Lãnh sự quán Hợp chủng quốc Hoa Kỳ tại TP. Hồ Chí Minh).png";
+import trusobao from "../assets/Trụ sở báo Dân Chúng.png";
+
+
 /* ==============================
    DỮ LIỆU ĐỊA DANH (BỔ SUNG province + year)
    ============================== */
@@ -78,9 +113,7 @@ const mapDataRaw = [
     lng: 106.92447840409623,
     description:
       "Di chỉ khảo cổ học thời tiền sử, chứng tích cư dân cổ Nam Bộ.",
-    images: [
-      giongcavo
-    ],
+    images: [giongcavo],
     period: "Tiền sử",
     region: "Nam",
     province: "TP. Hồ Chí Minh",
@@ -91,9 +124,7 @@ const mapDataRaw = [
     lng: 106.62618359266747,
     description:
       "Di tích lò gốm có niên đại hàng trăm năm, phản ánh quá trình phát triển nghề gốm truyền thống tại khu vực Nam Bộ. Đây là nơi từng sản xuất nhiều loại gốm gia dụng và trang trí, góp phần định hình đời sống văn hóa – kinh tế của cư dân địa phương.",
-    images: [
-      logomcohungloi
-    ],
+    images: [logomcohungloi],
     period: "Nguyễn",
     region: "Nam",
     province: "TP. Hồ Chí Minh",
@@ -105,9 +136,7 @@ const mapDataRaw = [
     lng: 106.69817910131295,
     description:
       "Ngôi điện thờ mang kiến trúc đặc trưng Á Đông với nhiều họa tiết chạm trổ tinh xảo. Công trình từng là trung tâm sinh hoạt tín ngưỡng của cộng đồng người Hoa và người Việt tại Sài Gòn xưa, thể hiện sự giao thoa văn hóa lâu đời.",
-    images: [
-      dienngochoang
-    ],
+    images: [dienngochoang],
     period: "Pháp thuộc",
     region: "Nam",
     province: "TP. Hồ Chí Minh",
@@ -118,9 +147,7 @@ const mapDataRaw = [
     lng: 106.66084046155355,
     description:
       "Miếu thờ Thiên Hậu Thánh Mẫu, là một trong những công trình tín ngưỡng quan trọng của cộng đồng người Hoa Quảng Triệu tại Sài Gòn. Kiến trúc miếu mang phong cách Hoa Nam đặc trưng cùng nhiều phù điêu, hoành phi, liễn đối cổ được bảo tồn nguyên vẹn.",
-    images: [
-      mieuthienhau
-    ],
+    images: [mieuthienhau],
     period: "Pháp thuộc",
     region: "Nam",
     province: "TP. Hồ Chí Minh",
@@ -131,9 +158,7 @@ const mapDataRaw = [
     lng: 106.69743088555757,
     description:
       "Công trình kiến trúc mang phong cách Pháp thuộc, được xây dựng từ cuối thế kỷ XIX. Tòa nhà là một trong những dấu ấn tiêu biểu còn lại của thời kỳ đô thị hóa Sài Gòn trong thời thuộc địa, đồng thời hiện vẫn là cơ quan hành chính – tư pháp quan trọng của thành phố.",
-    images: [
-      toaannhandan
-    ],
+    images: [toaannhandan],
     period: "Pháp thuộc",
     region: "Nam",
     province: "TP. Hồ Chí Minh",
@@ -144,9 +169,7 @@ const mapDataRaw = [
     lng: 106.70472910149543,
     description:
       "Bảo tàng được xây dựng từ thời Pháp với kiến trúc pha trộn Á – Âu độc đáo. Nơi đây trưng bày hơn 40.000 hiện vật quý từ thời tiền sử đến cận đại, là kho tư liệu quan trọng về tiến trình lịch sử và văn hóa của miền Nam nói riêng và Việt Nam nói chung.",
-    images: [
-      baotanglichsu
-    ],
+    images: [baotanglichsu],
     period: "Pháp thuộc",
     region: "Nam",
     province: "TP. Hồ Chí Minh",
@@ -158,9 +181,7 @@ const mapDataRaw = [
     lng: 106.67321234627079,
     description:
       "Đình Chí Hòa là một trong những ngôi đình cổ tiêu biểu của Sài Gòn, gắn liền với quá trình khai khẩn và hình thành vùng đất Gia Định xưa. Với kiến trúc truyền thống đậm nét Nam Bộ, ngôi đình thờ Thành Hoàng và lưu giữ nhiều giá trị văn hóa – tín ngưỡng của cộng đồng cư dân địa phương. Đây là điểm dừng chân lý tưởng để tìm hiểu đời sống tinh thần và lịch sử vùng đất Chí Hòa qua nhiều thế kỷ.",
-    images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
-    ],
+    images: [dinhchihoa],
     period: "Pháp thuộc",
     region: "Nam",
     province: "TP. Hồ Chí Minh",
@@ -172,9 +193,7 @@ const mapDataRaw = [
     lng: 106.63977861426329,
     description:
       "Chùa Giác Viên là một trong những ngôi chùa cổ lâu đời nhất ở Sài Gòn, gắn với quá trình hình thành vùng đất Gia Định từ thế kỷ XVIII. Ngôi chùa mang kiến trúc truyền thống Nam Bộ với nhiều pho tượng gỗ, bao lam và hoành phi được chạm khắc tinh xảo. Không gian tĩnh lặng và cổ kính khiến nơi đây trở thành điểm dừng chân lý tưởng để tìm hiểu lịch sử Phật giáo và đời sống văn hóa tín ngưỡng của người dân Nam Bộ.",
-    images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
-    ],
+    images: [chuagiacvien],
     period: "Nguyễn",
     region: "Nam",
     province: "TP. Hồ Chí Minh",
@@ -185,9 +204,7 @@ const mapDataRaw = [
     lng: 106.67321234627079,
     description:
       "Chùa Phụng Sơn, còn gọi là chùa Gò, là ngôi chùa cổ nổi bật của Sài Gòn, được xây dựng vào thời Gia Long. Chùa lưu giữ nhiều di vật quý giá, đặc biệt là các tượng Phật bằng gỗ mang phong cách nghệ thuật dân gian đặc sắc. Với kiến trúc trang nghiêm và bầu không khí thanh tịnh, chùa Phụng Sơn là nơi giúp du khách cảm nhận rõ nét truyền thống Phật giáo và lịch sử hình thành vùng đất Gia Định xưa.",
-    images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
-    ],
+    images: [chuaphungson],
     period: "Nguyễn",
     region: "Nam",
     province: "TP. Hồ Chí Minh",
@@ -199,9 +216,7 @@ const mapDataRaw = [
     lng: 106.66126606339897,
     description:
       "Chùa Phụng Sơn, còn gọi là chùa Gò, là ngôi chùa cổ nổi bật của Sài Gòn, được xây dựng vào thời Gia Long. Chùa lưu giữ nhiều di vật quý giá, đặc biệt là các tượng Phật bằng gỗ mang phong cách nghệ thuật dân gian đặc sắc. Với kiến trúc trang nghiêm và bầu không khí thanh tịnh, chùa Phụng Sơn là nơi giúp du khách cảm nhận rõ nét truyền thống Phật giáo và lịch sử hình thành vùng đất Gia Định xưa.",
-    images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
-    ],
+    images: [dinhminhhuong],
     period: "Nguyễn",
     region: "Nam",
     province: "TP. Hồ Chí Minh",
@@ -212,9 +227,7 @@ const mapDataRaw = [
     lng: 106.65803810406284,
     description:
       "Chùa Phụng Sơn, còn gọi là chùa Gò, là ngôi chùa cổ nổi bật của Sài Gòn, được xây dựng vào thời Gia Long. Chùa lưu giữ nhiều di vật quý giá, đặc biệt là các tượng Phật bằng gỗ mang phong cách nghệ thuật dân gian đặc sắc. Với kiến trúc trang nghiêm và bầu không khí thanh tịnh, chùa Phụng Sơn là nơi giúp du khách cảm nhận rõ nét truyền thống Phật giáo và lịch sử hình thành vùng đất Gia Định xưa.",
-    images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
-    ],
+    images: [hoiquanhachuong],
     period: "Nguyễn",
     region: "Nam",
     province: "TP. Hồ Chí Minh",
@@ -225,9 +238,7 @@ const mapDataRaw = [
     lng: 106.66229058492084,
     description:
       "Chùa Phụng Sơn, còn gọi là chùa Gò, là ngôi chùa cổ nổi bật của Sài Gòn, được xây dựng vào thời Gia Long. Chùa lưu giữ nhiều di vật quý giá, đặc biệt là các tượng Phật bằng gỗ mang phong cách nghệ thuật dân gian đặc sắc. Với kiến trúc trang nghiêm và bầu không khí thanh tịnh, chùa Phụng Sơn là nơi giúp du khách cảm nhận rõ nét truyền thống Phật giáo và lịch sử hình thành vùng đất Gia Định xưa.",
-    images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
-    ],
+    images: [hoiquannghiaan],
     period: "Nguyễn",
     region: "Nam",
     province: "TP. Hồ Chí Minh",
@@ -238,9 +249,7 @@ const mapDataRaw = [
     lng: 106.65438651553954,
     description:
       "Chùa Phụng Sơn, còn gọi là chùa Gò, là ngôi chùa cổ nổi bật của Sài Gòn, được xây dựng vào thời Gia Long. Chùa lưu giữ nhiều di vật quý giá, đặc biệt là các tượng Phật bằng gỗ mang phong cách nghệ thuật dân gian đặc sắc. Với kiến trúc trang nghiêm và bầu không khí thanh tịnh, chùa Phụng Sơn là nơi giúp du khách cảm nhận rõ nét truyền thống Phật giáo và lịch sử hình thành vùng đất Gia Định xưa.",
-    images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
-    ],
+    images: [hoiquannghianhuan],
     period: "Nguyễn",
     region: "Nam",
     province: "TP. Hồ Chí Minh",
@@ -251,9 +260,7 @@ const mapDataRaw = [
     lng: 106.65970040571848,
     description:
       "Chùa Phụng Sơn, còn gọi là chùa Gò, là ngôi chùa cổ nổi bật của Sài Gòn, được xây dựng vào thời Gia Long. Chùa lưu giữ nhiều di vật quý giá, đặc biệt là các tượng Phật bằng gỗ mang phong cách nghệ thuật dân gian đặc sắc. Với kiến trúc trang nghiêm và bầu không khí thanh tịnh, chùa Phụng Sơn là nơi giúp du khách cảm nhận rõ nét truyền thống Phật giáo và lịch sử hình thành vùng đất Gia Định xưa.",
-    images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
-    ],
+    images: [hoiquanonlang],
     period: "Nguyễn",
     region: "Nam",
     province: "TP. Hồ Chí Minh",
@@ -264,9 +271,7 @@ const mapDataRaw = [
     lng: 106.65803810406284,
     description:
       "Chùa Phụng Sơn, còn gọi là chùa Gò, là ngôi chùa cổ nổi bật của Sài Gòn, được xây dựng vào thời Gia Long. Chùa lưu giữ nhiều di vật quý giá, đặc biệt là các tượng Phật bằng gỗ mang phong cách nghệ thuật dân gian đặc sắc. Với kiến trúc trang nghiêm và bầu không khí thanh tịnh, chùa Phụng Sơn là nơi giúp du khách cảm nhận rõ nét truyền thống Phật giáo và lịch sử hình thành vùng đất Gia Định xưa.",
-    images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
-    ],
+    images: [hoiquantuethanh],
     period: "Nguyễn",
     region: "Nam",
     province: "TP. Hồ Chí Minh",
@@ -277,9 +282,7 @@ const mapDataRaw = [
     lng: 106.65610268497856,
     description:
       "Chùa Phụng Sơn, còn gọi là chùa Gò, là ngôi chùa cổ nổi bật của Sài Gòn, được xây dựng vào thời Gia Long. Chùa lưu giữ nhiều di vật quý giá, đặc biệt là các tượng Phật bằng gỗ mang phong cách nghệ thuật dân gian đặc sắc. Với kiến trúc trang nghiêm và bầu không khí thanh tịnh, chùa Phụng Sơn là nơi giúp du khách cảm nhận rõ nét truyền thống Phật giáo và lịch sử hình thành vùng đất Gia Định xưa.",
-    images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
-    ],
+    images: [mieunhiphu],
     period: "Nguyễn",
     region: "Nam",
     province: "TP. Hồ Chí Minh",
@@ -290,9 +293,7 @@ const mapDataRaw = [
     lng: 106.65517647167837,
     description:
       "Chùa Phụng Sơn, còn gọi là chùa Gò, là ngôi chùa cổ nổi bật của Sài Gòn, được xây dựng vào thời Gia Long. Chùa lưu giữ nhiều di vật quý giá, đặc biệt là các tượng Phật bằng gỗ mang phong cách nghệ thuật dân gian đặc sắc. Với kiến trúc trang nghiêm và bầu không khí thanh tịnh, chùa Phụng Sơn là nơi giúp du khách cảm nhận rõ nét truyền thống Phật giáo và lịch sử hình thành vùng đất Gia Định xưa.",
-    images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
-    ],
+    images: [nhathotobac],
     period: "Nguyễn",
     region: "Nam",
     province: "TP. Hồ Chí Minh",
@@ -303,9 +304,7 @@ const mapDataRaw = [
     lng: 106.66355958600451,
     description:
       "Chùa Phụng Sơn, còn gọi là chùa Gò, là ngôi chùa cổ nổi bật của Sài Gòn, được xây dựng vào thời Gia Long. Chùa lưu giữ nhiều di vật quý giá, đặc biệt là các tượng Phật bằng gỗ mang phong cách nghệ thuật dân gian đặc sắc. Với kiến trúc trang nghiêm và bầu không khí thanh tịnh, chùa Phụng Sơn là nơi giúp du khách cảm nhận rõ nét truyền thống Phật giáo và lịch sử hình thành vùng đất Gia Định xưa.",
-    images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
-    ],
+    images: [hoiquanquynhphu],
     period: "Nguyễn",
     region: "Nam",
     province: "TP. Hồ Chí Minh",
@@ -313,25 +312,23 @@ const mapDataRaw = [
   // Thành phố thủ đức
   {
     name: "Chùa Hội Sơn",
-    lat: "",
-    lng: "",
+    lat: "10.870955155314954", // 10.870955155314954, 106.83986371534644
+    lng: "106.83986371534644",
     description:
       "Chùa Hội Sơn là một trong những ngôi chùa cổ nhất tại khu vực Thủ Đức, gắn với quá trình khai phá vùng đất Gia Định xưa. Chùa mang kiến trúc truyền thống mộc mạc và lưu giữ nhiều tượng Phật, pháp khí mang giá trị lịch sử – văn hóa đặc sắc. Đây là điểm đến thanh tịnh, phản ánh đời sống tín ngưỡng lâu đời của cư dân Nam Bộ.",
-    images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
-    ],
+    images: [chuahoison],
     period: "Nguyễn",
     region: "Nam",
     province: "TP. Hồ Chí Minh",
   },
   {
     name: "Chùa Phước Tường",
-    lat: "",
-    lng: "",
+    lat: "10.842264091635732",
+    lng: "106.78881044468736",
     description:
       "Chùa Phước Tường là ngôi chùa cổ của vùng Tăng Nhơn Phú, mang phong cách kiến trúc truyền thống Nam Bộ. Trải qua nhiều lần trùng tu, chùa vẫn giữ được vẻ trang nghiêm cùng những di vật quý, thể hiện đời sống tâm linh phong phú của cộng đồng cư dân địa phương.",
     images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
+      chuaphuoctuong
     ],
     period: "Nguyễn",
     region: "Nam",
@@ -339,12 +336,12 @@ const mapDataRaw = [
   },
   {
     name: "Đình Trường Thọ",
-    lat: "",
-    lng: "",
+    lat: "10.833681147713332",
+    lng: "106.75664561659228",
     description:
       "Đình Trường Thọ là thiết chế tín ngưỡng gắn với quá trình hình thành khu vực Thủ Đức. Đình thờ Thành Hoàng và là nơi diễn ra các lễ hội truyền thống, phản ánh văn hóa cộng đồng người Việt trên vùng đất mới. Kiến trúc đình mang đậm dấu ấn Nam Bộ với các mảng chạm khắc mộc mạc.",
     images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
+      dinhtruongtho
     ],
     period: "Nguyễn",
     region: "Nam",
@@ -352,12 +349,12 @@ const mapDataRaw = [
   },
   {
     name: "Đình Xuân Hiệp",
-    lat: "",
-    lng: "",
+    lat: "10.87760351109802",
+    lng: "106.7653684493474",
     description:
       "Đình Xuân Hiệp là ngôi đình cổ của cư dân vùng Linh Xuân, thờ Thành Hoàng và những bậc tiền hiền có công khai hoang lập ấp. Đình mang kiến trúc truyền thống đặc trưng, là nơi lưu giữ nhiều giá trị lịch sử – văn hóa của cộng đồng qua nhiều thế hệ.",
     images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
+      dinhxuanhiep
     ],
     period: "Nguyễn",
     region: "Nam",
@@ -365,12 +362,12 @@ const mapDataRaw = [
   },
   {
     name: "Đình Thần Linh Đông",
-    lat: "",
-    lng: "",
+    lat: "10.8529383538591942",
+    lng: "106.76017844732463",
     description:
       "Đình Thần Linh Đông là di tích tiêu biểu của khu vực Linh Chiểu, thờ Thành Hoàng cùng các vị thần bảo hộ làng xã. Với kiến trúc truyền thống và các nghi lễ được duy trì qua nhiều đời, đình là điểm hội tụ đời sống văn hóa – tín ngưỡng của cư dân địa phương.",
     images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
+      dinhthanlinhdong
     ],
     period: "Nguyễn",
     region: "Nam",
@@ -379,12 +376,12 @@ const mapDataRaw = [
   // Quận Bình Thạnh
   {
     name: "Đình Bình Hòa",
-    lat: "",
-    lng: "",
+    lat: "10.811698109700704",
+    lng: "106.69646176515674",
     description:
       "Đình Bình Hòa là ngôi đình cổ của vùng Bình Thạnh, thờ Thành Hoàng và ghi dấu sự định cư sớm của cư dân Gia Định. Không gian kiến trúc mộc mạc, gắn với các lễ hội truyền thống, tạo nên giá trị văn hóa đặc trưng của cộng đồng người Việt tại khu vực này.",
     images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
+      dinhbinhhoa
     ],
     period: "Nguyễn",
     region: "Nam",
@@ -392,12 +389,12 @@ const mapDataRaw = [
   },
   {
     name: "Lăng Lê Văn Duyệt",
-    lat: "",
-    lng: "",
+    lat: "10.802198311835147",
+    lng: "106.69713883943703",
     description:
       "Lăng Lê Văn Duyệt, hay còn gọi là Lăng Ông Bà Chiểu, là nơi an táng Tả quân Lê Văn Duyệt – một vị tướng tài ba thời Nguyễn. Quần thể lăng mang kiến trúc uy nghi, hòa quyện yếu tố truyền thống và nghệ thuật trang trí tinh xảo. Đây là di tích lịch sử – văn hóa đặc biệt quan trọng của TP. Hồ Chí Minh.",
     images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
+      langlevanduyet
     ],
     period: "Nguyễn",
     region: "Nam",
@@ -406,12 +403,12 @@ const mapDataRaw = [
   // Quận Gò Vấp
   {
     name: "Chùa Sắc tứ Trường Thọ",
-    lat: "",
-    lng: "",
+    lat: "10.828532459833486",
+    lng: "106.68401679825018",
     description:
       "Chùa Sắc tứ Trường Thọ là ngôi chùa cổ tại Gò Vấp, có lịch sử gắn liền với quá trình khẩn hoang của cư dân vùng Gia Định. Chùa mang kiến trúc truyền thống đơn sơ, lưu giữ nhiều tượng Phật và pháp khí quý giá. Đây là nơi sinh hoạt tín ngưỡng quan trọng của cộng đồng Phật tử địa phương.",
     images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
+      chuasactutruongtho
     ],
     period: "Nguyễn",
     region: "Nam",
@@ -419,12 +416,12 @@ const mapDataRaw = [
   },
   {
     name: "Đình Thông Tây Hội",
-    lat: "",
-    lng: "",
+    lat: "10.840045569100567",
+    lng: "106.66491788028219",
     description:
       "Đình Thông Tây Hội được xem là một trong những ngôi đình cổ nhất Sài Gòn, có lịch sử hơn 300 năm. Đình thờ Thành Hoàng và các bậc tiền hiền khai hoang lập ấp. Không gian kiến trúc truyền thống cùng các lễ hội thường niên tạo nên giá trị văn hóa đặc sắc cho cộng đồng cư dân Gò Vấp.",
     images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
+      dinhthongtayhoi
     ],
     period: "Nguyễn",
     region: "Nam",
@@ -433,12 +430,12 @@ const mapDataRaw = [
   // Quận Phú Nhuận
   {
     name: "Đình Phú Nhuận",
-    lat: "",
-    lng: "",
+    lat: "10.795391546766645",
+    lng: "106.67386509712124",
     description:
       "Đình Phú Nhuận là di tích tín ngưỡng quan trọng của cư dân vùng Phú Nhuận, thờ Thành Hoàng và ghi nhận công lao của các bậc tiền hiền. Đình mang kiến trúc truyền thống đặc trưng, là nơi diễn ra nhiều lễ hội dân gian gắn với đời sống cộng đồng.",
     images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
+      dinhphunhuan
     ],
     period: "Nguyễn",
     region: "Nam",
@@ -446,12 +443,12 @@ const mapDataRaw = [
   },
   {
     name: "Lăng Trương Tấn Bửu",
-    lat: "",
-    lng: "",
+    lat: "10.79621097744908",
+    lng: "106.6756017544972",
     description:
       "Lăng Trương Tấn Bửu là nơi an táng Trương Tấn Bửu – một danh tướng triều Nguyễn nổi tiếng về tài thao lược. Khu lăng mang kiến trúc trang trọng, lưu giữ nhiều giá trị lịch sử gắn với thời kỳ mở mang vùng đất Gia Định. Đây là địa chỉ văn hóa – lịch sử quan trọng của quận Phú Nhuận.",
     images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
+      langtruongtanbuu
     ],
     period: "Nguyễn",
     region: "Nam",
@@ -459,12 +456,12 @@ const mapDataRaw = [
   },
   {
     name: "Lăng Võ Di Nguy",
-    lat: "",
-    lng: "",
+    lat: "10.795763315305154",
+    lng: "106.68295132449175",
     description:
       "Lăng Võ Di Nguy là nơi thờ và tưởng niệm Võ Di Nguy, một vị tướng tài thời Nguyễn có công lớn trong việc bảo vệ và củng cố vùng đất Gia Định. Công trình mang kiến trúc cổ kính, là dấu tích quan trọng phản ánh lịch sử hình thành và phát triển của khu vực Tân Bình.",
     images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
+      langvodinguy
     ],
     period: "Nguyễn",
     region: "Nam",
@@ -473,12 +470,12 @@ const mapDataRaw = [
   // Quận Tân Bình
   {
     name: "Chùa Giác Lâm",
-    lat: "",
-    lng: "",
+    lat: "10.778725108342096",
+    lng: "106.64919097554541",
     description:
       "Chùa Giác Lâm là một trong những ngôi chùa cổ lâu đời nhất tại TP. Hồ Chí Minh, xây dựng vào giữa thế kỷ XVIII. Chùa nổi bật với kiến trúc truyền thống, nhiều pho tượng cổ cùng các bao lam chạm khắc tinh xảo. Đây là di tích văn hóa – lịch sử quan trọng, gắn với sự phát triển Phật giáo ở Nam Bộ.",
     images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
+      chuagiaclam
     ],
     period: "Nguyễn",
     region: "Nam",
@@ -488,12 +485,12 @@ const mapDataRaw = [
   // Huyện Cần Giờ
   {
     name: "Căn cứ Rừng Sác",
-    lat: "",
-    lng: "",
+    lat: "10.407368751362778",
+    lng: "106.89683802255844",
     description:
       "Căn cứ Rừng Sác là địa danh gắn liền với lực lượng Đặc công Rừng Sác trong kháng chiến chống Mỹ. Nơi đây từng là vùng rừng ngập mặn hiểm trở, đóng vai trò chiến lược quan trọng trong nhiều trận đánh nổi bật. Hiện nay, khu căn cứ được bảo tồn như một di tích lịch sử, giúp du khách tìm hiểu tinh thần quả cảm của bộ đội đặc công.",
     images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
+      cancurungsac
     ],
     period: "Hiện đại",
     region: "Nam",
@@ -502,12 +499,12 @@ const mapDataRaw = [
   // Huyện Hóc Môn
   {
     name: "Dinh Quận Hóc Môn",
-    lat: "",
-    lng: "",
+    lat: "10.889165527611583",
+    lng: "106.59517522228782",
     description:
       "Dinh Quận Hóc Môn là một công trình hành chính cổ của vùng Hóc Môn, gắn với quá trình hình thành và quản lý địa phương từ thời Pháp thuộc đến hiện đại. Công trình được gìn giữ như một phần ký ức đô thị, phản ánh lịch sử phát triển của vùng đất Hóc Môn.",
     images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
+      dinhquanhocmon
     ],
     period: "Pháp thuộc",
     region: "Nam",
@@ -515,12 +512,12 @@ const mapDataRaw = [
   },
   {
     name: "Ngã Ba Giồng",
-    lat: "",
-    lng: "",
+    lat: "10.86358012924508",
+    lng: "106.56115316079898",
     description:
       "Ngã Ba Giồng là địa điểm lịch sử nổi tiếng, nơi thực dân Pháp đã xử bắn nhiều chiến sĩ yêu nước trong thời kỳ đầu kháng chiến. Hiện nay, khu vực được xây dựng thành khu tưởng niệm trang nghiêm, là biểu tượng cho tinh thần kiên trung và sự hy sinh của các chiến sĩ cách mạng.",
     images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
+      ngabagiong
     ],
     period: "Hiện đại",
     region: "Nam",
@@ -529,12 +526,12 @@ const mapDataRaw = [
   // Quận 1
   {
     name: "Địa điểm lưu niệm Chủ tịch Tôn Đức Thắng (Ba Son)",
-    lat: "",
-    lng: "",
+    lat: "10.775316549070706",
+    lng: "106.70647053598319",
     description:
       "Địa điểm lưu niệm Chủ tịch Tôn Đức Thắng tại khu vực Ba Son ghi dấu sự nghiệp hoạt động của ông trong phong trào công nhân Sài Gòn. Đây là nơi ông từng làm việc và tham gia vận động cách mạng. Khu lưu niệm góp phần tôn vinh cuộc đời và sự nghiệp của vị lãnh đạo xuất sắc của giai cấp công nhân Việt Nam.",
     images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
+      bason
     ],
     period: "Hiện đại",
     region: "Nam",
@@ -542,12 +539,12 @@ const mapDataRaw = [
   },
   {
     name: "Nơi thành lập An Nam Cộng sản Đảng năm 1929",
-    lat: "",
-    lng: "",
+    lat: "10.773313938963202",
+    lng: "106.69970907066484",
     description:
       "Nơi thành lập An Nam Cộng sản Đảng năm 1929 là di tích quan trọng, đánh dấu bước ngoặt trong phong trào cách mạng Việt Nam. Sự kiện thành lập tại đây đã góp phần hình thành nền tảng tư tưởng và tổ chức dẫn tới sự ra đời của Đảng Cộng sản Việt Nam. Di tích lưu giữ dấu ấn lịch sử của phong trào đấu tranh giải phóng dân tộc.",
     images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
+      noithanhlapannam
     ],
     period: "Hiện đại",
     region: "Nam",
@@ -555,12 +552,12 @@ const mapDataRaw = [
   },
   {
     name: "Nơi thành lập Kỳ bộ Việt Nam Thanh niên Đồng chí Hội",
-    lat: "",
-    lng: "",
+    lat: "10.774800583261378",
+    lng: "106.69775232252479",
     description:
       "Địa điểm gắn với quá trình hình thành Kỳ bộ Việt Nam Thanh niên Đồng chí Hội – một tổ chức cách mạng quan trọng trong những năm đầu thế kỷ XX. Đây là nơi diễn ra nhiều hoạt động tuyên truyền và phát triển phong trào yêu nước tại Sài Gòn.",
     images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
+      noithanhlapkybo
     ],
     period: "Hiện đại",
     region: "Nam",
@@ -568,12 +565,12 @@ const mapDataRaw = [
   },
   {
     name: "Tòa đại sứ quán Mỹ (nay là Tổng Lãnh sự quán Hoa Kỳ)",
-    lat: "",
-    lng: "",
+    lat: "10.783501537525375",
+    lng: "106.70058139474905",
     description:
       "Tòa đại sứ quán Mỹ trước năm 1975, nay là Tổng Lãnh sự quán Hoa Kỳ tại TP. Hồ Chí Minh. Công trình gắn liền với nhiều sự kiện quan trọng trong giai đoạn cuối của chiến tranh Việt Nam, là một trong những địa danh lịch sử tiêu biểu tại trung tâm Quận 1.",
     images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
+      toadaisuquan
     ],
     period: "Hiện đại",
     region: "Nam",
@@ -581,12 +578,12 @@ const mapDataRaw = [
   },
   {
     name: "Trụ sở báo Dân Chúng",
-    lat: "",
-    lng: "",
+    lat: "10.769018605630079",
+    lng: "106.69783456023448",
     description:
       "Trụ sở báo Dân Chúng từng là cơ quan ngôn luận của phong trào cách mạng Sài Gòn – Chợ Lớn thời kỳ trước Cách mạng Tháng Tám. Báo có vai trò lớn trong tuyên truyền tinh thần yêu nước và đấu tranh chống áp bức.",
     images: [
-      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bao_tang_Lich_su_Viet_Nam.jpg",
+      trusobao
     ],
     period: "Hiện đại",
     region: "Nam",
@@ -2811,9 +2808,10 @@ const TraiNghiem = () => {
 
     // Tạo & gắn marker
     markersRef.current = mapData.map((e) => {
-      const m = window.L
-        .marker([e.lat, e.lng], { icon: modernIcon, title: e.name })
-        .addTo(markerLayerRef.current);
+      const m = window.L.marker([e.lat, e.lng], {
+        icon: modernIcon,
+        title: e.name,
+      }).addTo(markerLayerRef.current);
 
       // Tooltip tên địa danh
       m.bindTooltip(e.name, {
@@ -2926,20 +2924,26 @@ const TraiNghiem = () => {
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
     ">
       <div style="position:relative;height:180px;background:#f7f7f7;">
-        <img src="${event.images?.[0] || ""}" alt="${event.name}" style="width:100%;height:100%;object-fit:cover;" />
+        <img src="${event.images?.[0] || ""}" alt="${
+    event.name
+  }" style="width:100%;height:100%;object-fit:cover;" />
         <div style="position:absolute;bottom:8px;left:12px;padding:6px 10px;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;font-size:12px;">
           ${event.period} · ${event.region} Bộ · ${event.province ?? ""}
         </div>
       </div>
       <div style="padding:12px 14px 14px;">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
-          <h3 style="margin:0;font-size:18px;line-height:1.3;color:#1f2937;font-weight:700;">${event.name}</h3>
+          <h3 style="margin:0;font-size:18px;line-height:1.3;color:#1f2937;font-weight:700;">${
+            event.name
+          }</h3>
         </div>
         <p style="margin:8px 0 12px;color:#4b5563;font-size:14px;line-height:1.5;">
           ${event.description}
         </p>
         <a
-          href="https://www.google.com/maps/dir/?api=1&destination=${event.lat},${event.lng}"
+          href="https://www.google.com/maps/dir/?api=1&destination=${
+            event.lat
+          },${event.lng}"
           target="_blank" rel="noopener noreferrer"
           style="display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;background:#2e1e10;color:#fff;font-weight:600;text-decoration:none;"
         >
@@ -3014,18 +3018,18 @@ const TraiNghiem = () => {
         iconAnchor: [6, 6],
       });
       if (!locatingRef.current.marker) {
-        locatingRef.current.marker = window.L.marker([lat, lng], { icon }).addTo(map);
+        locatingRef.current.marker = window.L.marker([lat, lng], {
+          icon,
+        }).addTo(map);
       }
       if (!locatingRef.current.accuracy) {
-        locatingRef.current.accuracy = window.L
-          .circle([lat, lng], {
-            radius: acc || 30,
-            color: "#1d4ed8",
-            fillColor: "#3b82f6",
-            fillOpacity: 0.12,
-            weight: 1,
-          })
-          .addTo(map);
+        locatingRef.current.accuracy = window.L.circle([lat, lng], {
+          radius: acc || 30,
+          color: "#1d4ed8",
+          fillColor: "#3b82f6",
+          fillOpacity: 0.12,
+          weight: 1,
+        }).addTo(map);
       }
     };
 
@@ -3175,13 +3179,16 @@ const TraiNghiem = () => {
           stroke="currentColor"
           strokeWidth="3"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M5 13l4 4L19 7"
+          />
         </svg>
       </span>
       <span className="text-sm font-medium text-[#2e1e10]">{label}</span>
     </label>
   );
-
 
   return (
     <>
@@ -3324,13 +3331,15 @@ const TraiNghiem = () => {
             </div>
           </div>
         </header>
-        
+
         {/* THANH CÔNG CỤ TRÊN MAP: search + bộ lọc nhanh */}
         <section data-aos="fade-up" data-aos-delay="100">
           <div className="mx-auto mb-6 max-w-7xl flex flex-wrap items-center justify-between gap-6 rounded-2xl bg-white/70 p-6 shadow-2xl backdrop-blur-lg">
             {/* Quick filters: thời kỳ */}
             <div className="flex items-center gap-x-4 gap-y-3 flex-wrap">
-              <strong className="text-lg font-semibold text-[#2e1e10]">Thời kỳ:</strong>
+              <strong className="text-lg font-semibold text-[#2e1e10]">
+                Thời kỳ:
+              </strong>
               {PERIODS.map((period) => (
                 <label
                   key={period}
@@ -3340,7 +3349,9 @@ const TraiNghiem = () => {
                     type="checkbox"
                     className="h-5 w-5 accent-[#dc8154] rounded border-2 border-gray-400"
                     checked={mapFilters.periods.has(period)}
-                    onChange={() => handleFilterChange(setMapFilters, "periods", period)}
+                    onChange={() =>
+                      handleFilterChange(setMapFilters, "periods", period)
+                    }
                   />
                   {period}
                 </label>
@@ -3349,7 +3360,9 @@ const TraiNghiem = () => {
 
             {/* Quick filters: vùng miền */}
             <div className="flex items-center gap-4">
-              <strong className="text-lg font-semibold text-[#2e1e10]">Vùng miền:</strong>
+              <strong className="text-lg font-semibold text-[#2e1e10]">
+                Vùng miền:
+              </strong>
               {REGIONS.map((region) => (
                 <label
                   key={region}
@@ -3359,7 +3372,9 @@ const TraiNghiem = () => {
                     type="checkbox"
                     className="h-5 w-5 accent-[#dc8154] rounded border-2 border-gray-400"
                     checked={mapFilters.regions.has(region)}
-                    onChange={() => handleFilterChange(setMapFilters, "regions", region)}
+                    onChange={() =>
+                      handleFilterChange(setMapFilters, "regions", region)
+                    }
                   />
                   {region}
                 </label>
@@ -3369,7 +3384,10 @@ const TraiNghiem = () => {
             {/* Năm */}
             <div className="flex flex-1 items-center gap-3 min-w-[300px]">
               <strong className="text-lg font-semibold text-[#2e1e10]">
-                Năm ≤ <span className="font-bold text-[#dc8154]">{mapFilters.year}</span>
+                Năm ≤{" "}
+                <span className="font-bold text-[#dc8154]">
+                  {mapFilters.year}
+                </span>
               </strong>
               <input
                 type="range"
@@ -3415,7 +3433,9 @@ const TraiNghiem = () => {
                       className="cursor-pointer px-4 py-2 hover:bg-amber-50"
                       onClick={() => focusPlace(s)}
                     >
-                      <div className="font-semibold text-[#2e1e10]">{s.name}</div>
+                      <div className="font-semibold text-[#2e1e10]">
+                        {s.name}
+                      </div>
                       <div className="text-sm text-gray-500">
                         {s.province} · {s.region} Bộ · {s.period}
                       </div>
@@ -3446,12 +3466,21 @@ const TraiNghiem = () => {
                 aria-label="Đóng bộ lọc"
                 className="absolute right-3 top-3 rounded-full bg-white p-2 border border-gray-200 shadow-md hover:shadow-lg"
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#111827"
+                  strokeWidth="2"
+                >
                   <path d="M6 6l12 12M18 6l-12 12" />
                 </svg>
               </button>
               <div className="mr-10 mb-3 flex items-center justify-between">
-                <h3 className="text-lg font-bold text-[#2e1e10]">Lọc theo Tỉnh/TP</h3>
+                <h3 className="text-lg font-bold text-[#2e1e10]">
+                  Lọc theo Tỉnh/TP
+                </h3>
                 <button
                   onClick={() =>
                     setMapFilters((prev) => ({
@@ -3499,7 +3528,9 @@ const TraiNghiem = () => {
                           handleFilterChange(setMapFilters, "provinces", p)
                         }
                       />
-                      <span className="truncate text-sm text-[#2e1e10]">{p}</span>
+                      <span className="truncate text-sm text-[#2e1e10]">
+                        {p}
+                      </span>
                     </div>
                     <span className="text-xs text-gray-500">
                       {mapData.filter((d) => d.province === p).length} địa danh
@@ -3517,7 +3548,14 @@ const TraiNghiem = () => {
                 className="rounded-lg bg-white p-3 shadow-md hover:shadow-lg border border-gray-200"
               >
                 {/* icon hamburger */}
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#111827"
+                  strokeWidth="2"
+                >
                   <path d="M3 6h18M3 12h18M3 18h18" />
                 </svg>
               </button>
@@ -3530,10 +3568,17 @@ const TraiNghiem = () => {
                 title="Vị trí của tôi"
                 className="rounded-lg bg-white p-3 shadow-md hover:shadow-lg border border-gray-200"
               >
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2">
-                  <path d="M12 8v8m-4-4h8"/>
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#111827"
+                  strokeWidth="2"
+                >
+                  <path d="M12 8v8m-4-4h8" />
                   <circle cx="12" cy="12" r="3"></circle>
-                  <path d="M12 2v2m0 16v2M2 12h2m16 0h2"/>
+                  <path d="M12 2v2m0 16v2M2 12h2m16 0h2" />
                 </svg>
               </button>
             </div>
@@ -3544,7 +3589,6 @@ const TraiNghiem = () => {
             />
           </div>
         </section>
-        
 
         {/* GALLERY TIÊU ĐỀ + TAB + FILTER + GRID (giữ nguyên) */}
         <section
