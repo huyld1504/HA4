@@ -82,13 +82,6 @@ const GiaoDuc = () => {
       views: "1.8K",
       image: "https://images.unsplash.com/photo-1604622204871-41e695c14414?w=400&h=300&fit=crop",
       category: "Văn hóa"
-    },
-    {
-      title: "AI và Bảo tồn Di sản",
-      duration: "12 phút",
-      views: "5.2K",
-      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=300&fit=crop",
-      category: "AI"
     }
   ]);
 
@@ -163,70 +156,11 @@ const GiaoDuc = () => {
       {/* Navigation Cards */}
       <section className="px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
-            {/* Khám phá Di tích */}
-            <Link
-              to="/giaoduc/kham-pha-di-tich"
-              className="group relative overflow-hidden rounded-2xl border border-stone-300 bg-white p-8 shadow-lg transition-all duration-300 hover:border-amber-400 hover:shadow-xl hover:scale-105"
-            >
-              <div className="mb-6 text-center">
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-amber-500 to-orange-500">
-                  <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
-                </div>
-              </div>
-              <h3 className="mb-3 text-center font-serif text-2xl font-semibold text-stone-800">
-                Khám phá Di tích
-              </h3>
-              <p className="text-center text-base text-stone-600">
-                Khám phá các di tích lịch sử Việt Nam thông qua thực tế ảo và AI
-              </p>
-            </Link>
-
-            {/* Tour 3D */}
-            <Link
-              to="/giaoduc/tour-3d"
-              className="group relative overflow-hidden rounded-2xl border border-stone-300 bg-white p-8 shadow-lg transition-all duration-300 hover:border-amber-400 hover:shadow-xl hover:scale-105"
-            >
-              <div className="mb-6 text-center">
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-indigo-500">
-                  <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                  </svg>
-                </div>
-              </div>
-              <h3 className="mb-3 text-center font-serif text-2xl font-semibold text-stone-800">
-                Tour 3D
-              </h3>
-              <p className="text-center text-base text-stone-600">
-                Trải nghiệm tour 3D tương tác các địa danh văn hóa
-              </p>
-            </Link>
-
-            {/* Tạo nội dung */}
-            <Link
-              to="/giaoduc/tao-noi-dung"
-              className="group relative overflow-hidden rounded-2xl border border-stone-300 bg-white p-8 shadow-lg transition-all duration-300 hover:border-amber-400 hover:shadow-xl hover:scale-105"
-            >
-              <div className="mb-6 text-center">
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-green-500 to-emerald-500">
-                  <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                  </svg>
-                </div>
-              </div>
-              <h3 className="mb-3 text-center font-serif text-2xl font-semibold text-stone-800">
-                Tạo nội dung
-              </h3>
-              <p className="text-center text-base text-stone-600">
-                Sáng tạo nội dung về văn hóa với sự hỗ trợ của AI
-              </p>
-            </Link>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
             {/* Cộng đồng */}
             <Link
-              to="/giaoduc/cong-dong"
+              to="/forum"
               className="group relative overflow-hidden rounded-2xl border border-stone-300 bg-white p-8 shadow-lg transition-all duration-300 hover:border-amber-400 hover:shadow-xl hover:scale-105"
             >
               <div className="mb-6 text-center">
@@ -264,121 +198,25 @@ const GiaoDuc = () => {
               </p>
             </Link>
 
-            {/* LMS System - Teacher Dashboard */}
-            <Link
-              to="/lms/teacher/dashboard?teacherId=1"
-              className="group relative overflow-hidden rounded-2xl border border-stone-300 bg-white p-8 shadow-lg transition-all duration-300 hover:border-indigo-400 hover:shadow-xl hover:scale-105"
-            >
-              <div className="mb-6 text-center">
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-600">
-                  <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                  </svg>
-                </div>
-              </div>
-              <h3 className="mb-3 text-center font-serif text-2xl font-semibold text-stone-800">
-                Hệ thống LMS - Giáo viên
-              </h3>
-              <p className="text-center text-base text-stone-600">
-                Quản lý khóa học, tạo bài tập AI và theo dõi tiến độ học sinh
-              </p>
-            </Link>
-
-            {/* LMS System - Student Dashboard */}
+            {/* Hệ thống học tập */}
             <Link
               to="/lms/student/dashboard?studentId=10"
-              className="group relative overflow-hidden rounded-2xl border border-stone-300 bg-white p-8 shadow-lg transition-all duration-300 hover:border-green-400 hover:shadow-xl hover:scale-105"
+              className="group relative overflow-hidden rounded-2xl border border-stone-300 bg-white p-8 shadow-lg transition-all duration-300 hover:border-amber-400 hover:shadow-xl hover:scale-105"
             >
               <div className="mb-6 text-center">
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-green-500 to-emerald-600">
+                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-indigo-500">
                   <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                   </svg>
                 </div>
               </div>
               <h3 className="mb-3 text-center font-serif text-2xl font-semibold text-stone-800">
-                Hệ thống LMS - Học sinh
+                Hệ thống học tập
               </h3>
               <p className="text-center text-base text-stone-600">
-                Tham gia khóa học, làm bài tập AI và xem kết quả học tập
+                Khóa học trực tuyến và bài tập tương tác về văn hóa
               </p>
             </Link>
-
-          </div>
-        </div>
-      </section>
-
-      <SectionDivider />
-
-      {/* Featured Content Section */}
-      <section className="px-4 py-12 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-8 text-center">
-            <h2 className="mb-6 text-4xl font-serif font-bold text-amber-900 sm:text-5xl lg:text-6xl">
-              Khám phá Giáo dục cùng AI & Văn hóa Việt
-            </h2>
-            <p className="text-amber-800">
-              Hành trình học tập tương tác với công nghệ AI hiện đại
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-            {/* AR Experience */}
-            <div className="rounded-2xl border border-orange-200 bg-gradient-to-br from-orange-50 to-amber-50 p-8 shadow-md">
-              <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-orange-400 to-red-500">
-                <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-              </div>
-              <h3 className="mb-4 font-serif text-2xl font-semibold text-stone-800">
-                Thực tế tăng cường AR
-              </h3>
-              <p className="mb-6 text-base text-stone-600">
-                Trải nghiệm di tích lịch sử thông qua công nghệ thực tế tăng cường,
-                khám phá những câu chuyện ẩn giấu đằng sau mỗi kiến trúc.
-              </p>
-              <button className="rounded-full bg-gradient-to-r from-orange-500 to-red-500 px-8 py-3 font-semibold text-white transition-all hover:from-orange-600 hover:to-red-600 hover:shadow-lg">
-                Khám phá
-              </button>
-            </div>
-
-            {/* Virtual Museum */}
-            <div className="rounded-2xl border border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50 p-8 shadow-md">
-              <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-indigo-600">
-                <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M9 7l3-3 3 3M4 10h16v11H4V10z" />
-                </svg>
-              </div>
-              <h3 className="mb-4 font-serif text-2xl font-semibold text-stone-800">
-                Bảo tàng ảo tương tác
-              </h3>
-              <p className="mb-6 text-base text-stone-600">
-                Tham quan các bảo tàng nổi tiếng Việt Nam một cách trực tuyến,
-                với hướng dẫn viên AI thông minh.
-              </p>
-              <button className="rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 px-8 py-3 font-semibold text-white transition-all hover:from-blue-600 hover:to-indigo-700 hover:shadow-lg">
-                Tham quan
-              </button>
-            </div>
-
-            {/* AI Learning */}
-            <div className="rounded-2xl border border-green-200 bg-gradient-to-br from-green-50 to-emerald-50 p-8 shadow-md">
-              <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-green-500 to-emerald-600">
-                <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
-              </div>
-              <h3 className="mb-4 font-serif text-2xl font-semibold text-stone-800">
-                Học tập với AI thông minh
-              </h3>
-              <p className="mb-6 text-base text-stone-600">
-                Hệ thống AI cá nhân hóa hành trình học tập về văn hóa,
-                phù hợp với từng độ tuổi và sở thích.
-              </p>
-              <button className="rounded-full bg-gradient-to-r from-green-500 to-emerald-600 px-8 py-3 font-semibold text-white transition-all hover:from-green-600 hover:to-emerald-700 hover:shadow-lg">
-                Bắt đầu
-              </button>
-            </div>
           </div>
         </div>
       </section>
@@ -550,20 +388,6 @@ const GiaoDuc = () => {
                 pages: "320 trang",
                 downloads: "890",
                 rating: "4.9"
-              },
-              {
-                title: "Ứng dụng AI trong Bảo tồn Di sản",
-                author: "TS. Phạm Thị D",
-                pages: "150 trang",
-                downloads: "3.4K",
-                rating: "4.6"
-              },
-              {
-                title: "Thế giới đôn Đại Việt Nam",
-                author: "GS. Hoàng Văn E",
-                pages: "280 trang",
-                downloads: "1.8K",
-                rating: "4.8"
               },
               {
                 title: "Tương tác của Cộng đồng văn hóa",

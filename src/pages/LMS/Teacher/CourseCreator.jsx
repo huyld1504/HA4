@@ -188,7 +188,7 @@ const CourseCreator = () => {
                     value={courseTitle}
                     onChange={(e) => setCourseTitle(e.target.value)}
                     placeholder="VD: Lịch sử Việt Nam thời kỳ phong kiến"
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="lms-input"
                   />
                 </div>
 
@@ -200,7 +200,7 @@ const CourseCreator = () => {
                     onChange={(e) => setCourseDescription(e.target.value)}
                     rows={4}
                     placeholder="Mô tả nội dung, mục tiêu và phương pháp giảng dạy của khóa học..."
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="lms-input"
                   />
                 </div>
 
