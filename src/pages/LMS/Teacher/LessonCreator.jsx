@@ -247,7 +247,7 @@ Tóm tắt những kiến thức chính đã học...
                     value={lessonTitle}
                     onChange={(e) => setLessonTitle(e.target.value)}
                     placeholder="VD: Khái quát về Chế độ Phong kiến Việt Nam"
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="lms-input"
                   />
                 </div>
 
@@ -259,7 +259,7 @@ Tóm tắt những kiến thức chính đã học...
                     onChange={(e) => setLessonDescription(e.target.value)}
                     rows={3}
                     placeholder="Tìm hiểu về đặc điểm chung của chế độ phong kiến và quá trình hình thành tại Việt Nam..."
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="lms-input"
                   />
                 </div>
 
